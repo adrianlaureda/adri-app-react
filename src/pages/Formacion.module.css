@@ -1,0 +1,98 @@
+.page {
+  min-height: 100vh;
+  padding-top: 140px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-sm);
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 1.125rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.comingSoon {
+  text-align: center;
+  padding: var(--space-xl) 0;
+}
+
+.comingSoonIcon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto var(--space-md);
+  color: var(--text-muted);
+}
+
+.comingSoonIcon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.comingSoonText {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.topics {
+  margin-top: var(--space-lg);
+}
+
+.topicsTitle {
+  text-align: center;
+  margin-bottom: var(--space-md);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.topicsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.topic {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.topicCheck {
+  width: 16px;
+  height: 16px;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.topicCheck svg {
+  width: 100%;
+  height: 100%;
+}
+
+.topicName {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
