@@ -1,19 +1,35 @@
 .page {
   min-height: 100vh;
-  padding-top: 120px;
+  padding-top: 140px;
+  padding-bottom: var(--space-xl);
+  position: relative;
 }
 
-.cubeHero {
-  height: 350px;
-  margin-top: 20px;
-  margin-bottom: var(--space-md);
+.page::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/images/bg-recursos.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: grayscale(100%) blur(2px);
+  opacity: 0.12;
+  z-index: -1;
+  pointer-events: none;
+}
+
+[data-theme="light"] .page::before {
+  opacity: 0.08;
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 var(--space-md);
-  padding-bottom: var(--space-xl);
 }
 
 .header {
@@ -37,14 +53,14 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
 }
 
 .card {
   display: flex;
   flex-direction: column;
-  padding: 2rem;
+  padding: 1.5rem;
   background: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -57,14 +73,14 @@
 }
 
 .card.comingSoon {
-  opacity: 0.6;
+  opacity: 0.5;
   pointer-events: none;
 }
 
 .cardIcon {
-  width: 40px;
-  height: 40px;
-  margin-bottom: 1.5rem;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 1rem;
   color: var(--text);
 }
 
@@ -74,13 +90,13 @@
 }
 
 .cardTitle {
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 500;
   margin-bottom: 0.5rem;
 }
 
 .cardDesc {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: var(--text-secondary);
   line-height: 1.5;
   flex: 1;
@@ -89,8 +105,8 @@
 .cardTag {
   display: inline-block;
   margin-top: 1rem;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.6875rem;
   font-weight: 500;
   color: var(--text-muted);
   border: 1px solid var(--border);
@@ -102,8 +118,14 @@
   background: var(--bg-elevated);
 }
 
-@media (max-width: 768px) {
-  .cubeHero {
-    height: 280px;
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
   }
 }

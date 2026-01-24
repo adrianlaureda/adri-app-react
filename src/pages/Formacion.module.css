@@ -1,17 +1,40 @@
 .page {
   min-height: 100vh;
   padding-top: 140px;
+  padding-bottom: var(--space-xl);
+  position: relative;
+}
+
+.page::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/images/bg-formacion.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: grayscale(100%) blur(3px);
+  opacity: 0.1;
+  z-index: -1;
+  pointer-events: none;
+}
+
+[data-theme="light"] .page::before {
+  opacity: 0.06;
 }
 
 .container {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 var(--space-md);
 }
 
 .header {
   text-align: center;
-  margin-bottom: var(--space-xl);
+  margin-bottom: var(--space-lg);
 }
 
 .title {
@@ -28,26 +51,74 @@
   margin: 0 auto;
 }
 
-.comingSoon {
-  text-align: center;
-  padding: var(--space-xl) 0;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: var(--space-xl);
 }
 
-.comingSoonIcon {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto var(--space-md);
-  color: var(--text-muted);
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: all var(--transition);
 }
 
-.comingSoonIcon svg {
+.card:hover {
+  border-color: var(--text-secondary);
+  transform: translateY(-2px);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.cardIcon {
+  width: 40px;
+  height: 40px;
+  color: var(--text);
+}
+
+.cardIcon svg {
   width: 100%;
   height: 100%;
 }
 
-.comingSoonText {
+.cardStatus {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  padding: 0.25rem 0.6rem;
+  background: var(--bg-elevated);
+  border-radius: 100px;
+}
+
+.cardStatus svg {
+  width: 12px;
+  height: 12px;
+}
+
+.cardName {
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.cardDesc {
+  font-size: 0.875rem;
   color: var(--text-secondary);
-  font-size: 1rem;
+  line-height: 1.5;
+  flex: 1;
 }
 
 .topics {
@@ -65,29 +136,29 @@
 }
 
 .topicsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
 }
 
 .topic {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 1rem 1.25rem;
+  padding: 1rem 1.5rem;
   background: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: 8px;
 }
 
-.topicCheck {
-  width: 16px;
-  height: 16px;
+.topicIcon {
+  width: 20px;
+  height: 20px;
   color: var(--text-secondary);
   flex-shrink: 0;
 }
 
-.topicCheck svg {
+.topicIcon svg {
   width: 100%;
   height: 100%;
 }
@@ -95,4 +166,16 @@
 .topicName {
   font-size: 0.875rem;
   color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .topicsGrid {
+    flex-direction: column;
+    align-items: center;
+  }
 }

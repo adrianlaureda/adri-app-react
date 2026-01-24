@@ -1,6 +1,4 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Cube3D } from '../components/Cube3D';
 import styles from './Recursos.module.css';
 
 // Iconos SVG
@@ -102,31 +100,8 @@ const RECURSOS = [
 ];
 
 export function Recursos() {
-  const [isDark, setIsDark] = useState(true);
-
-  useEffect(() => {
-    const checkTheme = () => {
-      setIsDark(document.documentElement.getAttribute('data-theme') !== 'light');
-    };
-
-    checkTheme();
-
-    const observer = new MutationObserver(checkTheme);
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['data-theme']
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <main className={styles.page}>
-      {/* Cubo 3D hero */}
-      <div className={styles.cubeHero}>
-        <Cube3D isDark={isDark} />
-      </div>
-
       <div className={styles.container}>
         <header className={`${styles.header} animate-fade-in-up`}>
           <h1 className={styles.title}>Recursos</h1>

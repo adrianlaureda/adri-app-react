@@ -2,6 +2,28 @@
   min-height: 100vh;
   padding-top: 140px;
   padding-bottom: var(--space-xl);
+  position: relative;
+}
+
+.page::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/images/bg-proyectos.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: grayscale(100%) blur(2px);
+  opacity: 0.08;
+  z-index: -1;
+  pointer-events: none;
+}
+
+[data-theme="light"] .page::before {
+  opacity: 0.05;
 }
 
 .container {
