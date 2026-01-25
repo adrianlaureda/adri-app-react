@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Url's — URL Shortener</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #050505;
+      --surface: #0a0a0a;
+      --surface-2: #111111;
+      --surface-3: #1a1a1a;
+      --border: #222222;
+      --text: #ffffff;
+      --text-2: rgba(255,255,255,0.6);
+      --text-3: rgba(255,255,255,0.35);
+      --accent: #00ff88;
+      --accent-dim: rgba(0,255,136,0.15);
+      --danger: #ff4444;
+      --danger-dim: rgba(255,68,68,0.15);
+      --radius: 8px;
+      --font-display: 'Syne', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: var(--font-display);
+      background: var(--black);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.5;
+      letter-spacing: -0.01em;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    ::selection {
+      background: var(--accent);
+      color: var(--black);
+    }
+
+    /* Home Link */
+    .home-link {
+      position: fixed;
+      top: 1.5rem;
+      left: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      color: var(--text-3);
+      border-radius: 8px;
+      transition: color 0.2s, background 0.2s;
+      z-index: 100;
+    }
+
+    .home-link:hover {
+      color: var(--text);
+      background: var(--surface-2);
+    }
+
+    .home-link svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .home-link-small {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      color: var(--text-3);
+      border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .home-link-small:hover {
+      color: var(--text);
+      background: var(--surface-2);
+    }
+
+    .home-link-small svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* Auth Section */
+    #auth-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .auth-card {
+      width: 100%;
+      max-width: 380px;
+      animation: fadeUp 0.6s ease-out;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .auth-logo {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .auth-logo span { color: var(--accent); }
+
+    .auth-subtitle {
+      color: var(--text-3);
+      font-size: 0.875rem;
+      margin-bottom: 3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* Form Elements */
+    .field { margin-bottom: 1.5rem; }
+
+    .field-label {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-3);
+      margin-bottom: 0.75rem;
+    }
+
+    .field-input {
+      width: 100%;
+      padding: 1rem 1.25rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 0.9375rem;
+      transition: all 0.2s ease;
+    }
+
+    .field-input::placeholder { color: var(--text-3); }
+    .field-input:hover { border-color: #333; }
+    .field-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-dim);
+    }
+
+    .field-hint {
+      font-size: 0.75rem;
+      color: var(--text-3);
+      margin-top: 0.5rem;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.5rem;
+      font-family: var(--font-display);
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--black);
+    }
+
+    .btn-primary:hover {
+      background: #00e67a;
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-2);
+      border: 1px solid var(--border);
+    }
+
+    .btn-ghost:hover {
+      background: var(--surface-2);
+      color: var(--text);
+      border-color: #333;
+    }
+
+    .btn-danger {
+      background: var(--danger-dim);
+      color: var(--danger);
+      border: 1px solid transparent;
+    }
+
+    .btn-danger:hover {
+      background: var(--danger);
+      color: var(--black);
+    }
+
+    .btn-sm {
+      padding: 0.5rem 0.875rem;
+      font-size: 0.75rem;
+    }
+
+    .btn-icon {
+      padding: 0.5rem;
+      min-width: 2rem;
+    }
+
+    .btn-block { width: 100%; }
+
+    /* Main Layout */
+    .layout {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 6rem;
+      animation: fadeUp 0.5s ease-out;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-brand {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+    }
+
+    .header-brand span { color: var(--accent); }
+
+    .header-actions {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    /* Dashboard Stats */
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .dashboard-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    .dashboard-card:hover {
+      border-color: #333;
+      background: var(--surface-2);
+    }
+
+    .dashboard-value {
+      font-family: var(--font-mono);
+      font-size: 2.5rem;
+      font-weight: 500;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .dashboard-label {
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-3);
+      margin-top: 0.5rem;
+    }
+
+    /* Section Title */
+    .section-title {
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-3);
+      margin-bottom: 1rem;
+    }
+
+    /* Messages */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      padding: 1rem 1.5rem;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      z-index: 1000;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .toast.error {
+      border-color: var(--danger);
+      color: var(--danger);
+    }
+
+    .toast.success {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* URL List */
+    .url-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .url-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1.5rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--surface);
+      align-items: center;
+      transition: background 0.2s ease;
+    }
+
+    .url-item:hover {
+      background: var(--surface-2);
+    }
+
+    .url-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .url-title-text {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .url-clics {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      background: var(--accent-dim);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    .url-short {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.375rem;
+    }
+
+    .url-short-link {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: var(--accent);
+      text-decoration: none;
+      background: var(--surface-2);
+      padding: 0.375rem 0.625rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+
+    .url-short-link:hover {
+      background: var(--surface-3);
+      border-color: var(--accent);
+    }
+
+    .url-copy {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-3);
+      padding: 0.375rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .url-copy:hover {
+      background: var(--surface-2);
+      color: var(--text);
+      border-color: #333;
+    }
+
+    .url-copy.copied {
+      background: var(--accent-dim);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .url-dest {
+      font-size: 0.75rem;
+      color: var(--text-3);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 450px;
+    }
+
+    .url-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 0.5rem;
+      font-size: 0.6875rem;
+      color: var(--text-3);
+    }
+
+    .url-actions {
+      display: flex;
+      gap: 0.5rem;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .url-item:hover .url-actions {
+      opacity: 1;
+    }
+
+    /* Empty State */
+    .empty {
+      text-align: center;
+      padding: 6rem 2rem;
+      color: var(--text-3);
+    }
+
+    .empty-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0.3;
+    }
+
+    .empty p { font-size: 0.875rem; }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 1rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.2s ease;
+    }
+
+    .modal-overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal {
+      width: 100%;
+      max-width: 480px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) * 1.5);
+      padding: 2rem;
+      transform: scale(0.95);
+      transition: transform 0.2s ease;
+    }
+
+    .modal-wide { max-width: 640px; }
+
+    .modal-overlay.show .modal {
+      transform: scale(1);
+    }
+
+    .modal-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      letter-spacing: -0.02em;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: flex-end;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Stats Modal */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: var(--surface-2);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-family: var(--font-mono);
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-3);
+      margin-top: 0.5rem;
+    }
+
+    .stats-section { margin-top: 1.5rem; }
+
+    .stats-section-title {
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-3);
+      margin-bottom: 0.75rem;
+    }
+
+    .stats-section-content {
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      color: var(--text-2);
+    }
+
+    /* Bar Chart */
+    .chart-container {
+      background: var(--surface-2);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .chart-title {
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-3);
+      margin-bottom: 1rem;
+    }
+
+    .chart-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+      height: 100px;
+    }
+
+    .chart-bar-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .chart-bar {
+      width: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+      min-height: 2px;
+      transition: opacity 0.2s ease;
+    }
+
+    .chart-bar:hover { opacity: 0.8; }
+
+    .chart-bar-label {
+      font-family: var(--font-mono);
+      font-size: 0.5625rem;
+      color: var(--text-3);
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+      max-height: 40px;
+      overflow: hidden;
+    }
+
+    .chart-empty {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-3);
+      font-size: 0.8125rem;
+    }
+
+    /* Progress Bars */
+    .progress-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .progress-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .progress-label {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: var(--text);
+    }
+
+    .progress-value {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-3);
+    }
+
+    .progress-track {
+      height: 4px;
+      background: var(--surface-3);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }
+
+    .progress-fill.secondary { background: var(--text-3); }
+
+    /* Error message */
+    .auth-error {
+      background: var(--danger-dim);
+      color: var(--danger);
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius);
+      font-size: 0.8125rem;
+      margin-top: 1rem;
+      display: none;
+    }
+
+    .auth-error.show { display: block; }
+
+    .hidden { display: none !important; }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .layout { padding: 2rem 1rem 4rem; }
+      .header { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
+      .dashboard { grid-template-columns: 1fr; }
+      .url-item { grid-template-columns: 1fr; gap: 1rem; }
+      .url-actions { opacity: 1; justify-content: flex-start; }
+      .url-dest { max-width: 100%; }
+      .stats-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Auth Section -->
+  <div id="auth-section">
+    <a href="/" class="home-link" title="Volver a adri-app">
+      <svg viewBox="0 0 100 100">
+        <polygon points="50,5 95,82 5,82" fill="currentColor"/>
+        <line x1="50" y1="56" x2="50" y2="5" stroke="var(--black)" stroke-width="4"/>
+        <line x1="50" y1="56" x2="95" y2="82" stroke="var(--black)" stroke-width="4"/>
+        <line x1="50" y1="56" x2="5" y2="82" stroke="var(--black)" stroke-width="4"/>
+      </svg>
+    </a>
+    <div class="auth-card">
+      <div class="auth-logo">Url<span>'s</span></div>
+      <div class="auth-subtitle">URL Shortener</div>
+      <div class="field">
+        <label class="field-label" for="api-key">API Key</label>
+        <input type="password" id="api-key" class="field-input" placeholder="••••••••••••••••" onkeydown="if(event.key==='Enter')login()">
+      </div>
+      <button class="btn btn-primary btn-block" onclick="login()">Entrar</button>
+      <div id="auth-error" class="auth-error">API key inválida</div>
+    </div>
+  </div>
+
+  <!-- Main Panel -->
+  <div id="main-panel" class="layout hidden">
+    <header class="header">
+      <div class="header-left">
+        <a href="/" class="home-link-small" title="Volver a adri-app">
+          <svg viewBox="0 0 100 100">
+            <polygon points="50,5 95,82 5,82" fill="currentColor"/>
+            <line x1="50" y1="56" x2="50" y2="5" stroke="var(--black)" stroke-width="4"/>
+            <line x1="50" y1="56" x2="95" y2="82" stroke="var(--black)" stroke-width="4"/>
+            <line x1="50" y1="56" x2="5" y2="82" stroke="var(--black)" stroke-width="4"/>
+          </svg>
+        </a>
+        <div class="header-brand">Url<span>'s</span></div>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-primary" onclick="showCreateModal()">+ Nuevo</button>
+        <button class="btn btn-ghost" onclick="logout()">Salir</button>
+      </div>
+    </header>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="dashboard"></div>
+
+    <!-- URL List -->
+    <div class="section-title">Enlaces</div>
+    <div id="url-list"></div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <!-- Create/Edit Modal -->
+  <div id="modal" class="modal-overlay" onclick="if(event.target === this) closeModal()">
+    <div class="modal">
+      <h2 id="modal-title" class="modal-title">Nueva URL</h2>
+      <form onsubmit="saveUrl(event)">
+        <div class="field">
+          <label class="field-label" for="url-titulo">Título</label>
+          <input type="text" id="url-titulo" class="field-input" placeholder="Mi enlace importante" oninput="updateSlug()">
+          <div class="field-hint">El código se genera automáticamente del título</div>
+        </div>
+        <div class="field">
+          <label class="field-label" for="url-code">Código</label>
+          <input type="text" id="url-code" class="field-input" placeholder="mi-enlace-importante" pattern="[a-zA-Z0-9_-]+">
+          <div class="field-hint">Puedes editarlo manualmente si lo prefieres</div>
+        </div>
+        <div class="field">
+          <label class="field-label" for="url-destino">URL de destino</label>
+          <input type="url" id="url-destino" class="field-input" required placeholder="https://ejemplo.com/pagina">
+        </div>
+        <input type="hidden" id="url-editing">
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Stats Modal -->
+  <div id="stats-modal" class="modal-overlay" onclick="if(event.target === this) closeStatsModal()">
+    <div class="modal modal-wide">
+      <h2 id="stats-title" class="modal-title">Estadísticas</h2>
+      <div id="stats-content"></div>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" onclick="closeStatsModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const BASE_URL = window.location.origin;
+    let apiKey = localStorage.getItem('apiKey') || '';
+    let urlsCache = [];
+
+    if (apiKey) checkAuth();
+
+    // Convertir texto a slug
+    function toSlug(text) {
+      return text
+        .toLowerCase()
+        .normalize('NFD').replace(/[\\u0300-\\u036f]/g, '') // Quitar acentos
+        .replace(/[^a-z0-9\\s-]/g, '') // Solo letras, números, espacios, guiones
+        .trim()
+        .replace(/\\s+/g, '-') // Espacios a guiones
+        .replace(/-+/g, '-') // Múltiples guiones a uno
+        .substring(0, 50); // Máximo 50 caracteres
+    }
+
+    // Actualizar código cuando cambia el título
+    function updateSlug() {
+      const titulo = document.getElementById('url-titulo').value;
+      const codeInput = document.getElementById('url-code');
+      const editing = document.getElementById('url-editing').value;
+
+      // Solo auto-generar si no estamos editando y el usuario no ha modificado el código manualmente
+      if (!editing && !codeInput.dataset.manual) {
+        codeInput.value = toSlug(titulo);
+      }
+    }
+
+    // Marcar si el usuario edita el código manualmente
+    document.getElementById('url-code').addEventListener('input', function() {
+      this.dataset.manual = 'true';
+    });
+
+    async function api(endpoint, options = {}) {
+      const res = await fetch(BASE_URL + endpoint, {
+        ...options,
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-Key': apiKey,
+          ...options.headers
+        }
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Error en la petición');
+      return data;
+    }
+
+    async function checkAuth() {
+      try {
+        await api('/api/urls');
+        showPanel();
+        loadUrls();
+      } catch {
+        localStorage.removeItem('apiKey');
+        apiKey = '';
+      }
+    }
+
+    async function login() {
+      apiKey = document.getElementById('api-key').value;
+      try {
+        await api('/api/urls');
+        localStorage.setItem('apiKey', apiKey);
+        showPanel();
+        loadUrls();
+      } catch {
+        document.getElementById('auth-error').classList.add('show');
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem('apiKey');
+      apiKey = '';
+      document.getElementById('main-panel').classList.add('hidden');
+      document.getElementById('auth-section').classList.remove('hidden');
+      document.getElementById('api-key').value = '';
+    }
+
+    function showPanel() {
+      document.getElementById('auth-section').classList.add('hidden');
+      document.getElementById('main-panel').classList.remove('hidden');
+    }
+
+    function showToast(text, type = 'success') {
+      const toast = document.getElementById('toast');
+      toast.textContent = text;
+      toast.className = 'toast ' + type + ' show';
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    const ICON_COPY = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+    const ICON_CHECK = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+
+    async function copyUrl(url, btn) {
+      try {
+        await navigator.clipboard.writeText(url);
+        btn.innerHTML = ICON_CHECK;
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = ICON_COPY;
+          btn.classList.remove('copied');
+        }, 2000);
+      } catch {
+        showToast('Error al copiar', 'error');
+      }
+    }
+
+    async function loadUrls() {
+      try {
+        const { urls } = await api('/api/urls');
+        urlsCache = urls;
+        renderDashboard(urls);
+        renderUrls(urls);
+      } catch (e) {
+        showToast(e.message, 'error');
+      }
+    }
+
+    function renderDashboard(urls) {
+      const container = document.getElementById('dashboard');
+      const totalUrls = urls.length;
+      const totalClics = urls.reduce((sum, u) => sum + u.clics, 0);
+      const topUrl = urls.reduce((top, u) => u.clics > (top?.clics || 0) ? u : top, null);
+
+      container.innerHTML = '';
+
+      const cards = [
+        { value: totalUrls, label: 'Total enlaces' },
+        { value: totalClics, label: 'Total clics' },
+        { value: topUrl ? '/' + topUrl.code : '—', label: 'Más visitado', small: true }
+      ];
+
+      cards.forEach(card => {
+        const el = document.createElement('div');
+        el.className = 'dashboard-card';
+        const valueStyle = card.small ? 'font-size: 1.25rem;' : '';
+        el.innerHTML = '<div class="dashboard-value" style="' + valueStyle + '">' + card.value + '</div><div class="dashboard-label">' + card.label + '</div>';
+        container.appendChild(el);
+      });
+    }
+
+    function renderUrls(urls) {
+      const container = document.getElementById('url-list');
+      container.innerHTML = '';
+
+      if (!urls.length) {
+        const empty = document.createElement('div');
+        empty.className = 'empty';
+        empty.innerHTML = '<div class="empty-icon">∅</div><p>No hay URLs creadas</p>';
+        container.appendChild(empty);
+        return;
+      }
+
+      const list = document.createElement('div');
+      list.className = 'url-list';
+
+      urls.forEach(url => {
+        const shortUrl = BASE_URL + '/' + url.code;
+        const fecha = new Date(url.creado).toLocaleDateString('es-ES', { day: '2-digit', month: 'short' });
+
+        const item = document.createElement('div');
+        item.className = 'url-item';
+
+        const info = document.createElement('div');
+
+        // Header con título y clics
+        const header = document.createElement('div');
+        header.className = 'url-header';
+
+        const titleText = document.createElement('span');
+        titleText.className = 'url-title-text';
+        titleText.textContent = url.titulo || '/' + url.code;
+        header.appendChild(titleText);
+
+        const clicsBadge = document.createElement('span');
+        clicsBadge.className = 'url-clics';
+        clicsBadge.textContent = url.clics + ' clics';
+        header.appendChild(clicsBadge);
+
+        // URL corta con botón copiar
+        const shortDiv = document.createElement('div');
+        shortDiv.className = 'url-short';
+
+        const shortLink = document.createElement('a');
+        shortLink.href = shortUrl;
+        shortLink.target = '_blank';
+        shortLink.className = 'url-short-link';
+        shortLink.textContent = shortUrl;
+        shortDiv.appendChild(shortLink);
+
+        const copyBtn = document.createElement('button');
+        copyBtn.className = 'url-copy';
+        copyBtn.innerHTML = ICON_COPY;
+        copyBtn.title = 'Copiar URL';
+        copyBtn.onclick = (e) => { e.stopPropagation(); copyUrl(shortUrl, copyBtn); };
+        shortDiv.appendChild(copyBtn);
+
+        // Destino
+        const dest = document.createElement('div');
+        dest.className = 'url-dest';
+        dest.textContent = '→ ' + url.destino;
+
+        // Meta
+        const meta = document.createElement('div');
+        meta.className = 'url-meta';
+        meta.textContent = 'Creado ' + fecha;
+
+        info.appendChild(header);
+        info.appendChild(shortDiv);
+        info.appendChild(dest);
+        info.appendChild(meta);
+
+        // Actions
+        const actions = document.createElement('div');
+        actions.className = 'url-actions';
+
+        const statsBtn = document.createElement('button');
+        statsBtn.className = 'btn btn-ghost btn-sm';
+        statsBtn.textContent = 'Stats';
+        statsBtn.onclick = () => showStats(url.code);
+
+        const editBtn = document.createElement('button');
+        editBtn.className = 'btn btn-ghost btn-sm';
+        editBtn.textContent = 'Editar';
+        editBtn.onclick = () => editUrl(url.code, url.destino, url.titulo || '');
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'btn btn-danger btn-sm';
+        deleteBtn.textContent = 'Eliminar';
+        deleteBtn.onclick = () => deleteUrl(url.code);
+
+        actions.appendChild(statsBtn);
+        actions.appendChild(editBtn);
+        actions.appendChild(deleteBtn);
+
+        item.appendChild(info);
+        item.appendChild(actions);
+        list.appendChild(item);
+      });
+
+      container.appendChild(list);
+    }
+
+    function showCreateModal() {
+      document.getElementById('modal-title').textContent = 'Nueva URL';
+      document.getElementById('url-titulo').value = '';
+      document.getElementById('url-code').value = '';
+      document.getElementById('url-code').disabled = false;
+      document.getElementById('url-code').dataset.manual = '';
+      document.getElementById('url-destino').value = '';
+      document.getElementById('url-editing').value = '';
+      document.getElementById('modal').classList.add('show');
+      document.getElementById('url-titulo').focus();
+    }
+
+    function editUrl(code, destino, titulo) {
+      document.getElementById('modal-title').textContent = 'Editar URL';
+      document.getElementById('url-titulo').value = titulo;
+      document.getElementById('url-code').value = code;
+      document.getElementById('url-code').disabled = true;
+      document.getElementById('url-destino').value = destino;
+      document.getElementById('url-editing').value = code;
+      document.getElementById('modal').classList.add('show');
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.remove('show');
+    }
+
+    async function saveUrl(e) {
+      e.preventDefault();
+      const editing = document.getElementById('url-editing').value;
+      const destino = document.getElementById('url-destino').value;
+      const code = document.getElementById('url-code').value;
+      const titulo = document.getElementById('url-titulo').value;
+
+      try {
+        if (editing) {
+          await api('/api/urls/' + editing, {
+            method: 'PUT',
+            body: JSON.stringify({ destino, titulo })
+          });
+          showToast('URL actualizada');
+        } else {
+          const result = await api('/api/urls', {
+            method: 'POST',
+            body: JSON.stringify({ destino, code: code || undefined, titulo: titulo || undefined })
+          });
+          showToast('Creada: /' + result.code);
+        }
+        closeModal();
+        loadUrls();
+      } catch (e) {
+        showToast(e.message, 'error');
+      }
+    }
+
+    async function deleteUrl(code) {
+      if (!confirm('¿Eliminar /' + code + '?')) return;
+      try {
+        await api('/api/urls/' + code, { method: 'DELETE' });
+        showToast('URL eliminada');
+        loadUrls();
+      } catch (e) {
+        showToast(e.message, 'error');
+      }
+    }
+
+    async function showStats(code) {
+      try {
+        const data = await api('/api/urls/' + code);
+        const stats = data.stats;
+
+        document.getElementById('stats-title').textContent = data.titulo || '/' + code;
+
+        const content = document.getElementById('stats-content');
+        content.innerHTML = '';
+
+        // Stats grid (clics + último clic + fecha creación)
+        const grid = document.createElement('div');
+        grid.className = 'stats-grid';
+        grid.style.gridTemplateColumns = 'repeat(3, 1fr)';
+
+        const clicksCard = document.createElement('div');
+        clicksCard.className = 'stat-card';
+        clicksCard.innerHTML = '<div class="stat-value">' + stats.clics + '</div><div class="stat-label">Clics totales</div>';
+
+        const lastCard = document.createElement('div');
+        lastCard.className = 'stat-card';
+        const lastDate = stats.ultimoClic ? new Date(stats.ultimoClic).toLocaleDateString('es-ES', { day: '2-digit', month: 'short' }) : '—';
+        lastCard.innerHTML = '<div class="stat-value" style="font-size:1.25rem">' + lastDate + '</div><div class="stat-label">Último clic</div>';
+
+        const createdCard = document.createElement('div');
+        createdCard.className = 'stat-card';
+        const createdDate = data.creado ? new Date(data.creado).toLocaleDateString('es-ES', { day: '2-digit', month: 'short' }) : '—';
+        createdCard.innerHTML = '<div class="stat-value" style="font-size:1.25rem">' + createdDate + '</div><div class="stat-label">Creado</div>';
+
+        grid.appendChild(clicksCard);
+        grid.appendChild(lastCard);
+        grid.appendChild(createdCard);
+        content.appendChild(grid);
+
+        // Bar chart - Clics por día
+        const porDia = stats.porDia || {};
+        const dias = Object.entries(porDia).sort((a, b) => a[0].localeCompare(b[0])).slice(-14); // Últimos 14 días
+
+        const chartContainer = document.createElement('div');
+        chartContainer.className = 'chart-container';
+
+        const chartTitle = document.createElement('div');
+        chartTitle.className = 'chart-title';
+        chartTitle.textContent = 'Clics por día (últimos 14 días)';
+        chartContainer.appendChild(chartTitle);
+
+        if (dias.length > 0) {
+          const maxClics = Math.max(...dias.map(d => d[1]), 1);
+          const chartBars = document.createElement('div');
+          chartBars.className = 'chart-bars';
+
+          dias.forEach(([fecha, clics]) => {
+            const col = document.createElement('div');
+            col.className = 'chart-bar-col';
+
+            const bar = document.createElement('div');
+            bar.className = 'chart-bar';
+            bar.style.height = Math.max((clics / maxClics) * 100, 2) + 'px';
+            bar.title = clics + ' clics';
+
+            const label = document.createElement('div');
+            label.className = 'chart-bar-label';
+            const d = new Date(fecha);
+            label.textContent = d.getDate() + '/' + (d.getMonth() + 1);
+
+            col.appendChild(bar);
+            col.appendChild(label);
+            chartBars.appendChild(col);
+          });
+
+          chartContainer.appendChild(chartBars);
+        } else {
+          const empty = document.createElement('div');
+          empty.className = 'chart-empty';
+          empty.textContent = 'Sin datos de clics aún';
+          chartContainer.appendChild(empty);
+        }
+
+        content.appendChild(chartContainer);
+
+        // Dispositivos con barras de progreso
+        const dispositivos = Object.entries(stats.dispositivos || {}).sort((a, b) => b[1] - a[1]);
+        const totalDisp = dispositivos.reduce((sum, [, n]) => sum + n, 0) || 1;
+
+        const dispSection = document.createElement('div');
+        dispSection.className = 'stats-section';
+
+        const dispTitle = document.createElement('div');
+        dispTitle.className = 'stats-section-title';
+        dispTitle.textContent = 'Dispositivos';
+        dispSection.appendChild(dispTitle);
+
+        if (dispositivos.length > 0) {
+          const dispList = document.createElement('div');
+          dispList.className = 'progress-list';
+
+          dispositivos.forEach(([tipo, count]) => {
+            const item = document.createElement('div');
+            item.className = 'progress-item';
+
+            const header = document.createElement('div');
+            header.className = 'progress-header';
+
+            const label = document.createElement('span');
+            label.className = 'progress-label';
+            label.textContent = tipo.charAt(0).toUpperCase() + tipo.slice(1);
+
+            const value = document.createElement('span');
+            value.className = 'progress-value';
+            value.textContent = count + ' (' + Math.round(count / totalDisp * 100) + '%)';
+
+            header.appendChild(label);
+            header.appendChild(value);
+
+            const track = document.createElement('div');
+            track.className = 'progress-track';
+
+            const fill = document.createElement('div');
+            fill.className = 'progress-fill';
+            fill.style.width = (count / totalDisp * 100) + '%';
+
+            track.appendChild(fill);
+            item.appendChild(header);
+            item.appendChild(track);
+            dispList.appendChild(item);
+          });
+
+          dispSection.appendChild(dispList);
+        } else {
+          const empty = document.createElement('div');
+          empty.className = 'stats-section-content';
+          empty.textContent = '—';
+          dispSection.appendChild(empty);
+        }
+
+        content.appendChild(dispSection);
+
+        // Países con barras de progreso
+        const paises = Object.entries(stats.paises || {}).sort((a, b) => b[1] - a[1]).slice(0, 5);
+        const totalPaises = paises.reduce((sum, [, n]) => sum + n, 0) || 1;
+
+        const paisesSection = document.createElement('div');
+        paisesSection.className = 'stats-section';
+
+        const paisesTitle = document.createElement('div');
+        paisesTitle.className = 'stats-section-title';
+        paisesTitle.textContent = 'Países (Top 5)';
+        paisesSection.appendChild(paisesTitle);
+
+        if (paises.length > 0) {
+          const paisesList = document.createElement('div');
+          paisesList.className = 'progress-list';
+
+          paises.forEach(([pais, count]) => {
+            const item = document.createElement('div');
+            item.className = 'progress-item';
+
+            const header = document.createElement('div');
+            header.className = 'progress-header';
+
+            const label = document.createElement('span');
+            label.className = 'progress-label';
+            label.textContent = pais;
+
+            const value = document.createElement('span');
+            value.className = 'progress-value';
+            value.textContent = count + ' (' + Math.round(count / totalPaises * 100) + '%)';
+
+            header.appendChild(label);
+            header.appendChild(value);
+
+            const track = document.createElement('div');
+            track.className = 'progress-track';
+
+            const fill = document.createElement('div');
+            fill.className = 'progress-fill secondary';
+            fill.style.width = (count / totalPaises * 100) + '%';
+
+            track.appendChild(fill);
+            item.appendChild(header);
+            item.appendChild(track);
+            paisesList.appendChild(item);
+          });
+
+          paisesSection.appendChild(paisesList);
+        } else {
+          const empty = document.createElement('div');
+          empty.className = 'stats-section-content';
+          empty.textContent = '—';
+          paisesSection.appendChild(empty);
+        }
+
+        content.appendChild(paisesSection);
+
+        document.getElementById('stats-modal').classList.add('show');
+      } catch (e) {
+        showToast(e.message, 'error');
+      }
+    }
+
+    function closeStatsModal() {
+      document.getElementById('stats-modal').classList.remove('show');
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        closeModal();
+        closeStatsModal();
+      }
+    });
+  </script>
+</body>
+</html>

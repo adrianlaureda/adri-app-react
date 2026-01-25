@@ -1,1 +1,8 @@
+# Servir archivos estáticos primero
+/pictos      /pictos/index.html      200
+/pictos/     /pictos/index.html      200
+/acortador   /acortador/index.html   200
+/acortador/  /acortador/index.html   200
+
+# SPA fallback para React Router
 /*    /index.html   200

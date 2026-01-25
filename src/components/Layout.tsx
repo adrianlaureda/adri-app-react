@@ -24,6 +24,20 @@ const MoonIcon = () => (
   </svg>
 );
 
+const MailIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <rect x="2" y="4" width="20" height="16" rx="2"/>
+    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+  </svg>
+);
+
+const CloseIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <line x1="18" y1="6" x2="6" y2="18"/>
+    <line x1="6" y1="6" x2="18" y2="18"/>
+  </svg>
+);
+
 interface LayoutProps {
   children: React.ReactNode;
 }
@@ -37,6 +51,7 @@ export function Layout({ children }: LayoutProps) {
     return 'dark';
   });
   const [scrolled, setScrolled] = useState(false);
+  const [showContact, setShowContact] = useState(false);
 
   // Aplicar tema al montar y cuando cambie
   useEffect(() => {
@@ -98,6 +113,45 @@ export function Layout({ children }: LayoutProps) {
       >
         {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
       </button>
+
+      {/* Botón de contacto - esquina superior izquierda */}
+      <button
+        className={styles.contactButton}
+        onClick={() => setShowContact(true)}
+        aria-label="Ver información de contacto"
+      >
+        <MailIcon />
+      </button>
+
+      {/* Modal de contacto */}
+      {showContact && (
+        <div className={styles.modalOverlay} onClick={() => setShowContact(false)}>
+          <div className={styles.modal} onClick={e => e.stopPropagation()}>
+            <button
+              className={styles.modalClose}
+              onClick={() => setShowContact(false)}
+              aria-label="Cerrar"
+            >
+              <CloseIcon />
+            </button>
+            <div className={styles.modalContent}>
+              <h2 className={styles.modalName}>Adrián Laureda León</h2>
+              <p className={styles.modalRole}>
+                Docente de Lengua Castellana y Literatura en Galicia.
+              </p>
+              <p className={styles.modalEmail}>
+                Correo: adrianlaureda@edu.xunta.gal
+              </p>
+              <a
+                href="mailto:adrianlaureda@edu.xunta.gal"
+                className={styles.modalButton}
+              >
+                Contactar
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
 
       {children}
     </>

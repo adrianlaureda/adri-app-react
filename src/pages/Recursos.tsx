@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import styles from './Recursos.module.css';
 
 // Iconos SVG
@@ -127,13 +126,13 @@ export function Recursos() {
 
             if (recurso.available && recurso.href) {
               return (
-                <Link
+                <a
                   key={recurso.id}
-                  to={recurso.href}
+                  href={recurso.href}
                   className={styles.card}
                 >
                   {cardContent}
-                </Link>
+                </a>
               );
             }
 

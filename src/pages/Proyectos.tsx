@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import styles from './Proyectos.module.css';
 
 // Iconos SVG
@@ -54,7 +53,7 @@ export function Proyectos() {
 
         <section className={`${styles.grid} animate-fade-in-up animate-delay-1`}>
           {PROYECTOS.map((proyecto) => (
-            <Link key={proyecto.name} to={proyecto.href} className={styles.card}>
+            <a key={proyecto.name} href={proyecto.href} className={styles.card}>
               <div className={styles.cardHeader}>
                 <div className={styles.cardIcon}>
                   <proyecto.icon />
@@ -70,7 +69,7 @@ export function Proyectos() {
                   <span key={tag} className={styles.tag}>{tag}</span>
                 ))}
               </div>
-            </Link>
+            </a>
           ))}
         </section>
       </div>

@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { WaveEffect } from '../components/WaveEffect';
 import styles from './Home.module.css';
 
@@ -128,14 +127,15 @@ export function Home() {
             {/* Duplicar items para scroll infinito */}
             {[...RECURSOS, ...RECURSOS].map((recurso, index) => (
               recurso.available && recurso.href ? (
-                <Link
+                // Apps estáticas usan <a> para forzar recarga completa
+                <a
                   key={`${recurso.id}-${index}`}
-                  to={recurso.href}
+                  href={recurso.href}
                   className={styles.carouselItem}
                 >
                   <span className={styles.itemIcon}><recurso.icon /></span>
                   <span className={styles.itemTitle}>{recurso.title}</span>
-                </Link>
+                </a>
               ) : (
                 <div
                   key={`${recurso.id}-${index}`}
