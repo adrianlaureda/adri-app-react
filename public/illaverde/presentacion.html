@@ -687,7 +687,7 @@
     </nav>
 
     <!-- Contador -->
-    <div class="counter"><span id="current">1</span>/<span id="total">11</span></div>
+    <div class="counter"><span id="current">1</span>/<span id="total">12</span></div>
 
     <!-- Theme toggle -->
     <button class="theme-toggle" onclick="toggleTheme()">
@@ -820,7 +820,117 @@
             <div style="margin-top: 32px; font-size: 12px; color: var(--text-muted);">Fuente: Informe GoStudent 2025, GAD3</div>
         </div>
 
-        <!-- Slide 8: Disclaimer -->
+        <!-- Slide 8: Encuesta del grupo -->
+        <div class="slide" data-section="datos">
+            <div class="eyebrow">Vuestras respuestas</div>
+            <div class="title" style="font-size: 40px; margin-bottom: 32px;">Y vosotros, <span class="accent" style="color: var(--accent-2);">¿cómo estáis?</span></div>
+
+            <div style="display: flex; gap: 40px; width: 100%; max-width: 1100px;">
+                <!-- Columna izquierda: Métricas principales -->
+                <div style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+                    <!-- Principal barrera -->
+                    <div style="background: var(--bg-card); border-radius: 16px; padding: 24px; border: 1px solid rgba(255,255,255,0.08);">
+                        <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-secondary); margin-bottom: 12px;">Principal barrera</div>
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="font-size: 48px; font-weight: 800; color: var(--danger);">69%</div>
+                            <div style="font-size: 15px; color: var(--text-primary); line-height: 1.4;">Falta de<br><strong>formación</strong></div>
+                        </div>
+                        <div style="margin-top: 12px; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden;">
+                            <div style="width: 69%; height: 100%; background: var(--danger); border-radius: 4px;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Herramienta más usada -->
+                    <div style="background: var(--bg-card); border-radius: 16px; padding: 24px; border: 1px solid rgba(255,255,255,0.08);">
+                        <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-secondary); margin-bottom: 12px;">Herramienta más usada</div>
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="font-size: 48px; font-weight: 800; color: var(--accent-1);">77%</div>
+                            <div style="font-size: 15px; color: var(--text-primary); line-height: 1.4;">usa<br><strong>ChatGPT</strong></div>
+                        </div>
+                        <div style="margin-top: 12px; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden;">
+                            <div style="width: 77%; height: 100%; background: var(--accent-1); border-radius: 4px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna central: Lo que queréis aprender -->
+                <div style="flex: 1.2; background: var(--bg-card); border-radius: 16px; padding: 24px; border: 1px solid rgba(255,255,255,0.08);">
+                    <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-secondary); margin-bottom: 16px;">Lo que queréis aprender</div>
+
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <div style="width: 100%; max-width: 200px; height: 28px; background: rgba(0, 212, 170, 0.2); border-radius: 6px; overflow: hidden;">
+                                <div style="width: 92%; height: 100%; background: var(--accent-1); border-radius: 6px; display: flex; align-items: center; padding-left: 10px;">
+                                    <span style="font-size: 12px; font-weight: 600; color: #000;">92%</span>
+                                </div>
+                            </div>
+                            <span style="font-size: 13px;">Generar materiales</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <div style="width: 100%; max-width: 200px; height: 28px; background: rgba(0, 212, 255, 0.2); border-radius: 6px; overflow: hidden;">
+                                <div style="width: 85%; height: 100%; background: var(--accent-2); border-radius: 6px; display: flex; align-items: center; padding-left: 10px;">
+                                    <span style="font-size: 12px; font-weight: 600; color: #000;">85%</span>
+                                </div>
+                            </div>
+                            <span style="font-size: 13px;">Adaptar contenido</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <div style="width: 100%; max-width: 200px; height: 28px; background: rgba(245, 166, 35, 0.2); border-radius: 6px; overflow: hidden;">
+                                <div style="width: 62%; height: 100%; background: var(--accent-3); border-radius: 6px; display: flex; align-items: center; padding-left: 10px;">
+                                    <span style="font-size: 12px; font-weight: 600; color: #000;">62%</span>
+                                </div>
+                            </div>
+                            <span style="font-size: 13px;">Crear rúbricas</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <div style="width: 100%; max-width: 200px; height: 28px; background: rgba(167, 139, 250, 0.2); border-radius: 6px; overflow: hidden;">
+                                <div style="width: 54%; height: 100%; background: var(--accent-5); border-radius: 6px; display: flex; align-items: center; padding-left: 10px;">
+                                    <span style="font-size: 12px; font-weight: 600; color: #000;">54%</span>
+                                </div>
+                            </div>
+                            <span style="font-size: 13px;">Trabajo burocrático</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna derecha: Etapas -->
+                <div style="flex: 0.8; background: var(--bg-card); border-radius: 16px; padding: 24px; border: 1px solid rgba(255,255,255,0.08);">
+                    <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-secondary); margin-bottom: 16px;">Etapas</div>
+
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div style="width: 12px; height: 12px; border-radius: 50%; background: #22c55e;"></div>
+                            <span style="font-size: 14px; flex: 1;">Primaria</span>
+                            <span style="font-size: 14px; font-weight: 700; color: var(--accent-1);">46%</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div style="width: 12px; height: 12px; border-radius: 50%; background: #3b82f6;"></div>
+                            <span style="font-size: 14px; flex: 1;">AL / PT</span>
+                            <span style="font-size: 14px; font-weight: 700; color: var(--accent-1);">31%</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div style="width: 12px; height: 12px; border-radius: 50%; background: #f97316;"></div>
+                            <span style="font-size: 14px; flex: 1;">Infantil</span>
+                            <span style="font-size: 14px; font-weight: 700; color: var(--accent-1);">15%</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div style="width: 12px; height: 12px; border-radius: 50%; background: #a78bfa;"></div>
+                            <span style="font-size: 14px; flex: 1;">Inglés</span>
+                            <span style="font-size: 14px; font-weight: 700; color: var(--accent-1);">8%</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.1);">
+                        <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 8px;">Total respuestas</div>
+                        <div style="font-size: 32px; font-weight: 800; color: var(--accent-2);">13</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 24px; font-size: 12px; color: var(--text-muted);">Fuente: Formulario previo a la formación · Enero 2026</div>
+        </div>
+
+        <!-- Slide 9: Disclaimer -->
         <div class="slide" data-section="disclaimer">
             <div class="eyebrow">Disclaimer</div>
             <div class="title">IA en el <span class="accent" style="color: var(--accent-2);">Aula</span></div>

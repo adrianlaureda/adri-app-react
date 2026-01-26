@@ -127,6 +127,19 @@
             text-align: center;
         }
 
+        .hero-icon {
+            width: 120px;
+            height: 120px;
+            margin-bottom: var(--space-md);
+            color: var(--text-muted);
+            opacity: 0.6;
+            transition: color var(--transition), opacity var(--transition);
+        }
+
+        .container:hover .hero-icon {
+            opacity: 0.8;
+        }
+
         h1 {
             font-size: 0.75rem;
             font-weight: 500;
@@ -281,6 +294,20 @@
     </button>
 
     <div class="container">
+        <!-- Icono de máscaras de teatro -->
+        <svg class="hero-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Máscara triste (izquierda, detrás) -->
+            <path d="M8 20c0-8 6-14 14-14s14 6 14 14v12c0 8-6 14-14 14S8 40 8 32V20z" fill="var(--bg-surface)"/>
+            <circle cx="16" cy="22" r="2.5"/>
+            <circle cx="28" cy="22" r="2.5"/>
+            <path d="M14 34c2-3 8-3 10 0"/>
+            <!-- Máscara feliz (derecha, delante) -->
+            <path d="M28 26c0-8 6-14 14-14s14 6 14 14v12c0 8-6 14-14 14s-14-6-14-14V26z" fill="var(--bg-surface)"/>
+            <circle cx="36" cy="28" r="2.5"/>
+            <circle cx="48" cy="28" r="2.5"/>
+            <path d="M34 40c2 3 8 3 10 0"/>
+        </svg>
+
         <h1>Generador de Situaciones</h1>
 
         <div class="card" id="card">
