@@ -66,11 +66,24 @@
   border: 1px solid var(--border);
   border-radius: 12px;
   transition: all var(--transition);
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
 
 .card:hover {
   border-color: var(--text-secondary);
   transform: translateY(-2px);
+}
+
+.card.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.card.disabled:hover {
+  border-color: var(--border);
+  transform: none;
 }
 
 .cardHeader {

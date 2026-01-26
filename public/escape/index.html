@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape Room: Atrapados en el Instituto</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Creepster&family=Inter:wght@400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0d0d0d;
+            --bg-panel: #1a1a1a;
+            --bg-card: #252525;
+            --bg-hover: #333;
+            --text-white: #f5f5f5;
+            --text-gray: #999;
+            --accent: #ff6b35;
+            --accent-glow: rgba(255, 107, 53, 0.4);
+            --success: #22c55e;
+            --error: #ef4444;
+            --warning: #eab308;
+            --locked: #666;
+            --unlocked: #22c55e;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-white);
+            min-height: 100vh;
+        }
+
+        /* Enlace a Home */
+        .home-link {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            color: var(--text-gray);
+            border-radius: 8px;
+            transition: color 0.2s, background 0.2s;
+        }
+        .home-link:hover {
+            color: var(--text-white);
+            background: var(--bg-panel);
+        }
+        .home-link svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .header {
+            background: linear-gradient(180deg, #1a0a00 0%, var(--bg-dark) 100%);
+            padding: 1rem 2rem;
+            text-align: center;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .header h1 {
+            font-family: 'Creepster', cursive;
+            font-size: 2.5rem;
+            color: var(--accent);
+            text-shadow: 0 0 20px var(--accent-glow);
+            letter-spacing: 3px;
+        }
+
+        .header-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .header-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-panel);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .header-stat .label { color: var(--text-gray); font-size: 0.85rem; }
+        .header-stat .value { font-weight: 700; font-size: 1.1rem; }
+        .timer { color: var(--warning); }
+        .timer.danger { color: var(--error); animation: pulse 1s infinite; }
+        .pistas-count { color: var(--accent); }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 1.5rem; }
+
+        .screen { display: none; }
+        .screen.active { display: block; }
+
+        .intro-card {
+            background: var(--bg-panel);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid #333;
+        }
+
+        .intro-card h2 {
+            font-family: 'Creepster', cursive;
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .intro-story {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .intro-story strong { color: var(--text-white); }
+
+        .intro-rules {
+            background: var(--bg-card);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .intro-rules h3 { color: var(--accent); margin-bottom: 1rem; }
+        .intro-rules ul { list-style: none; display: grid; gap: 0.75rem; }
+        .intro-rules li { display: flex; align-items: center; gap: 0.75rem; color: var(--text-gray); }
+        .intro-rules li::before { content: "▸"; color: var(--accent); }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-start {
+            background: var(--accent);
+            color: white;
+            font-size: 1.3rem;
+            padding: 1.25rem 3rem;
+        }
+
+        .btn-start:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px var(--accent-glow);
+        }
+
+        .locks-progress {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .lock {
+            width: 50px;
+            height: 60px;
+            background: var(--bg-panel);
+            border-radius: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--locked);
+            transition: all 0.3s;
+        }
+
+        .lock.current {
+            border-color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .lock.unlocked {
+            border-color: var(--unlocked);
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .lock-icon { font-size: 1.5rem; }
+        .lock-number { font-size: 0.75rem; color: var(--text-gray); margin-top: 0.25rem; }
+
+        .prueba-card {
+            background: var(--bg-panel);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid #333;
+        }
+
+        .prueba-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .prueba-title { font-size: 1.3rem; font-weight: 700; color: var(--accent); }
+
+        .prueba-badge {
+            background: var(--bg-card);
+            padding: 0.4rem 0.8rem;
+            border-radius: 2rem;
+            font-size: 0.8rem;
+            color: var(--text-gray);
+        }
+
+        .texto-container {
+            background: var(--bg-card);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent);
+        }
+
+        .texto-label {
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .texto-content {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--text-white);
+            white-space: pre-line;
+        }
+
+        .texto-nota { font-family: 'Courier New', monospace; background: #2a2a1a; border-left-color: #a89032; }
+        .texto-horario { font-family: monospace; }
+        .texto-chat { background: #1a2a1a; border-left-color: #25d366; }
+        .texto-diario { font-style: italic; background: #2a1a2a; border-left-color: #a855f7; }
+        .texto-noticia { background: #1a1a2a; border-left-color: #3b82f6; }
+        .texto-email { background: #1a2a2a; border-left-color: #06b6d4; }
+        .texto-cartel { font-family: monospace; background: #2a2a2a; border-left-color: #f59e0b; white-space: pre; font-size: 0.9rem; }
+        .texto-menu { font-family: monospace; background: #2a2a1a; border-left-color: #84cc16; white-space: pre; font-size: 0.85rem; }
+        .texto-circular { background: #2a2a2a; border-left-color: #94a3b8; }
+        .texto-foro { font-family: monospace; background: #1a1a2a; border-left-color: #8b5cf6; white-space: pre; font-size: 0.9rem; }
+
+        .chat-message {
+            margin-bottom: 0.75rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+            max-width: 85%;
+        }
+
+        .chat-message.sent { background: #075e54; margin-left: auto; }
+        .chat-message.received { background: #333; }
+        .chat-sender { font-size: 0.8rem; color: var(--accent); margin-bottom: 0.25rem; }
+
+        .pregunta-box {
+            background: rgba(255, 107, 53, 0.1);
+            border: 1px solid var(--accent);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .pregunta-text { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; }
+
+        .codigo-input-group { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+        .codigo-input {
+            flex: 1;
+            min-width: 150px;
+            padding: 0.75rem 1rem;
+            border: 2px solid #444;
+            border-radius: 0.5rem;
+            background: var(--bg-dark);
+            color: var(--text-white);
+            font-size: 1.2rem;
+            font-family: monospace;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        .codigo-input:focus { outline: none; border-color: var(--accent); }
+        .codigo-input.error { border-color: var(--error); animation: shake 0.5s; }
+        .codigo-input.success { border-color: var(--success); }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .btn-comprobar { background: var(--accent); color: white; padding: 0.75rem 1.5rem; }
+        .btn-comprobar:hover { background: #ff8555; }
+
+        .feedback {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            display: none;
+        }
+
+        .feedback.error { display: block; background: rgba(239, 68, 68, 0.2); color: var(--error); }
+        .feedback.success { display: block; background: rgba(34, 197, 94, 0.2); color: var(--success); }
+
+        .pista-section { margin-top: 1.5rem; text-align: center; }
+
+        .btn-pista {
+            background: transparent;
+            border: 1px solid var(--text-gray);
+            color: var(--text-gray);
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        .btn-pista:hover:not(:disabled) { border-color: var(--warning); color: var(--warning); }
+        .btn-pista:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .pista-box {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(234, 179, 8, 0.1);
+            border: 1px solid var(--warning);
+            border-radius: 0.5rem;
+            color: var(--warning);
+            display: none;
+        }
+
+        .pista-box.visible { display: block; }
+
+        .final-card {
+            background: var(--bg-panel);
+            border-radius: 1rem;
+            padding: 3rem 2rem;
+            text-align: center;
+            border: 1px solid #333;
+        }
+
+        .final-icon { font-size: 5rem; margin-bottom: 1rem; }
+        .final-title { font-family: 'Creepster', cursive; font-size: 2.5rem; margin-bottom: 1rem; }
+        .final-title.win { color: var(--success); }
+        .final-title.lose { color: var(--error); }
+
+        .final-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .final-stat { background: var(--bg-card); padding: 1rem 1.5rem; border-radius: 0.75rem; }
+        .final-stat .label { color: var(--text-gray); font-size: 0.9rem; }
+        .final-stat .value { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+
+        .btn-reiniciar { background: var(--bg-card); color: var(--text-white); border: 1px solid #444; }
+        .btn-reiniciar:hover { background: var(--bg-hover); }
+
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.8rem; }
+            .locks-progress { gap: 0.5rem; }
+            .lock { width: 40px; height: 50px; }
+            .texto-content { font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Enlace a Home -->
+    <a href="/" class="home-link" title="Volver a adri-app">
+        <svg viewBox="0 0 100 100">
+            <polygon points="50,5 95,82 5,82" fill="currentColor"/>
+            <line x1="50" y1="56" x2="50" y2="5" stroke="var(--bg-dark)" stroke-width="4"/>
+            <line x1="50" y1="56" x2="95" y2="82" stroke="var(--bg-dark)" stroke-width="4"/>
+            <line x1="50" y1="56" x2="5" y2="82" stroke="var(--bg-dark)" stroke-width="4"/>
+        </svg>
+    </a>
+
+    <header class="header">
+        <h1>Atrapados en el Instituto</h1>
+        <div class="header-info" id="headerInfo" style="display: none;">
+            <div class="header-stat">
+                <span class="label">Tiempo:</span>
+                <span class="value timer" id="timer">35:00</span>
+            </div>
+            <div class="header-stat">
+                <span class="label">Pistas:</span>
+                <span class="value pistas-count" id="pistasCount">3</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div id="introScreen" class="screen active">
+            <div class="intro-card">
+                <h2>¿Podréis escapar?</h2>
+                <p class="intro-story">
+                    Es de noche. Os habéis quedado en el instituto después de una actividad extraescolar y...
+                    <strong>las puertas se han bloqueado automáticamente</strong>.<br><br>
+                    El vigilante llegará en <strong>35 minutos</strong>. Si os pilla dentro fuera de horario,
+                    tendréis un problema muy gordo.<br><br>
+                    La única forma de salir es encontrar los <strong>10 códigos</strong> que desbloquean las puertas.
+                    Cada código está escondido en un texto que tendréis que leer con atención.
+                </p>
+                <div class="intro-rules">
+                    <h3>Reglas del juego</h3>
+                    <ul>
+                        <li>Lee cada texto con atención para encontrar el código</li>
+                        <li>Los códigos pueden ser números o palabras</li>
+                        <li>Tenéis 3 pistas disponibles (cada una resta 1 minuto)</li>
+                        <li>Cada respuesta incorrecta resta 30 segundos</li>
+                        <li>Si os quedáis sin tiempo... el vigilante os pillará</li>
+                    </ul>
+                </div>
+                <button class="btn btn-start" onclick="iniciarJuego()">ENTRAR AL INSTITUTO</button>
+            </div>
+        </div>
+
+        <div id="gameScreen" class="screen">
+            <div class="locks-progress" id="locksProgress"></div>
+            <div class="prueba-card" id="pruebaCard"></div>
+        </div>
+
+        <div id="finalScreen" class="screen">
+            <div class="final-card">
+                <div class="final-icon" id="finalIcon">🎉</div>
+                <h2 class="final-title" id="finalTitle">¡Habéis escapado!</h2>
+                <p id="finalMessage" style="color: var(--text-gray); margin-bottom: 1rem;"></p>
+                <div class="final-stats">
+                    <div class="final-stat">
+                        <div class="label">Tiempo restante</div>
+                        <div class="value" id="finalTime">--:--</div>
+                    </div>
+                    <div class="final-stat">
+                        <div class="label">Pistas usadas</div>
+                        <div class="value" id="finalPistas">0</div>
+                    </div>
+                    <div class="final-stat">
+                        <div class="label">Pruebas resueltas</div>
+                        <div class="value" id="finalPruebas">0/10</div>
+                    </div>
+                </div>
+                <button class="btn btn-reiniciar" onclick="reiniciarJuego()">Jugar de nuevo</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const PRUEBAS = [
+            {
+                id: 1,
+                titulo: "El mensaje del conserje",
+                tipo: "literal",
+                tipoTexto: "nota",
+                label: "Nota pegada en la puerta de la conserjería",
+                texto: `AVISO IMPORTANTE - Actualizado 15/01/2035
+
+A todos los profesores:
+
+Este curso 2034-2035 hemos tenido 47 incidencias con el sistema de cierre. Les recuerdo que desde su instalación en 2032, las puertas se bloquean automáticamente a las 20:00.
+
+El código del panel de alarmas (1absorption987) NO sirve para las puertas. Para salir después de las 20:00, usen el código de emergencia que está en mi despacho, cajón izquierdo.
+
+IMPORTANTE: La empresa de mantenimiento vendrá el día 23 a revisar los 15 sensores del edificio. Ese día el sistema estará desactivado de 9:00 a 14:00.
+
+No olviden apagar luces del pasillo B (interruptor 4B).
+
+Manolo García, conserje desde 2019
+Ext. 100 | Móvil: 666-555-444`,
+                pregunta: "¿En qué año se instaló el sistema que bloquea las puertas automáticamente?",
+                codigo: "2032",
+                pista: "Hay muchos números en el texto. Busca específicamente cuándo se INSTALÓ el sistema de cierre."
+            },
+            {
+                id: 2,
+                titulo: "El horario misterioso",
+                tipo: "inferencia",
+                tipoTexto: "horario",
+                label: "Horario encontrado en un aula",
+                texto: `ACTIVIDADES EXTRAESCOLARES - JUEVES
+
+AULA 101:
+  Teatro (1h 15min) → empieza cuando acaba Música
+  Música (45min) → empieza a las 16:00
+
+AULA 102:
+  Robótica (1h 30min) → empieza a las 16:30
+  Ajedrez (1h) → empieza cuando acaba Robótica
+
+GIMNASIO:
+  Baloncesto (1h 45min) → empieza a las 16:15
+  Voleibol (1h 15min) → empieza cuando acaba Baloncesto
+
+───────────────────────────────────
+AVISO: El conserje cierra a las 20:00.
+La última actividad en terminar debe acabar
+como mínimo 15 minutos antes del cierre.`,
+                pregunta: "¿A qué hora termina la actividad que acaba más tarde? Formato 4 cifras (ej: 1930)",
+                codigo: "1915",
+                pista: "Calcula cuándo termina cada actividad: Teatro (16:00+45min+1h15), Ajedrez (16:30+1h30+1h), Voleibol (16:15+1h45+1h15). ¿Cuál es la última?"
+            },
+            {
+                id: 3,
+                titulo: "El chat de los profes",
+                tipo: "mixta",
+                tipoTexto: "chat",
+                label: "Conversación de WhatsApp en un móvil olvidado",
+                textoEspecial: [
+                    { sender: "Profe Ana", text: "¿Alguien sabe dónde dejé las llaves del laboratorio?", type: "received" },
+                    { sender: "Profe Luis", text: "Ni idea. El jueves las tenías porque te vi abrir", type: "received" },
+                    { sender: "Profe Marta", text: "¿No las dejaste en secretaría el viernes?", type: "received" },
+                    { sender: "Profe Ana", text: "No, porque el sábado vine a preparar el experimento que tengo que hacer con 3ºA", type: "sent" },
+                    { sender: "Profe Luis", text: "Ah, el de los volcanes. ¿Cuándo lo haces?", type: "received" },
+                    { sender: "Profe Ana", text: "El primer día de la semana, a segunda hora", type: "sent" },
+                    { sender: "Profe Marta", text: "Pues mira bien en el laboratorio, ¿no?", type: "received" },
+                    { sender: "Profe Ana", text: "Ya miré tres veces. El miércoles tengo otra práctica y sin llaves no puedo entrar", type: "sent" },
+                    { sender: "Profe Luis", text: "Pregunta a Manolo, él tiene copias de todas", type: "received" },
+                    { sender: "Profe Ana", text: "Buena idea, pero hoy es su día libre", type: "sent" }
+                ],
+                pregunta: "¿Qué día tiene Ana el experimento de los volcanes con 3ºA?",
+                codigo: "LUNES",
+                pista: "Ana dice que el experimento es 'el primer día de la semana'. ¿Cuál es el primer día de la semana laboral?"
+            },
+            {
+                id: 4,
+                titulo: "El diario del alumno",
+                tipo: "inferencia",
+                tipoTexto: "diario",
+                label: "Página de un diario encontrado en una taquilla abierta",
+                texto: `Martes, 15 de octubre
+
+Otra vez lo mismo. En el pasillo estaban Dani y su grupo. Me vieron y empezaron: "Mira quién viene, el bichito raro". Me metí en el baño hasta que se fueron.
+
+Mi madre dice que les ignore, que "son cosas de críos". Pero ella no sabe lo del grupo de WhatsApp donde suben fotos mías con memes. 47 personas lo han visto.
+
+En el recreo me quedé en la biblioteca, como siempre. La bibliotecaria ya ni me pregunta. Creo que lo sabe.
+
+Lo peor fue en gimnasia. Cuando elegían equipos, fui el último. Otra vez. Hugo dijo "¿en serio nos toca el bichito?" y todos se rieron. El profe no dijo nada.
+
+Estoy harto. Mañana voy a hablar con el tutor. O quizás no. ¿Para qué? La última vez no sirvió de nada.`,
+                pregunta: "¿Qué problema está sufriendo este alumno? Escribe: ACOSO, SUSPENSOS, SOLEDAD o TIMIDEZ",
+                codigo: "ACOSO",
+                pista: "Fíjate en los comportamientos de los demás hacia él: motes, exclusión, grupo de WhatsApp con memes, risas... ¿Cómo se llama eso?"
+            },
+            {
+                id: 5,
+                titulo: "La noticia del periódico",
+                tipo: "inferencia",
+                tipoTexto: "noticia",
+                label: "Recorte del periódico local 'La Voz de Sarria'",
+                texto: `ROBO EN EL POLIDEPORTIVO MUNICIPAL
+
+Sarria - La pasada noche se produjo un robo en las instalaciones del polideportivo. Los ladrones se llevaron material deportivo valorado en 2.000 euros.
+
+Según fuentes policiales, los hechos ocurrieron entre la medianoche y las 5:00 de la madrugada del domingo. Los ladrones entraron por una ventana trasera que estaba mal cerrada.
+
+El vigilante nocturno, José M., declaró: "Hice mi ronda habitual a las 23:00 y todo estaba en orden. Después me quedé en la garita viendo las cámaras hasta las 6:00".
+
+La encargada de limpieza, María L., que trabaja de 6:00 a 8:00, fue quien descubrió el robo. "Cuando llegué, la ventana estaba abierta y faltaban cosas", explicó.
+
+Roberto G., director del polideportivo, declaró: "Las cámaras grabaron perfectamente hasta las 23:30. A partir de ahí, solo hay estática. Es muy extraño."
+
+Ángel P., técnico de mantenimiento, confirmó: "Las cámaras estaban bien. Solo alguien con acceso al panel de control pudo apagarlas."
+
+La policía investiga a varias personas con acceso a las instalaciones.`,
+                pregunta: "¿Quién es el principal sospechoso del robo? Escribe solo el NOMBRE",
+                codigo: "JOSE",
+                pista: "Las cámaras se apagaron a las 23:30. José dice que las estuvo viendo toda la noche... pero si se apagaron, ¿cómo no se dio cuenta? Solo alguien con acceso al panel pudo apagarlas."
+            },
+            {
+                id: 6,
+                titulo: "El tablón de anuncios",
+                tipo: "literal",
+                tipoTexto: "cartel",
+                label: "Tablón de anuncios en el pasillo principal",
+                texto: `═══════════════════════════════════════════
+     EXTENSIONES TELEFÓNICAS DEL CENTRO
+═══════════════════════════════════════════
+
+PLANTA BAJA
+  Conserjería .................. Ext. 100
+  Secretaría ................... Ext. 101
+  Dirección .................... Ext. 102
+  Sala de profesores ........... Ext. 103
+
+PRIMERA PLANTA
+  Departamento de Lenguas ...... Ext. 201
+  Departamento de Ciencias ..... Ext. 202
+  Aula de informática .......... Ext. 203
+  Biblioteca ................... Ext. 204
+
+SEGUNDA PLANTA
+  Laboratorio de Física ........ Ext. 301
+  Laboratorio de Química ....... Ext. 302
+  Aula de música ............... Ext. 303
+  Gimnasio (línea directa) ..... 666-789-012
+
+═══════════════════════════════════════════
+  EMERGENCIAS: 112 | CENTRO: 982-XXX-XXX
+═══════════════════════════════════════════`,
+                pregunta: "El alumno del diario (prueba 4) se escondía en un lugar durante el recreo. ¿Cuál es la extensión telefónica de ese lugar?",
+                codigo: "204",
+                pista: "Recuerda la prueba 4: ¿dónde decía el alumno que se quedaba en el recreo porque se sentía a salvo?"
+            },
+            {
+                id: 7,
+                titulo: "El email de secretaría",
+                tipo: "inferencia",
+                tipoTexto: "email",
+                label: "Email abierto en el ordenador de secretaría",
+                texto: `De: direccion@iesxograr.edu
+Para: claustro@iesxograr.edu
+Asunto: Incidencia grave - Alumnos solos en aula
+
+Estimados compañeros:
+
+Ayer ocurrió un incidente en el que varios alumnos de 2ºB quedaron solos en el aula mientras el profesor "iba a por material". Durante ese tiempo, los alumnos causaron desperfectos en el mobiliario.
+
+He revisado los horarios del martes para 2ºB:
+- 8:15-9:10: Lengua (Marta)
+- 9:10-10:05: Inglés (Carmen)
+- 10:05-10:30: RECREO
+- 10:30-11:25: Matemáticas (Luis)
+- 11:25-12:20: Geografía (Ana)
+- 12:20-13:15: Tecnología (Pedro)
+- 13:15-14:10: Educación Física (Jorge)
+
+El conserje recuerda haber visto al profesor salir del aula "poco después de las once". Según los alumnos, estuvieron solos "unos 20 minutos".
+
+Ruego al profesor responsable que se presente en dirección.
+
+La Dirección`,
+                pregunta: "¿Qué profesor dejó solos a los alumnos? Escribe solo el NOMBRE",
+                codigo: "LUIS",
+                pista: "El conserje lo vio salir 'poco después de las once'. ¿Qué clase había a las 11:00? Mira el horario con atención."
+            },
+            {
+                id: 8,
+                titulo: "El menú del comedor",
+                tipo: "inferencia",
+                tipoTexto: "menu",
+                label: "Menú semanal colgado en la puerta del comedor",
+                texto: `╔═══════════════════════════════════════════════╗
+║         MENÚ COMEDOR - SEMANA 12              ║
+╠═══════════════════════════════════════════════╣
+║ LUNES                                         ║
+║   Primero: Sopa marinera (sin marisco)        ║
+║   Segundo: Pollo asado con patatas            ║
+║   Postre: Fruta del tiempo                    ║
+╠═══════════════════════════════════════════════╣
+║ MARTES                                        ║
+║   Primero: Macarrones con atún                ║
+║   Segundo: Filete de ternera empanado         ║
+║   Postre: Yogur                               ║
+╠═══════════════════════════════════════════════╣
+║ MIÉRCOLES                                     ║
+║   Primero: Sopa de pescado                    ║
+║   Segundo: Merluza a la romana                ║
+║   Postre: Natillas                            ║
+╠═══════════════════════════════════════════════╣
+║ JUEVES                                        ║
+║   Primero: Crema de calabacín                 ║
+║   Segundo: Albóndigas de pescado con arroz    ║
+║   Postre: Fruta del tiempo                    ║
+╠═══════════════════════════════════════════════╣
+║ VIERNES                                       ║
+║   Primero: Ensalada de pasta con surimi       ║
+║   Segundo: Pizza cuatro quesos                ║
+║   Postre: Helado                              ║
+╚═══════════════════════════════════════════════╝
+  Alérgenos: consultar en cocina | Precio: 4,50€`,
+                pregunta: "Una alumna es alérgica al pescado pero puede comer marisco. ¿Qué día NO puede comer ni el primero ni el segundo plato?",
+                codigo: "MIERCOLES",
+                pista: "Busca el día en que AMBOS platos (primero Y segundo) contengan pescado. El atún y la merluza son pescados. El surimi NO es pescado real."
+            },
+            {
+                id: 9,
+                titulo: "La circular a familias",
+                tipo: "inferencia",
+                tipoTexto: "circular",
+                label: "Circular encontrada en una mochila abandonada",
+                texto: `IES XOGRAR AFONSO GÓMEZ
+Circular informativa nº 23
+
+Estimadas familias:
+
+Les comunicamos que el próximo viernes 18 de noviembre se celebrará la tradicional CARRERA SOLIDARIA del centro.
+
+Los alumnos deberán traer ropa deportiva y una botella de agua. La actividad comenzará a las 10:00 y finalizará a las 12:30. NO es necesario traer almuerzo, ya que el AMPA proporcionará fruta y zumo a todos los participantes.
+
+Cada alumno ha recibido un carné con el que puede conseguir patrocinadores. El dinero recaudado se destinará íntegramente a la ONG "Alimentos para Todos".
+
+IMPORTANTE: Los alumnos que no participen por motivos de salud deberán traer justificante médico y permanecerán en la biblioteca durante la actividad.
+
+Rogamos confirmen la participación de sus hijos antes del miércoles 16.
+
+Atentamente,
+El Equipo Directivo
+
+Sarria, 8 de noviembre de 2025`,
+                pregunta: "¿Cuántos días tienen las familias para confirmar desde que se envió la circular?",
+                codigo: "8",
+                pista: "La circular se envía el 8 de noviembre. Hay que confirmar antes del 16 de noviembre. ¿Cuántos días pasan entre el 8 y el 16?"
+            },
+            {
+                id: 10,
+                titulo: "El foro de estudiantes",
+                tipo: "inferencia",
+                tipoTexto: "foro",
+                label: "Página web abierta en un ordenador del aula de informática",
+                texto: `╭────────────────────────────────────────────╮
+│  FORO ESTUDIANTIL - IES XOGRAR             │
+│  Tema: ¿Quién rompió la ventana del gimnasio? │
+╰────────────────────────────────────────────╯
+
+@Admin_Foro (hace 3 horas)
+"Ayer a las 18:00 alguien rompió la ventana del gimnasio con un balón. El profe de EF quiere saber quién fue. Solo estaban en el patio Carlos, Diana, Elena y Fernando."
+
+    @Carlos_Crack (hace 2 horas)
+    "Yo no fui. A las 18:00 estaba en el aula de música ensayando con la banda. Preguntad al profe de música."
+
+    @DianaFit (hace 2 horas)
+    "Yo estaba en el gimnasio, pero por DENTRO haciendo estiramientos. Vi el balón entrar por la ventana."
+
+    @Elena_Arte (hace 1 hora)
+    "Yo estaba dibujando en un banco del patio. Vi a alguien chutando el balón hacia el gimnasio, pero no vi bien quién era porque estaba de espaldas."
+
+    @FerXGamer (hace 1 hora)
+    "Yo estaba jugando al fútbol en el patio con otros, pero el balón no era mío. Además, yo siempre tiro a portería, nunca hacia las ventanas."
+
+    @DianaFit (hace 30 min)
+    "Fernando, desde dentro vi que eras el único que estaba solo en esa zona del patio. Los demás jugaban en el otro lado."`,
+                pregunta: "¿Quién rompió la ventana? Escribe solo el NOMBRE",
+                codigo: "FERNANDO",
+                pista: "Diana vio desde dentro quién estaba en esa zona. Elena vio a alguien de espaldas chutando. Fernando dice que estaba jugando 'con otros', pero Diana lo desmiente..."
+            }
+        ];
+
+        const TIEMPO_TOTAL = 35 * 60;
+
+        let state = {
+            pruebaActual: 0,
+            pruebasResueltas: [],
+            pistasUsadas: 0,
+            pistasRestantes: 3,
+            tiempoRestante: TIEMPO_TOTAL,
+            timerInterval: null,
+            pistaVisible: false,
+            juegoTerminado: false
+        };
+
+        function iniciarJuego() {
+            state = {
+                pruebaActual: 0,
+                pruebasResueltas: [],
+                pistasUsadas: 0,
+                pistasRestantes: 3,
+                tiempoRestante: TIEMPO_TOTAL,
+                timerInterval: null,
+                pistaVisible: false,
+                juegoTerminado: false
+            };
+
+            document.getElementById('introScreen').classList.remove('active');
+            document.getElementById('gameScreen').classList.add('active');
+            document.getElementById('headerInfo').style.display = 'flex';
+
+            iniciarTimer();
+            renderizarJuego();
+        }
+
+        function iniciarTimer() {
+            actualizarDisplayTimer();
+            state.timerInterval = setInterval(function() {
+                state.tiempoRestante--;
+                actualizarDisplayTimer();
+                if (state.tiempoRestante <= 0) {
+                    finJuego(false);
+                }
+            }, 1000);
+        }
+
+        function actualizarDisplayTimer() {
+            const minutos = Math.floor(state.tiempoRestante / 60);
+            const segundos = state.tiempoRestante % 60;
+            const timerEl = document.getElementById('timer');
+            timerEl.textContent = minutos + ':' + segundos.toString().padStart(2, '0');
+            timerEl.classList.toggle('danger', state.tiempoRestante <= 60);
+        }
+
+        function renderizarJuego() {
+            renderizarCandados();
+            renderizarPrueba();
+            document.getElementById('pistasCount').textContent = state.pistasRestantes;
+        }
+
+        function renderizarCandados() {
+            const container = document.getElementById('locksProgress');
+            container.replaceChildren();
+
+            PRUEBAS.forEach((prueba, i) => {
+                const lock = document.createElement('div');
+                lock.className = 'lock';
+                if (state.pruebasResueltas.includes(i)) lock.classList.add('unlocked');
+                else if (i === state.pruebaActual) lock.classList.add('current');
+
+                const icon = document.createElement('div');
+                icon.className = 'lock-icon';
+                icon.textContent = state.pruebasResueltas.includes(i) ? '🔓' : '🔒';
+
+                const number = document.createElement('div');
+                number.className = 'lock-number';
+                number.textContent = i + 1;
+
+                lock.appendChild(icon);
+                lock.appendChild(number);
+                container.appendChild(lock);
+            });
+        }
+
+        function renderizarPrueba() {
+            const prueba = PRUEBAS[state.pruebaActual];
+            const container = document.getElementById('pruebaCard');
+            container.replaceChildren();
+
+            // Header
+            const header = document.createElement('div');
+            header.className = 'prueba-header';
+
+            const title = document.createElement('div');
+            title.className = 'prueba-title';
+            title.textContent = 'Prueba ' + prueba.id + ': ' + prueba.titulo;
+
+            const badge = document.createElement('div');
+            badge.className = 'prueba-badge';
+            badge.textContent = prueba.tipo === 'literal' ? '📖 Comprensión literal' : prueba.tipo === 'inferencia' ? '🔍 Inferencia' : '📖🔍 Mixta';
+
+            header.appendChild(title);
+            header.appendChild(badge);
+            container.appendChild(header);
+
+            // Texto
+            const textoContainer = document.createElement('div');
+            textoContainer.className = 'texto-container texto-' + prueba.tipoTexto;
+
+            const textoLabel = document.createElement('div');
+            textoLabel.className = 'texto-label';
+            textoLabel.textContent = prueba.label;
+            textoContainer.appendChild(textoLabel);
+
+            const textoContent = document.createElement('div');
+            textoContent.className = 'texto-content';
+
+            if (prueba.textoEspecial) {
+                prueba.textoEspecial.forEach(msg => {
+                    const msgDiv = document.createElement('div');
+                    msgDiv.className = 'chat-message ' + msg.type;
+
+                    const senderDiv = document.createElement('div');
+                    senderDiv.className = 'chat-sender';
+                    senderDiv.textContent = msg.sender;
+
+                    const textDiv = document.createElement('div');
+                    textDiv.textContent = msg.text;
+
+                    msgDiv.appendChild(senderDiv);
+                    msgDiv.appendChild(textDiv);
+                    textoContent.appendChild(msgDiv);
+                });
+            } else {
+                textoContent.textContent = prueba.texto;
+            }
+
+            textoContainer.appendChild(textoContent);
+            container.appendChild(textoContainer);
+
+            // Pregunta
+            const preguntaBox = document.createElement('div');
+            preguntaBox.className = 'pregunta-box';
+
+            const preguntaText = document.createElement('div');
+            preguntaText.className = 'pregunta-text';
+            preguntaText.textContent = prueba.pregunta;
+            preguntaBox.appendChild(preguntaText);
+
+            const inputGroup = document.createElement('div');
+            inputGroup.className = 'codigo-input-group';
+
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'codigo-input';
+            input.id = 'codigoInput';
+            input.placeholder = 'CÓDIGO';
+            input.maxLength = 10;
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') comprobarCodigo();
+            });
+
+            const btnComprobar = document.createElement('button');
+            btnComprobar.className = 'btn btn-comprobar';
+            btnComprobar.textContent = 'Comprobar';
+            btnComprobar.addEventListener('click', comprobarCodigo);
+
+            inputGroup.appendChild(input);
+            inputGroup.appendChild(btnComprobar);
+            preguntaBox.appendChild(inputGroup);
+
+            const feedback = document.createElement('div');
+            feedback.className = 'feedback';
+            feedback.id = 'feedback';
+            preguntaBox.appendChild(feedback);
+
+            container.appendChild(preguntaBox);
+
+            // Pista
+            const pistaSection = document.createElement('div');
+            pistaSection.className = 'pista-section';
+
+            const btnPista = document.createElement('button');
+            btnPista.className = 'btn btn-pista';
+            btnPista.id = 'btnPista';
+            btnPista.textContent = '💡 Usar pista (quedan ' + state.pistasRestantes + ')';
+            btnPista.disabled = state.pistasRestantes <= 0;
+            btnPista.addEventListener('click', usarPista);
+
+            const pistaBox = document.createElement('div');
+            pistaBox.className = 'pista-box';
+            pistaBox.id = 'pistaBox';
+            pistaBox.textContent = prueba.pista;
+
+            pistaSection.appendChild(btnPista);
+            pistaSection.appendChild(pistaBox);
+            container.appendChild(pistaSection);
+
+            state.pistaVisible = false;
+            input.focus();
+        }
+
+        function comprobarCodigo() {
+            const input = document.getElementById('codigoInput');
+            const feedback = document.getElementById('feedback');
+            const prueba = PRUEBAS[state.pruebaActual];
+
+            const respuesta = input.value.trim().toUpperCase().replace(':', '');
+            const codigoCorrecto = prueba.codigo.toUpperCase().replace(':', '');
+
+            if (respuesta === codigoCorrecto) {
+                input.classList.remove('error');
+                input.classList.add('success');
+                feedback.className = 'feedback success';
+                feedback.textContent = '¡Correcto! Puerta desbloqueada...';
+
+                state.pruebasResueltas.push(state.pruebaActual);
+
+                setTimeout(function() {
+                    if (state.pruebaActual < PRUEBAS.length - 1) {
+                        state.pruebaActual++;
+                        renderizarJuego();
+                    } else {
+                        finJuego(true);
+                    }
+                }, 1500);
+            } else {
+                input.classList.add('error');
+                feedback.className = 'feedback error';
+                feedback.textContent = '❌ Código incorrecto. -30 segundos';
+
+                state.tiempoRestante -= 30;
+                if (state.tiempoRestante < 0) state.tiempoRestante = 0;
+                actualizarDisplayTimer();
+
+                setTimeout(function() {
+                    input.classList.remove('error');
+                    input.value = '';
+                    input.focus();
+                    if (state.tiempoRestante <= 0) finJuego(false);
+                }, 1000);
+            }
+        }
+
+        function usarPista() {
+            if (state.pistasRestantes <= 0) return;
+
+            state.pistasRestantes--;
+            state.pistasUsadas++;
+            state.tiempoRestante -= 60;
+
+            document.getElementById('pistasCount').textContent = state.pistasRestantes;
+            document.getElementById('pistaBox').classList.add('visible');
+
+            const btnPista = document.getElementById('btnPista');
+            btnPista.textContent = '💡 Usar pista (quedan ' + state.pistasRestantes + ')';
+            if (state.pistasRestantes <= 0) btnPista.disabled = true;
+
+            actualizarDisplayTimer();
+        }
+
+        function finJuego(victoria) {
+            state.juegoTerminado = true;
+            clearInterval(state.timerInterval);
+
+            document.getElementById('gameScreen').classList.remove('active');
+            document.getElementById('finalScreen').classList.add('active');
+
+            const minutos = Math.floor(state.tiempoRestante / 60);
+            const segundos = state.tiempoRestante % 60;
+
+            if (victoria) {
+                document.getElementById('finalIcon').textContent = '🎉';
+                document.getElementById('finalTitle').textContent = '¡Habéis escapado!';
+                document.getElementById('finalTitle').className = 'final-title win';
+                document.getElementById('finalMessage').textContent = 'Habéis conseguido salir antes de que llegara el vigilante. ¡Buen trabajo, detectives!';
+            } else {
+                document.getElementById('finalIcon').textContent = '🚨';
+                document.getElementById('finalTitle').textContent = '¡Os han pillado!';
+                document.getElementById('finalTitle').className = 'final-title lose';
+                document.getElementById('finalMessage').textContent = 'El vigilante os encontró dentro del instituto. La próxima vez, ¡leed más rápido!';
+            }
+
+            document.getElementById('finalTime').textContent = victoria ? minutos + ':' + segundos.toString().padStart(2, '0') : '0:00';
+            document.getElementById('finalPistas').textContent = state.pistasUsadas;
+            document.getElementById('finalPruebas').textContent = state.pruebasResueltas.length + '/' + PRUEBAS.length;
+        }
+
+        function reiniciarJuego() {
+            document.getElementById('finalScreen').classList.remove('active');
+            document.getElementById('headerInfo').style.display = 'none';
+            document.getElementById('introScreen').classList.add('active');
+        }
+    </script>
+</body>
+</html>

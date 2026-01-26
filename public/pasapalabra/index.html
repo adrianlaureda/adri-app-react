@@ -1,0 +1,1652 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasapalabra Temático</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Sistema de diseño Adri - Tema dual */
+        :root {
+            --bg: #000000;
+            --bg-surface: #0a0a0a;
+            --bg-elevated: #111111;
+            --border: #222222;
+            --text: #ffffff;
+            --text-secondary: #999999;
+            --text-muted: #666666;
+            --success: #22c55e;
+            --error: #ef4444;
+            --warning: #eab308;
+            --team1: #a78bfa;
+            --team2: #f472b6;
+            --transition: 0.2s ease;
+            --radius: 12px;
+        }
+
+        [data-theme="light"] {
+            --bg: #ffffff;
+            --bg-surface: #fafafa;
+            --bg-elevated: #f5f5f5;
+            --border: #e5e5e5;
+            --text: #000000;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Enlace a Home - centrado en header */
+        .home-link {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 56px;
+            color: var(--text-muted);
+            transition: color var(--transition);
+        }
+        .home-link:hover {
+            color: var(--text);
+        }
+        .home-link svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Header minimalista */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            text-align: center;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .theme-toggle {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 12px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-family: inherit;
+            font-size: 0.875rem;
+            transition: all var(--transition);
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-surface);
+            color: var(--text);
+            border-color: var(--text-secondary);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 1.5rem 2rem;
+        }
+
+        /* Pantallas */
+        .screen {
+            display: none;
+        }
+        .screen.active {
+            display: block;
+        }
+
+        /* Setup Screen */
+        .setup-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .setup-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .panel {
+            background: var(--bg-surface);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .panel h2 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .panel h2 .icon {
+            width: 28px;
+            height: 28px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+        }
+
+        .team-setup {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .team-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-elevated);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            transition: border-color var(--transition);
+        }
+
+        .team-row:hover {
+            border-color: var(--text-secondary);
+        }
+
+        .team-badge {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--bg);
+        }
+
+        .team-1-bg { background: var(--team1); }
+        .team-2-bg { background: var(--team2); }
+
+        .team-row input {
+            flex: 1;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg);
+            color: var(--text);
+            font-size: 0.875rem;
+            font-family: inherit;
+            transition: border-color var(--transition);
+        }
+
+        .team-row input:focus {
+            outline: none;
+            border-color: var(--text-secondary);
+        }
+
+        /* Rounds selector */
+        .rounds-selector {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 0.75rem;
+        }
+
+        .round-option {
+            flex: 1;
+            padding: 1rem;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+
+        .round-option:hover {
+            border-color: var(--text-secondary);
+        }
+
+        .round-option.selected {
+            border-color: var(--text);
+            background: var(--bg-surface);
+        }
+
+        .round-option .number {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .round-option div:last-child {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Botón principal */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+            font-weight: 500;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all var(--transition);
+            background: var(--bg-surface);
+            color: var(--text);
+        }
+
+        .btn:hover {
+            border-color: var(--text-secondary);
+            transform: translateY(-2px);
+        }
+
+        .btn-start {
+            width: 100%;
+            margin-top: 1.5rem;
+            background: var(--text);
+            color: var(--bg);
+            border-color: var(--text);
+            font-size: 1rem;
+            padding: 1rem;
+        }
+
+        .btn-start:hover {
+            background: var(--text-secondary);
+            border-color: var(--text-secondary);
+        }
+
+        /* Game Screen */
+        .game-layout {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 1.5rem;
+            min-height: calc(100vh - 160px);
+        }
+
+        @media (max-width: 1100px) {
+            .game-layout {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+        }
+
+        /* Scoreboard superior */
+        .game-scoreboard {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .team-card {
+            background: var(--bg-surface);
+            border-radius: var(--radius);
+            padding: 0.75rem 1.5rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all var(--transition);
+            min-width: 140px;
+        }
+
+        .team-card.active {
+            border-color: var(--text);
+        }
+
+        .team-card .name {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.25rem;
+        }
+
+        .team-card .score {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .team-card.team-1 .score { color: var(--team1); }
+        .team-card.team-2 .score { color: var(--team2); }
+
+        /* Info de ronda */
+        .round-badge {
+            display: inline-block;
+            background: var(--bg-elevated);
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+        }
+
+        .round-badge strong {
+            color: var(--text);
+        }
+
+        /* Info equipo y tema destacados */
+        .game-info-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .current-team-display {
+            background: var(--bg-surface);
+            border-radius: var(--radius);
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border: 1px solid var(--border);
+        }
+
+        .current-team-display .label {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+        }
+
+        .current-team-display .team-name {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .current-team-display.team-1 .team-name { color: var(--team1); }
+        .current-team-display.team-2 .team-name { color: var(--team2); }
+
+        .tema-display {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Rosco */
+        .rosco-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        /* Temporizador */
+        .timer-container {
+            margin-bottom: 1rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .timer {
+            font-size: 2rem;
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+            color: var(--text);
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1.25rem;
+            border-radius: var(--radius);
+            display: inline-block;
+            min-width: 100px;
+        }
+
+        .timer.paused {
+            opacity: 0.5;
+        }
+
+        .timer.warning {
+            color: var(--warning);
+        }
+
+        .timer.danger {
+            color: var(--error);
+        }
+
+        .btn-timer {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--bg-surface);
+            color: var(--text);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition);
+        }
+
+        .btn-timer:hover {
+            border-color: var(--text-secondary);
+        }
+
+        .btn-timer.playing {
+            background: var(--warning);
+            border-color: var(--warning);
+            color: #000;
+        }
+
+        .rosco-container {
+            position: relative;
+            width: 460px;
+            height: 460px;
+        }
+
+        @media (max-width: 500px) {
+            .rosco-container {
+                width: 300px;
+                height: 300px;
+            }
+        }
+
+        .rosco-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .rosco-center .aciertos-label {
+            font-size: 0.625rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .rosco-center .aciertos-count {
+            font-size: 4rem;
+            font-weight: 600;
+            color: var(--success);
+        }
+
+        .rosco-center .total {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        .letra {
+            position: absolute;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 500;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            transition: all 0.2s ease;
+        }
+
+        @media (max-width: 500px) {
+            .letra {
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
+            }
+        }
+
+        .letra.pendiente {
+            background: var(--bg-surface);
+            border-color: var(--border);
+        }
+
+        .letra.actual {
+            background: var(--text);
+            color: var(--bg);
+            border-color: var(--text);
+            transform: scale(1.2);
+            z-index: 10;
+        }
+
+        .letra.acierto {
+            background: var(--success);
+            border-color: var(--success);
+            color: #fff;
+        }
+
+        .letra.fallo {
+            background: var(--error);
+            border-color: var(--error);
+            color: #fff;
+        }
+
+        .letra.pasada {
+            background: var(--warning);
+            border-color: var(--warning);
+            color: #000;
+        }
+
+        /* Panel lateral */
+        .side-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .question-card {
+            background: var(--bg-surface);
+            border-radius: var(--radius);
+            padding: 1.25rem;
+            border: 1px solid var(--border);
+        }
+
+        .question-letter {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .letter-big {
+            width: 52px;
+            height: 52px;
+            background: var(--text);
+            color: var(--bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .letter-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .definition {
+            font-size: 1.125rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            min-height: 60px;
+        }
+
+        .answer-reveal {
+            background: var(--bg-elevated);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            transition: border-color var(--transition);
+        }
+
+        .answer-reveal:hover {
+            border-color: var(--text-secondary);
+        }
+
+        .answer-text {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .answer-text.revealed {
+            color: var(--text);
+            font-weight: 500;
+            font-size: 1.125rem;
+        }
+
+        .eye-icon {
+            color: var(--text-muted);
+        }
+
+        /* Botones de acción */
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .btn-action {
+            padding: 0.875rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+            font-weight: 500;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background: var(--bg-surface);
+            color: var(--text);
+        }
+
+        .btn-acierto {
+            background: var(--success);
+            border-color: var(--success);
+            color: #fff;
+        }
+
+        .btn-acierto:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-fallo {
+            background: var(--error);
+            border-color: var(--error);
+            color: #fff;
+        }
+
+        .btn-fallo:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-pasa {
+            grid-column: span 2;
+            background: var(--bg-elevated);
+            color: var(--warning);
+            border-color: var(--warning);
+        }
+
+        .btn-pasa:hover {
+            background: var(--bg-surface);
+        }
+
+        /* Controles inferiores */
+        .bottom-controls {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .btn-secondary {
+            background: var(--bg-elevated);
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            font-size: 0.8125rem;
+        }
+
+        .btn-secondary:hover {
+            color: var(--text);
+            border-color: var(--text-secondary);
+        }
+
+        /* Modales */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        [data-theme="light"] .modal {
+            background: rgba(255,255,255,0.9);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-surface);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            border: 1px solid var(--border);
+        }
+
+        .modal-content h2 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-content .result-big {
+            font-size: 4rem;
+            font-weight: 600;
+            color: var(--success);
+            margin: 1rem 0;
+        }
+
+        .modal-content p {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+        }
+
+        .btn-modal {
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .btn-next {
+            background: var(--text);
+            color: var(--bg);
+            border-color: var(--text);
+        }
+
+        /* Winner screen */
+        .winner-crown {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .winner-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .final-scores {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .final-score-item {
+            text-align: center;
+        }
+
+        .final-score-item .name {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .final-score-item .points {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Enlace a Home - centrado -->
+    <a href="/" class="home-link" title="Volver a adri-app">
+        <svg viewBox="0 0 100 100">
+            <polygon points="50,5 95,82 5,82" fill="currentColor"/>
+            <line x1="50" y1="56" x2="50" y2="5" stroke="var(--bg)" stroke-width="4"/>
+            <line x1="50" y1="56" x2="95" y2="82" stroke="var(--bg)" stroke-width="4"/>
+            <line x1="50" y1="56" x2="5" y2="82" stroke="var(--bg)" stroke-width="4"/>
+        </svg>
+    </a>
+
+    <header class="header">
+        <h1>Pasapalabra</h1>
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <span id="themeIcon">Claro</span>
+        </button>
+    </header>
+
+    <div class="container">
+        <!-- SETUP SCREEN -->
+        <div id="setupScreen" class="screen active">
+            <div class="setup-grid">
+                <div class="panel">
+                    <h2>
+                        <span class="icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </span>
+                        Equipos
+                    </h2>
+                    <div class="team-setup">
+                        <div class="team-row">
+                            <div class="team-badge team-1-bg">1</div>
+                            <input type="text" id="team1Name" value="Equipo Azul" maxlength="15">
+                        </div>
+                        <div class="team-row">
+                            <div class="team-badge team-2-bg">2</div>
+                            <input type="text" id="team2Name" value="Equipo Rosa" maxlength="15">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <h2>
+                        <span class="icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                        </span>
+                        Rondas
+                    </h2>
+                    <p style="color: var(--text-gray); margin-bottom: 1rem;">Cada equipo juega un rosco distinto por ronda</p>
+                    <div class="rounds-selector">
+                        <div class="round-option" data-rounds="2">
+                            <div class="number">2</div>
+                            <div>rondas</div>
+                        </div>
+                        <div class="round-option selected" data-rounds="3">
+                            <div class="number">3</div>
+                            <div>rondas</div>
+                        </div>
+                        <div class="round-option" data-rounds="4">
+                            <div class="number">4</div>
+                            <div>rondas</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-start" onclick="comenzarPartida()">
+                Comenzar Partida
+            </button>
+        </div>
+
+        <!-- GAME SCREEN -->
+        <div id="gameScreen" class="screen">
+            <div class="game-scoreboard" id="scoreboard"></div>
+
+            <div class="game-info-bar">
+                <div class="round-badge">Ronda <strong id="currentRound">1</strong> de <span id="totalRounds">3</span></div>
+                <div class="current-team-display team-1" id="currentTeamDisplay">
+                    <span class="label">Turno de</span>
+                    <span class="team-name" id="currentTeamName">Equipo Azul</span>
+                </div>
+                <div class="tema-display" id="currentTema">Tema</div>
+            </div>
+
+            <div class="game-layout">
+                <div class="rosco-section">
+                    <div class="timer-container">
+                        <button class="btn-timer playing" id="btnTimer" onclick="toggleTimer()">
+                            <svg id="iconPause" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <rect x="6" y="4" width="4" height="16"/>
+                                <rect x="14" y="4" width="4" height="16"/>
+                            </svg>
+                            <svg id="iconPlay" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+                                <polygon points="5,3 19,12 5,21"/>
+                            </svg>
+                        </button>
+                        <div class="timer" id="timer">2:30</div>
+                    </div>
+                    <div class="rosco-container" id="rosco">
+                        <div class="rosco-center">
+                            <div class="aciertos-label">Aciertos</div>
+                            <div class="aciertos-count" id="aciertosRosco">0</div>
+                            <div class="total">de 15</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="side-panel">
+                    <div class="question-card">
+                        <div class="question-letter">
+                            <div class="letter-big" id="letraActual">A</div>
+                            <div class="letter-label">Empieza por esta letra</div>
+                        </div>
+                        <div class="definition" id="definicion">Cargando definición...</div>
+                        <div class="answer-reveal" onclick="toggleRespuesta()">
+                            <span class="answer-text" id="respuestaText">Pulsa para ver respuesta</span>
+                            <span class="eye-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-action btn-acierto" onclick="marcarAcierto()">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            Acierto
+                        </button>
+                        <button class="btn btn-action btn-fallo" onclick="marcarFallo()">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                <line x1="18" y1="6" x2="6" y2="18"/>
+                                <line x1="6" y1="6" x2="18" y2="18"/>
+                            </svg>
+                            Fallo
+                        </button>
+                        <button class="btn btn-action btn-pasa" onclick="marcarPasa()">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="13 17 18 12 13 7"/>
+                                <polyline points="6 17 11 12 6 7"/>
+                            </svg>
+                            Pasapalabra
+                        </button>
+                    </div>
+
+                    <div class="bottom-controls">
+                        <button class="btn btn-secondary" onclick="finRosco()" style="background: var(--accent-cyan); color: white;">Terminar rosco</button>
+                        <button class="btn btn-secondary" onclick="reiniciarPartida()">Nueva partida</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL: Fin de rosco -->
+        <div class="modal" id="modalRosco">
+            <div class="modal-content">
+                <h2 id="modalTeamName">Equipo 1</h2>
+                <div class="result-big" id="modalAciertos">12</div>
+                <p>aciertos en este rosco</p>
+                <p id="modalSiguiente" style="color: var(--accent-cyan); margin-top: 1rem; font-weight: 600;"></p>
+                <div class="modal-buttons">
+                    <button class="btn btn-modal btn-next" id="btnSiguiente" onclick="siguienteTurno()">Siguiente</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL: Fin de partida -->
+        <div class="modal" id="modalFinal">
+            <div class="modal-content">
+                <div class="winner-crown">👑</div>
+                <h2>Ganador</h2>
+                <div class="winner-name" id="winnerName">Equipo Azul</div>
+                <div class="final-scores" id="finalScores"></div>
+                <div class="modal-buttons">
+                    <button class="btn btn-modal btn-secondary" onclick="reiniciarPartida()">Nueva partida</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle de tema
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            const newTheme = current === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme === 'light' ? 'light' : '');
+            if (newTheme === 'light') {
+                html.setAttribute('data-theme', 'light');
+            } else {
+                html.removeAttribute('data-theme');
+            }
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon();
+        }
+
+        function updateThemeIcon() {
+            const current = document.documentElement.getAttribute('data-theme');
+            document.getElementById('themeIcon').textContent = current === 'light' ? 'Oscuro' : 'Claro';
+        }
+
+        // Cargar tema guardado
+        (function() {
+            const saved = localStorage.getItem('theme');
+            if (saved === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+            // Actualizar icono después de que el DOM cargue
+            document.addEventListener('DOMContentLoaded', updateThemeIcon);
+        })();
+
+        // DATOS DE ROSCOS
+        const ROSCOS = [
+            {
+                id: 1, tema: "Emociones y sentimientos",
+                palabras: {
+                    A: { def: "Sentimiento de cariño hacia otra persona", resp: "AMOR" },
+                    B: { def: "Estado de felicidad y satisfacción", resp: "BIENESTAR" },
+                    C: { def: "Sentir envidia de lo que tiene otra persona", resp: "CELOS" },
+                    D: { def: "Sentimiento de no tener esperanza", resp: "DESESPERACION" },
+                    E: { def: "Sentimiento muy fuerte de alegría", resp: "ENTUSIASMO" },
+                    F: { def: "Emoción cuando algo no sale como esperabas", resp: "FRUSTRACION" },
+                    G: { def: "Dar las gracias por algo recibido", resp: "GRATITUD" },
+                    H: { def: "Sentimiento de no querer hacer nada", resp: "HASTIO" },
+                    I: { def: "Sentimiento de enfado muy grande", resp: "IRA" },
+                    L: { def: "Emoción de pena cuando alguien sufre", resp: "LASTIMA" },
+                    M: { def: "Sentimiento de tristeza profunda", resp: "MELANCOLIA" },
+                    N: { def: "Estado de estar muy alterado y preocupado", resp: "NERVIOSISMO" },
+                    O: { def: "Sentimiento de superioridad sobre los demás", resp: "ORGULLO" },
+                    P: { def: "Emoción que produce algo que nos gusta mucho", resp: "PLACER" },
+                    R: { def: "Sentimiento de culpa por algo que hicimos mal", resp: "REMORDIMIENTO" }
+                }
+            },
+            {
+                id: 2, tema: "Tecnología y redes",
+                palabras: {
+                    A: { def: "Programa que instalas en el móvil", resp: "APLICACION" },
+                    B: { def: "Buscar información en internet", resp: "BUSCAR" },
+                    C: { def: "Poner un mensaje debajo de una publicación", resp: "COMENTAR" },
+                    D: { def: "Bajar un archivo de internet a tu dispositivo", resp: "DESCARGAR" },
+                    E: { def: "Correo que mandas por internet", resp: "EMAIL" },
+                    F: { def: "Persona que te sigue en redes sociales", resp: "FOLLOWER" },
+                    G: { def: "Imagen animada que se repite en bucle", resp: "GIF" },
+                    H: { def: "Palabra con almohadilla (#) para etiquetar", resp: "HASHTAG" },
+                    I: { def: "Red social de fotos y stories", resp: "INSTAGRAM" },
+                    L: { def: "Dar a me gusta en una publicación", resp: "LIKE" },
+                    M: { def: "Imagen graciosa que se comparte mucho", resp: "MEME" },
+                    N: { def: "Aviso que te llega al móvil de una app", resp: "NOTIFICACION" },
+                    O: { def: "Estar conectado a internet ahora mismo", resp: "ONLINE" },
+                    P: { def: "Imagen o escrito que subes a una red social", resp: "PUBLICACION" },
+                    R: { def: "Vídeos cortos de Instagram con música", resp: "REELS" }
+                }
+            },
+            {
+                id: 3, tema: "El instituto",
+                palabras: {
+                    A: { def: "Estudiante que va a clase", resp: "ALUMNO" },
+                    B: { def: "Lugar donde se guardan libros para consultar", resp: "BIBLIOTECA" },
+                    C: { def: "Lugar donde comes en el instituto", resp: "COMEDOR" },
+                    D: { def: "Persona que dirige el instituto", resp: "DIRECTOR" },
+                    E: { def: "Prueba escrita para demostrar lo que sabes", resp: "EXAMEN" },
+                    F: { def: "Copia de un documento o apuntes", resp: "FOTOCOPIA" },
+                    G: { def: "Polideportivo donde se hace educación física", resp: "GIMNASIO" },
+                    H: { def: "Tiempo libre de la jornada escolar", resp: "HORALIBRE" },
+                    I: { def: "Materia donde aprendes otro idioma", resp: "INGLES" },
+                    L: { def: "Sitio donde haces experimentos de ciencias", resp: "LABORATORIO" },
+                    M: { def: "Bolsa donde llevas los libros", resp: "MOCHILA" },
+                    N: { def: "Calificación que ponen los profesores", resp: "NOTA" },
+                    O: { def: "Espacio donde trabaja el director", resp: "OFICINA" },
+                    P: { def: "Zona al aire libre donde pasas el recreo", resp: "PATIO" },
+                    R: { def: "Descanso de media mañana entre clases", resp: "RECREO" }
+                }
+            },
+            {
+                id: 4, tema: "Deportes",
+                palabras: {
+                    A: { def: "Deporte donde corres, saltas o lanzas", resp: "ATLETISMO" },
+                    B: { def: "Deporte donde metes la pelota en una canasta", resp: "BALONCESTO" },
+                    C: { def: "Deporte que se practica en bicicleta", resp: "CICLISMO" },
+                    D: { def: "Acción de proteger tu portería", resp: "DEFENSA" },
+                    E: { def: "Lugar grande donde se juegan partidos", resp: "ESTADIO" },
+                    F: { def: "Deporte con los pies y un balón", resp: "FUTBOL" },
+                    G: { def: "Deporte con palos y hoyos", resp: "GOLF" },
+                    H: { def: "Deporte sobre hielo con disco y palos", resp: "HOCKEY" },
+                    I: { def: "Categoría de edad más joven en un equipo", resp: "INFANTIL" },
+                    L: { def: "Combate cuerpo a cuerpo olímpico", resp: "LUCHA" },
+                    M: { def: "Carrera de 42 kilómetros", resp: "MARATON" },
+                    N: { def: "Deporte acuático donde nadas", resp: "NATACION" },
+                    O: { def: "Competición mundial cada 4 años", resp: "OLIMPIADAS" },
+                    P: { def: "Dar el balón a un compañero", resp: "PASE" },
+                    R: { def: "Cuando el balón vuelve tras chocar", resp: "REBOTE" }
+                }
+            },
+            {
+                id: 5, tema: "Comida y cocina",
+                palabras: {
+                    A: { def: "Grano blanco que acompaña muchos platos", resp: "ARROZ" },
+                    B: { def: "Pan largo y fino típico de Francia", resp: "BAGUETTE" },
+                    C: { def: "Utensilio para cortar alimentos", resp: "CUCHILLO" },
+                    D: { def: "Primera comida del día", resp: "DESAYUNO" },
+                    E: { def: "Plato de verduras crudas mezcladas", resp: "ENSALADA" },
+                    F: { def: "Cocinar en aceite muy caliente", resp: "FREIR" },
+                    G: { def: "Dulce seco y crujiente para desayunar", resp: "GALLETA" },
+                    H: { def: "Aparato de cocina para calentar", resp: "HORNO" },
+                    I: { def: "Cada cosa que necesitas para una receta", resp: "INGREDIENTE" },
+                    L: { def: "Verdura verde para ensaladas", resp: "LECHUGA" },
+                    M: { def: "Aparato para calentar comida rápido", resp: "MICROONDAS" },
+                    N: { def: "Fruto seco con cáscara dura", resp: "NUEZ" },
+                    O: { def: "Recipiente para cocinar con tapa", resp: "OLLA" },
+                    P: { def: "Comida italiana con tomate y queso", resp: "PIZZA" },
+                    R: { def: "Lista de instrucciones para cocinar", resp: "RECETA" }
+                }
+            },
+            {
+                id: 6, tema: "Naturaleza y animales",
+                palabras: {
+                    A: { def: "Ave grande con pico curvo que vuela alto", resp: "AGUILA" },
+                    B: { def: "Zona grande con muchos árboles", resp: "BOSQUE" },
+                    C: { def: "Animal con caparazón que va despacio", resp: "CARACOL" },
+                    D: { def: "Animal prehistórico gigante extinto", resp: "DINOSAURIO" },
+                    E: { def: "Mamífero grande con trompa", resp: "ELEFANTE" },
+                    F: { def: "Parte de la planta de colores", resp: "FLOR" },
+                    G: { def: "Ave grande de granja que hace honk", resp: "GANSO" },
+                    H: { def: "Parte verde de las plantas", resp: "HOJA" },
+                    I: { def: "Animal pequeño con seis patas", resp: "INSECTO" },
+                    L: { def: "Felino grande rey de la selva", resp: "LEON" },
+                    M: { def: "Insecto con alas de colores", resp: "MARIPOSA" },
+                    N: { def: "Lugar donde los pájaros ponen huevos", resp: "NIDO" },
+                    O: { def: "Mamífero marino blanco y negro", resp: "ORCA" },
+                    P: { def: "Animal con plumas y pico", resp: "PAJARO" },
+                    R: { def: "Corriente de agua hacia el mar", resp: "RIO" }
+                }
+            },
+            {
+                id: 7, tema: "Profesiones",
+                palabras: {
+                    A: { def: "Persona que diseña edificios", resp: "ARQUITECTO" },
+                    B: { def: "Persona que apaga incendios", resp: "BOMBERO" },
+                    C: { def: "Persona que cocina en restaurante", resp: "COCINERO" },
+                    D: { def: "Persona que cuida los dientes", resp: "DENTISTA" },
+                    E: { def: "Persona que arregla cables y enchufes", resp: "ELECTRICISTA" },
+                    F: { def: "Persona de tienda de medicinas", resp: "FARMACEUTICO" },
+                    G: { def: "Persona que vigila un lugar", resp: "GUARDIA" },
+                    H: { def: "Persona que trabaja el metal", resp: "HERRERO" },
+                    I: { def: "Persona que diseña máquinas", resp: "INGENIERO" },
+                    L: { def: "Persona que defiende en juicios", resp: "LETRADO" },
+                    M: { def: "Persona que cura enfermedades", resp: "MEDICO" },
+                    N: { def: "Persona que autoriza documentos", resp: "NOTARIO" },
+                    O: { def: "Persona que cuida los ojos", resp: "OFTALMOLOGO" },
+                    P: { def: "Persona que enseña en el instituto", resp: "PROFESOR" },
+                    R: { def: "Persona que lleva paquetes", resp: "REPARTIDOR" }
+                }
+            },
+            {
+                id: 8, tema: "Viajes y transporte",
+                palabras: {
+                    A: { def: "Vehículo que vuela por el cielo", resp: "AVION" },
+                    B: { def: "Vehículo de dos ruedas con pedales", resp: "BICICLETA" },
+                    C: { def: "Vehículo de cuatro ruedas familiar", resp: "COCHE" },
+                    D: { def: "Lugar al que quieres llegar", resp: "DESTINO" },
+                    E: { def: "Lugar donde coges el tren", resp: "ESTACION" },
+                    F: { def: "Barco que transporta coches", resp: "FERRY" },
+                    G: { def: "Persona que explica lugares turísticos", resp: "GUIA" },
+                    H: { def: "Lugar donde duermes al viajar", resp: "HOTEL" },
+                    I: { def: "Plan de ruta de un viaje", resp: "ITINERARIO" },
+                    L: { def: "Adjetivo para viaje de mucha distancia", resp: "LARGO" },
+                    M: { def: "Transporte subterráneo de ciudad", resp: "METRO" },
+                    N: { def: "Barco grande para viajes", resp: "NAVIO" },
+                    O: { def: "Autobús en palabra culta", resp: "OMNIBUS" },
+                    P: { def: "Zona de arena junto al mar", resp: "PLAYA" },
+                    R: { def: "Camino de hierro del tren", resp: "RAILES" }
+                }
+            },
+            {
+                id: 9, tema: "Música y entretenimiento",
+                palabras: {
+                    A: { def: "Instrumento con fuelle", resp: "ACORDEON" },
+                    B: { def: "Instrumento de percusión con baquetas", resp: "BATERIA" },
+                    C: { def: "Lugar donde ves películas", resp: "CINE" },
+                    D: { def: "Persona que pincha música", resp: "DJ" },
+                    E: { def: "Actuación para público", resp: "ESPECTACULO" },
+                    F: { def: "Instrumento de viento que soplas", resp: "FLAUTA" },
+                    G: { def: "Instrumento de cuerda muy popular", resp: "GUITARRA" },
+                    H: { def: "Género musical con rimas", resp: "HIPHOP" },
+                    I: { def: "Objeto que produce sonidos musicales", resp: "INSTRUMENTO" },
+                    L: { def: "Texto de una canción", resp: "LETRA" },
+                    M: { def: "Sonidos organizados que escuchamos", resp: "MUSICA" },
+                    N: { def: "Cada sonido en música (do, re, mi)", resp: "NOTA" },
+                    O: { def: "Grupo grande de músicos clásicos", resp: "ORQUESTA" },
+                    P: { def: "Instrumento de teclas blancas y negras", resp: "PIANO" },
+                    R: { def: "Género con guitarras eléctricas", resp: "ROCK" }
+                }
+            },
+            {
+                id: 10, tema: "Casa y hogar",
+                palabras: {
+                    A: { def: "Mueble donde guardas ropa colgada", resp: "ARMARIO" },
+                    B: { def: "Habitación donde te duchas", resp: "BANO" },
+                    C: { def: "Habitación donde cocinas", resp: "COCINA" },
+                    D: { def: "Habitación donde duermes", resp: "DORMITORIO" },
+                    E: { def: "Escalones para subir pisos", resp: "ESCALERA" },
+                    F: { def: "Personas que viven juntas", resp: "FAMILIA" },
+                    G: { def: "Lugar para guardar el coche", resp: "GARAJE" },
+                    H: { def: "Lugar donde vives, tu casa", resp: "HOGAR" },
+                    I: { def: "Botón para encender la luz", resp: "INTERRUPTOR" },
+                    L: { def: "Aparato para limpiar ropa", resp: "LAVADORA" },
+                    M: { def: "Mueble pequeño junto a la cama", resp: "MESILLA" },
+                    N: { def: "Aparato para guardar comida fría", resp: "NEVERA" },
+                    O: { def: "Sillón con orejas laterales", resp: "OREJERO" },
+                    P: { def: "Entrada principal de una casa", resp: "PUERTA" },
+                    R: { def: "Aparato que te despierta", resp: "RELOJ" }
+                }
+            }
+        ];
+
+        const LETRAS = ['A','B','C','D','E','F','G','H','I','L','M','N','O','P','R'];
+
+        // ESTADO DEL JUEGO
+        const TIEMPO_ROSCO = 150; // 2 minutos y medio por rosco
+
+        let state = {
+            teams: [],
+            totalRounds: 3,
+            currentRound: 1,
+            currentTeamIndex: 0,
+            roscoActual: null,
+            estadoLetras: {},
+            letraIndex: 0,
+            aciertosRosco: 0,
+            roscosUsados: [],
+            respuestaVisible: false,
+            tiempoRestante: TIEMPO_ROSCO,
+            timerInterval: null,
+            timerPaused: false
+        };
+
+        // SETUP
+        document.querySelectorAll('.round-option').forEach(opt => {
+            opt.addEventListener('click', function() {
+                document.querySelectorAll('.round-option').forEach(o => o.classList.remove('selected'));
+                this.classList.add('selected');
+                state.totalRounds = parseInt(this.dataset.rounds);
+            });
+        });
+
+        function comenzarPartida() {
+            state.teams = [
+                { name: document.getElementById('team1Name').value || 'Equipo 1', score: 0 },
+                { name: document.getElementById('team2Name').value || 'Equipo 2', score: 0 }
+            ];
+            state.currentRound = 1;
+            state.currentTeamIndex = 0;
+            state.roscosUsados = [];
+
+            document.getElementById('totalRounds').textContent = state.totalRounds;
+
+            document.getElementById('setupScreen').classList.remove('active');
+            document.getElementById('gameScreen').classList.add('active');
+
+            iniciarTurno();
+        }
+
+        function iniciarTurno() {
+            // Seleccionar rosco aleatorio no usado
+            const disponibles = ROSCOS.filter(r => !state.roscosUsados.includes(r.id));
+            if (disponibles.length === 0) {
+                state.roscosUsados = [];
+                return iniciarTurno();
+            }
+            state.roscoActual = disponibles[Math.floor(Math.random() * disponibles.length)];
+            state.roscosUsados.push(state.roscoActual.id);
+
+            // Reset estado
+            state.estadoLetras = {};
+            LETRAS.forEach(l => state.estadoLetras[l] = 'pendiente');
+            state.letraIndex = 0;
+            state.aciertosRosco = 0;
+            state.respuestaVisible = false;
+
+            // Iniciar temporizador
+            state.tiempoRestante = TIEMPO_ROSCO;
+            state.timerPaused = false;
+            iniciarTimer();
+
+            renderizarPartida();
+        }
+
+        function iniciarTimer() {
+            // Limpiar timer anterior si existe
+            if (state.timerInterval) {
+                clearInterval(state.timerInterval);
+            }
+
+            actualizarDisplayTimer();
+
+            state.timerInterval = setInterval(function() {
+                state.tiempoRestante--;
+                actualizarDisplayTimer();
+
+                if (state.tiempoRestante <= 0) {
+                    clearInterval(state.timerInterval);
+                    finRosco();
+                }
+            }, 1000);
+        }
+
+        function actualizarDisplayTimer() {
+            const minutos = Math.floor(state.tiempoRestante / 60);
+            const segundos = state.tiempoRestante % 60;
+            const timerEl = document.getElementById('timer');
+            timerEl.textContent = minutos + ':' + segundos.toString().padStart(2, '0');
+
+            // Cambiar color según tiempo restante
+            timerEl.classList.remove('warning', 'danger');
+            if (state.tiempoRestante <= 30) {
+                timerEl.classList.add('danger');
+            } else if (state.tiempoRestante <= 60) {
+                timerEl.classList.add('warning');
+            }
+        }
+
+        function detenerTimer() {
+            if (state.timerInterval) {
+                clearInterval(state.timerInterval);
+                state.timerInterval = null;
+            }
+            state.timerPaused = false;
+        }
+
+        function toggleTimer() {
+            if (state.timerPaused) {
+                // Reanudar
+                state.timerPaused = false;
+                iniciarTimer();
+            } else {
+                // Pausar
+                state.timerPaused = true;
+                if (state.timerInterval) {
+                    clearInterval(state.timerInterval);
+                    state.timerInterval = null;
+                }
+            }
+            actualizarBotonesTimer();
+        }
+
+        function actualizarBotonesTimer() {
+            const btn = document.getElementById('btnTimer');
+            const iconPause = document.getElementById('iconPause');
+            const iconPlay = document.getElementById('iconPlay');
+            const timerEl = document.getElementById('timer');
+
+            if (state.timerPaused) {
+                btn.classList.remove('playing');
+                iconPause.style.display = 'none';
+                iconPlay.style.display = 'block';
+                timerEl.classList.add('paused');
+            } else {
+                btn.classList.add('playing');
+                iconPause.style.display = 'block';
+                iconPlay.style.display = 'none';
+                timerEl.classList.remove('paused');
+            }
+        }
+
+        function renderizarPartida() {
+            // Scoreboard
+            const sb = document.getElementById('scoreboard');
+            sb.replaceChildren();
+            state.teams.forEach((team, i) => {
+                const card = document.createElement('div');
+                card.className = 'team-card team-' + (i + 1) + (i === state.currentTeamIndex ? ' active' : '');
+
+                const nameDiv = document.createElement('div');
+                nameDiv.className = 'name';
+                nameDiv.textContent = team.name;
+
+                const scoreDiv = document.createElement('div');
+                scoreDiv.className = 'score';
+                scoreDiv.textContent = team.score;
+
+                card.appendChild(nameDiv);
+                card.appendChild(scoreDiv);
+                sb.appendChild(card);
+            });
+
+            // Info ronda
+            document.getElementById('currentRound').textContent = state.currentRound;
+            document.getElementById('currentTema').textContent = state.roscoActual.tema;
+
+            // Equipo actual destacado
+            const teamDisplay = document.getElementById('currentTeamDisplay');
+            teamDisplay.className = 'current-team-display team-' + (state.currentTeamIndex + 1);
+            document.getElementById('currentTeamName').textContent = state.teams[state.currentTeamIndex].name;
+
+            // Aciertos rosco
+            document.getElementById('aciertosRosco').textContent = state.aciertosRosco;
+
+            // Actualizar botones timer
+            actualizarBotonesTimer();
+
+            renderizarRosco();
+            renderizarPregunta();
+        }
+
+        function renderizarRosco() {
+            const rosco = document.getElementById('rosco');
+            // Mantener el centro
+            const centro = rosco.querySelector('.rosco-center');
+            rosco.replaceChildren();
+            if (centro) rosco.appendChild(centro);
+
+            const containerSize = rosco.offsetWidth || 500;
+            const centerPos = containerSize / 2;
+            const radius = containerSize * 0.38;
+            const letraSize = containerSize > 400 ? 60 : 42;
+
+            LETRAS.forEach((letra, i) => {
+                const angle = (i / LETRAS.length) * 2 * Math.PI - Math.PI / 2;
+                const x = centerPos + radius * Math.cos(angle) - letraSize / 2;
+                const y = centerPos + radius * Math.sin(angle) - letraSize / 2;
+
+                const div = document.createElement('div');
+                div.className = 'letra ' + state.estadoLetras[letra] + (i === state.letraIndex ? ' actual' : '');
+                div.style.left = x + 'px';
+                div.style.top = y + 'px';
+                div.style.width = letraSize + 'px';
+                div.style.height = letraSize + 'px';
+                div.textContent = letra;
+                rosco.appendChild(div);
+            });
+        }
+
+        function renderizarPregunta() {
+            const letra = LETRAS[state.letraIndex];
+            const datos = state.roscoActual.palabras[letra];
+
+            document.getElementById('letraActual').textContent = letra;
+            document.getElementById('definicion').textContent = datos.def;
+
+            const respText = document.getElementById('respuestaText');
+            if (state.respuestaVisible) {
+                respText.textContent = datos.resp;
+                respText.classList.add('revealed');
+            } else {
+                respText.textContent = 'Pulsa para ver respuesta';
+                respText.classList.remove('revealed');
+            }
+        }
+
+        function toggleRespuesta() {
+            state.respuestaVisible = !state.respuestaVisible;
+            renderizarPregunta();
+        }
+
+        function marcarAcierto() {
+            const letra = LETRAS[state.letraIndex];
+            state.estadoLetras[letra] = 'acierto';
+            state.aciertosRosco++;
+            // Actualizar score en tiempo real
+            state.teams[state.currentTeamIndex].score++;
+            state.respuestaVisible = false;
+            siguienteLetra();
+        }
+
+        function marcarFallo() {
+            const letra = LETRAS[state.letraIndex];
+            state.estadoLetras[letra] = 'fallo';
+            state.respuestaVisible = false;
+            siguienteLetra();
+        }
+
+        function marcarPasa() {
+            const letra = LETRAS[state.letraIndex];
+            state.estadoLetras[letra] = 'pasada';
+            state.respuestaVisible = false;
+            siguienteLetra();
+        }
+
+        function siguienteLetra() {
+            let intentos = 0;
+            do {
+                state.letraIndex = (state.letraIndex + 1) % LETRAS.length;
+                intentos++;
+                const estado = state.estadoLetras[LETRAS[state.letraIndex]];
+                if (estado === 'pendiente' || estado === 'pasada') {
+                    renderizarPartida();
+                    return;
+                }
+            } while (intentos < LETRAS.length);
+
+            finRosco();
+        }
+
+        function finRosco() {
+            // Detener temporizador
+            detenerTimer();
+
+            // Actualizar el marcador visual
+            renderizarPartida();
+
+            const modal = document.getElementById('modalRosco');
+            document.getElementById('modalTeamName').textContent = state.teams[state.currentTeamIndex].name;
+            document.getElementById('modalAciertos').textContent = state.aciertosRosco;
+
+            // Calcular qué viene después
+            const nextTeamIndex = state.currentTeamIndex + 1;
+            const siguienteInfo = document.getElementById('modalSiguiente');
+            const btnSiguiente = document.getElementById('btnSiguiente');
+
+            if (nextTeamIndex >= state.teams.length) {
+                // Siguiente ronda
+                const nextRound = state.currentRound + 1;
+                if (nextRound > state.totalRounds) {
+                    siguienteInfo.textContent = '¡Fin de la partida!';
+                    btnSiguiente.textContent = 'Ver resultados';
+                } else {
+                    siguienteInfo.textContent = 'Siguiente: Ronda ' + nextRound + ' - ' + state.teams[0].name;
+                    btnSiguiente.textContent = 'Siguiente ronda';
+                }
+            } else {
+                // Siguiente equipo
+                siguienteInfo.textContent = 'Siguiente: ' + state.teams[nextTeamIndex].name;
+                btnSiguiente.textContent = 'Siguiente equipo';
+            }
+
+            modal.classList.add('active');
+        }
+
+        function siguienteTurno() {
+            // Cerrar el modal
+            document.getElementById('modalRosco').classList.remove('active');
+
+            // Siguiente equipo
+            state.currentTeamIndex++;
+
+            // Si todos los equipos jugaron esta ronda, pasar a la siguiente
+            if (state.currentTeamIndex >= state.teams.length) {
+                state.currentTeamIndex = 0;
+                state.currentRound++;
+            }
+
+            // Verificar si terminó la partida
+            if (state.currentRound > state.totalRounds) {
+                finPartida();
+                return;
+            }
+
+            // Iniciar el turno del siguiente equipo
+            iniciarTurno();
+        }
+
+        function finPartida() {
+            // Determinar ganador
+            let maxScore = -1;
+            let winner = '';
+            state.teams.forEach(t => {
+                if (t.score > maxScore) {
+                    maxScore = t.score;
+                    winner = t.name;
+                }
+            });
+
+            // Empate?
+            const empate = state.teams.filter(t => t.score === maxScore);
+            if (empate.length > 1) {
+                winner = 'Empate';
+            }
+
+            document.getElementById('winnerName').textContent = winner;
+
+            const finalScores = document.getElementById('finalScores');
+            finalScores.replaceChildren();
+            state.teams.forEach((team, i) => {
+                const item = document.createElement('div');
+                item.className = 'final-score-item';
+
+                const nameDiv = document.createElement('div');
+                nameDiv.className = 'name';
+                nameDiv.textContent = team.name;
+
+                const pointsDiv = document.createElement('div');
+                pointsDiv.className = 'points';
+                pointsDiv.style.color = i === 0 ? 'var(--team1)' : 'var(--team2)';
+                pointsDiv.textContent = team.score;
+
+                item.appendChild(nameDiv);
+                item.appendChild(pointsDiv);
+                finalScores.appendChild(item);
+            });
+
+            document.getElementById('modalFinal').classList.add('active');
+        }
+
+        function reiniciarPartida() {
+            detenerTimer();
+            document.getElementById('modalRosco').classList.remove('active');
+            document.getElementById('modalFinal').classList.remove('active');
+            document.getElementById('gameScreen').classList.remove('active');
+            document.getElementById('setupScreen').classList.add('active');
+        }
+
+        // Atajos de teclado
+        document.addEventListener('keydown', function(e) {
+            if (!document.getElementById('gameScreen').classList.contains('active')) return;
+            if (document.querySelector('.modal.active')) return;
+
+            if (e.key === 'a' || e.key === 'A' || e.key === '1') marcarAcierto();
+            else if (e.key === 'f' || e.key === 'F' || e.key === '2') marcarFallo();
+            else if (e.key === 'p' || e.key === 'P' || e.key === ' ') { e.preventDefault(); marcarPasa(); }
+            else if (e.key === 'r' || e.key === 'R') toggleRespuesta();
+        });
+    </script>
+</body>
+</html>

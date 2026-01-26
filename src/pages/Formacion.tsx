@@ -52,18 +52,21 @@ const CURSOS = [
     name: 'Curso TADEGA',
     description: 'Formación completa sobre inteligencia artificial aplicada al aula para docentes de secundaria.',
     status: 'activo',
+    href: '/tadega',
   },
   {
     id: 'illaverde',
     name: 'PFPP Illa Verde',
     description: 'Plan de Formación Permanente del Profesorado en el IES Illa Verde.',
     status: 'activo',
+    href: '/illaverde',
   },
   {
     id: 'figueroa',
     name: 'PFPP A Figueroa',
     description: 'Plan de Formación Permanente del Profesorado en el IES A Figueroa.',
     status: 'activo',
+    href: null,
   },
 ];
 
@@ -85,20 +88,36 @@ export function Formacion() {
         </header>
 
         <section className={`${styles.grid} animate-fade-in-up animate-delay-1`}>
-          {CURSOS.map((curso) => (
-            <div key={curso.id} className={styles.card}>
-              <div className={styles.cardHeader}>
-                <div className={styles.cardIcon}>
-                  <IconUsers />
+          {CURSOS.map((curso) => {
+            const cardContent = (
+              <>
+                <div className={styles.cardHeader}>
+                  <div className={styles.cardIcon}>
+                    <IconUsers />
+                  </div>
+                  <span className={styles.cardStatus}>
+                    <IconCalendar /> En curso
+                  </span>
                 </div>
-                <span className={styles.cardStatus}>
-                  <IconCalendar /> En curso
-                </span>
+                <h2 className={styles.cardName}>{curso.name}</h2>
+                <p className={styles.cardDesc}>{curso.description}</p>
+              </>
+            );
+
+            if (curso.href) {
+              return (
+                <a key={curso.id} href={curso.href} className={styles.card}>
+                  {cardContent}
+                </a>
+              );
+            }
+
+            return (
+              <div key={curso.id} className={`${styles.card} ${styles.disabled}`}>
+                {cardContent}
               </div>
-              <h2 className={styles.cardName}>{curso.name}</h2>
-              <p className={styles.cardDesc}>{curso.description}</p>
-            </div>
-          ))}
+            );
+          })}
         </section>
 
         <section className={`${styles.topics} animate-fade-in-up animate-delay-2`}>

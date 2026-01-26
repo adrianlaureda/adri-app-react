@@ -53,10 +53,10 @@ const IconText = () => (
 const RECURSOS = [
   { id: 'pictos', title: 'Pictos', icon: IconPictos, href: '/pictos', available: true },
   { id: 'acortador', title: 'Acortador', icon: IconLink, href: '/acortador', available: true },
-  { id: 'pasapalabra', title: 'Pasapalabra', icon: IconClock, href: null, available: false },
-  { id: 'escape', title: 'Escape Room', icon: IconLock, href: null, available: false },
-  { id: 'tabu', title: 'Tabú', icon: IconGrid, href: null, available: false },
-  { id: 'ortografia', title: 'Ortografía', icon: IconText, href: null, available: false },
+  { id: 'pasapalabra', title: 'Pasapalabra', icon: IconClock, href: '/pasapalabra', available: true },
+  { id: 'escape', title: 'Escape Room', icon: IconLock, href: '/escape', available: true },
+  { id: 'tabu', title: 'Tabú', icon: IconGrid, href: '/tabu', available: true },
+  { id: 'ortografia', title: 'Ortografía', icon: IconText, href: 'https://docs.google.com/presentation/d/1EQBXlCPrh8doL-SM2q-oxEWivtXqWJ8g6glaKfxIapc/present', available: true, external: true },
 ];
 
 export function Home() {
@@ -125,13 +125,14 @@ export function Home() {
         <div className={styles.carouselWrapper}>
           <div ref={carouselRef} className={styles.carousel}>
             {/* Duplicar items para scroll infinito */}
-            {[...RECURSOS, ...RECURSOS].map((recurso, index) => (
-              recurso.available && recurso.href ? (
-                // Apps estáticas usan <a> para forzar recarga completa
+            {[...RECURSOS, ...RECURSOS].map((recurso, index) => {
+              const isExternal = 'external' in recurso && recurso.external;
+              return recurso.available && recurso.href ? (
                 <a
                   key={`${recurso.id}-${index}`}
                   href={recurso.href}
                   className={styles.carouselItem}
+                  {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 >
                   <span className={styles.itemIcon}><recurso.icon /></span>
                   <span className={styles.itemTitle}>{recurso.title}</span>
@@ -144,8 +145,8 @@ export function Home() {
                   <span className={styles.itemIcon}><recurso.icon /></span>
                   <span className={styles.itemTitle}>{recurso.title}</span>
                 </div>
-              )
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

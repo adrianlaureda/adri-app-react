@@ -69,32 +69,33 @@ const RECURSOS = [
     title: 'Pasapalabra',
     description: 'Generador de roscos tipo Pasapalabra para repasar vocabulario en clase',
     icon: IconClock,
-    href: null,
-    available: false
+    href: '/pasapalabra',
+    available: true
   },
   {
     id: 'escape',
     title: 'Escape Room',
     description: 'Crea escape rooms digitales con pistas y enigmas para tu alumnado',
     icon: IconLock,
-    href: null,
-    available: false
+    href: '/escape',
+    available: true
   },
   {
     id: 'tabu',
     title: 'Tabú',
     description: 'Generador de tarjetas de Tabú para trabajar vocabulario de forma lúdica',
     icon: IconGrid,
-    href: null,
-    available: false
+    href: '/tabu',
+    available: true
   },
   {
     id: 'ortografia',
     title: 'Ortografía',
-    description: 'Ejercicios interactivos de ortografía con autocorrección',
+    description: 'Presentación interactiva de ortografía para detectar errores en redes sociales',
     icon: IconText,
-    href: null,
-    available: false
+    href: 'https://docs.google.com/presentation/d/1EQBXlCPrh8doL-SM2q-oxEWivtXqWJ8g6glaKfxIapc/present',
+    available: true,
+    external: true
   }
 ];
 
@@ -125,11 +126,13 @@ export function Recursos() {
             );
 
             if (recurso.available && recurso.href) {
+              const isExternal = 'external' in recurso && recurso.external;
               return (
                 <a
                   key={recurso.id}
                   href={recurso.href}
                   className={styles.card}
+                  {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 >
                   {cardContent}
                 </a>

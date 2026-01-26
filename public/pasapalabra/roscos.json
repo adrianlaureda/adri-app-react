@@ -1,0 +1,225 @@
+{
+  "letras": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "L", "M", "N", "O", "P", "R"],
+  "roscos": [
+    {
+      "id": 1,
+      "tema": "Emociones y sentimientos",
+      "descripcion": "Palabras relacionadas con lo que sentimos",
+      "palabras": {
+        "A": { "definicion": "Sentimiento de cariño hacia otra persona", "respuesta": "AMOR", "pista": "A-MOR" },
+        "B": { "definicion": "Estado de felicidad y satisfacción", "respuesta": "BIENESTAR", "pista": "BIEN-ES-TAR" },
+        "C": { "definicion": "Sentir envidia de lo que tiene otra persona", "respuesta": "CELOS", "pista": "CE-LOS" },
+        "D": { "definicion": "Sentimiento de no tener esperanza", "respuesta": "DESESPERACION", "pista": "DE-SES-PE-RA-CIÓN" },
+        "E": { "definicion": "Sentimiento muy fuerte de alegría", "respuesta": "ENTUSIASMO", "pista": "EN-TU-SIAS-MO" },
+        "F": { "definicion": "Emoción que sientes cuando algo no sale como esperabas", "respuesta": "FRUSTRACION", "pista": "FRUS-TRA-CIÓN" },
+        "G": { "definicion": "Dar las gracias por algo recibido", "respuesta": "GRATITUD", "pista": "GRA-TI-TUD" },
+        "H": { "definicion": "Sentimiento de no querer hacer nada, aburrimiento total", "respuesta": "HASTIO", "pista": "HAS-TÍO" },
+        "I": { "definicion": "Sentimiento de enfado muy grande", "respuesta": "IRA", "pista": "I-RA" },
+        "L": { "definicion": "Emoción de pena cuando alguien sufre", "respuesta": "LASTIMA", "pista": "LÁS-TI-MA" },
+        "M": { "definicion": "Sentimiento de tristeza profunda y pensativa", "respuesta": "MELANCOLIA", "pista": "ME-LAN-CO-LÍA" },
+        "N": { "definicion": "Estado de estar muy alterado y preocupado", "respuesta": "NERVIOSISMO", "pista": "NER-VIO-SIS-MO" },
+        "O": { "definicion": "Sentimiento de superioridad sobre los demás", "respuesta": "ORGULLO", "pista": "OR-GU-LLO" },
+        "P": { "definicion": "Emoción que produce algo que nos gusta mucho", "respuesta": "PLACER", "pista": "PLA-CER" },
+        "R": { "definicion": "Sentimiento de culpa por algo que hicimos mal", "respuesta": "REMORDIMIENTO", "pista": "RE-MOR-DI-MIEN-TO" }
+      }
+    },
+    {
+      "id": 2,
+      "tema": "Tecnología y redes",
+      "descripcion": "Internet, móviles y redes sociales",
+      "palabras": {
+        "A": { "definicion": "Programa que instalas en el móvil", "respuesta": "APLICACION", "pista": "A-PLI-CA-CIÓN" },
+        "B": { "definicion": "Buscar información en internet", "respuesta": "BUSCAR", "pista": "BUS-CAR" },
+        "C": { "definicion": "Poner un mensaje debajo de una publicación", "respuesta": "COMENTAR", "pista": "CO-MEN-TAR" },
+        "D": { "definicion": "Bajar un archivo de internet a tu dispositivo", "respuesta": "DESCARGAR", "pista": "DES-CAR-GAR" },
+        "E": { "definicion": "Correo que mandas por internet", "respuesta": "EMAIL", "pista": "E-MAIL" },
+        "F": { "definicion": "Persona que te sigue en redes sociales", "respuesta": "FOLLOWER", "pista": "FO-LLO-WER" },
+        "G": { "definicion": "Imagen animada que se repite en bucle", "respuesta": "GIF", "pista": "Tiene 3 letras" },
+        "H": { "definicion": "Palabra con almohadilla (#) para etiquetar temas", "respuesta": "HASHTAG", "pista": "HASH-TAG" },
+        "I": { "definicion": "Red social donde se comparten fotos y stories", "respuesta": "INSTAGRAM", "pista": "INS-TA-GRAM" },
+        "L": { "definicion": "Dar a me gusta en una publicación", "respuesta": "LIKE", "pista": "Tiene 4 letras" },
+        "M": { "definicion": "Imagen graciosa que se comparte mucho en redes", "respuesta": "MEME", "pista": "ME-ME" },
+        "N": { "definicion": "Aviso que te llega al móvil de una app", "respuesta": "NOTIFICACION", "pista": "NO-TI-FI-CA-CIÓN" },
+        "O": { "definicion": "Estar conectado a internet en este momento", "respuesta": "ONLINE", "pista": "ON-LINE" },
+        "P": { "definicion": "Imagen o escrito que subes a una red social", "respuesta": "PUBLICACION", "pista": "PU-BLI-CA-CIÓN" },
+        "R": { "definicion": "Vídeos cortos de Instagram con música", "respuesta": "REELS", "pista": "Tiene 5 letras" }
+      }
+    },
+    {
+      "id": 3,
+      "tema": "El instituto",
+      "descripcion": "Espacios, objetos y vida escolar",
+      "palabras": {
+        "A": { "definicion": "Estudiante que va a clase", "respuesta": "ALUMNO", "pista": "A-LUM-NO" },
+        "B": { "definicion": "Lugar donde se guardan libros para consultar", "respuesta": "BIBLIOTECA", "pista": "BI-BLIO-TE-CA" },
+        "C": { "definicion": "Lugar donde comes en el instituto", "respuesta": "COMEDOR", "pista": "CO-ME-DOR" },
+        "D": { "definicion": "Persona que dirige el instituto", "respuesta": "DIRECTOR", "pista": "DI-REC-TOR" },
+        "E": { "definicion": "Prueba escrita para demostrar lo que sabes", "respuesta": "EXAMEN", "pista": "E-XA-MEN" },
+        "F": { "definicion": "Copia de un documento o apuntes", "respuesta": "FOTOCOPIA", "pista": "FO-TO-CO-PIA" },
+        "G": { "definicion": "Polideportivo donde se hace educación física", "respuesta": "GIMNASIO", "pista": "GIM-NA-SIO" },
+        "H": { "definicion": "Tiempo libre de la jornada escolar", "respuesta": "HORA LIBRE", "pista": "HO-RA LI-BRE" },
+        "I": { "definicion": "Materia donde aprendes a hablar otro idioma", "respuesta": "INGLES", "pista": "IN-GLÉS" },
+        "L": { "definicion": "Sitio donde haces experimentos de ciencias", "respuesta": "LABORATORIO", "pista": "LA-BO-RA-TO-RIO" },
+        "M": { "definicion": "Bolsa donde llevas los libros y material", "respuesta": "MOCHILA", "pista": "MO-CHI-LA" },
+        "N": { "definicion": "Calificación que ponen los profesores", "respuesta": "NOTA", "pista": "NO-TA" },
+        "O": { "definicion": "Espacio del instituto donde trabaja el director", "respuesta": "OFICINA", "pista": "O-FI-CI-NA" },
+        "P": { "definicion": "Zona al aire libre donde pasas el recreo", "respuesta": "PATIO", "pista": "PA-TIO" },
+        "R": { "definicion": "Descanso de media mañana entre clases", "respuesta": "RECREO", "pista": "RE-CRE-O" }
+      }
+    },
+    {
+      "id": 4,
+      "tema": "Deportes",
+      "descripcion": "Actividades físicas y competiciones",
+      "palabras": {
+        "A": { "definicion": "Deporte donde corres, saltas o lanzas", "respuesta": "ATLETISMO", "pista": "A-TLE-TIS-MO" },
+        "B": { "definicion": "Deporte donde metes la pelota en una canasta", "respuesta": "BALONCESTO", "pista": "BA-LON-CES-TO" },
+        "C": { "definicion": "Deporte que se practica en bicicleta", "respuesta": "CICLISMO", "pista": "CI-CLIS-MO" },
+        "D": { "definicion": "Acción de proteger tu portería del equipo contrario", "respuesta": "DEFENSA", "pista": "DE-FEN-SA" },
+        "E": { "definicion": "Lugar grande donde se juegan partidos importantes", "respuesta": "ESTADIO", "pista": "ES-TA-DIO" },
+        "F": { "definicion": "Deporte donde se juega con los pies y un balón", "respuesta": "FUTBOL", "pista": "FÚT-BOL" },
+        "G": { "definicion": "Deporte con palos y una pelota pequeña que metes en hoyos", "respuesta": "GOLF", "pista": "Tiene 4 letras" },
+        "H": { "definicion": "Deporte sobre hielo con un disco y palos", "respuesta": "HOCKEY", "pista": "HO-CKEY" },
+        "I": { "definicion": "Categoría de edad más joven en un equipo", "respuesta": "INFANTIL", "pista": "IN-FAN-TIL" },
+        "L": { "definicion": "Combate cuerpo a cuerpo como deporte olímpico", "respuesta": "LUCHA", "pista": "LU-CHA" },
+        "M": { "definicion": "Carrera de 42 kilómetros", "respuesta": "MARATON", "pista": "MA-RA-TÓN" },
+        "N": { "definicion": "Deporte acuático donde te mueves en el agua", "respuesta": "NATACION", "pista": "NA-TA-CIÓN" },
+        "O": { "definicion": "Competición mundial cada 4 años", "respuesta": "OLIMPIADAS", "pista": "O-LIM-PIA-DAS" },
+        "P": { "definicion": "Dar el balón a un compañero de equipo", "respuesta": "PASE", "pista": "PA-SE" },
+        "R": { "definicion": "Cuando el balón vuelve tras chocar con algo", "respuesta": "REBOTE", "pista": "RE-BO-TE" }
+      }
+    },
+    {
+      "id": 5,
+      "tema": "Comida y cocina",
+      "descripcion": "Alimentos, utensilios y formas de cocinar",
+      "palabras": {
+        "A": { "definicion": "Grano blanco que acompaña muchos platos", "respuesta": "ARROZ", "pista": "A-RROZ" },
+        "B": { "definicion": "Pan largo y fino típico de Francia", "respuesta": "BAGUETTE", "pista": "BA-GUET-TE" },
+        "C": { "definicion": "Utensilio para cortar alimentos", "respuesta": "CUCHILLO", "pista": "CU-CHI-LLO" },
+        "D": { "definicion": "Primera comida del día", "respuesta": "DESAYUNO", "pista": "DE-SA-YU-NO" },
+        "E": { "definicion": "Plato de verduras crudas mezcladas", "respuesta": "ENSALADA", "pista": "EN-SA-LA-DA" },
+        "F": { "definicion": "Cocinar en aceite muy caliente", "respuesta": "FREIR", "pista": "FRE-ÍR" },
+        "G": { "definicion": "Dulce seco y crujiente, típico para el desayuno", "respuesta": "GALLETA", "pista": "GA-LLE-TA" },
+        "H": { "definicion": "Aparato de la cocina para calentar y cocinar", "respuesta": "HORNO", "pista": "HOR-NO" },
+        "I": { "definicion": "Cada cosa que necesitas para hacer una receta", "respuesta": "INGREDIENTE", "pista": "IN-GRE-DIEN-TE" },
+        "L": { "definicion": "Verdura verde que se usa en ensaladas", "respuesta": "LECHUGA", "pista": "LE-CHU-GA" },
+        "M": { "definicion": "Aparato para calentar comida rápidamente", "respuesta": "MICROONDAS", "pista": "MI-CRO-ON-DAS" },
+        "N": { "definicion": "Fruto seco con cáscara dura", "respuesta": "NUEZ", "pista": "Tiene 4 letras" },
+        "O": { "definicion": "Recipiente para cocinar con tapa y asas", "respuesta": "OLLA", "pista": "O-LLA" },
+        "P": { "definicion": "Comida italiana con tomate y queso sobre masa", "respuesta": "PIZZA", "pista": "PIZ-ZA" },
+        "R": { "definicion": "Lista de instrucciones para cocinar un plato", "respuesta": "RECETA", "pista": "RE-CE-TA" }
+      }
+    },
+    {
+      "id": 6,
+      "tema": "Naturaleza y animales",
+      "descripcion": "Flora, fauna y medio ambiente",
+      "palabras": {
+        "A": { "definicion": "Ave grande con pico curvo que puede imitar voces", "respuesta": "AGUILA", "pista": "Á-GUI-LA" },
+        "B": { "definicion": "Zona grande con muchos árboles", "respuesta": "BOSQUE", "pista": "BOS-QUE" },
+        "C": { "definicion": "Animal con caparazón que va muy despacio", "respuesta": "CARACOL", "pista": "CA-RA-COL" },
+        "D": { "definicion": "Animal prehistórico gigante ya extinto", "respuesta": "DINOSAURIO", "pista": "DI-NO-SAU-RIO" },
+        "E": { "definicion": "Mamífero grande con trompa y colmillos", "respuesta": "ELEFANTE", "pista": "E-LE-FAN-TE" },
+        "F": { "definicion": "Parte de la planta de colores que atrae insectos", "respuesta": "FLOR", "pista": "Tiene 4 letras" },
+        "G": { "definicion": "Ave grande de granja que hace honk honk", "respuesta": "GANSO", "pista": "GAN-SO" },
+        "H": { "definicion": "Parte verde de las plantas que cae en otoño", "respuesta": "HOJA", "pista": "HO-JA" },
+        "I": { "definicion": "Animal pequeño con seis patas", "respuesta": "INSECTO", "pista": "IN-SEC-TO" },
+        "L": { "definicion": "Felino grande que es el rey de la selva", "respuesta": "LEON", "pista": "LE-ÓN" },
+        "M": { "definicion": "Insecto con alas de colores que vuela entre flores", "respuesta": "MARIPOSA", "pista": "MA-RI-PO-SA" },
+        "N": { "definicion": "Lugar donde los pájaros ponen huevos", "respuesta": "NIDO", "pista": "NI-DO" },
+        "O": { "definicion": "Mamífero marino blanco y negro muy inteligente", "respuesta": "ORCA", "pista": "OR-CA" },
+        "P": { "definicion": "Animal con plumas y pico", "respuesta": "PAJARO", "pista": "PÁ-JA-RO" },
+        "R": { "definicion": "Corriente de agua que desemboca en el mar", "respuesta": "RIO", "pista": "RÍ-O" }
+      }
+    },
+    {
+      "id": 7,
+      "tema": "Profesiones",
+      "descripcion": "Trabajos y oficios",
+      "palabras": {
+        "A": { "definicion": "Persona que diseña edificios y casas", "respuesta": "ARQUITECTO", "pista": "AR-QUI-TEC-TO" },
+        "B": { "definicion": "Persona que apaga incendios", "respuesta": "BOMBERO", "pista": "BOM-BE-RO" },
+        "C": { "definicion": "Persona que cocina en un restaurante", "respuesta": "COCINERO", "pista": "CO-CI-NE-RO" },
+        "D": { "definicion": "Persona que cuida los dientes", "respuesta": "DENTISTA", "pista": "DEN-TIS-TA" },
+        "E": { "definicion": "Persona que arregla cables y enchufes", "respuesta": "ELECTRICISTA", "pista": "E-LEC-TRI-CIS-TA" },
+        "F": { "definicion": "Persona que trabaja en una tienda de medicinas", "respuesta": "FARMACEUTICO", "pista": "FAR-MA-CÉU-TI-CO" },
+        "G": { "definicion": "Persona que vigila y protege un lugar", "respuesta": "GUARDIA", "pista": "GUAR-DIA" },
+        "H": { "definicion": "Persona que trabaja el metal en una fragua", "respuesta": "HERRERO", "pista": "HE-RRE-RO" },
+        "I": { "definicion": "Persona que diseña máquinas y estructuras", "respuesta": "INGENIERO", "pista": "IN-GE-NIE-RO" },
+        "L": { "definicion": "Persona que defiende a otros en juicios", "respuesta": "LETRADO", "pista": "LE-TRA-DO" },
+        "M": { "definicion": "Persona que cura enfermedades", "respuesta": "MEDICO", "pista": "MÉ-DI-CO" },
+        "N": { "definicion": "Persona que autoriza documentos legales oficiales", "respuesta": "NOTARIO", "pista": "NO-TA-RIO" },
+        "O": { "definicion": "Persona que cuida los ojos y receta gafas", "respuesta": "OFTALMOLOGO", "pista": "OF-TAL-MÓ-LO-GO" },
+        "P": { "definicion": "Persona que enseña en un colegio o instituto", "respuesta": "PROFESOR", "pista": "PRO-FE-SOR" },
+        "R": { "definicion": "Persona que lleva paquetes a las casas", "respuesta": "REPARTIDOR", "pista": "RE-PAR-TI-DOR" }
+      }
+    },
+    {
+      "id": 8,
+      "tema": "Viajes y transporte",
+      "descripcion": "Vehículos, lugares y formas de viajar",
+      "palabras": {
+        "A": { "definicion": "Vehículo que vuela por el cielo", "respuesta": "AVION", "pista": "A-VIÓN" },
+        "B": { "definicion": "Vehículo de dos ruedas con pedales", "respuesta": "BICICLETA", "pista": "BI-CI-CLE-TA" },
+        "C": { "definicion": "Vehículo de cuatro ruedas para una familia", "respuesta": "COCHE", "pista": "CO-CHE" },
+        "D": { "definicion": "Lugar al que quieres llegar en un viaje", "respuesta": "DESTINO", "pista": "DES-TI-NO" },
+        "E": { "definicion": "Lugar donde coges el tren", "respuesta": "ESTACION", "pista": "ES-TA-CIÓN" },
+        "F": { "definicion": "Barco grande que transporta coches y pasajeros", "respuesta": "FERRY", "pista": "FE-RRY" },
+        "G": { "definicion": "Persona que te explica un lugar turístico", "respuesta": "GUIA", "pista": "GU-ÍA" },
+        "H": { "definicion": "Lugar donde duermes cuando viajas", "respuesta": "HOTEL", "pista": "HO-TEL" },
+        "I": { "definicion": "Plan de ruta con los lugares que vas a visitar", "respuesta": "ITINERARIO", "pista": "I-TI-NE-RA-RIO" },
+        "L": { "definicion": "Distancia recorrida en un viaje", "respuesta": "LARGO", "pista": "LAR-GO" },
+        "M": { "definicion": "Transporte subterráneo de las ciudades grandes", "respuesta": "METRO", "pista": "ME-TRO" },
+        "N": { "definicion": "Barco grande para viajes largos", "respuesta": "NAVIO", "pista": "NA-VÍ-O" },
+        "O": { "definicion": "Vehículo grande con muchos asientos para pasajeros", "respuesta": "OMNIBUS", "pista": "ÓM-NI-BUS" },
+        "P": { "definicion": "Zona de arena junto al mar", "respuesta": "PLAYA", "pista": "PLA-YA" },
+        "R": { "definicion": "Camino de hierro por donde circula el tren", "respuesta": "RAILES", "pista": "RA-Í-LES" }
+      }
+    },
+    {
+      "id": 9,
+      "tema": "Música y entretenimiento",
+      "descripcion": "Instrumentos, géneros y diversión",
+      "palabras": {
+        "A": { "definicion": "Instrumento con fuelle que se toca con las manos", "respuesta": "ACORDEON", "pista": "A-COR-DE-ÓN" },
+        "B": { "definicion": "Instrumento de percusión con dos baquetas", "respuesta": "BATERIA", "pista": "BA-TE-RÍA" },
+        "C": { "definicion": "Lugar donde ves películas en pantalla grande", "respuesta": "CINE", "pista": "CI-NE" },
+        "D": { "definicion": "Persona que pincha música en fiestas", "respuesta": "DJ", "pista": "Tiene 2 letras" },
+        "E": { "definicion": "Actuación de música, teatro o circo para público", "respuesta": "ESPECTACULO", "pista": "ES-PEC-TÁ-CU-LO" },
+        "F": { "definicion": "Instrumento de viento que soplas de lado", "respuesta": "FLAUTA", "pista": "FLAU-TA" },
+        "G": { "definicion": "Instrumento de cuerda muy popular en el rock", "respuesta": "GUITARRA", "pista": "GUI-TA-RRA" },
+        "H": { "definicion": "Género musical nacido en Estados Unidos con rimas", "respuesta": "HIPHOP", "pista": "HIP-HOP" },
+        "I": { "definicion": "Objeto que produce sonidos musicales", "respuesta": "INSTRUMENTO", "pista": "INS-TRU-MEN-TO" },
+        "L": { "definicion": "Texto de una canción", "respuesta": "LETRA", "pista": "LE-TRA" },
+        "M": { "definicion": "Sonidos organizados que nos gustan escuchar", "respuesta": "MUSICA", "pista": "MÚ-SI-CA" },
+        "N": { "definicion": "Cada sonido diferente en música (do, re, mi...)", "respuesta": "NOTA", "pista": "NO-TA" },
+        "O": { "definicion": "Grupo grande de músicos con instrumentos clásicos", "respuesta": "ORQUESTA", "pista": "OR-QUES-TA" },
+        "P": { "definicion": "Instrumento de teclas blancas y negras", "respuesta": "PIANO", "pista": "PIA-NO" },
+        "R": { "definicion": "Género musical con guitarras eléctricas y batería", "respuesta": "ROCK", "pista": "Tiene 4 letras" }
+      }
+    },
+    {
+      "id": 10,
+      "tema": "Casa y hogar",
+      "descripcion": "Habitaciones, muebles y electrodomésticos",
+      "palabras": {
+        "A": { "definicion": "Mueble donde guardas la ropa colgada", "respuesta": "ARMARIO", "pista": "AR-MA-RIO" },
+        "B": { "definicion": "Habitación donde te duchas y lavas", "respuesta": "BANO", "pista": "BA-ÑO" },
+        "C": { "definicion": "Habitación donde cocinas", "respuesta": "COCINA", "pista": "CO-CI-NA" },
+        "D": { "definicion": "Habitación donde duermes", "respuesta": "DORMITORIO", "pista": "DOR-MI-TO-RIO" },
+        "E": { "definicion": "Escalones para subir de un piso a otro", "respuesta": "ESCALERA", "pista": "ES-CA-LE-RA" },
+        "F": { "definicion": "Personas que viven juntas en una casa", "respuesta": "FAMILIA", "pista": "FA-MI-LIA" },
+        "G": { "definicion": "Lugar donde guardas el coche en casa", "respuesta": "GARAJE", "pista": "GA-RA-JE" },
+        "H": { "definicion": "Lugar donde vives, tu casa", "respuesta": "HOGAR", "pista": "HO-GAR" },
+        "I": { "definicion": "Botón en la pared para encender la luz", "respuesta": "INTERRUPTOR", "pista": "IN-TE-RRUP-TOR" },
+        "L": { "definicion": "Aparato para limpiar la ropa sucia", "respuesta": "LAVADORA", "pista": "LA-VA-DO-RA" },
+        "M": { "definicion": "Mueble pequeño junto a la cama", "respuesta": "MESILLA", "pista": "ME-SI-LLA" },
+        "N": { "definicion": "Aparato donde guardas la comida fría", "respuesta": "NEVERA", "pista": "NE-VE-RA" },
+        "O": { "definicion": "Mueble para sentarse en el salón, tipo sofá individual", "respuesta": "OREJERO", "pista": "O-RE-JE-RO" },
+        "P": { "definicion": "Entrada principal de una casa", "respuesta": "PUERTA", "pista": "PUER-TA" },
+        "R": { "definicion": "Aparato que suena para despertarte", "respuesta": "RELOJ", "pista": "RE-LOJ" }
+      }
+    }
+  ]
+}
