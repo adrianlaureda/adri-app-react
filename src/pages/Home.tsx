@@ -49,6 +49,19 @@ const IconText = () => (
   </svg>
 );
 
+const IconTheater = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <circle cx="9" cy="9" r="7"/>
+    <circle cx="15" cy="15" r="7"/>
+    <path d="M6.5 7.5c.5-.5 1.5-.5 2 0"/>
+    <path d="M10.5 7.5c.5-.5 1.5-.5 2 0"/>
+    <path d="M7 11c.5.5 2 1 3.5 0"/>
+    <path d="M12.5 13.5c.5-.5 1.5-.5 2 0"/>
+    <path d="M16.5 13.5c.5-.5 1.5-.5 2 0"/>
+    <path d="M13 17c.5.5 2 1 3.5 0"/>
+  </svg>
+);
+
 // Datos del carrusel
 const RECURSOS = [
   { id: 'pictos', title: 'Pictos', icon: IconPictos, href: '/pictos', available: true },
@@ -57,6 +70,7 @@ const RECURSOS = [
   { id: 'escape', title: 'Escape Room', icon: IconLock, href: '/escape', available: true },
   { id: 'tabu', title: 'Tabú', icon: IconGrid, href: '/tabu', available: true },
   { id: 'ortografia', title: 'Ortografía', icon: IconText, href: 'https://docs.google.com/presentation/d/1EQBXlCPrh8doL-SM2q-oxEWivtXqWJ8g6glaKfxIapc/present', available: true, external: true },
+  { id: 'improvisacion', title: 'Improvisación', icon: IconTheater, href: '/improvisacion', available: true },
 ];
 
 export function Home() {

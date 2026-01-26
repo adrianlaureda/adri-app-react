@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Improvisación - Generador de Situaciones</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* === VARIABLES CSS - TEMA DUAL === */
+        :root {
+            --bg: #000000;
+            --bg-surface: #0a0a0a;
+            --bg-elevated: #111111;
+            --border: #222222;
+            --text: #ffffff;
+            --text-secondary: #999999;
+            --text-muted: #666666;
+            --accent-blue: #3b82f6;
+            --accent-orange: #f59e0b;
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2.5rem;
+            --space-xl: 4rem;
+            --transition: 0.2s ease;
+            --radius: 12px;
+        }
+
+        [data-theme="light"] {
+            --bg: #ffffff;
+            --bg-surface: #fafafa;
+            --bg-elevated: #f5f5f5;
+            --border: #e5e5e5;
+            --text: #000000;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+        }
+
+        /* === RESET Y BASE === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-lg);
+            padding-top: calc(var(--space-xl) + 20px);
+            background: var(--bg);
+            color: var(--text);
+            transition: background var(--transition), color var(--transition);
+        }
+
+        /* === HOME LINK === */
+        .home-link {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-sm) var(--space-md);
+            height: 57px;
+            text-decoration: none;
+            transition: opacity var(--transition);
+        }
+
+        .home-link:hover {
+            opacity: 0.7;
+        }
+
+        .home-link svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--text);
+            transition: fill var(--transition);
+        }
+
+        /* === THEME TOGGLE === */
+        .theme-toggle {
+            position: fixed;
+            top: var(--space-sm);
+            right: var(--space-md);
+            z-index: 200;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition);
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--text-secondary);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--text);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        .theme-toggle .icon-moon { display: block; }
+        .theme-toggle .icon-sun { display: none; }
+        [data-theme="light"] .theme-toggle .icon-moon { display: none; }
+        [data-theme="light"] .theme-toggle .icon-sun { display: block; }
+
+        /* === CONTENEDOR PRINCIPAL === */
+        .container {
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: var(--space-lg);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        /* === TARJETA DE SITUACIÓN === */
+        .card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: var(--space-xl) var(--space-lg);
+            margin-bottom: var(--space-lg);
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition);
+        }
+
+        .situation {
+            font-size: clamp(1.25rem, 4vw, 1.75rem);
+            line-height: 1.4;
+            color: var(--text);
+            margin-bottom: var(--space-md);
+            font-weight: 400;
+        }
+
+        .placeholder {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* === BADGES === */
+        .badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            font-size: 0.6875rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border: 1px solid var(--border);
+        }
+
+        .badge.individual {
+            color: var(--accent-blue);
+            border-color: var(--accent-blue);
+            background: transparent;
+        }
+
+        .badge.pareja {
+            color: var(--accent-orange);
+            border-color: var(--accent-orange);
+            background: transparent;
+        }
+
+        /* === BOTÓN === */
+        button {
+            background: var(--bg-surface);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 0.875rem 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all var(--transition);
+            font-family: inherit;
+        }
+
+        button:hover {
+            border-color: var(--text-secondary);
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* === HINT === */
+        .hint {
+            margin-top: var(--space-md);
+            color: var(--text-muted);
+            font-size: 0.75rem;
+        }
+
+        kbd {
+            background: var(--bg-elevated);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 0.7rem;
+            border: 1px solid var(--border);
+        }
+
+        /* === ANIMACIONES === */
+        .fade-in {
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 600px) {
+            body {
+                padding: var(--space-md);
+                padding-top: calc(var(--space-xl) + 10px);
+            }
+
+            .card {
+                padding: var(--space-lg) var(--space-md);
+                min-height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo para volver al inicio -->
+    <a href="/" class="home-link" title="Volver al inicio">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="45"/>
+            <circle cx="35" cy="40" r="6"/>
+            <circle cx="65" cy="40" r="6"/>
+            <path d="M 30 62 Q 50 78 70 62" stroke-width="4" stroke="var(--bg)" fill="none"/>
+        </svg>
+    </a>
+
+    <!-- Toggle de tema -->
+    <button class="theme-toggle" id="themeToggle" title="Cambiar tema">
+        <svg class="icon-moon" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        <svg class="icon-sun" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+    </button>
+
+    <div class="container">
+        <h1>Generador de Situaciones</h1>
+
+        <div class="card" id="card">
+            <p class="placeholder" id="placeholder">Pulsa el botón para obtener una situación</p>
+            <p class="situation" id="situation" style="display: none;"></p>
+            <span class="badge" id="badge" style="display: none;"></span>
+        </div>
+
+        <button id="generate">Nueva situación</button>
+
+        <p class="hint">También puedes pulsar <kbd>ESPACIO</kbd></p>
+    </div>
+
+    <script>
+        // === GESTIÓN DEL TEMA ===
+        const themeToggle = document.getElementById('themeToggle');
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+
+        if (savedTheme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            const next = current === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+        });
+
+        // === SITUACIONES ===
+        const situaciones = [
+            // Individuales
+            { texto: "Tu móvil se ha quedado sin batería y estás perdido/a en un sitio desconocido", tipo: "individual" },
+            { texto: "Narras tu propia vida como si fueras comentarista deportivo", tipo: "individual" },
+            { texto: "Eres el/la profe por un día y tus alumnos son terribles", tipo: "individual" },
+            { texto: "Intentas grabar un TikTok viral pero todo sale mal", tipo: "individual" },
+            { texto: "Estás en una videollamada importante pero la conexión va fatal", tipo: "individual" },
+            { texto: "Estás en un examen y no has estudiado absolutamente nada", tipo: "individual" },
+            { texto: "Intentas explicar a tus padres por qué has llegado tarde", tipo: "individual" },
+            { texto: "Te has quedado encerrado/a en el baño del instituto", tipo: "individual" },
+            { texto: "Eres influencer y grabas un unboxing de algo muy decepcionante", tipo: "individual" },
+            { texto: "Das las instrucciones de un tutorial pero no tienes ni idea", tipo: "individual" },
+
+            // En pareja
+            { texto: "Uno quiere copiar los deberes, el otro no quiere dejarle", tipo: "pareja" },
+            { texto: "Negociáis la hora de llegada a casa con vuestro padre/madre", tipo: "pareja" },
+            { texto: "Dos amigos discuten sobre qué videojuego es el mejor", tipo: "pareja" },
+            { texto: "Uno intenta convencer al otro de saltarse una clase", tipo: "pareja" },
+            { texto: "Pides perdón después de una pelea, pero el otro no quiere escuchar", tipo: "pareja" },
+            { texto: "Queréis quedar el finde pero no os ponéis de acuerdo en nada", tipo: "pareja" },
+            { texto: "Uno ha perdido algo del otro y tiene que confesar", tipo: "pareja" },
+            { texto: "Compartís habitación y discutís por el espacio", tipo: "pareja" },
+            { texto: "Uno intenta que el otro le preste dinero", tipo: "pareja" },
+            { texto: "Estáis haciendo un trabajo en grupo pero uno no hace nada", tipo: "pareja" },
+            { texto: "Uno cuenta un secreto que prometió guardar", tipo: "pareja" },
+            { texto: "Dos personas se conocen y descubren que les gusta la misma persona", tipo: "pareja" }
+        ];
+
+        let usadas = [];
+
+        function generarSituacion() {
+            // Si hemos usado todas, reiniciamos
+            if (usadas.length >= situaciones.length) {
+                usadas = [];
+            }
+
+            // Buscar una situación no usada
+            let disponibles = situaciones.filter((_, i) => !usadas.includes(i));
+            let index = Math.floor(Math.random() * disponibles.length);
+            let realIndex = situaciones.indexOf(disponibles[index]);
+            usadas.push(realIndex);
+
+            let sit = situaciones[realIndex];
+
+            // Actualizar UI
+            document.getElementById('placeholder').style.display = 'none';
+
+            let situationEl = document.getElementById('situation');
+            situationEl.textContent = sit.texto;
+            situationEl.style.display = 'block';
+            situationEl.classList.remove('fade-in');
+            void situationEl.offsetWidth;
+            situationEl.classList.add('fade-in');
+
+            let badgeEl = document.getElementById('badge');
+            badgeEl.textContent = sit.tipo === 'individual' ? 'Individual' : 'En pareja';
+            badgeEl.className = 'badge ' + sit.tipo;
+            badgeEl.style.display = 'inline-block';
+        }
+
+        // Event listeners
+        document.getElementById('generate').addEventListener('click', generarSituacion);
+
+        document.addEventListener('keydown', function(e) {
+            if (e.code === 'Space' && e.target === document.body) {
+                e.preventDefault();
+                generarSituacion();
+            }
+        });
+    </script>
+</body>
+</html>
