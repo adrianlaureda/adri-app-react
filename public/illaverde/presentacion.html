@@ -672,22 +672,22 @@
             <div class="nav-dot"></div>
             <span class="nav-label">Datos</span>
         </div>
-        <div class="nav-item" data-section="disclaimer" onclick="goTo(7)">
+        <div class="nav-item" data-section="disclaimer" onclick="goTo(9)">
             <div class="nav-dot"></div>
             <span class="nav-label">Disclaimer</span>
         </div>
-        <div class="nav-item" data-section="objetivos" onclick="goTo(8)">
+        <div class="nav-item" data-section="objetivos" onclick="goTo(10)">
             <div class="nav-dot"></div>
             <span class="nav-label">Objetivos</span>
         </div>
-        <div class="nav-item" data-section="cierre" onclick="goTo(10)">
+        <div class="nav-item" data-section="cierre" onclick="goTo(12)">
             <div class="nav-dot"></div>
             <span class="nav-label">Cierre</span>
         </div>
     </nav>
 
     <!-- Contador -->
-    <div class="counter"><span id="current">1</span>/<span id="total">12</span></div>
+    <div class="counter"><span id="current">1</span>/<span id="total">13</span></div>
 
     <!-- Theme toggle -->
     <button class="theme-toggle" onclick="toggleTheme()">
@@ -930,7 +930,172 @@
             <div style="margin-top: 24px; font-size: 12px; color: var(--text-muted);">Fuente: Formulario previo a la formación · Enero 2026</div>
         </div>
 
-        <!-- Slide 9: Disclaimer -->
+        <!-- Slide 9: Perfil tecnológico y uso de IA -->
+        <div class="slide" data-section="datos">
+            <div class="eyebrow">Vuestras respuestas</div>
+            <div class="title" style="font-size: 36px; margin-bottom: 28px;">Vuestro <span class="accent" style="color: var(--accent-3);">perfil</span> con la IA</div>
+
+            <div style="display: flex; gap: 32px; width: 100%; max-width: 1200px;">
+                <!-- Columna izquierda: Nivel tech y frecuencia uso -->
+                <div style="flex: 0.9; display: flex; flex-direction: column; gap: 16px;">
+                    <!-- Dominio tecnológico -->
+                    <div style="background: var(--bg-card); border-radius: 14px; padding: 20px; border: 1px solid rgba(255,255,255,0.08);">
+                        <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-secondary); margin-bottom: 14px;">Dominio tecnológico</div>
+                        <div style="display: flex; gap: 8px; align-items: flex-end; height: 80px;">
+                            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 100%; height: 12px; background: var(--danger); border-radius: 4px;"></div>
+                                <span style="font-size: 11px; margin-top: 6px; color: var(--text-secondary);">Básico</span>
+                                <span style="font-size: 14px; font-weight: 700;">15%</span>
+                            </div>
+                            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 100%; height: 50px; background: var(--accent-3); border-radius: 4px;"></div>
+                                <span style="font-size: 11px; margin-top: 6px; color: var(--text-secondary);">Medio</span>
+                                <span style="font-size: 14px; font-weight: 700;">62%</span>
+                            </div>
+                            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 100%; height: 18px; background: var(--success); border-radius: 4px;"></div>
+                                <span style="font-size: 11px; margin-top: 6px; color: var(--text-secondary);">Alto</span>
+                                <span style="font-size: 14px; font-weight: 700;">23%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Frecuencia uso IA -->
+                    <div style="background: var(--bg-card); border-radius: 14px; padding: 20px; border: 1px solid rgba(255,255,255,0.08);">
+                        <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-secondary); margin-bottom: 14px;">Uso de IA en docencia</div>
+                        <div style="display: flex; gap: 8px; align-items: flex-end; height: 80px;">
+                            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 100%; height: 18px; background: var(--danger); border-radius: 4px;"></div>
+                                <span style="font-size: 11px; margin-top: 6px; color: var(--text-secondary);">Nunca</span>
+                                <span style="font-size: 14px; font-weight: 700;">23%</span>
+                            </div>
+                            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 100%; height: 43px; background: var(--accent-3); border-radius: 4px;"></div>
+                                <span style="font-size: 11px; margin-top: 6px; color: var(--text-secondary);">A veces</span>
+                                <span style="font-size: 14px; font-weight: 700;">54%</span>
+                            </div>
+                            <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 100%; height: 18px; background: var(--success); border-radius: 4px;"></div>
+                                <span style="font-size: 11px; margin-top: 6px; color: var(--text-secondary);">Frecuente</span>
+                                <span style="font-size: 14px; font-weight: 700;">23%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Herramientas usadas -->
+                    <div style="background: var(--bg-card); border-radius: 14px; padding: 20px; border: 1px solid rgba(255,255,255,0.08);">
+                        <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-secondary); margin-bottom: 12px;">Herramientas usadas</div>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span style="font-size: 12px; width: 65px;">ChatGPT</span>
+                                <div style="flex: 1; height: 18px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden;">
+                                    <div style="width: 77%; height: 100%; background: var(--accent-1); border-radius: 4px;"></div>
+                                </div>
+                                <span style="font-size: 12px; font-weight: 600; width: 35px;">77%</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span style="font-size: 12px; width: 65px;">Grok</span>
+                                <div style="flex: 1; height: 18px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden;">
+                                    <div style="width: 69%; height: 100%; background: var(--accent-2); border-radius: 4px;"></div>
+                                </div>
+                                <span style="font-size: 12px; font-weight: 600; width: 35px;">69%</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span style="font-size: 12px; width: 65px;">Gemini</span>
+                                <div style="flex: 1; height: 18px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden;">
+                                    <div style="width: 38%; height: 100%; background: var(--accent-5); border-radius: 4px;"></div>
+                                </div>
+                                <span style="font-size: 12px; font-weight: 600; width: 35px;">38%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna derecha: Matriz de uso -->
+                <div style="flex: 1.3; background: var(--bg-card); border-radius: 14px; padding: 20px; border: 1px solid rgba(255,255,255,0.08);">
+                    <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-secondary); margin-bottom: 16px;">¿Para qué habéis usado la IA?</div>
+
+                    <!-- Leyenda -->
+                    <div style="display: flex; gap: 16px; margin-bottom: 16px; font-size: 10px;">
+                        <div style="display: flex; align-items: center; gap: 4px;"><div style="width: 12px; height: 12px; background: var(--text-muted); border-radius: 2px;"></div> Nunca</div>
+                        <div style="display: flex; align-items: center; gap: 4px;"><div style="width: 12px; height: 12px; background: var(--accent-3); border-radius: 2px;"></div> A veces</div>
+                        <div style="display: flex; align-items: center; gap: 4px;"><div style="width: 12px; height: 12px; background: var(--success); border-radius: 2px;"></div> Frecuente</div>
+                    </div>
+
+                    <!-- Matriz -->
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <!-- Generar materiales -->
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 12px; width: 130px;">Generar materiales</span>
+                            <div style="flex: 1; display: flex; height: 24px; border-radius: 4px; overflow: hidden;">
+                                <div style="width: 31%; background: var(--text-muted);"></div>
+                                <div style="width: 61%; background: var(--accent-3);"></div>
+                                <div style="width: 8%; background: var(--success);"></div>
+                            </div>
+                            <span style="font-size: 11px; color: var(--success); font-weight: 600;">69%</span>
+                        </div>
+                        <!-- Adaptar materiales -->
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 12px; width: 130px;">Adaptar contenido</span>
+                            <div style="flex: 1; display: flex; height: 24px; border-radius: 4px; overflow: hidden;">
+                                <div style="width: 46%; background: var(--text-muted);"></div>
+                                <div style="width: 46%; background: var(--accent-3);"></div>
+                                <div style="width: 8%; background: var(--success);"></div>
+                            </div>
+                            <span style="font-size: 11px; color: var(--accent-3); font-weight: 600;">54%</span>
+                        </div>
+                        <!-- Trabajo burocrático -->
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 12px; width: 130px;">Burocracia</span>
+                            <div style="flex: 1; display: flex; height: 24px; border-radius: 4px; overflow: hidden;">
+                                <div style="width: 62%; background: var(--text-muted);"></div>
+                                <div style="width: 30%; background: var(--accent-3);"></div>
+                                <div style="width: 8%; background: var(--success);"></div>
+                            </div>
+                            <span style="font-size: 11px; color: var(--accent-3); font-weight: 600;">38%</span>
+                        </div>
+                        <!-- Rúbricas -->
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 12px; width: 130px;">Crear rúbricas</span>
+                            <div style="flex: 1; display: flex; height: 24px; border-radius: 4px; overflow: hidden;">
+                                <div style="width: 69%; background: var(--text-muted);"></div>
+                                <div style="width: 23%; background: var(--accent-3);"></div>
+                                <div style="width: 8%; background: var(--success);"></div>
+                            </div>
+                            <span style="font-size: 11px; color: var(--accent-3); font-weight: 600;">31%</span>
+                        </div>
+                        <!-- Calificar -->
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 12px; width: 130px;">Calificar</span>
+                            <div style="flex: 1; display: flex; height: 24px; border-radius: 4px; overflow: hidden;">
+                                <div style="width: 85%; background: var(--text-muted);"></div>
+                                <div style="width: 0%; background: var(--accent-3);"></div>
+                                <div style="width: 15%; background: var(--success);"></div>
+                            </div>
+                            <span style="font-size: 11px; color: var(--danger); font-weight: 600;">15%</span>
+                        </div>
+                        <!-- Retroalimentación -->
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 12px; width: 130px;">Retroalimentación</span>
+                            <div style="flex: 1; display: flex; height: 24px; border-radius: 4px; overflow: hidden;">
+                                <div style="width: 92%; background: var(--text-muted);"></div>
+                                <div style="width: 8%; background: var(--accent-3);"></div>
+                                <div style="width: 0%; background: var(--success);"></div>
+                            </div>
+                            <span style="font-size: 11px; color: var(--danger); font-weight: 600;">8%</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 16px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 12px; color: var(--text-secondary);">
+                        <strong style="color: var(--accent-1);">Insight:</strong> La mayoría usa IA para generar materiales, pero casi nadie para evaluar o dar feedback
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px; font-size: 12px; color: var(--text-muted);">Fuente: Formulario previo a la formación · Enero 2026</div>
+        </div>
+
+        <!-- Slide 10: Disclaimer -->
         <div class="slide" data-section="disclaimer">
             <div class="eyebrow">Disclaimer</div>
             <div class="title">IA en el <span class="accent" style="color: var(--accent-2);">Aula</span></div>
