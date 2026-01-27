@@ -25,8 +25,7 @@
             --success: #22c55e;
             --error: #ef4444;
             --warning: #eab308;
-            --team1: #a78bfa;
-            --team2: #f472b6;
+            /* Colores de equipos - se usan dinámicamente */
             --transition: 0.2s ease;
             --radius: 12px;
         }
@@ -203,9 +202,6 @@
             color: var(--bg);
         }
 
-        .team-1-bg { background: var(--team1); }
-        .team-2-bg { background: var(--team2); }
-
         .team-row input {
             flex: 1;
             padding: 0.5rem 0.75rem;
@@ -223,11 +219,22 @@
             border-color: var(--text-secondary);
         }
 
-        /* Rounds selector */
+        /* Rounds/Teams selector */
         .rounds-selector {
             display: flex;
-            gap: 0.75rem;
+            gap: 0.5rem;
             margin-top: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        #teamCountSelector .round-option {
+            flex: 0 0 auto;
+            min-width: 60px;
+            padding: 0.75rem;
+        }
+
+        #teamCountSelector .round-option .number {
+            font-size: 1.25rem;
         }
 
         .round-option {
@@ -348,8 +355,7 @@
             font-weight: 600;
         }
 
-        .team-card.team-1 .score { color: var(--team1); }
-        .team-card.team-2 .score { color: var(--team2); }
+        /* Color de score se aplica inline */
 
         /* Info de ronda */
         .round-badge {
@@ -396,8 +402,7 @@
             font-weight: 500;
         }
 
-        .current-team-display.team-1 .team-name { color: var(--team1); }
-        .current-team-display.team-2 .team-name { color: var(--team2); }
+        /* Color de equipo actual se aplica inline */
 
         .tema-display {
             background: var(--bg-elevated);
@@ -804,8 +809,9 @@
         .final-scores {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 1.5rem;
             margin: 1.5rem 0;
+            flex-wrap: wrap;
         }
 
         .final-score-item {
@@ -859,15 +865,31 @@
                         </span>
                         Equipos
                     </h2>
-                    <div class="team-setup">
-                        <div class="team-row">
-                            <div class="team-badge team-1-bg">1</div>
-                            <input type="text" id="team1Name" value="Equipo Azul" maxlength="15">
+                    <p style="color: var(--text-muted); margin-bottom: 0.75rem;">Selecciona cuántos equipos juegan</p>
+                    <div class="rounds-selector" id="teamCountSelector">
+                        <div class="round-option selected" data-teams="2">
+                            <div class="number">2</div>
+                            <div>equipos</div>
                         </div>
-                        <div class="team-row">
-                            <div class="team-badge team-2-bg">2</div>
-                            <input type="text" id="team2Name" value="Equipo Rosa" maxlength="15">
+                        <div class="round-option" data-teams="3">
+                            <div class="number">3</div>
+                            <div>equipos</div>
                         </div>
+                        <div class="round-option" data-teams="4">
+                            <div class="number">4</div>
+                            <div>equipos</div>
+                        </div>
+                        <div class="round-option" data-teams="5">
+                            <div class="number">5</div>
+                            <div>equipos</div>
+                        </div>
+                        <div class="round-option" data-teams="6">
+                            <div class="number">6</div>
+                            <div>equipos</div>
+                        </div>
+                    </div>
+                    <div class="team-setup" id="teamInputs" style="margin-top: 1rem;">
+                        <!-- Generado dinámicamente -->
                     </div>
                 </div>
 
@@ -882,7 +904,7 @@
                         Rondas
                     </h2>
                     <p style="color: var(--text-gray); margin-bottom: 1rem;">Cada equipo juega un rosco distinto por ronda</p>
-                    <div class="rounds-selector">
+                    <div class="rounds-selector" id="roundsSelector">
                         <div class="round-option" data-rounds="2">
                             <div class="number">2</div>
                             <div>rondas</div>
@@ -1253,11 +1275,31 @@
 
         const LETRAS = ['A','B','C','D','E','F','G','H','I','L','M','N','O','P','R'];
 
+        // Paleta de colores para equipos (hasta 6)
+        const TEAM_COLORS = [
+            '#a78bfa', // violeta
+            '#f472b6', // rosa
+            '#34d399', // verde
+            '#fbbf24', // amarillo
+            '#60a5fa', // azul
+            '#f87171'  // rojo
+        ];
+
+        const TEAM_NAMES_DEFAULT = [
+            'Equipo Violeta',
+            'Equipo Rosa',
+            'Equipo Verde',
+            'Equipo Amarillo',
+            'Equipo Azul',
+            'Equipo Rojo'
+        ];
+
         // ESTADO DEL JUEGO
         const TIEMPO_ROSCO = 150; // 2 minutos y medio por rosco
 
         let state = {
             teams: [],
+            teamCount: 2,
             totalRounds: 3,
             currentRound: 1,
             currentTeamIndex: 0,
@@ -1272,20 +1314,67 @@
             timerPaused: false
         };
 
-        // SETUP
-        document.querySelectorAll('.round-option').forEach(opt => {
+        // SETUP - Selector de número de equipos
+        function generarInputsEquipos(count) {
+            const container = document.getElementById('teamInputs');
+            container.replaceChildren();
+
+            for (let i = 0; i < count; i++) {
+                const row = document.createElement('div');
+                row.className = 'team-row';
+
+                const badge = document.createElement('div');
+                badge.className = 'team-badge';
+                badge.style.background = TEAM_COLORS[i];
+                badge.textContent = i + 1;
+
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.id = 'teamName' + i;
+                input.value = TEAM_NAMES_DEFAULT[i];
+                input.maxLength = 15;
+
+                row.appendChild(badge);
+                row.appendChild(input);
+                container.appendChild(row);
+            }
+        }
+
+        // Inicializar con 2 equipos
+        generarInputsEquipos(2);
+
+        // Selector de número de equipos
+        document.querySelectorAll('#teamCountSelector .round-option').forEach(opt => {
             opt.addEventListener('click', function() {
-                document.querySelectorAll('.round-option').forEach(o => o.classList.remove('selected'));
+                document.querySelectorAll('#teamCountSelector .round-option').forEach(o => o.classList.remove('selected'));
+                this.classList.add('selected');
+                state.teamCount = parseInt(this.dataset.teams);
+                generarInputsEquipos(state.teamCount);
+            });
+        });
+
+        // Selector de rondas
+        document.querySelectorAll('#roundsSelector .round-option').forEach(opt => {
+            opt.addEventListener('click', function() {
+                document.querySelectorAll('#roundsSelector .round-option').forEach(o => o.classList.remove('selected'));
                 this.classList.add('selected');
                 state.totalRounds = parseInt(this.dataset.rounds);
             });
         });
 
         function comenzarPartida() {
-            state.teams = [
-                { name: document.getElementById('team1Name').value || 'Equipo 1', score: 0 },
-                { name: document.getElementById('team2Name').value || 'Equipo 2', score: 0 }
-            ];
+            // Leer nombres de equipos dinámicamente
+            state.teams = [];
+            for (let i = 0; i < state.teamCount; i++) {
+                const input = document.getElementById('teamName' + i);
+                const name = input ? input.value.trim() : '';
+                state.teams.push({
+                    name: name || ('Equipo ' + (i + 1)),
+                    score: 0,
+                    color: TEAM_COLORS[i]
+                });
+            }
+
             state.currentRound = 1;
             state.currentTeamIndex = 0;
             state.roscosUsados = [];
@@ -1406,7 +1495,7 @@
             sb.replaceChildren();
             state.teams.forEach((team, i) => {
                 const card = document.createElement('div');
-                card.className = 'team-card team-' + (i + 1) + (i === state.currentTeamIndex ? ' active' : '');
+                card.className = 'team-card' + (i === state.currentTeamIndex ? ' active' : '');
 
                 const nameDiv = document.createElement('div');
                 nameDiv.className = 'name';
@@ -1414,6 +1503,7 @@
 
                 const scoreDiv = document.createElement('div');
                 scoreDiv.className = 'score';
+                scoreDiv.style.color = team.color;
                 scoreDiv.textContent = team.score;
 
                 card.appendChild(nameDiv);
@@ -1427,8 +1517,11 @@
 
             // Equipo actual destacado
             const teamDisplay = document.getElementById('currentTeamDisplay');
-            teamDisplay.className = 'current-team-display team-' + (state.currentTeamIndex + 1);
-            document.getElementById('currentTeamName').textContent = state.teams[state.currentTeamIndex].name;
+            teamDisplay.className = 'current-team-display';
+            const currentTeam = state.teams[state.currentTeamIndex];
+            const teamNameEl = document.getElementById('currentTeamName');
+            teamNameEl.textContent = currentTeam.name;
+            teamNameEl.style.color = currentTeam.color;
 
             // Aciertos rosco
             document.getElementById('aciertosRosco').textContent = state.aciertosRosco;
@@ -1588,27 +1681,31 @@
         }
 
         function finPartida() {
-            // Determinar ganador
+            // Determinar ganador (puede haber empate)
             let maxScore = -1;
-            let winner = '';
+            let winners = [];
             state.teams.forEach(t => {
                 if (t.score > maxScore) {
                     maxScore = t.score;
-                    winner = t.name;
+                    winners = [t];
+                } else if (t.score === maxScore) {
+                    winners.push(t);
                 }
             });
 
-            // Empate?
-            const empate = state.teams.filter(t => t.score === maxScore);
-            if (empate.length > 1) {
-                winner = 'Empate';
+            // Mostrar ganador o empate
+            if (winners.length > 1) {
+                document.getElementById('winnerName').textContent = '¡Empate!';
+            } else {
+                document.getElementById('winnerName').textContent = winners[0].name;
             }
 
-            document.getElementById('winnerName').textContent = winner;
+            // Ordenar equipos por puntuación (mayor a menor)
+            const teamsOrdenados = [...state.teams].sort((a, b) => b.score - a.score);
 
             const finalScores = document.getElementById('finalScores');
             finalScores.replaceChildren();
-            state.teams.forEach((team, i) => {
+            teamsOrdenados.forEach((team) => {
                 const item = document.createElement('div');
                 item.className = 'final-score-item';
 
@@ -1618,7 +1715,7 @@
 
                 const pointsDiv = document.createElement('div');
                 pointsDiv.className = 'points';
-                pointsDiv.style.color = i === 0 ? 'var(--team1)' : 'var(--team2)';
+                pointsDiv.style.color = team.color;
                 pointsDiv.textContent = team.score;
 
                 item.appendChild(nameDiv);
