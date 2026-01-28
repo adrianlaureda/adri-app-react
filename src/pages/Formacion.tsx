@@ -66,7 +66,7 @@ const CURSOS = [
     name: 'PFPP A Figueroa',
     description: 'Plan de Formación Permanente del Profesorado en el IES A Figueroa.',
     status: 'activo',
-    href: null,
+    href: '/figueroa',
   },
 ];
 

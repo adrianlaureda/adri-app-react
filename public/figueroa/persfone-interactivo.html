@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Mito de Perséfone y el Secreto de las Estaciones</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F5F7FA;
+            --text-primary: #1A1A1A;
+            --text-secondary: #4A4A4A;
+            --accent: #3B82F6;
+            --accent-hover: #2563EB;
+            --success: #10B981;
+            --error: #EF4444;
+            --border: #E5E7EB;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Pestañas navegables */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 15px 25px;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: var(--text-secondary);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab:hover {
+            color: var(--text-primary);
+            background: var(--bg-secondary);
+        }
+
+        .tab.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        /* Contenido de pestañas */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Títulos */
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 20px 0 15px 0;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 15px 0 10px 0;
+            color: var(--text-primary);
+        }
+        
+        p {
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        /* Botones */
+        .btn {
+            padding: 12px 24px;
+            background: var(--accent);
+            color: white;
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--accent-hover);
+            border-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Tarjetas */
+        .card {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        /* Preguntas y opciones */
+        .pregunta {
+            margin: 30px 0;
+        }
+
+        .opcion {
+            padding: 15px 20px;
+            margin: 10px 0;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .opcion:hover {
+            border-color: var(--accent);
+            background: var(--bg-primary);
+            transform: translateX(5px);
+        }
+
+        .opcion.correcta {
+            background: var(--success);
+            color: white;
+            border-color: var(--success);
+        }
+
+        .opcion.incorrecta {
+            background: var(--error);
+            color: white;
+            border-color: var(--error);
+        }
+
+        .opcion.disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        
+        .opcion.disabled:hover {
+            transform: none;
+            border-color: var(--border);
+            background: var(--bg-secondary);
+        }
+        
+        .opcion.correcta.disabled:hover {
+            background: var(--success);
+            border-color: var(--success);
+        }
+        
+        .opcion.incorrecta.disabled:hover {
+            background: var(--error);
+            border-color: var(--error);
+        }
+
+        /* Feedback */
+        .feedback {
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            font-weight: 600;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.success {
+            background: var(--success);
+            color: white;
+        }
+
+        .feedback.error {
+            background: var(--error);
+            color: white;
+        }
+
+        /* Vídeo interactivo */
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background: #000;
+            border-radius: 12px;
+        }
+
+        video {
+            width: 100%;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+        }
+        
+        .video-placeholder {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: var(--bg-secondary);
+            border: 2px dashed var(--border);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .video-placeholder h3 {
+            color: var(--accent);
+        }
+        
+        .video-placeholder p {
+            color: var(--text-secondary);
+        }
+        
+        /* El <iframe> se usará como fallback si no se puede usar <video> */
+        iframe {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border: 0;
+            border-radius: 12px;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            animation: fadeIn 0.3s;
+        }
+
+        .video-overlay.active {
+            display: flex;
+        }
+
+        .video-pregunta {
+            background: var(--bg-primary);
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            border: 3px solid var(--accent);
+        }
+        
+        .video-opcion {
+            padding: 12px 15px;
+            margin: 8px 0;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .video-opcion:hover {
+            border-color: var(--accent);
+        }
+        
+        .video-feedback {
+            margin-top: 15px;
+            font-weight: 600;
+            display: none;
+        }
+        
+        .video-feedback.success { color: var(--success); }
+        .video-feedback.error { color: var(--error); }
+
+        /* Completar huecos */
+        .texto-huecos {
+            font-size: 18px;
+            line-height: 2;
+            margin: 20px 0;
+        }
+
+        .hueco {
+            display: inline-block;
+            min-width: 120px;
+            padding: 5px 15px;
+            border: 2px dashed var(--border);
+            border-radius: 6px;
+            background: var(--bg-secondary);
+            text-align: center;
+            font-weight: 600;
+            min-height: 40px;
+            vertical-align: middle;
+        }
+
+        .hueco.correcto {
+            border-color: var(--success);
+            background: var(--success);
+            color: white;
+            border-style: solid;
+        }
+
+        .hueco.incorrecto {
+            border-color: var(--error);
+            background: var(--error);
+            color: white;
+            border-style: solid;
+        }
+        
+        .hueco.over {
+            border-color: var(--accent);
+            border-style: solid;
+            background: #e0eaff;
+        }
+
+        .palabras-disponibles {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+            padding: 15px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border: 2px solid var(--border);
+        }
+
+        .palabra-drag {
+            padding: 10px 20px;
+            background: var(--accent);
+            color: white;
+            border-radius: 8px;
+            cursor: grab;
+            font-weight: 600;
+            border: 2px solid var(--accent);
+            user-select: none;
+        }
+
+        .palabra-drag:active {
+            cursor: grabbing;
+        }
+
+        .palabra-drag.usada {
+            opacity: 0.3;
+            cursor: not-allowed;
+            background: var(--text-secondary);
+            border-color: var(--text-secondary);
+        }
+
+        /* Emparejar */
+        .emparejar-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .columna {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .item-emparejar {
+            padding: 15px 20px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .item-emparejar:hover {
+            border-color: var(--accent);
+            transform: scale(1.02);
+        }
+
+        .item-emparejar.seleccionado {
+            border-color: var(--accent);
+            background: var(--accent);
+            color: white;
+        }
+
+        .item-emparejar.emparejado {
+            border-color: var(--success);
+            background: var(--success);
+            color: white;
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+        
+        .item-emparejar.emparejado:hover {
+            transform: none;
+        }
+
+        /* Progreso */
+        .progreso {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 10px 0 30px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .progreso-texto {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 18px;
+        }
+
+        .puntos {
+            background: var(--accent);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        /* Resultados finales */
+        .resultado-final {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .puntuacion-grande {
+            font-size: 72px;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 20px 0;
+        }
+
+        .estrellas {
+            font-size: 48px;
+            margin: 20px 0;
+            color: #FFD700; /* Color oro para estrellas */
+        }
+        
+        .estrellas-placeholder {
+            color: var(--border);
+        }
+
+        .desglose {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px auto;
+            max-width: 600px;
+            text-align: left;
+        }
+        
+        .desglose h3 {
+            text-align: center;
+            margin-top: 0;
+        }
+
+        .actividad-resultado {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            border-bottom: 1px solid var(--border);
+            font-weight: 600;
+        }
+
+        .actividad-resultado:last-child {
+            border-bottom: none;
+        }
+        
+        .actividad-resultado span:last-child {
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .tabs {
+                font-size: 14px;
+            }
+            
+            .tab {
+                padding: 12px 15px;
+                flex-grow: 1;
+                text-align: center;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .emparejar-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .puntuacion-grande {
+                font-size: 48px;
+            }
+            
+            .progreso {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>El Mito de Perséfone y el Secreto de las Estaciones</h1>
+        
+        <div class="progreso">
+            <span class="progreso-texto">Puntuación Total</span>
+            <span class="puntos" id="puntos-globales">0 / 20</span>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="mostrarPestana('inicio', event)">📜 Inicio</button>
+            <button class="tab" onclick="mostrarPestana('video', event)">🎬 Vídeo Interactivo</button>
+            <button class="tab" onclick="mostrarPestana('quiz', event)">❓ Quiz</button>
+            <button class="tab" onclick="mostrarPestana('actividades', event)">🧩 Actividades</button>
+            <button class="tab" onclick="mostrarPestana('resultados', event)">🏆 Resultados</button>
+        </div>
+
+        <div id="inicio" class="tab-content active">
+            <h2>¡Descubre el mito!</h2>
+            <p>¡Hola! Vamos a descubrir un mito griego muy antiguo. Cuenta la historia de <b>Perséfone</b>, la hija de Deméter, la diosa de la agricultura. Un día, mientras recogía flores, la tierra se abrió y <b>Hades</b>, el dios del Inframundo, se la llevó a su reino oscuro.</p>
+            <p>Deméter, llena de tristeza, descuidó la Tierra, y todo se volvió frío y estéril: así nació el <b>invierno</b>. Zeus, preocupado, intervino. Hades aceptó liberar a Perséfone, pero con una condición... ella había comido <b>seis semillas de granada</b>.</p>
+            <p>Por cada semilla, tendría que pasar un mes en el Inframundo. Por eso, cuando Perséfone está con Hades (otoño e invierno), Deméter está triste y la tierra no da frutos. Cuando regresa con su madre (primavera y verano), Deméter se alegra y todo florece.</p>
+            <p><b>¡Esta leyenda explica por qué tenemos estaciones!</b></p>
+            <div class="card">
+                <h3>Tu misión</h3>
+                <p>Lee la historia y luego explora las pestañas de actividades para aprender más sobre las estaciones, los movimientos de la Tierra y cómo nuestros actos tienen consecuencias.</p>
+            </div>
+        </div>
+
+        <div id="video" class="tab-content">
+            <h2>Vídeo Interactivo</h2>
+            <p>Mira el vídeo. Se pausará automáticamente en momentos clave para hacerte algunas preguntas.</p>
+            
+            <div class="video-container">
+                <iframe src="https://drive.google.com/file/d/1pvq74uKF4_s3Xd5-TKj15lTOC8fHgrLi/preview" allow="autoplay"></iframe>
+
+                <div class="video-overlay" id="overlay-vp1">
+                    <div class="video-pregunta">
+                        <h3>Pregunta 1</h3>
+                        <p>En enero, la Tierra está más cerca del Sol, pero aquí hace frío. Según el vídeo, ¿por qué la distancia NO es la causa de las estaciones?</p>
+                        <div class="video-opcion" onclick="responderVideo(1, 'A')">A) Porque lo importante es la inclinación del eje de la Tierra, no lo cerca o lejos que esté.</div>
+                        <div class="video-opcion" onclick="responderVideo(1, 'B')">B) Porque en enero el Sol tiene menos fuerza y calienta menos.</div>
+                        <div class="video-opcion" onclick="responderVideo(1, 'C')">C) Porque la Tierra tarda mucho en calentarse y enfriarse.</div>
+                        <div class="video-opcion" onclick="responderVideo(1, 'D')">D) Porque el vídeo dice que es un misterio que nadie ha resuelto.</div>
+                        <div class="video-feedback" id="feedback-vp1"></div>
+                    </div>
+                </div>
+
+                <div class="video-overlay" id="overlay-vp2">
+                    <div class="video-pregunta">
+                        <h3>Pregunta 2</h3>
+                        <p>¿Cuál es el "verdadero secreto" que explica el vídeo para que tengamos las cuatro estaciones?</p>
+                        <div class="video-opcion" onclick="responderVideo(2, 'A')">A) Que la Tierra viaja alrededor del Sol (traslación).</div>
+                        <div class="video-opcion" onclick="responderVideo(2, 'B')">B) Que la Tierra está inclinada 23,5 grados, como una peonza torcida.</div>
+                        <div class="video-opcion" onclick="responderVideo(2, 'C')">C) Que la Tierra a veces va más rápido y a veces más lento.</div>
+                        <div class="video-opcion" onclick="responderVideo(2, 'D')">D) Que la Luna choca con la Tierra y la mueve.</div>
+                        <div class="video-feedback" id="feedback-vp2"></div>
+                    </div>
+                </div>
+
+                <div class="video-overlay" id="overlay-vp3">
+                    <div class="video-pregunta">
+                        <h3>Pregunta 3</h3>
+                        <p>El vídeo habla de los "dos bailes" de la Tierra. ¿Qué movimiento es el que causa el día y la noche?</p>
+                        <div class="video-opcion" onclick="responderVideo(3, 'A')">A) La Traslación (el viaje de 365 días alrededor del Sol).</div>
+                        <div class="video-opcion" onclick="responderVideo(3, 'B')">B) La Rotación (girar sobre sí misma como una peonza).</div>
+                        <div class="video-opcion" onclick="responderVideo(3, 'C')">C) El Solsticio.</div>
+                        <div class="video-opcion" onclick="responderVideo(3, 'D')">D) La Inclinación.</div>
+                        <div class="video-feedback" id="feedback-vp3"></div>
+                    </div>
+                </div>
+
+                <div class="video-overlay" id="overlay-vp4">
+                    <div class="video-pregunta">
+                        <h3>Pregunta 4</h3>
+                        <p>Cuando el Polo Norte está inclinado HACIA el Sol (como en junio), ¿qué estación es aquí (Galicia) y qué estación es en Australia?</p>
+                        <div class="video-opcion" onclick="responderVideo(4, 'A')">A) Es invierno aquí y verano en Australia.</div>
+                        <div class="video-opcion" onclick="responderVideo(4, 'B')">B) Es verano en todas partes.</div>
+                        <div class="video-opcion" onclick="responderVideo(4, 'C')">C) Es verano aquí e invierno en Australia.</div>
+                        <div class="video-opcion" onclick="responderVideo(4, 'D')">D) Es otoño aquí y primavera en Australia.</div>
+                        <div class="video-feedback" id="feedback-vp4"></div>
+                    </div>
+                </div>
+            </div>
+            
+             <div class="card" id="video-preguntas-estaticas">
+                <h3>Comprueba lo que has aprendido</h3>
+                <p>Responde a estas preguntas después de ver el vídeo.</p>
+
+                <div class="pregunta">
+                    <h3>Pregunta 1</h3>
+                    <p>En enero, la Tierra está más cerca del Sol, pero aquí hace frío. Según el vídeo, ¿por qué la distancia NO es la causa de las estaciones?</p>
+                    <div class="opcion" onclick="responderVideoEstatico(1, 'correcta', this)">A) Porque lo importante es la inclinación del eje de la Tierra, no lo cerca o lejos que esté.</div>
+                    <div class="opcion" onclick="responderVideoEstatico(1, 'incorrecta', this)">B) Porque en enero el Sol tiene menos fuerza y calienta menos.</div>
+                    <div class="opcion" onclick="responderVideoEstatico(1, 'incorrecta', this)">C) Porque la Tierra tarda mucho en calentarse y enfriarse.</div>
+                    <div class="opcion" onclick="responderVideoEstatico(1, 'incorrecta', this)">D) Porque el vídeo dice que es un misterio que nadie ha resuelto.</div>
+                    <div class="feedback" id="feedback-vps1"></div>
+                </div>
+
+                <div class="pregunta">
+                    <h3>Pregunta 2</h3>
+                    <p>¿Cuál es el "verdadero secreto" que explica el vídeo para que tengamos las cuatro estaciones?</p>
+                    <div class="opcion" onclick="responderVideoEstatico(2, 'incorrecta', this)">A) Que la Tierra viaja alrededor del Sol (traslación).</div>
+                    <div class="opcion" onclick="responderVideoEstatico(2, 'correcta', this)">B) Que la Tierra está inclinada 23,5 grados, como una peonza torcida.</div>
+                    <div class="opcion" onclick="responderVideoEstatico(2, 'incorrecta', this)">C) Que la Tierra a veces va más rápido y a veces más lento.</div>
+                    <div class="opcion" onclick="responderVideoEstatico(2, 'incorrecta', this)">D) Que la Luna choca con la Tierra y la mueve.</div>
+                    <div class="feedback" id="feedback-vps2"></div>
+                </div>
+
+                <div class="pregunta">
+                    <h3>Pregunta 3</h3>
+                    <p>El vídeo habla de los "dos bailes" de la Tierra. ¿Qué movimiento es el que causa el día y la noche?</p>
+                    <div class="opcion" onclick="responderVideoEstatico(3, 'incorrecta', this)">A) La Traslación (el viaje de 365 días alrededor del Sol).</div>
+                    <div class="opcion" onclick="responderVideoEstatico(3, 'correcta', this)">B) La Rotación (girar sobre sí misma como una peonza).</div>
+                    <div class="opcion" onclick="responderVideoEstatico(3, 'incorrecta', this)">C) El Solsticio.</div>
+                    <div class="opcion" onclick="responderVideoEstatico(3, 'incorrecta', this)">D) La Inclinación.</div>
+                    <div class="feedback" id="feedback-vps3"></div>
+                </div>
+
+                <div class="pregunta">
+                    <h3>Pregunta 4</h3>
+                    <p>Cuando el Polo Norte está inclinado HACIA el Sol (como en junio), ¿qué estación es aquí (Galicia) y qué estación es en Australia?</p>
+                    <div class="opcion" onclick="responderVideoEstatico(4, 'incorrecta', this)">A) Es invierno aquí y verano en Australia.</div>
+                    <div class="opcion" onclick="responderVideoEstatico(4, 'incorrecta', this)">B) Es verano en todas partes.</div>
+                    <div class="opcion" onclick="responderVideoEstatico(4, 'correcta', this)">C) Es verano aquí e invierno en Australia.</div>
+                    <div class="opcion" onclick="responderVideoEstatico(4, 'incorrecta', this)">D) Es otoño aquí y primavera en Australia.</div>
+                    <div class="feedback" id="feedback-vps4"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="quiz" class="tab-content">
+            <h2>Quiz: ¿Cuánto sabes?</h2>
+            
+            <div class="pregunta card" id="quiz-p1">
+                <h3>Pregunta 1/5</h3>
+                <p>¿Por qué Deméter se pone triste y crea el invierno?</p>
+                <div class="opcion" onclick="comprobarQuiz(1, 'A')">A) Porque Hades es malo.</div>
+                <div class="opcion" onclick="comprobarQuiz(1, 'B')">B) Porque echa de menos a su hija Perséfone.</div>
+                <div class="opcion" onclick="comprobarQuiz(1, 'C')">C) Porque le gusta el frío.</div>
+                <div class="opcion" onclick="comprobarQuiz(1, 'D')">D) Porque Zeus se lo ordena.</div>
+                <div class="feedback" id="feedback-q1"></div>
+            </div>
+            
+            <div class="pregunta card" id="quiz-p2">
+                <h3>Pregunta 2/5</h3>
+                <p>¿Qué movimiento de la Tierra, combinado con su inclinación, causa las estaciones?</p>
+                <div class="opcion" onclick="comprobarQuiz(2, 'A')">A) La rotación (girar sobre sí misma).</div>
+                <div class="opcion" onclick="comprobarQuiz(2, 'B')">B) La traslación (girar alrededor del Sol).</div>
+                <div class="opcion" onclick="comprobarQuiz(2, 'C')">C) El movimiento de la Luna.</div>
+                <div class="opcion" onclick="comprobarQuiz(2, 'D')">D) Los terremotos.</div>
+                <div class="feedback" id="feedback-q2"></div>
+            </div>
+            
+            <div class="pregunta card" id="quiz-p3">
+                <h3>Pregunta 3/5</h3>
+                <p>La historia de Perséfone es un mito. ¿Qué intenta explicar un mito?</p>
+                <div class="opcion" onclick="comprobarQuiz(3, 'A')">A) Una noticia de hoy.</div>
+                <div class="opcion" onclick="comprobarQuiz(3, 'B')">B) Un experimento científico.</div>
+                <div class="opcion" onclick="comprobarQuiz(3, 'C')">C) Fenómenos de la naturaleza (como las estaciones).</div>
+                <div class="opcion" onclick="comprobarQuiz(3, 'D')">D) Cómo construir una casa.</div>
+                <div class="feedback" id="feedback-q3"></div>
+            </div>
+            
+            <div class="pregunta card" id="quiz-p4">
+                <h3>Pregunta 4/5</h3>
+                <p>¿Cuál es la "consecuencia" del acto de Perséfone de comer la granada?</p>
+                <div class="opcion" onclick="comprobarQuiz(4, 'A')">A) Se convierte en reina para siempre.</div>
+                <div class="opcion" onclick="comprobarQuiz(4, 'B')">B) Deméter se enfada con ella.</div>
+                <div class="opcion" onclick="comprobarQuiz(4, 'C')">C) Tiene que volver al Inframundo cada año.</div>
+                <div class="opcion" onclick="comprobarQuiz(4, 'D')">D) Gana súper poderes.</div>
+                <div class="feedback" id="feedback-q4"></div>
+            </div>
+            
+            <div class="pregunta card" id="quiz-p5">
+                <h3>Pregunta 5/5</h3>
+                <p>¿Qué estación representa la alegría de Deméter cuando Perséfone vuelve?</p>
+                <div class="opcion" onclick="comprobarQuiz(5, 'A')">A) La primavera.</div>
+                <div class="opcion" onclick="comprobarQuiz(5, 'B')">B) El otoño.</div>
+                <div class="opcion" onclick="comprobarQuiz(5, 'C')">C) El invierno.</div>
+                <div class="opcion" onclick="comprobarQuiz(5, 'D')">D) El verano.</div>
+                <div class="feedback" id="feedback-q5"></div>
+            </div>
+
+        </div>
+
+        <div id="actividades" class="tab-content">
+            
+            <h2>Actividad 1: Completa los huecos</h2>
+            <p>Arrastra las palabras correctas a los espacios vacíos en el texto.</p>
+            
+            <div class="palabras-disponibles" id="caja-palabras">
+                <div class="palabra-drag" id="palabra-1" draggable="true" data-valor="estaciones">estaciones</div>
+                <div class="palabra-drag" id="palabra-2" draggable="true" data-valor="Hades">Hades</div>
+                <div class="palabra-drag" id="palabra-3" draggable="true" data-valor="invierno">invierno</div>
+                <div class="palabra-drag" id="palabra-4" draggable="true" data-valor="semillas">semillas</div>
+                <div class="palabra-drag" id="palabra-5" draggable="true" data-valor="consecuencia">consecuencia</div>
+                <div class="palabra-drag" id="palabra-6" draggable="true" data-valor="primavera">primavera</div>
+                <div class="palabra-drag" id="palabra-7" draggable="true" data-valor="Zeus">Zeus (distractor)</div>
+                <div class="palabra-drag" id="palabra-8" draggable="true" data-valor="flores">flores (distractor)</div>
+                <div class="palabra-drag" id="palabra-9" draggable="true" data-valor="verano">verano (distractor)</div>
+            </div>
+            
+            <div class="card">
+                <p class="texto-huecos">
+                    El mito de Perséfone explica el cambio de las 
+                    <span class="hueco" id="hueco-1" data-respuesta="estaciones"></span>. 
+                    Cuando Perséfone está con 
+                    <span class="hueco" id="hueco-2" data-respuesta="Hades"></span> 
+                    en el Inframundo, su madre Deméter está triste y la Tierra se enfría, trayendo el 
+                    <span class="hueco" id="hueco-3" data-respuesta="invierno"></span>. 
+                    Esto ocurre porque Perséfone comió seis 
+                    <span class="hueco" id="hueco-4" data-respuesta="semillas"></span> 
+                    de granada. Su acto tuvo una 
+                    <span class="hueco" id="hueco-5" data-respuesta="consecuencia"></span>: 
+                    debe dividir su tiempo. Cuando regresa, la alegría de Deméter trae la 
+                    <span class="hueco" id="hueco-6" data-respuesta="primavera"></span> 
+                    y todo florece.
+                </p>
+            </div>
+            <button class="btn" id="btn-comprobar-huecos" onclick="comprobarHuecos()">Comprobar mis respuestas</button>
+            <div class="feedback" id="feedback-huecos"></div>
+
+            <hr style="margin: 40px 0; border: 1px solid var(--border);">
+            
+            <h2>Actividad 2: Empareja los conceptos</h2>
+            <p>Haz clic en un elemento de la izquierda y luego en su pareja de la derecha.</p>
+            
+            <div class="emparejar-container">
+                <div class="columna" id="columna-izquierda">
+                    <div class="item-emparejar" data-par="1">Perséfone</div>
+                    <div class="item-emparejar" data-par="2">Deméter</div>
+                    <div class="item-emparejar" data-par="3">Hades</div>
+                    <div class="item-emparejar" data-par="4">Traslación</div>
+                    <div class="item-emparejar" data-par="5">Invierno</div>
+                </div>
+                <div class="columna" id="columna-derecha">
+                    <div class="item-emparejar" data-par="4">Movimiento de la Tierra alrededor del Sol</div>
+                    <div class="item-emparejar" data-par="1">Diosa de la primavera, reina del Inframundo</div>
+                    <div class="item-emparejar" data-par="5">Estación fría, cuando Deméter está triste</div>
+                    <div class="item-emparejar" data-par="2">Diosa de la agricultura, madre de Perséfone</div>
+                    <div class="item-emparejar" data-par="3">Dios del Inframundo</div>
+                </div>
+            </div>
+            <div class="feedback" id="feedback-emparejar"></div>
+
+        </div>
+
+        <div id="resultados" class="tab-content">
+            <div class="resultado-final">
+                <h2>¡Resultados Finales!</h2>
+                <p>Este es tu resumen de actividades.</p>
+                
+                <div class="estrellas">
+                    <span id="estrellas-resultado" class="estrellas-placeholder">☆☆☆</span>
+                </div>
+                
+                <div class="puntuacion-grande" id="puntuacion-final-texto">0 / 20</div>
+                <p style="font-size: 20px; font-weight: 600;" id="porcentaje-final-texto">0%</p>
+
+                <div class="desglose">
+                    <h3>Desglose de Puntos</h3>
+                    <div class="actividad-resultado">
+                        <span>🎬 Preguntas del Vídeo</span>
+                        <span id="resultado-video">0 / 4</span>
+                    </div>
+                    <div class="actividad-resultado">
+                        <span>❓ Quiz</span>
+                        <span id="resultado-quiz">0 / 5</span>
+                    </div>
+                    <div class="actividad-resultado">
+                        <span>🧩 Completar Huecos</span>
+                        <span id="resultado-huecos">0 / 6</span>
+                    </div>
+                    <div class="actividad-resultado">
+                        <span>🔗 Emparejar Conceptos</span>
+                        <span id="resultado-emparejar">0 / 5</span>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="reiniciarActividades()">Reiniciar Actividades</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- ESTADO GLOBAL ---
+            let puntuacionTotal = {
+                video: 0,
+                quiz: 0,
+                huecos: 0,
+                emparejar: 0
+            };
+            const PUNTUACION_MAXIMA = 20;
+            
+            // Estado para el vídeo (preguntas estáticas)
+            let videoPreguntasCompletadas = { 1: false, 2: false, 3: false, 4: false };
+            
+            // Estado para el quiz
+            let quizPreguntasCompletadas = { 1: false, 2: false, 3: false, 4: false, 5: false };
+            const respuestasQuiz = { 1: 'B', 2: 'B', 3: 'C', 4: 'C', 5: 'A' };
+            
+            // Estado para emparejar
+            let itemSeleccionado = null;
+            let paresCompletados = 0;
+            
+            // Estado para vídeo interactivo (si se usara <video>)
+            let video = document.getElementById('videoInteractivo');
+            let pausas = [
+                { tiempo: 5, id: 'vp1', respondida: false, respuesta: 'A' }, // Pregunta 1
+                { tiempo: 10, id: 'vp2', respondida: false, respuesta: 'B' }, // Pregunta 2
+                { tiempo: 15, id: 'vp3', respondida: false, respuesta: 'B' }, // Pregunta 3
+                { tiempo: 20, id: 'vp4', respondida: false, respuesta: 'C' } // Pregunta 4
+            ];
+
+            // --- NAVEGACIÓN POR PESTAÑAS ---
+            window.mostrarPestana = function(pestanaId, event) {
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.querySelectorAll('.tab').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                
+                document.getElementById(pestanaId).classList.add('active');
+                event.currentTarget.classList.add('active');
+                
+                // Calcular resultados al entrar a la pestaña
+                if (pestanaId === 'resultados') {
+                    mostrarResultados();
+                }
+            }
+
+            // --- ACTUALIZACIÓN DE PUNTUACIÓN ---
+            function actualizarProgreso() {
+                let total = puntuacionTotal.video + puntuacionTotal.quiz + puntuacionTotal.huecos + puntuacionTotal.emparejar;
+                document.getElementById('puntos-globales').textContent = `${total} / ${PUNTUACION_MAXIMA}`;
+            }
+
+            // --- VÍDEO INTERACTIVO ---
+            
+            // Lógica para <video> (actualmente desactivada por <iframe>)
+            if (video) {
+                // Comprobar si el vídeo se cargó
+                video.addEventListener('error', () => {
+                    video.style.display = 'none';
+                    document.getElementById('videoPlaceholder').style.display = 'flex';
+                    document.getElementById('video-preguntas-estaticas').style.display = 'block';
+                });
+
+                video.addEventListener('canplay', () => {
+                     // Si el video carga, ocultamos las preguntas estáticas
+                     document.getElementById('video-preguntas-estaticas').style.display = 'none';
+                });
+
+                video.addEventListener('timeupdate', () => {
+                    for (let pausa of pausas) {
+                        if (video.currentTime >= pausa.tiempo && !pausa.respondida) {
+                            video.pause();
+                            pausa.respondida = true; // Evita que se muestre repetidamente
+                            document.getElementById(`overlay-${pausa.id}`).classList.add('active');
+                        }
+                    }
+                });
+
+                window.responderVideo = function(numPregunta, respuesta) {
+                    let pausa = pausas.find(p => p.id === `vp${numPregunta}`);
+                    let feedbackEl = document.getElementById(`feedback-vp${numPregunta}`);
+                    
+                    if (respuesta === pausa.respuesta) {
+                        feedbackEl.textContent = '¡Correcto!';
+                        feedbackEl.className = 'video-feedback success';
+                        puntuacionTotal.video++;
+                    } else {
+                        feedbackEl.textContent = `Incorrecto. La respuesta era ${pausa.respuesta}.`;
+                        feedbackEl.className = 'video-feedback error';
+                    }
+                    
+                    feedbackEl.style.display = 'block';
+                    actualizarProgreso();
+                    
+                    // Deshabilitar opciones
+                    let opciones = document.getElementById(`overlay-vp${numPregunta}`).querySelectorAll('.video-opcion');
+                    opciones.forEach(op => op.style.pointerEvents = 'none');
+                    
+                    // Continuar vídeo
+                    setTimeout(() => {
+                        document.getElementById(`overlay-${pausa.id}`).classList.remove('active');
+                        video.play();
+                    }, 2000);
+                }
+            }
+
+            // Lógica para preguntas estáticas (debido al <iframe>)
+            window.responderVideoEstatico = function(numPregunta, tipo, elemento) {
+                if (videoPreguntasCompletadas[numPregunta]) return;
+                
+                videoPreguntasCompletadas[numPregunta] = true;
+                let feedbackEl = document.getElementById(`feedback-vps${numPregunta}`);
+                let opciones = elemento.parentElement.querySelectorAll('.opcion');
+                
+                opciones.forEach(op => op.classList.add('disabled'));
+                
+                if (tipo === 'correcta') {
+                    elemento.classList.add('correcta');
+                    feedbackEl.textContent = '¡Correcto!';
+                    feedbackEl.className = 'feedback show success';
+                    puntuacionTotal.video++;
+                } else {
+                    elemento.classList.add('incorrecta');
+                    feedbackEl.textContent = 'Incorrecto.';
+                    feedbackEl.className = 'feedback show error';
+                    // Marcar la correcta
+                    opciones.forEach(op => {
+                        if (op.getAttribute('onclick').includes("'correcta'")) {
+                            op.classList.add('correcta');
+                        }
+                    });
+                }
+                actualizarProgreso();
+            }
+
+            // --- QUIZ ---
+            window.comprobarQuiz = function(numPregunta, opcionSeleccionada) {
+                if (quizPreguntasCompletadas[numPregunta]) return;
+                
+                quizPreguntasCompletadas[numPregunta] = true;
+                let feedbackEl = document.getElementById(`feedback-q${numPregunta}`);
+                let opciones = document.getElementById(`quiz-p${numPregunta}`).querySelectorAll('.opcion');
+                let esCorrecta = (opcionSeleccionada === respuestasQuiz[numPregunta]);
+                
+                opciones.forEach(op => {
+                    op.classList.add('disabled');
+                    let letraOpcion = op.getAttribute('onclick').split("'")[1];
+                    if (letraOpcion === respuestasQuiz[numPregunta]) {
+                        op.classList.add('correcta');
+                    }
+                });
+                
+                if (esCorrecta) {
+                    feedbackEl.textContent = '¡Correcto! Muy bien.';
+                    feedbackEl.className = 'feedback show success';
+                    puntuacionTotal.quiz++;
+                } else {
+                    feedbackEl.textContent = `Incorrecto. La respuesta correcta era la ${respuestasQuiz[numPregunta]}.`;
+                    feedbackEl.className = 'feedback show error';
+                    // Marcar la seleccionada como incorrecta
+                    opciones.forEach(op => {
+                        let letraOpcion = op.getAttribute('onclick').split("'")[1];
+                        if (letraOpcion === opcionSeleccionada) {
+                            op.classList.add('incorrecta');
+                        }
+                    });
+                }
+                actualizarProgreso();
+            }
+
+            // --- COMPLETAR HUECOS (DRAG & DROP) ---
+            let palabrasDrag = document.querySelectorAll('.palabra-drag');
+            let huecos = document.querySelectorAll('.hueco');
+
+            palabrasDrag.forEach(palabra => {
+                palabra.addEventListener('dragstart', (e) => {
+                    if (palabra.classList.contains('usada')) {
+                        e.preventDefault();
+                        return;
+                    }
+                    e.dataTransfer.setData('text/plain', e.target.id);
+                    e.target.style.cursor = 'grabbing';
+                });
+                palabra.addEventListener('dragend', (e) => {
+                    e.target.style.cursor = 'grab';
+                });
+            });
+
+            huecos.forEach(hueco => {
+                hueco.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    if (!hueco.querySelector('.palabra-drag')) {
+                         hueco.classList.add('over');
+                    }
+                });
+                
+                hueco.addEventListener('dragleave', (e) => {
+                    hueco.classList.remove('over');
+                });
+
+                hueco.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    hueco.classList.remove('over');
+                    
+                    // Si el hueco ya tiene una palabra, no hacer nada
+                    if (hueco.children.length > 0) return;
+                    
+                    const idPalabra = e.dataTransfer.getData('text/plain');
+                    const palabra = document.getElementById(idPalabra);
+                    
+                    if (palabra && !palabra.classList.contains('usada')) {
+                        hueco.appendChild(palabra);
+                        palabra.classList.add('usada');
+                        palabra.style.cursor = 'not-allowed';
+                        palabra.draggable = false;
+                        
+                        // Quitar palabra de un hueco anterior si estaba
+                        let huecoAnterior = palabra.closest('.hueco');
+                        if(huecoAnterior && huecoAnterior !== hueco) {
+                            huecoAnterior.innerHTML = '';
+                        }
+                    }
+                });
+            });
+            
+            // Permitir devolver palabras a la caja
+            document.getElementById('caja-palabras').addEventListener('dragover', (e) => e.preventDefault());
+            document.getElementById('caja-palabras').addEventListener('drop', (e) => {
+                e.preventDefault();
+                const idPalabra = e.dataTransfer.getData('text/plain');
+                const palabra = document.getElementById(idPalabra);
+                if (palabra) {
+                    palabra.classList.remove('usada');
+                    palabra.style.cursor = 'grab';
+                    palabra.draggable = true;
+                    document.getElementById('caja-palabras').appendChild(palabra);
+                }
+            });
+
+            window.comprobarHuecos = function() {
+                let puntos = 0;
+                huecos.forEach(hueco => {
+                    let palabra = hueco.querySelector('.palabra-drag');
+                    let respuestaCorrecta = hueco.dataset.respuesta;
+                    
+                    if (palabra && palabra.dataset.valor === respuestaCorrecta) {
+                        hueco.classList.add('correcto');
+                        hueco.classList.remove('incorrecto');
+                        puntos++;
+                    } else {
+                        hueco.classList.add('incorrecto');
+                        hueco.classList.remove('correcto');
+                    }
+                });
+                
+                puntuacionTotal.huecos = puntos;
+                let feedbackEl = document.getElementById('feedback-huecos');
+                feedbackEl.textContent = `Has acertado ${puntos} de 6 palabras.`;
+                feedbackEl.className = 'feedback show success';
+                document.getElementById('btn-comprobar-huecos').disabled = true;
+                actualizarProgreso();
+            }
+
+            // --- EMPAREJAR CONCEPTOS ---
+            document.querySelectorAll('.item-emparejar').forEach(item => {
+                item.addEventListener('click', () => {
+                    if (item.classList.contains('emparejado')) return;
+
+                    if (!itemSeleccionado) {
+                        // Es la primera selección
+                        itemSeleccionado = item;
+                        item.classList.add('seleccionado');
+                    } else {
+                        // Es la segunda selección
+                        if (item === itemSeleccionado) {
+                            // Clic en el mismo: deseleccionar
+                            item.classList.remove('seleccionado');
+                            itemSeleccionado = null;
+                            return;
+                        }
+                        
+                        if (item.parentElement === itemSeleccionado.parentElement) {
+                            // Clic en la misma columna: cambiar selección
+                            itemSeleccionado.classList.remove('seleccionado');
+                            item.classList.add('seleccionado');
+                            itemSeleccionado = item;
+                            return;
+                        }
+
+                        // Comprobar si son pareja
+                        if (item.dataset.par === itemSeleccionado.dataset.par) {
+                            // ¡Es un acierto!
+                            item.classList.add('emparejado');
+                            itemSeleccionado.classList.add('emparejado');
+                            item.classList.remove('seleccionado');
+                            itemSeleccionado.classList.remove('seleccionado');
+                            
+                            puntuacionTotal.emparejar++;
+                            paresCompletados++;
+                            itemSeleccionado = null;
+                            
+                            if (paresCompletados === 5) {
+                                let feedbackEl = document.getElementById('feedback-emparejar');
+                                feedbackEl.textContent = '¡Has completado todas las parejas!';
+                                feedbackEl.className = 'feedback show success';
+                            }
+                        } else {
+                            // Es un error
+                            itemSeleccionado.classList.remove('seleccionado');
+                            itemSeleccionado = null;
+                        }
+                        actualizarProgreso();
+                    }
+                });
+            });
+
+            // --- RESULTADOS ---
+            function mostrarResultados() {
+                let total = puntuacionTotal.video + puntuacionTotal.quiz + puntuacionTotal.huecos + puntuacionTotal.emparejar;
+                let porcentaje = (total / PUNTUACION_MAXIMA) * 100;
+                
+                document.getElementById('resultado-video').textContent = `${puntuacionTotal.video} / 4`;
+                document.getElementById('resultado-quiz').textContent = `${puntuacionTotal.quiz} / 5`;
+                document.getElementById('resultado-huecos').textContent = `${puntuacionTotal.huecos} / 6`;
+                document.getElementById('resultado-emparejar').textContent = `${puntuacionTotal.emparejar} / 5`;
+                
+                document.getElementById('puntuacion-final-texto').textContent = `${total} / ${PUNTUACION_MAXIMA}`;
+                document.getElementById('porcentaje-final-texto').textContent = `${Math.round(porcentaje)}%`;
+                
+                let estrellasEl = document.getElementById('estrellas-resultado');
+                if (porcentaje >= 90) {
+                    estrellasEl.textContent = '⭐⭐⭐';
+                } else if (porcentaje >= 70) {
+                    estrellasEl.textContent = '⭐⭐☆';
+                } else if (porcentaje >= 50) {
+                    estrellasEl.textContent = '⭐☆☆';
+                } else {
+                    estrellasEl.textContent = '☆☆☆';
+                }
+                estrellasEl.classList.remove('estrellas-placeholder');
+            }
+            
+            // --- REINICIAR ---
+            window.reiniciarActividades = function() {
+                // Resetear puntuación
+                puntuacionTotal = { video: 0, quiz: 0, huecos: 0, emparejar: 0 };
+                actualizarProgreso();
+                
+                // Resetear vídeo estático
+                videoPreguntasCompletadas = { 1: false, 2: false, 3: false, 4: false };
+                document.querySelectorAll('#video-preguntas-estaticas .opcion').forEach(op => {
+                    op.classList.remove('disabled', 'correcta', 'incorrecta');
+                });
+                document.querySelectorAll('#video-preguntas-estaticas .feedback').forEach(fb => {
+                    fb.classList.remove('show');
+                });
+                
+                // Resetear quiz
+                quizPreguntasCompletadas = { 1: false, 2: false, 3: false, 4: false, 5: false };
+                document.querySelectorAll('#quiz .opcion').forEach(op => {
+                    op.classList.remove('disabled', 'correcta', 'incorrecta');
+                });
+                document.querySelectorAll('#quiz .feedback').forEach(fb => {
+                    fb.classList.remove('show');
+                });
+                
+                // Resetear huecos
+                document.getElementById('btn-comprobar-huecos').disabled = false;
+                document.getElementById('feedback-huecos').classList.remove('show');
+                huecos.forEach(hueco => {
+                    hueco.classList.remove('correcto', 'incorrecto');
+                    hueco.innerHTML = '';
+                });
+                palabrasDrag.forEach(palabra => {
+                    palabra.classList.remove('usada');
+                    palabra.draggable = true;
+                    palabra.style.cursor = 'grab';
+                    document.getElementById('caja-palabras').appendChild(palabra);
+                });
+                
+                // Resetear emparejar
+                paresCompletados = 0;
+                itemSeleccionado = null;
+                document.querySelectorAll('.item-emparejar').forEach(item => {
+                    item.classList.remove('seleccionado', 'emparejado');
+                });
+                document.getElementById('feedback-emparejar').classList.remove('show');
+                
+                // Resetear resultados
+                document.getElementById('estrellas-resultado').textContent = '☆☆☆';
+                document.getElementById('estrellas-resultado').classList.add('estrellas-placeholder');
+                document.getElementById('puntuacion-final-texto').textContent = `0 / ${PUNTUACION_MAXIMA}`;
+                document.getElementById('porcentaje-final-texto').textContent = `0%`;
+                
+                // Volver al inicio
+                mostrarPestana('inicio', { currentTarget: document.querySelector('.tab') });
+            }
+        });
+    </script>
+</body>
+</html>
