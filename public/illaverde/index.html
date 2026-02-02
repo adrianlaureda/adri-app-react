@@ -2277,19 +2277,114 @@ Texto:
                 <div id="como-gema-sub" class="sub-tab-content active">
                     <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></svg>Crea tu propia Gema personalizada</h3>
 
-                    <p>Automatiza cualquier tarea repetitiva creando una <strong>Gema personalizada</strong> en Gemini. El proceso es simple: describes tu necesidad, Gemini genera las instrucciones, y tú creas la Gema.</p>
+                    <p>Automatiza cualquier tarea repetitiva creando una <strong>Gema personalizada</strong> en Gemini. Antes de crear la Gema, es importante tener un buen prompt. Te ofrecemos <strong>dos técnicas</strong> para conseguirlo:</p>
 
-                    <div class="info-box success-box">
-                        <p><strong><svg class="icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Flujo de trabajo:</strong></p>
-                        <ol style="margin: 0.5rem 0 0 1.5rem;">
-                            <li><strong>Describe tu necesidad</strong> usando el meta-prompt de abajo</li>
-                            <li><strong>Adjunta una plantilla</strong> (opcional) si tienes un modelo de documento</li>
-                            <li><strong>Gemini genera</strong> las instrucciones para tu Gema</li>
-                            <li><strong>Crea la Gema</strong> en Gemini copiando esas instrucciones</li>
-                        </ol>
+                    <!-- TÉCNICA 1: META-PROMPTING -->
+                    <div style="background: linear-gradient(135deg, rgba(167, 139, 250, 0.1), rgba(0, 212, 170, 0.1)); border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; border: 1px solid rgba(167, 139, 250, 0.3);">
+                        <h4 style="margin-top: 0; color: var(--accent-5);"><svg class="icon" viewBox="0 0 24 24" style="vertical-align: middle;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Técnica 1: Meta-prompting (la IA te pregunta)</h4>
+                        <p>En lugar de escribir tú el prompt completo, <strong>pide a la IA que te haga todas las preguntas necesarias</strong> para entender exactamente qué necesitas. Es como tener un entrevistador experto que sabe qué información necesita.</p>
+
+                        <div class="code-container" style="margin-top: 1rem;">
+                            <div class="code-header">
+                                <span class="code-title">Meta-prompt GENÉRICO (para cualquier tarea)</span>
+                                <button class="btn btn-copy" onclick="copyCode(this)"><svg class="icon" viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>Copiar</button>
+                            </div>
+                            <div class="code-block">Quiero que me ayudes a crear un prompt efectivo para [describe brevemente tu objetivo].
+
+Antes de generar nada, HAZME TODAS LAS PREGUNTAS que necesites para entender exactamente:
+- Qué quiero conseguir
+- En qué contexto lo voy a usar
+- Qué formato o estructura necesito
+- Qué tono o estilo prefiero
+- Cualquier restricción o requisito importante
+
+Haz las preguntas de una en una o en grupos pequeños. Cuando tengas toda la información, genera el prompt optimizado.</div>
+                        </div>
+
+                        <div class="code-container" style="margin-top: 1rem;">
+                            <div class="code-header">
+                                <span class="code-title">Meta-prompt EDUCATIVO (para docentes)</span>
+                                <button class="btn btn-copy" onclick="copyCode(this)"><svg class="icon" viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>Copiar</button>
+                            </div>
+                            <div class="code-block">Soy docente y quiero crear un prompt para [describe brevemente tu objetivo educativo].
+
+Actúa como un experto en diseño instruccional y prompt engineering. Antes de generar el prompt, HAZME PREGUNTAS para conocer:
+
+SOBRE MI CONTEXTO:
+- Etapa educativa y curso
+- Materia o área
+- Características del alumnado (incluyendo diversidad)
+- Normativa o currículo de referencia
+
+SOBRE LA TAREA:
+- Qué quiero conseguir exactamente
+- Cómo voy a usar el resultado
+- Si tengo plantillas o ejemplos de referencia
+
+SOBRE EL FORMATO:
+- Estructura deseada del resultado
+- Extensión aproximada
+- Tono (formal, cercano, técnico...)
+- Idioma (español, gallego, catalán...)
+
+Pregunta lo que necesites en grupos de 3-4 preguntas. Cuando tengas toda la información, genera el prompt optimizado para crear una Gema en Gemini.</div>
+                        </div>
                     </div>
 
-                    <h4>Paso 1: Usa este Meta-Prompt en Gemini</h4>
+                    <!-- TÉCNICA 2: MEJORADOR DE GEMINI -->
+                    <div style="background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(245, 166, 35, 0.1)); border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; border: 1px solid rgba(0, 212, 255, 0.3);">
+                        <h4 style="margin-top: 0; color: var(--accent-2);"><svg class="icon" viewBox="0 0 24 24" style="vertical-align: middle;"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg> Técnica 2: Mejorador integrado de Gemini (el "lapicito")</h4>
+                        <p>Gemini tiene un <strong>botón mágico</strong> que mejora automáticamente cualquier instrucción que escribas. Escribe lo que necesitas de forma simple y deja que Gemini lo convierta en un prompt profesional.</p>
+
+                        <h5 style="margin-top: 1.5rem;">Cómo usar el mejorador de Gems:</h5>
+
+                        <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1rem;">
+                            <!-- Paso 1 -->
+                            <div>
+                                <p style="margin-bottom: 0.5rem;"><strong>1. Accede a Gems</strong> desde el menú lateral:</p>
+                                <img src="media/gems-paso1.png" alt="Abrir menú lateral y acceder a Gems" style="max-width: 100%; border-radius: var(--radius); border: 1px solid var(--border); cursor: pointer;" onclick="this.classList.toggle('expanded')" loading="lazy">
+                            </div>
+
+                            <!-- Paso 2 -->
+                            <div>
+                                <p style="margin-bottom: 0.5rem;"><strong>2. Crea un nuevo Gem</strong> o edita uno existente:</p>
+                                <img src="media/gems-paso2.png" alt="Gestor de Gems y botón Nuevo Gem" style="max-width: 100%; border-radius: var(--radius); border: 1px solid var(--border); cursor: pointer;" onclick="this.classList.toggle('expanded')" loading="lazy">
+                            </div>
+
+                            <!-- Paso 3 -->
+                            <div>
+                                <p style="margin-bottom: 0.5rem;"><strong>3. Usa el lapicito</strong> para mejorar tu prompt automáticamente:</p>
+                                <img src="media/gems-paso3.png" alt="Botón del lapicito para mejorar prompt" style="max-width: 100%; border-radius: var(--radius); border: 1px solid var(--border); cursor: pointer;" onclick="this.classList.toggle('expanded')" loading="lazy">
+                            </div>
+
+                            <!-- Paso 4 -->
+                            <div>
+                                <p style="margin-bottom: 0.5rem;"><strong>4. Añade conocimientos</strong> (fuentes de información para tu Gem):</p>
+                                <img src="media/gems-paso4.png" alt="Opciones de conocimientos: archivos, Drive, fotos, código, NotebookLM" style="max-width: 100%; border-radius: var(--radius); border: 1px solid var(--border); cursor: pointer;" onclick="this.classList.toggle('expanded')" loading="lazy">
+                                <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem;">Puedes subir archivos, conectar con Drive, añadir fotos, importar código o vincular un NotebookLM.</p>
+                            </div>
+
+                            <!-- Paso 5 -->
+                            <div>
+                                <p style="margin-bottom: 0.5rem;"><strong>5. Elige una herramienta</strong> (opcional, capacidades extra):</p>
+                                <img src="media/gems-paso5.png" alt="Herramientas: Deep Research, crear vídeos, crear imágenes, Canvas, aprendizaje guiado" style="max-width: 100%; border-radius: var(--radius); border: 1px solid var(--border); cursor: pointer;" onclick="this.classList.toggle('expanded')" loading="lazy">
+                                <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem;">Deep Research, creación de vídeos e imágenes, Canvas para documentos, o aprendizaje guiado.</p>
+                            </div>
+                        </div>
+
+                        <div class="info-box" style="margin-top: 1.5rem; background: rgba(0, 212, 255, 0.1); border-left-color: var(--accent-2);">
+                            <p><strong>Consejo:</strong> Escribe una descripción simple de lo que quieres (ej: "Quiero un asistente que me ayude a crear informes de evaluación para primaria") y pulsa el lapicito. Gemini lo convertirá en instrucciones detalladas y profesionales.</p>
+                        </div>
+                    </div>
+
+                    <!-- SEPARADOR -->
+                    <hr style="border: none; border-top: 1px solid var(--border); margin: 2rem 0;">
+
+                    <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Técnica 3: Meta-Prompt completo (para usuarios avanzados)</h3>
+
+                    <p>Si prefieres tener control total, usa este meta-prompt estructurado que cubre todos los aspectos de una Gema educativa:</p>
+
+                    <h4>Usa este Meta-Prompt en Gemini</h4>
                     <p>Copia este prompt en un chat de Gemini y completa los campos entre corchetes:</p>
 
                     <div class="code-container">

@@ -3,6 +3,10 @@
 /pictos/     /pictos/index.html      200
 /acortador   /acortador/index.html   200
 /acortador/  /acortador/index.html   200
+/illaverde   /illaverde/index.html   200
+/illaverde/  /illaverde/index.html   200
+/figueroa    /figueroa/index.html    200
+/figueroa/   /figueroa/index.html    200
 
 # SPA fallback para React Router
 /*    /index.html   200

@@ -638,10 +638,12 @@
             <button class="tab-button" onclick="openTab(event, 'demos')"><svg class="icon" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"/></svg> Demos</button>
             <button class="tab-button" onclick="openTab(event, 'menu')"><svg class="icon" viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg> Menú Narrativas</button>
             <button class="tab-button" onclick="openTab(event, 'pasos')"><svg class="icon" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg> Pasos de la Formación</button>
+            <button class="tab-button" onclick="openTab(event, 'comic')"><svg class="icon" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/></svg> Cómic</button>
+            <button class="tab-button" onclick="openTab(event, 'prompts')"><svg class="icon" viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></svg> Gemas</button>
             <button class="tab-button" onclick="openTab(event, 'pictogramas')"><svg class="icon" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg> Pictogramas IA</button>
             <button class="tab-button" onclick="openTab(event, 'wispr')"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg> Dictado</button>
-
-            <button class="tab-button" onclick="openTab(event, 'prompts')"><svg class="icon" viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></svg> PROMPTS</button>
+            <button class="tab-button" onclick="openTab(event, 'aistudio')"><svg class="icon" viewBox="0 0 24 24"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg> Audio AI Studio</button>
+            <button class="tab-button" onclick="openTab(event, 'suno')"><svg class="icon" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg> Suno</button>
             <button class="tab-button" onclick="openTab(event, 'ayuda')"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg> Ayuda</button>
         </div>
     </div>
@@ -1623,6 +1625,353 @@ paso4_secar_toalla.png</div>
             </section>
         </div>
 
+<!-- TAB AUDIO AI STUDIO -->
+        <div id="aistudio" class="tab-content">
+            <section class="section">
+                <h2 class="section-title"><svg class="icon" viewBox="0 0 24 24"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg>AUDIO CON GOOGLE AI STUDIO</h2>
+
+                <p>Google AI Studio ofrece generación de texto a voz (TTS) con <strong>Gemini 2.5</strong>, permitiendo crear audio de alta calidad con uno o varios oradores. El TTS es <strong>controlable</strong>: puedes usar lenguaje natural para guiar el estilo, acento, ritmo y tono del audio.</p>
+
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+                    <a href="https://aistudio.google.com/generate-speech" target="_blank" class="btn"><svg class="icon" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Generar Audio TTS</a>
+                    <a href="https://ai.google.dev/gemini-api/docs/speech-generation" target="_blank" class="btn" style="background: var(--bg-elevated); border: 1px solid var(--border);"><svg class="icon" viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>Documentación</a>
+                </div>
+
+                <div class="info-box success-box">
+                    <p><strong><svg class="icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Flujo recomendado:</strong> Los modelos TTS solo generan audio, pero puedes usar <strong>Gemini primero para escribir el guion</strong> y luego pasarlo al TTS para que lo lea. Así controlas exactamente qué se dice y cómo.</p>
+                </div>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><circle cx="9" cy="9" r="2"/><path d="M17 6v4"/><path d="M15 8h4"/></svg>Dos modos de generación</h3>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Un solo orador</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Ideal para narraciones, audiolibros, explicaciones. Elige una de las 30 voces disponibles y genera el audio directamente.</p>
+                    </div>
+                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Varios oradores (hasta 2)</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Perfecto para diálogos, podcasts, entrevistas. Asigna diferentes voces a cada interlocutor con nombres como "Speaker1" y "Speaker2".</p>
+                    </div>
+                </div>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>Pasos para generar audio</h3>
+
+                <ol>
+                    <li><strong>Accede a AI Studio:</strong> Ve a <a href="https://aistudio.google.com/generate-speech" target="_blank">aistudio.google.com/generate-speech</a> e inicia sesión con tu cuenta de Google</li>
+                    <li><strong>Escribe o pega tu texto:</strong> El guion que quieres convertir en audio</li>
+                    <li><strong>Selecciona la voz:</strong> Elige entre las 30 voces disponibles (Zephyr, Puck, Charon, etc.)</li>
+                    <li><strong>Ajusta el estilo (opcional):</strong> Añade instrucciones de estilo en el prompt</li>
+                    <li><strong>Genera y descarga:</strong> Escucha el resultado y descarga el archivo de audio</li>
+                </ol>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>30 voces disponibles</h3>
+
+                <p style="margin-bottom: 1rem;">Cada voz tiene una personalidad diferente. Aquí algunas destacadas:</p>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem; margin: 1rem 0;">
+                    <div style="background: var(--bg-elevated); padding: 0.75rem; border-radius: 8px; text-align: center; border: 1px solid var(--border);"><strong>Zephyr</strong><br><span style="font-size: 0.85rem; color: var(--text-secondary);">Brillante</span></div>
+                    <div style="background: var(--bg-elevated); padding: 0.75rem; border-radius: 8px; text-align: center; border: 1px solid var(--border);"><strong>Puck</strong><br><span style="font-size: 0.85rem; color: var(--text-secondary);">Optimista</span></div>
+                    <div style="background: var(--bg-elevated); padding: 0.75rem; border-radius: 8px; text-align: center; border: 1px solid var(--border);"><strong>Charon</strong><br><span style="font-size: 0.85rem; color: var(--text-secondary);">Informativa</span></div>
+                    <div style="background: var(--bg-elevated); padding: 0.75rem; border-radius: 8px; text-align: center; border: 1px solid var(--border);"><strong>Leda</strong><br><span style="font-size: 0.85rem; color: var(--text-secondary);">Juvenil</span></div>
+                    <div style="background: var(--bg-elevated); padding: 0.75rem; border-radius: 8px; text-align: center; border: 1px solid var(--border);"><strong>Fenrir</strong><br><span style="font-size: 0.85rem; color: var(--text-secondary);">Enérgica</span></div>
+                    <div style="background: var(--bg-elevated); padding: 0.75rem; border-radius: 8px; text-align: center; border: 1px solid var(--border);"><strong>Aoede</strong><br><span style="font-size: 0.85rem; color: var(--text-secondary);">Relajada</span></div>
+                </div>
+
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">Puedes probar todas las voces en la <a href="https://aistudio.google.com/apps/bundled/voice-library" target="_blank">Biblioteca de Voces</a> de AI Studio.</p>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Control del estilo con instrucciones</h3>
+
+                <p>Puedes controlar cómo suena el audio usando lenguaje natural:</p>
+
+                <div style="background: var(--bg-elevated); padding: 1rem; border-radius: 8px; border-left: 3px solid var(--accent); margin: 1rem 0;">
+                    <p style="font-family: monospace; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Un orador:</strong></p>
+                    <p style="font-family: monospace; font-size: 0.85rem; color: var(--text-secondary);">"Di con un susurro misterioso: 'Érase una vez, en un bosque encantado...'"</p>
+                </div>
+
+                <div style="background: var(--bg-elevated); padding: 1rem; border-radius: 8px; border-left: 3px solid var(--success); margin: 1rem 0;">
+                    <p style="font-family: monospace; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Varios oradores:</strong></p>
+                    <p style="font-family: monospace; font-size: 0.85rem; color: var(--text-secondary);">"Haz que Speaker1 suene cansado y aburrido, y Speaker2 suene emocionado y feliz:<br>Speaker1: Bueno... ¿qué toca hoy?<br>Speaker2: ¡No te lo vas a creer!"</p>
+                </div>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Ideas de uso en el aula</h3>
+
+                <ul>
+                    <li><strong>Audiocuentos:</strong> Narraciones de los cuentos que crees con NotebookLM</li>
+                    <li><strong>Podcasts educativos:</strong> Diálogos entre dos "expertos" explicando un tema</li>
+                    <li><strong>Dictados con voz natural:</strong> Textos para practicar ortografía</li>
+                    <li><strong>Materiales accesibles:</strong> Versiones audio para alumnado NEAE</li>
+                    <li><strong>Aprendizaje de idiomas:</strong> Textos en diferentes idiomas (soporta 24)</li>
+                </ul>
+
+                <div class="info-box">
+                    <p><strong><svg class="icon" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Gratuito:</strong> AI Studio es completamente gratuito para uso personal y educativo.</p>
+                </div>
+            </section>
+        </div>
+
+<!-- TAB SUNO -->
+        <div id="suno" class="tab-content">
+            <section class="section">
+                <h2 class="section-title"><svg class="icon" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>SUNO: MÚSICA CON IA</h2>
+
+                <p>Suno es una herramienta de IA que genera canciones completas (música + letra cantada) a partir de texto. Tiene un enorme potencial pedagógico para crear materiales memorables que el alumnado no olvidará.</p>
+
+                <a href="https://suno.com/create" target="_blank" class="btn" style="margin-bottom: 2rem;"><svg class="icon" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Crear canción en Suno</a>
+
+                <div class="info-box success-box">
+                    <p><strong><svg class="icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Flujo recomendado:</strong> Usa <strong>Gemini o ChatGPT para escribir la letra primero</strong>, y luego pégala en Suno en modo "Custom". Así controlas exactamente qué dice la canción y te aseguras de que el contenido sea correcto.</p>
+                </div>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><circle cx="9" cy="9" r="2"/><path d="M17 6v4"/><path d="M15 8h4"/></svg>Dos modos de creación</h3>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Modo Simple</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Describes lo que quieres y Suno genera letra + música automáticamente. Rápido pero menos control sobre el contenido exacto.</p>
+                    </div>
+                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--accent);">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; color: var(--accent);"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>Modo Custom (Recomendado)</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);"><strong>Tú escribes la letra</strong> y Suno pone la música. Control total del contenido. Perfecto para contenido educativo preciso.</p>
+                    </div>
+                </div>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>Cómo usar el modo Custom</h3>
+
+                <ol>
+                    <li><strong>Genera la letra con IA:</strong> Pide a Gemini o ChatGPT que escriba una letra de canción sobre tu tema:
+                        <div style="background: var(--bg-elevated); padding: 0.75rem; border-radius: 8px; margin: 0.5rem 0; font-size: 0.9rem;">
+                            "Escribe la letra de una canción infantil pegadiza sobre los planetas del sistema solar. Incluye estribillo que se repita. Formato: verso, estribillo, verso, estribillo."
+                        </div>
+                    </li>
+                    <li><strong>Accede a Suno:</strong> Ve a <a href="https://suno.com/create" target="_blank">suno.com/create</a> e inicia sesión</li>
+                    <li><strong>Activa modo Custom:</strong> Busca el toggle "Custom" para activarlo</li>
+                    <li><strong>Pega tu letra:</strong> En el campo "Lyrics", pega la letra que generaste</li>
+                    <li><strong>Elige el estilo:</strong> En "Style of Music" escribe el género (ej: "pop infantil alegre", "rap educativo", "balada tranquila")</li>
+                    <li><strong>Genera y elige:</strong> Suno crea 2 versiones. Escúchalas y descarga la mejor</li>
+                </ol>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>Usos pedagógicos</h3>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>Contenido curricular</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Canciones para memorizar tablas de multiplicar, verbos irregulares, fechas históricas, elementos de la tabla periódica...</p>
+                    </div>
+                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Convivencia</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Himnos de clase, canciones sobre normas de convivencia, valores, respeto, trabajo en equipo...</p>
+                    </div>
+                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Motivación</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Canciones personalizadas para el grupo, celebraciones, fin de curso, bienvenida a nuevos alumnos...</p>
+                    </div>
+                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Idiomas</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Canciones en inglés, gallego, francés... para practicar vocabulario, estructuras gramaticales, pronunciación...</p>
+                    </div>
+                </div>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>Estilos musicales que funcionan bien</h3>
+
+                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0;">
+                    <span style="background: var(--bg-elevated); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border);">pop infantil alegre</span>
+                    <span style="background: var(--bg-elevated); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border);">rap educativo</span>
+                    <span style="background: var(--bg-elevated); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border);">folk acústico</span>
+                    <span style="background: var(--bg-elevated); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border);">rock suave</span>
+                    <span style="background: var(--bg-elevated); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border);">balada tranquila</span>
+                    <span style="background: var(--bg-elevated); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border);">música celta</span>
+                    <span style="background: var(--bg-elevated); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border);">reggaeton suave</span>
+                    <span style="background: var(--bg-elevated); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border);">instrumental relajante</span>
+                </div>
+
+                <div class="info-box warning-box">
+                    <p><strong><svg class="icon" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Créditos limitados:</strong> La versión gratuita tiene ~50 créditos diarios (10 canciones aprox). Planifica qué canciones quieres crear. Consejo: genera la letra primero con IA para no gastar créditos en letras que no te convencen.</p>
+                </div>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Ideas rápidas para probar</h3>
+
+                <ul>
+                    <li><strong>Matemáticas:</strong> "Rap educativo sobre las tablas de multiplicar del 7 y el 8"</li>
+                    <li><strong>Ciencias:</strong> "Canción pegadiza para memorizar los planetas del sistema solar en orden"</li>
+                    <li><strong>Lengua:</strong> "Balada sobre las reglas de acentuación en español"</li>
+                    <li><strong>Gallego:</strong> "Canción folk en gallego sobre las estaciones del año"</li>
+                    <li><strong>Convivencia:</strong> "Himno motivador para un equipo de clase, sobre trabajo en equipo"</li>
+                    <li><strong>Relajación:</strong> "Melodía instrumental suave para momento de lectura silenciosa"</li>
+                </ul>
+            </section>
+        </div>
+
+<!-- TAB CÓMIC -->
+        <div id="comic" class="tab-content">
+            <section class="section">
+                <h2 class="section-title"><svg class="icon" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/></svg>CREAR CÓMICS CON IA (NotebookLM)</h2>
+
+                <p>Transforma cualquier historia o concepto en un <strong>cómic ilustrado</strong> usando NotebookLM. El proceso tiene dos fases: primero la IA te ayuda a crear el guion, y después genera las viñetas visuales.</p>
+
+                <a href="https://notebooklm.google.com" class="btn" target="_blank" style="margin-bottom: 2rem;">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg> Abrir NotebookLM
+                </a>
+
+                <!-- PASO 1 -->
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>Paso 1: Configurar el "Creador de guiones"</h3>
+                <ol>
+                    <li>Inicia sesión en NotebookLM con tu cuenta de Google</li>
+                    <li>Clic en <strong>"Nuevo cuaderno"</strong></li>
+                    <li>En el menú izquierdo, sección <strong>"Fuentes"</strong>, clic en <strong>"+"</strong> (Añadir fuente)</li>
+                    <li>Selecciona <strong>"Texto copiado"</strong></li>
+                    <li>Copia y pega el siguiente prompt completo:</li>
+                </ol>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-title">Prompt: Creador de guiones de cómic</span>
+                        <button class="btn btn-copy" onclick="copyCode(this)"><svg class="icon" viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>Copiar</button>
+                    </div>
+                    <div class="code-block">INSTRUCCIÓN CREADOR DE GUIONES
+
+Rol y Objetivo
+Eres el Arquitecto de Novela Gráfica, un experto Guionista y Director Visual. Tu propósito es colaborar con el usuario para transformar un concepto en un guion de novela gráfica profesional y formateado. Tu capacidad única es estructurar guiones específicamente para ser traducidos en arte visual por generadores de imágenes de IA (Midjourney, DALL-E, etc.). Entiendes que los modelos de IA tienen "amnesia", por lo que aplicas rigurosamente la consistencia visual en tus descripciones.
+
+Fase 1: Descubrimiento Profundo (La Entrevista)
+No empieces a escribir el guion de inmediato. Primero debes establecer el "Lenguaje Visual". Haz una pregunta a la vez para no abrumar al usuario:
+- Concepto de la Historia: Trama central o lección (2-3 frases).
+- Audiencia Objetiva: ¿Quién lo lee? (Ej. Niños, Adultos, Formación Corporativa).
+- Extensión: Número de páginas (Recomienda 5-10).
+- El "Elenco" (Crucial): Pide detalles físicos específicos: peinado/color, ropa, accesorios, edad y etnia.
+- Selección de Estilo Artístico: Ofrece 3 recomendaciones basadas en la "vibra" de la historia o permite que elijan de tu base de datos (Manga, Noir, Fantasy, Ligne Claire, etc.).
+- Tono e Idioma: ¿Es divertido, serio, educativo? ¿En qué idioma será el diálogo?
+
+Fase 2: La Regla de la "Amnesia" (Reglas de Scripting)
+Los generadores de IA no recuerdan paneles anteriores.
+Acción: DEBES volver a describir la apariencia física del personaje en cada uno de los prompts de panel.
+- Mal: "Leo parece asustado."
+- Bien: "Leo (cabello negro desordenado, camiseta roja con estrella, pantalones cortos azules) parece asustado."
+Cambios de Estado: Si un personaje se ensucia o cambia de ropa, actualiza la descripción y repítela en todos los paneles siguientes.
+
+Fase 3: Formateo y Diseño
+Todos los diseños deben ser para un lienzo cinemático de 16:9.
+Usa términos específicos: Panorámica amplia, Pantalla dividida, Ángulo holandés, Primer plano, Vista de pájaro.
+
+Fase 4: Formato de Salida (Markdown)
+Debes generar el guion siguiendo estrictamente esta estructura:
+
+[PÁGINA DE PORTADA]
+Título: [Título]
+Descripción Visual: [Prompt detallado 16:9 estableciendo género y estilo].
+
+[PÁGINA X]
+Nota de Diseño: [Estructura de la página, ej. "3 paneles verticales"].
+Nota de Estilo: [Palabras clave del estilo elegido, ej. "Estilo Silver Age, puntos Ben-Day, líneas gruesas"].
+
+[VIÑETA X]
+Tipo de Toma y Ángulo: (Ej. Close-Up, Low Angle).
+Descripción Visual: [El Prompt de Imagen con descripción repetida del personaje].
+Iluminación/Atmósfera: (Ej. "Luz de neón cian", "Sol suave de mañana").
+Texto:
+* Caption: (Narrador)
+* Diálogo: ([Personaje])
+* SFX: (Efectos de sonido)</div>
+                </div>
+
+                <ol start="6">
+                    <li>Clic en <strong>"Insertar"</strong></li>
+                    <li>Renombra la fuente: clic en los tres puntitos → <strong>"Cambiar nombre"</strong> → escribe <code>Creador de guiones</code></li>
+                </ol>
+
+                <!-- PASO 2 -->
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Paso 2: Crear el guion (chat con la IA)</h3>
+                <ol>
+                    <li>En la parte inferior, donde dice <strong>"Escribe algo..."</strong>, describe brevemente tu historia:
+                        <div class="code-block" style="margin: 0.5rem 0;">Ejemplo: "Una fábula sobre una tortuga y una liebre con una moraleja final"</div>
+                    </li>
+                    <li>La IA te hará preguntas. Contesta a cada una:
+                        <ul>
+                            <li><strong>Público:</strong> Ej: "Alumnos de 12 años"</li>
+                            <li><strong>Páginas:</strong> Ej: "10 páginas"</li>
+                            <li><strong>Personajes:</strong> Describe ropa y rasgos físicos (Ej: "La tortuga lleva cinta deportiva roja")</li>
+                            <li><strong>Estilo:</strong> Ej: "Estilo Marvel", "Manga", "Looney Tunes"</li>
+                            <li><strong>Tono:</strong> Ej: "Educativo y motivador"</li>
+                        </ul>
+                    </li>
+                    <li>Revisa el guion. Si se corta antes del final, escribe <strong>"Continúa"</strong></li>
+                </ol>
+
+                <!-- PASO 3 -->
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>Paso 3: Guardar el guion como fuente</h3>
+                <ol>
+                    <li>Selecciona y copia <strong>todo el texto del guion</strong> que generó la IA (Ctrl+C)</li>
+                    <li>Ve al menú izquierdo → <strong>"Añadir fuente"</strong> → <strong>"Texto copiado"</strong></li>
+                    <li>Pega el guion (Ctrl+V) e insértalo</li>
+                    <li>Renombra esta fuente a: <code>Guion Cómic [Nombre de tu historia]</code></li>
+                </ol>
+
+                <!-- PASO 4 -->
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/></svg>Paso 4: Generar el cómic visual</h3>
+
+                <div class="info-box warning-box" style="margin-bottom: 1rem;">
+                    <p><strong><svg class="icon" viewBox="0 0 24 24"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="m21 21-18-18"/></svg>Importante:</strong> Este paso es crítico para que funcione bien.</p>
+                </div>
+
+                <ol>
+                    <li>En la lista de fuentes (izquierda), <strong>DESMARCA</strong> la casilla de "Creador de guiones"</li>
+                    <li>Asegúrate de que <strong>SOLO</strong> está marcada la casilla de tu nuevo "Guion Cómic"</li>
+                    <li>Haz clic en la sección <strong>"Presentaciones"</strong> (icono de diapositivas en el panel derecho)</li>
+                    <li>Clic en el icono del <strong>lápiz</strong> (Editar)</li>
+                    <li>Configura:
+                        <ul>
+                            <li>Selecciona <strong>"Presentación detallada"</strong></li>
+                            <li>Idioma: <strong>Español</strong></li>
+                        </ul>
+                    </li>
+                    <li>En el cuadro de instrucciones, pega este prompt:</li>
+                </ol>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-title">Prompt para generar el cómic</span>
+                        <button class="btn btn-copy" onclick="copyCode(this)"><svg class="icon" viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>Copiar</button>
+                    </div>
+                    <div class="code-block">Crea esta historia como un cómic con estilo [TU ESTILO, ej: Manga / Marvel / Looney Tunes] para un público [TU PÚBLICO, ej: juvenil / infantil / adulto].</div>
+                </div>
+
+                <ol start="7">
+                    <li>Clic en <strong>"Generar"</strong></li>
+                </ol>
+
+                <!-- PASO 5 -->
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>Paso 5: Ver y descargar</h3>
+                <ol>
+                    <li>Espera a que termine de procesar (aparecerá abajo a la derecha)</li>
+                    <li>Clic para abrirlo</li>
+                    <li>Puedes verlo en pantalla completa o descargarlo con el icono de descarga</li>
+                </ol>
+
+                <!-- IDEAS -->
+                <div class="info-box" style="margin-top: 1.5rem;">
+                    <h4><svg class="icon" viewBox="0 0 24 24"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>Ideas de historias para cómic</h4>
+                    <ul>
+                        <li><strong>Fábulas con moraleja:</strong> La tortuga y la liebre, la cigarra y la hormiga...</li>
+                        <li><strong>Conceptos curriculares:</strong> El ciclo del agua, la fotosíntesis, el sistema solar</li>
+                        <li><strong>Historias de convivencia:</strong> Resolución de conflictos, trabajo en equipo</li>
+                        <li><strong>Biografías:</strong> Vida de personajes históricos</li>
+                        <li><strong>Cuentos adaptados:</strong> Los cuentos que creaste en los PASOS 1-2 de la formación</li>
+                    </ul>
+                </div>
+
+                <!-- CHECKLIST -->
+                <div class="info-box success-box" style="margin-top: 1rem;">
+                    <h4><svg class="icon" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Checklist</h4>
+                    <ul class="checklist">
+                        <li>Has añadido el "Creador de guiones" como fuente</li>
+                        <li>Has creado el guion conversando con la IA</li>
+                        <li>Has guardado el guion como nueva fuente</li>
+                        <li>Has generado el cómic desde Presentaciones</li>
+                        <li>Has descargado el resultado</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
 <!-- TAB PROMPTS -->
         <div id="prompts" class="tab-content">
             <section class="section">
@@ -1641,48 +1990,195 @@ paso4_secar_toalla.png</div>
 
                 <!-- FIRST SUB-TAB: Cómo hacer una gema -->
                 <div id="como-gema-sub" class="sub-tab-content active">
-                    <div class="info-box">
-                        <p><strong><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>Información importante</strong></p>
-                        <p>Este documento es <strong>OPCIONAL</strong>. Solo lo necesitas si quieres:</p>
-                        <ul>
-                            <li>Recrear las Gemas tú mismo/a</li>
-                            <li>Modificar las instrucciones</li>
-                            <li>Entender cómo funcionan por dentro</li>
-                            <li>Crear tus propias Gemas personalizadas</li>
-                        </ul>
-                        <p><strong>Para usar las Gemas en la formación, NO necesitas leer esto.</strong> Solo usa los enlaces que están en cada paso.</p>
+                    <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></svg>Crea tu propia Gema personalizada</h3>
+
+                    <p>Automatiza cualquier tarea repetitiva creando una <strong>Gema personalizada</strong> en Gemini. Antes de crear la Gema, es importante tener un buen prompt. Te ofrecemos <strong>dos técnicas</strong> para conseguirlo:</p>
+
+                    <!-- TÉCNICA 1: META-PROMPTING -->
+                    <div style="background: linear-gradient(135deg, rgba(167, 139, 250, 0.1), rgba(0, 212, 170, 0.1)); border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; border: 1px solid rgba(167, 139, 250, 0.3);">
+                        <h4 style="margin-top: 0; color: var(--accent-5);"><svg class="icon" viewBox="0 0 24 24" style="vertical-align: middle;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Técnica 1: Meta-prompting (la IA te pregunta)</h4>
+                        <p>En lugar de escribir tú el prompt completo, <strong>pide a la IA que te haga todas las preguntas necesarias</strong> para entender exactamente qué necesitas. Es como tener un entrevistador experto que sabe qué información necesita.</p>
+
+                        <div class="code-container" style="margin-top: 1rem;">
+                            <div class="code-header">
+                                <span class="code-title">Meta-prompt GENÉRICO (para cualquier tarea)</span>
+                                <button class="btn btn-copy" onclick="copyCode(this)"><svg class="icon" viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>Copiar</button>
+                            </div>
+                            <div class="code-block">Quiero que me ayudes a crear un prompt efectivo para [describe brevemente tu objetivo].
+
+Antes de generar nada, HAZME TODAS LAS PREGUNTAS que necesites para entender exactamente:
+- Qué quiero conseguir
+- En qué contexto lo voy a usar
+- Qué formato o estructura necesito
+- Qué tono o estilo prefiero
+- Cualquier restricción o requisito importante
+
+Haz las preguntas de una en una o en grupos pequeños. Cuando tengas toda la información, genera el prompt optimizado.</div>
+                        </div>
+
+                        <div class="code-container" style="margin-top: 1rem;">
+                            <div class="code-header">
+                                <span class="code-title">Meta-prompt EDUCATIVO (para docentes)</span>
+                                <button class="btn btn-copy" onclick="copyCode(this)"><svg class="icon" viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>Copiar</button>
+                            </div>
+                            <div class="code-block">Soy docente y quiero crear un prompt para [describe brevemente tu objetivo educativo].
+
+Actúa como un experto en diseño instruccional y prompt engineering. Antes de generar el prompt, HAZME PREGUNTAS para conocer:
+
+SOBRE MI CONTEXTO:
+- Etapa educativa y curso
+- Materia o área
+- Características del alumnado (incluyendo diversidad)
+- Normativa o currículo de referencia
+
+SOBRE LA TAREA:
+- Qué quiero conseguir exactamente
+- Cómo voy a usar el resultado
+- Si tengo plantillas o ejemplos de referencia
+
+SOBRE EL FORMATO:
+- Estructura deseada del resultado
+- Extensión aproximada
+- Tono (formal, cercano, técnico...)
+- Idioma (español, gallego, catalán...)
+
+Pregunta lo que necesites en grupos de 3-4 preguntas. Cuando tengas toda la información, genera el prompt optimizado para crear una Gema en Gemini.</div>
+                        </div>
                     </div>
 
-                    <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4Z"/></svg>Cómo crear una Gema en Gemini</h3>
+                    <!-- TÉCNICA 2: MEJORADOR DE GEMINI -->
+                    <div style="background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(245, 166, 35, 0.1)); border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; border: 1px solid rgba(0, 212, 255, 0.3);">
+                        <h4 style="margin-top: 0; color: var(--accent-2);"><svg class="icon" viewBox="0 0 24 24" style="vertical-align: middle;"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg> Técnica 2: Mejorador integrado de Gemini (el "lapicito")</h4>
+                        <p>Gemini tiene un <strong>botón mágico</strong> que mejora automáticamente cualquier instrucción que escribas. Escribe lo que necesitas de forma simple y deja que Gemini lo convierta en un prompt profesional.</p>
 
-                    <h4>¿Qué es una Gema?</h4>
-                    <p>Una Gema es un asistente de IA personalizado en Google Gemini que configuras para realizar tareas específicas. Es como tener un ayudante especializado que sabe exactamente cómo quieres que te responda y qué funciones necesitas.</p>
-                    <p><strong>Lo mejor:</strong> Puedes crear Gemas incluso con el plan gratuito de Gemini.</p>
+                        <h5 style="margin-top: 1.5rem;">Cómo usar el mejorador de Gems:</h5>
 
-                    <h4>Pasos para crear una Gema:</h4>
+                        <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1rem;">
+                            <!-- Paso 1 -->
+                            <div>
+                                <p style="margin-bottom: 0.5rem;"><strong>1. Accede a Gems</strong> desde el menú lateral:</p>
+                                <img src="media/gems-paso1.png" alt="Abrir menú lateral y acceder a Gems" style="max-width: 100%; border-radius: var(--radius); border: 1px solid var(--border); cursor: pointer;" onclick="this.classList.toggle('expanded')" loading="lazy">
+                            </div>
+
+                            <!-- Paso 2 -->
+                            <div>
+                                <p style="margin-bottom: 0.5rem;"><strong>2. Crea un nuevo Gem</strong> o edita uno existente:</p>
+                                <img src="media/gems-paso2.png" alt="Gestor de Gems y botón Nuevo Gem" style="max-width: 100%; border-radius: var(--radius); border: 1px solid var(--border); cursor: pointer;" onclick="this.classList.toggle('expanded')" loading="lazy">
+                            </div>
+
+                            <!-- Paso 3 -->
+                            <div>
+                                <p style="margin-bottom: 0.5rem;"><strong>3. Usa el lapicito</strong> para mejorar tu prompt automáticamente:</p>
+                                <img src="media/gems-paso3.png" alt="Botón del lapicito para mejorar prompt" style="max-width: 100%; border-radius: var(--radius); border: 1px solid var(--border); cursor: pointer;" onclick="this.classList.toggle('expanded')" loading="lazy">
+                            </div>
+
+                            <!-- Paso 4 -->
+                            <div>
+                                <p style="margin-bottom: 0.5rem;"><strong>4. Añade conocimientos</strong> (fuentes de información para tu Gem):</p>
+                                <img src="media/gems-paso4.png" alt="Opciones de conocimientos: archivos, Drive, fotos, código, NotebookLM" style="max-width: 100%; border-radius: var(--radius); border: 1px solid var(--border); cursor: pointer;" onclick="this.classList.toggle('expanded')" loading="lazy">
+                                <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem;">Puedes subir archivos, conectar con Drive, añadir fotos, importar código o vincular un NotebookLM.</p>
+                            </div>
+
+                            <!-- Paso 5 -->
+                            <div>
+                                <p style="margin-bottom: 0.5rem;"><strong>5. Elige una herramienta</strong> (opcional, capacidades extra):</p>
+                                <img src="media/gems-paso5.png" alt="Herramientas: Deep Research, crear vídeos, crear imágenes, Canvas, aprendizaje guiado" style="max-width: 100%; border-radius: var(--radius); border: 1px solid var(--border); cursor: pointer;" onclick="this.classList.toggle('expanded')" loading="lazy">
+                                <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem;">Deep Research, creación de vídeos e imágenes, Canvas para documentos, o aprendizaje guiado.</p>
+                            </div>
+                        </div>
+
+                        <div class="info-box" style="margin-top: 1.5rem; background: rgba(0, 212, 255, 0.1); border-left-color: var(--accent-2);">
+                            <p><strong>Consejo:</strong> Escribe una descripción simple de lo que quieres (ej: "Quiero un asistente que me ayude a crear informes de evaluación para primaria") y pulsa el lapicito. Gemini lo convertirá en instrucciones detalladas y profesionales.</p>
+                        </div>
+                    </div>
+
+                    <!-- SEPARADOR -->
+                    <hr style="border: none; border-top: 1px solid var(--border); margin: 2rem 0;">
+
+                    <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Técnica 3: Meta-Prompt completo (para usuarios avanzados)</h3>
+
+                    <p>Si prefieres tener control total, usa este meta-prompt estructurado que cubre todos los aspectos de una Gema educativa:</p>
+
+                    <h4>Usa este Meta-Prompt en Gemini</h4>
+                    <p>Copia este prompt en un chat de Gemini y completa los campos entre corchetes:</p>
+
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-title">Meta-Prompt: Generador de Gemas</span>
+                            <button class="btn btn-copy" onclick="copyCode(this)"><svg class="icon" viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>Copiar</button>
+                        </div>
+                        <div class="code-block">Quiero crear una Gema en Gemini que me ayude a [DESCRIBE TU TAREA].
+
+CONTEXTO:
+- Nivel educativo (si aplica): [Infantil / Primaria / ESO / Bachillerato / FP / No aplica]
+- Idioma de salida: [Español / Gallego / Catalán / Euskera / Valenciano / Otro]
+- Comunidad autónoma (si aplica normativa específica): [tu comunidad]
+
+TIPO DE TAREA:
+[Describe qué quieres que haga la Gema. Ejemplos:
+- Redactar informes de evaluación
+- Crear actividades educativas
+- Adaptar textos a diferentes niveles
+- Generar comunicaciones a familias
+- Buscar narrativas o recursos
+- Otro: especifica]
+
+ESTRUCTURA O FORMATO DESEADO:
+[Si el resultado debe seguir una estructura específica, descríbela aquí.
+También puedes adjuntar una plantilla o documento de ejemplo]
+
+ESTILO DESEADO:
+- Tono: [Formal / Técnico / Cercano pero profesional / Infantil]
+- Extensión: [Breve / Media / Extensa]
+
+INFORMACIÓN QUE YO PROPORCIONARÉ CADA VEZ:
+[¿Qué datos le darás tú a la Gema cuando la uses?
+Ej: notas del grupo, tema de la actividad, nombre del alumno...]
+
+GENERA las instrucciones completas para crear esta Gema, incluyendo:
+1. Nombre sugerido para la Gema
+2. Descripción breve (1-2 líneas)
+3. Instrucciones detalladas (el "system prompt")</div>
+                    </div>
+
+                    <div class="info-box" style="margin-top: 1.5rem; border-left-color: var(--accent);">
+                        <p><strong><svg class="icon" viewBox="0 0 24 24"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>Adjuntar contenido de referencia (opcional pero recomendado)</strong></p>
+                        <p>Si tienes una plantilla, documento modelo o cualquier contenido de referencia, puedes:</p>
+                        <ul style="margin: 0.5rem 0 0 1.5rem;">
+                            <li><strong>Copiar y pegar el texto</strong> directamente en el chat junto con el meta-prompt</li>
+                            <li><strong>Adjuntar un archivo</strong> (PDF, Word, imagen) usando el clip de Gemini</li>
+                            <li><strong>Subir una foto</strong> de un documento físico</li>
+                        </ul>
+                        <p style="margin-top: 0.75rem; font-size: 0.9rem; color: var(--text-secondary);">Ejemplo: "Adjunto la plantilla del informe de evaluación que usamos en mi centro. Quiero una Gema que genere informes siguiendo exactamente esta estructura."</p>
+                    </div>
+
+                    <h4>Paso 2: Crea la Gema en Gemini</h4>
                     <ol>
                         <li>Ve a <a href="https://gemini.google.com" target="_blank" class="link-button">Google Gemini</a></li>
-                        <li>Clic en el icono que aparece en el margen superior izquierdo con tres líneas horizontales (abre el historial del chat y de las gemas)</li>
-                        <li>Selecciona "Descubrir Gemas" justo debajo de las gemas que tienes fijadas</li>
-                        <li>Clic en "+ Nueva Gema"</li>
-                        <li>Rellena los campos:
-                            <ul>
-                                <li><strong>Nombre:</strong> [Copia el nombre que aparece en cada Gema]</li>
-                                <li><strong>Descripción:</strong> [Copia la descripción (esto es opcional)]</li>
-                                <li><strong>Instrucciones:</strong> [Copia TODO el prompt]</li>
-                            </ul>
-                        </li>
+                        <li>Menú lateral (≡) → "Descubrir Gemas" → "+ Nueva Gema"</li>
+                        <li>Copia el <strong>nombre</strong> y <strong>descripción</strong> que generó Gemini</li>
+                        <li>En "Instrucciones", pega el <strong>system prompt</strong> completo</li>
+                        <li>Guarda tu Gema</li>
                     </ol>
 
-                    <div class="info-box success-box">
-                        <h4><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>TRUCO FUNDAMENTAL: Pídele ayuda a Gemini</h4>
-                        <p>Si no quieres copiar y pegar todo el prompt manualmente, puedes hacer esto:</p>
-                        <ol>
-                            <li>Abre un chat normal en Gemini</li>
-                            <li>Pega TODO el contenido del prompt (el que aparece en cada pestaña)</li>
-                            <li>Escribe: "Crea una Gema con estas instrucciones"</li>
-                            <li>Gemini te creará la Gema automáticamente</li>
-                        </ol>
+                    <h4 style="margin-top: 2rem;">Ideas de Gemas útiles para docentes</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1rem 0;">
+                        <div style="background: var(--bg-elevated); padding: 1rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                            <strong>Informes y documentación</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">Informes de evaluación, actas de reunión, memorias, informes PT/AL</p>
+                        </div>
+                        <div style="background: var(--bg-elevated); padding: 1rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                            <strong>Comunicaciones</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">Circulares a familias, citaciones, correos formales</p>
+                        </div>
+                        <div style="background: var(--bg-elevated); padding: 1rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                            <strong>Material didáctico</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">Actividades, ejercicios, adaptaciones curriculares</p>
+                        </div>
+                        <div style="background: var(--bg-elevated); padding: 1rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                            <strong>Evaluación</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">Rúbricas, criterios, comentarios personalizados</p>
+                        </div>
                     </div>
                 </div>
 
