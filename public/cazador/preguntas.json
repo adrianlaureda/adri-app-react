@@ -1,0 +1,5509 @@
+{
+  "metadata": {
+    "titulo": "El Cazador Ortográfico",
+    "nivel": "2º ESO",
+    "total_preguntas": 500
+  },
+  "preguntas": [
+    {
+      "id": 1,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es la forma correcta?",
+      "opciones": [
+        "espontáneo",
+        "expontáneo"
+      ],
+      "correcta": 0,
+      "explicacion": "Se escribe con 'es-', no con 'ex-'."
+    },
+    {
+      "id": 2,
+      "categoria": "analogias",
+      "pregunta": "Elige la palabra correcta:",
+      "opciones": [
+        "idiosincrasia",
+        "idiosincracia"
+      ],
+      "correcta": 0,
+      "explicacion": "Termina en '-asia', no en '-acia'."
+    },
+    {
+      "id": 3,
+      "categoria": "analogias",
+      "pregunta": "¿Cómo se escribe correctamente?",
+      "opciones": [
+        "satisfecho",
+        "satisfecho"
+      ],
+      "correcta": 0,
+      "explicacion": "Viene de 'satisfacer', con 'ch'."
+    },
+    {
+      "id": 4,
+      "categoria": "analogias",
+      "pregunta": "Selecciona la forma correcta:",
+      "opciones": [
+        "discusión",
+        "discursión"
+      ],
+      "correcta": 0,
+      "explicacion": "Viene de 'discutir', no de 'discurso'."
+    },
+    {
+      "id": 5,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "prever",
+        "preveer"
+      ],
+      "correcta": 0,
+      "explicacion": "Viene de 'ver', no de 'leer'."
+    },
+    {
+      "id": 6,
+      "categoria": "analogias",
+      "pregunta": "Elige la forma correcta:",
+      "opciones": [
+        "espectáculo",
+        "expectáculo"
+      ],
+      "correcta": 0,
+      "explicacion": "Se escribe con 'es-', no con 'ex-'."
+    },
+    {
+      "id": 7,
+      "categoria": "analogias",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "esplendor",
+        "explendor"
+      ],
+      "correcta": 0,
+      "explicacion": "Comienza con 'es-', no con 'ex-'."
+    },
+    {
+      "id": 8,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "espontaneidad",
+        "expontaneidad"
+      ],
+      "correcta": 0,
+      "explicacion": "Deriva de 'espontáneo', con 'es-'."
+    },
+    {
+      "id": 9,
+      "categoria": "analogias",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "estrategia",
+        "extrategia"
+      ],
+      "correcta": 0,
+      "explicacion": "Se escribe con 'es-', no con 'ex-'."
+    },
+    {
+      "id": 10,
+      "categoria": "analogias",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "espléndido",
+        "expléndido"
+      ],
+      "correcta": 0,
+      "explicacion": "Comienza con 'es-', no con 'ex-'."
+    },
+    {
+      "id": 11,
+      "categoria": "analogias",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "escéptico",
+        "excéptico"
+      ],
+      "correcta": 0,
+      "explicacion": "Se escribe con 'es-', no con 'ex-'."
+    },
+    {
+      "id": 12,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "estricto",
+        "extricto"
+      ],
+      "correcta": 0,
+      "explicacion": "Se escribe con 'es-', no con 'ex-'."
+    },
+    {
+      "id": 13,
+      "categoria": "analogias",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "espectador",
+        "expectador"
+      ],
+      "correcta": 0,
+      "explicacion": "Viene de 'espectáculo', con 'es-'."
+    },
+    {
+      "id": 14,
+      "categoria": "analogias",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "injerencia",
+        "ingerencia"
+      ],
+      "correcta": 0,
+      "explicacion": "Con 'j', significa 'intromisión'."
+    },
+    {
+      "id": 15,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "infringir",
+        "inflingir"
+      ],
+      "correcta": 0,
+      "explicacion": "Significa 'quebrantar', con 'fr'."
+    },
+    {
+      "id": 16,
+      "categoria": "analogias",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "influir",
+        "influyir"
+      ],
+      "correcta": 0,
+      "explicacion": "Se escribe sin 'y' en infinitivo."
+    },
+    {
+      "id": 17,
+      "categoria": "analogias",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "subyacer",
+        "subyaser"
+      ],
+      "correcta": 0,
+      "explicacion": "Se escribe con 'c', no con 's'."
+    },
+    {
+      "id": 18,
+      "categoria": "analogias",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "adecuar",
+        "adecúar"
+      ],
+      "correcta": 0,
+      "explicacion": "No lleva tilde, es verbo regular."
+    },
+    {
+      "id": 19,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "licuar",
+        "licúar"
+      ],
+      "correcta": 0,
+      "explicacion": "No lleva tilde en el infinitivo."
+    },
+    {
+      "id": 20,
+      "categoria": "analogias",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "evacuar",
+        "evacúar"
+      ],
+      "correcta": 0,
+      "explicacion": "Verbo regular, sin tilde."
+    },
+    {
+      "id": 21,
+      "categoria": "analogias",
+      "pregunta": "Elige la forma correcta:",
+      "opciones": [
+        "apoteósico",
+        "apoteótico"
+      ],
+      "correcta": 0,
+      "explicacion": "Deriva de 'apoteosis', con 's'."
+    },
+    {
+      "id": 22,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "idiosincrático",
+        "idiosincrásico"
+      ],
+      "correcta": 0,
+      "explicacion": "Termina en '-ático', no en '-ásico'."
+    },
+    {
+      "id": 23,
+      "categoria": "analogias",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "arrojar",
+        "arrogar"
+      ],
+      "correcta": 0,
+      "explicacion": "'Arrojar' es lanzar; 'arrogar' es atribuirse."
+    },
+    {
+      "id": 24,
+      "categoria": "analogias",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "absorber",
+        "absorver"
+      ],
+      "correcta": 0,
+      "explicacion": "Se escribe con 'b', no con 'v'."
+    },
+    {
+      "id": 25,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "adsorber",
+        "adsorver"
+      ],
+      "correcta": 0,
+      "explicacion": "Con 'b'; término científico."
+    },
+    {
+      "id": 26,
+      "categoria": "analogias",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "trasplantar",
+        "transplantar"
+      ],
+      "correcta": 0,
+      "explicacion": "Aunque 'trans-' es correcto, se prefiere 'tras-'."
+    },
+    {
+      "id": 27,
+      "categoria": "analogias",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "deshecho",
+        "desecho"
+      ],
+      "correcta": 0,
+      "explicacion": "'Deshecho' = participio; 'desecho' = residuo."
+    },
+    {
+      "id": 28,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "proveer",
+        "prover"
+      ],
+      "correcta": 0,
+      "explicacion": "Tiene doble 'e', viene de 'provisión'."
+    },
+    {
+      "id": 29,
+      "categoria": "analogias",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "asimismo",
+        "así mismo"
+      ],
+      "correcta": 0,
+      "explicacion": "Junto significa 'también'."
+    },
+    {
+      "id": 30,
+      "categoria": "analogias",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "sobretodo",
+        "sobre todo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Sobre todo' = especialmente; 'sobretodo' = abrigo."
+    },
+    {
+      "id": 31,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "en seguida",
+        "enseguida"
+      ],
+      "correcta": 0,
+      "explicacion": "Ambas son correctas, pero la RAE prefiere 'enseguida'."
+    },
+    {
+      "id": 32,
+      "categoria": "analogias",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "a pesar",
+        "apesar"
+      ],
+      "correcta": 0,
+      "explicacion": "Siempre separado: 'a pesar de'."
+    },
+    {
+      "id": 33,
+      "categoria": "analogias",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "en torno",
+        "entorno"
+      ],
+      "correcta": 0,
+      "explicacion": "'En torno' = alrededor; 'entorno' = ambiente."
+    },
+    {
+      "id": 34,
+      "categoria": "analogias",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "conque",
+        "con que"
+      ],
+      "correcta": 0,
+      "explicacion": "'Conque' = así que; 'con que' = con el cual."
+    },
+    {
+      "id": 35,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "por qué",
+        "porqué"
+      ],
+      "correcta": 0,
+      "explicacion": "'Por qué' pregunta; 'porqué' = motivo."
+    },
+    {
+      "id": 36,
+      "categoria": "analogias",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "porque",
+        "por que"
+      ],
+      "correcta": 0,
+      "explicacion": "'Porque' = causa; 'por que' = por el cual."
+    },
+    {
+      "id": 37,
+      "categoria": "analogias",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "sino",
+        "si no"
+      ],
+      "correcta": 0,
+      "explicacion": "'Sino' = pero; 'si no' = condicional negativo."
+    },
+    {
+      "id": 38,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "aparte",
+        "a parte"
+      ],
+      "correcta": 0,
+      "explicacion": "'Aparte' = separado; 'a parte' = a una parte."
+    },
+    {
+      "id": 39,
+      "categoria": "analogias",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "acerca de",
+        "acerca"
+      ],
+      "correcta": 0,
+      "explicacion": "'Acerca de' = sobre un tema."
+    },
+    {
+      "id": 40,
+      "categoria": "analogias",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "halla",
+        "haya"
+      ],
+      "correcta": 0,
+      "explicacion": "'Halla' = encontrar; 'haya' = subjuntivo de haber."
+    },
+    {
+      "id": 41,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "calló",
+        "cayó"
+      ],
+      "correcta": 0,
+      "explicacion": "'Calló' = guardar silencio; 'cayó' = caer."
+    },
+    {
+      "id": 42,
+      "categoria": "analogias",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "rallado",
+        "rayado"
+      ],
+      "correcta": 0,
+      "explicacion": "'Rallado' = desmenuzado; 'rayado' = con rayas."
+    },
+    {
+      "id": 43,
+      "categoria": "analogias",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "hierba",
+        "hierva"
+      ],
+      "correcta": 0,
+      "explicacion": "'Hierba' = planta; 'hierva' = subjuntivo de hervir."
+    },
+    {
+      "id": 44,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "basto",
+        "vasto"
+      ],
+      "correcta": 0,
+      "explicacion": "'Basto' = tosco; 'vasto' = extenso."
+    },
+    {
+      "id": 45,
+      "categoria": "analogias",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "rebelar",
+        "revelar"
+      ],
+      "correcta": 0,
+      "explicacion": "'Rebelar' = sublevarse; 'revelar' = descubrir."
+    },
+    {
+      "id": 46,
+      "categoria": "analogias",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "grabar",
+        "gravar"
+      ],
+      "correcta": 0,
+      "explicacion": "'Grabar' = registrar; 'gravar' = imponer impuesto."
+    },
+    {
+      "id": 47,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "sabia",
+        "savia"
+      ],
+      "correcta": 0,
+      "explicacion": "'Sabia' = que sabe; 'savia' = líquido vegetal."
+    },
+    {
+      "id": 48,
+      "categoria": "analogias",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "cebo",
+        "sebo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Cebo' = carnada; 'sebo' = grasa."
+    },
+    {
+      "id": 49,
+      "categoria": "analogias",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "cien",
+        "ciento"
+      ],
+      "correcta": 0,
+      "explicacion": "'Cien' ante sustantivo; 'ciento' en otros casos."
+    },
+    {
+      "id": 50,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "veintiún",
+        "veintiuno"
+      ],
+      "correcta": 0,
+      "explicacion": "'Veintiún' ante sustantivo masculino."
+    },
+    {
+      "id": 51,
+      "categoria": "analogias",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "decimoprimero",
+        "undécimo"
+      ],
+      "correcta": 0,
+      "explicacion": "Ambas correctas, 'undécimo' es más formal."
+    },
+    {
+      "id": 52,
+      "categoria": "analogias",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "vigésimo",
+        "veintésimo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Vigésimo' es el ordinal de veinte."
+    },
+    {
+      "id": 53,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "milésimo",
+        "milesimo"
+      ],
+      "correcta": 0,
+      "explicacion": "Lleva tilde: 'milésimo'."
+    },
+    {
+      "id": 54,
+      "categoria": "analogias",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "centésimo",
+        "centesimo"
+      ],
+      "correcta": 0,
+      "explicacion": "Lleva tilde: 'centésimo'."
+    },
+    {
+      "id": 55,
+      "categoria": "analogias",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "décimo",
+        "decimo"
+      ],
+      "correcta": 0,
+      "explicacion": "Lleva tilde: 'décimo'."
+    },
+    {
+      "id": 56,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "friísimo",
+        "frísimo"
+      ],
+      "correcta": 0,
+      "explicacion": "Superlativo de 'frío': 'friísimo'."
+    },
+    {
+      "id": 57,
+      "categoria": "analogias",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "fortísimo",
+        "fuertísimo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Fortísimo' es el superlativo correcto."
+    },
+    {
+      "id": 58,
+      "categoria": "analogias",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "paupérrimo",
+        "pobrísimo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Paupérrimo' es el superlativo culto de 'pobre'."
+    },
+    {
+      "id": 59,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "misérrimo",
+        "miserabilísimo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Misérrimo' es el superlativo de 'mísero'."
+    },
+    {
+      "id": 60,
+      "categoria": "analogias",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "celebérrimo",
+        "celebrísimo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Celebérrimo' es el superlativo culto."
+    },
+    {
+      "id": 61,
+      "categoria": "analogias",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "libérrimo",
+        "librísimo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Libérrimo' es el superlativo de 'libre'."
+    },
+    {
+      "id": 62,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "novísimo",
+        "nuevísimo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Novísimo' es el superlativo de 'nuevo'."
+    },
+    {
+      "id": 63,
+      "categoria": "analogias",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "antiquísimo",
+        "antigüísimo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Antiquísimo' es el superlativo de 'antiguo'."
+    },
+    {
+      "id": 64,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Pienso que vendrá",
+        "Pienso de que vendrá"
+      ],
+      "correcta": 0,
+      "explicacion": "'Pensar' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 65,
+      "categoria": "dequeismo",
+      "pregunta": "Elige la forma correcta:",
+      "opciones": [
+        "Creo que es verdad",
+        "Creo de que es verdad"
+      ],
+      "correcta": 0,
+      "explicacion": "'Creer' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 66,
+      "categoria": "dequeismo",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Dijo que llegaría tarde",
+        "Dijo de que llegaría tarde"
+      ],
+      "correcta": 0,
+      "explicacion": "'Decir' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 67,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Opino que deberías estudiar",
+        "Opino de que deberías estudiar"
+      ],
+      "correcta": 0,
+      "explicacion": "'Opinar' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 68,
+      "categoria": "dequeismo",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Es seguro que aprobará",
+        "Es seguro de que aprobará"
+      ],
+      "correcta": 0,
+      "explicacion": "'Es seguro' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 69,
+      "categoria": "dequeismo",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "Es cierto que lo vio",
+        "Es cierto de que lo vio"
+      ],
+      "correcta": 0,
+      "explicacion": "'Es cierto' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 70,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "Es evidente que miente",
+        "Es evidente de que miente"
+      ],
+      "correcta": 0,
+      "explicacion": "'Es evidente' no lleva 'de'."
+    },
+    {
+      "id": 71,
+      "categoria": "dequeismo",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "Es probable que llueva",
+        "Es probable de que llueva"
+      ],
+      "correcta": 0,
+      "explicacion": "'Es probable' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 72,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Resulta que no vino",
+        "Resulta de que no vino"
+      ],
+      "correcta": 0,
+      "explicacion": "'Resultar' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 73,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Supongo que estará bien",
+        "Supongo de que estará bien"
+      ],
+      "correcta": 0,
+      "explicacion": "'Suponer' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 74,
+      "categoria": "dequeismo",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "Imagino que vendrás",
+        "Imagino de que vendrás"
+      ],
+      "correcta": 0,
+      "explicacion": "'Imaginar' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 75,
+      "categoria": "dequeismo",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Espero que te guste",
+        "Espero de que te guste"
+      ],
+      "correcta": 0,
+      "explicacion": "'Esperar' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 76,
+      "categoria": "dequeismo",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Deseo que seas feliz",
+        "Deseo de que seas feliz"
+      ],
+      "correcta": 0,
+      "explicacion": "'Desear' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 77,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "Siento que me equivoqué",
+        "Siento de que me equivoqué"
+      ],
+      "correcta": 0,
+      "explicacion": "'Sentir' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 78,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Parece que va a nevar",
+        "Parece de que va a nevar"
+      ],
+      "correcta": 0,
+      "explicacion": "'Parecer' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 79,
+      "categoria": "dequeismo",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "Sucede que no hay tiempo",
+        "Sucede de que no hay tiempo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Suceder' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 80,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Ocurre que no tengo dinero",
+        "Ocurre de que no tengo dinero"
+      ],
+      "correcta": 0,
+      "explicacion": "'Ocurrir' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 81,
+      "categoria": "dequeismo",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "Afirmo que es inocente",
+        "Afirmo de que es inocente"
+      ],
+      "correcta": 0,
+      "explicacion": "'Afirmar' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 82,
+      "categoria": "dequeismo",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Niego que lo hiciera",
+        "Niego de que lo hiciera"
+      ],
+      "correcta": 0,
+      "explicacion": "'Negar' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 83,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "Comunico que el examen es mañana",
+        "Comunico de que el examen es mañana"
+      ],
+      "correcta": 0,
+      "explicacion": "'Comunicar' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 84,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Considero que es injusto",
+        "Considero de que es injusto"
+      ],
+      "correcta": 0,
+      "explicacion": "'Considerar' no lleva 'de'."
+    },
+    {
+      "id": 85,
+      "categoria": "dequeismo",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "Entiendo que estés enfadado",
+        "Entiendo de que estés enfadado"
+      ],
+      "correcta": 0,
+      "explicacion": "'Entender' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 86,
+      "categoria": "dequeismo",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Comprendo que no quieras",
+        "Comprendo de que no quieras"
+      ],
+      "correcta": 0,
+      "explicacion": "'Comprender' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 87,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Veo que has mejorado",
+        "Veo de que has mejorado"
+      ],
+      "correcta": 0,
+      "explicacion": "'Ver' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 88,
+      "categoria": "dequeismo",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Oigo que cantan",
+        "Oigo de que cantan"
+      ],
+      "correcta": 0,
+      "explicacion": "'Oír' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 89,
+      "categoria": "dequeismo",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "Noto que estás nervioso",
+        "Noto de que estás nervioso"
+      ],
+      "correcta": 0,
+      "explicacion": "'Notar' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 90,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "Observo que faltan datos",
+        "Observo de que faltan datos"
+      ],
+      "correcta": 0,
+      "explicacion": "'Observar' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 91,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Advierto que hay peligro",
+        "Advierto de que hay peligro"
+      ],
+      "correcta": 0,
+      "explicacion": "'Advertir' no lleva 'de' en este contexto."
+    },
+    {
+      "id": 92,
+      "categoria": "dequeismo",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "Admito que me equivoqué",
+        "Admito de que me equivoqué"
+      ],
+      "correcta": 0,
+      "explicacion": "'Admitir' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 93,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Reconozco que fallé",
+        "Reconozco de que fallé"
+      ],
+      "correcta": 0,
+      "explicacion": "'Reconocer' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 94,
+      "categoria": "dequeismo",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "Acepto que me gané",
+        "Acepto de que me ganaste"
+      ],
+      "correcta": 0,
+      "explicacion": "'Aceptar' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 95,
+      "categoria": "dequeismo",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Propongo que votemos",
+        "Propongo de que votemos"
+      ],
+      "correcta": 0,
+      "explicacion": "'Proponer' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 96,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "Sugiero que descanses",
+        "Sugiero de que descanses"
+      ],
+      "correcta": 0,
+      "explicacion": "'Sugerir' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 97,
+      "categoria": "dequeismo",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Recomiendo que estudies",
+        "Recomiendo de que estudies"
+      ],
+      "correcta": 0,
+      "explicacion": "'Recomendar' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 98,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Exijo que me escuches",
+        "Exijo de que me escuches"
+      ],
+      "correcta": 0,
+      "explicacion": "'Exigir' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 99,
+      "categoria": "dequeismo",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "Pido que vengas",
+        "Pido de que vengas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Pedir' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 100,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Ruego que me perdones",
+        "Ruego de que me perdones"
+      ],
+      "correcta": 0,
+      "explicacion": "'Rogar' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 101,
+      "categoria": "dequeismo",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "Ordeno que te calles",
+        "Ordeno de que te calles"
+      ],
+      "correcta": 0,
+      "explicacion": "'Ordenar' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 102,
+      "categoria": "dequeismo",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Mando que lo hagas",
+        "Mando de que lo hagas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Mandar' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 103,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "Permito que salgas",
+        "Permito de que salgas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Permitir' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 104,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Prohíbo que fumes",
+        "Prohíbo de que fumes"
+      ],
+      "correcta": 0,
+      "explicacion": "'Prohibir' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 105,
+      "categoria": "dequeismo",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "Impido que entre",
+        "Impido de que entre"
+      ],
+      "correcta": 0,
+      "explicacion": "'Impedir' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 106,
+      "categoria": "dequeismo",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Evito que se caiga",
+        "Evito de que se caiga"
+      ],
+      "correcta": 0,
+      "explicacion": "'Evitar' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 107,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Logro que me entienda",
+        "Logro de que me entienda"
+      ],
+      "correcta": 0,
+      "explicacion": "'Lograr' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 108,
+      "categoria": "dequeismo",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Consigo que funcione",
+        "Consigo de que funcione"
+      ],
+      "correcta": 0,
+      "explicacion": "'Conseguir' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 109,
+      "categoria": "dequeismo",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "Procuro que no falte nada",
+        "Procuro de que no falte nada"
+      ],
+      "correcta": 0,
+      "explicacion": "'Procurar' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 110,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "Intento que salga bien",
+        "Intento de que salga bien"
+      ],
+      "correcta": 0,
+      "explicacion": "'Intentar' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 111,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Temo que llegue tarde",
+        "Temo de que llegue tarde"
+      ],
+      "correcta": 0,
+      "explicacion": "'Temer' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 112,
+      "categoria": "dequeismo",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "Me preocupa que no coma",
+        "Me preocupa de que no coma"
+      ],
+      "correcta": 0,
+      "explicacion": "'Preocupar' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 113,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Me molesta que grites",
+        "Me molesta de que grites"
+      ],
+      "correcta": 0,
+      "explicacion": "'Molestar' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 114,
+      "categoria": "dequeismo",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "Me extraña que no llame",
+        "Me extraña de que no llame"
+      ],
+      "correcta": 0,
+      "explicacion": "'Extrañar' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 115,
+      "categoria": "dequeismo",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Me sorprende que venga",
+        "Me sorprende de que venga"
+      ],
+      "correcta": 0,
+      "explicacion": "'Sorprender' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 116,
+      "categoria": "dequeismo",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Me agrada que estés aquí",
+        "Me agrada de que estés aquí"
+      ],
+      "correcta": 0,
+      "explicacion": "'Agradar' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 117,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "Me encanta que sonrías",
+        "Me encanta de que sonrías"
+      ],
+      "correcta": 0,
+      "explicacion": "'Encantar' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 118,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Me fastidia que mienta",
+        "Me fastidia de que mienta"
+      ],
+      "correcta": 0,
+      "explicacion": "'Fastidiar' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 119,
+      "categoria": "dequeismo",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "Me irrita que llegue tarde",
+        "Me irrita de que llegue tarde"
+      ],
+      "correcta": 0,
+      "explicacion": "'Irritar' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 120,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Me enfada que no estudie",
+        "Me enfada de que no estudie"
+      ],
+      "correcta": 0,
+      "explicacion": "'Enfadar' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 121,
+      "categoria": "dequeismo",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "Me entristece que se vaya",
+        "Me entristece de que se vaya"
+      ],
+      "correcta": 0,
+      "explicacion": "'Entristecer' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 122,
+      "categoria": "dequeismo",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Me alegra que apruebes",
+        "Me alegra de que apruebes"
+      ],
+      "correcta": 0,
+      "explicacion": "'Alegrar' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 123,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "Me consta que es verdad",
+        "Me consta de que es verdad"
+      ],
+      "correcta": 0,
+      "explicacion": "'Constar' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 124,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Está claro que miente",
+        "Está claro de que miente"
+      ],
+      "correcta": 0,
+      "explicacion": "'Estar claro' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 125,
+      "categoria": "dequeismo",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "Es obvio que lo sabe",
+        "Es obvio de que lo sabe"
+      ],
+      "correcta": 0,
+      "explicacion": "'Es obvio' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 126,
+      "categoria": "dequeismo",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Es lógico que proteste",
+        "Es lógico de que proteste"
+      ],
+      "correcta": 0,
+      "explicacion": "'Es lógico' no lleva 'de' antes de 'que'."
+    },
+    {
+      "id": 127,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Me alegro de que vengas",
+        "Me alegro que vengas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Alegrarse' rige preposición 'de'."
+    },
+    {
+      "id": 128,
+      "categoria": "queismo",
+      "pregunta": "Elige la forma correcta:",
+      "opciones": [
+        "Estoy seguro de que aprobará",
+        "Estoy seguro que aprobará"
+      ],
+      "correcta": 0,
+      "explicacion": "'Estar seguro' lleva 'de que'."
+    },
+    {
+      "id": 129,
+      "categoria": "queismo",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Me di cuenta de que llovía",
+        "Me di cuenta que llovía"
+      ],
+      "correcta": 0,
+      "explicacion": "'Darse cuenta' siempre lleva 'de'."
+    },
+    {
+      "id": 130,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "No cabe duda de que es él",
+        "No cabe duda que es él"
+      ],
+      "correcta": 0,
+      "explicacion": "'Caber duda' lleva 'de que'."
+    },
+    {
+      "id": 131,
+      "categoria": "queismo",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Me enteré de que se casó",
+        "Me enteré que se casó"
+      ],
+      "correcta": 0,
+      "explicacion": "'Enterarse' rige preposición 'de'."
+    },
+    {
+      "id": 132,
+      "categoria": "queismo",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "Me olvidé de que tenía cita",
+        "Me olvidé que tenía cita"
+      ],
+      "correcta": 0,
+      "explicacion": "'Olvidarse' lleva 'de que'."
+    },
+    {
+      "id": 133,
+      "categoria": "queismo",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "Me acordé de que era su cumpleaños",
+        "Me acordé que era su cumpleaños"
+      ],
+      "correcta": 0,
+      "explicacion": "'Acordarse' rige preposición 'de'."
+    },
+    {
+      "id": 134,
+      "categoria": "queismo",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "Me arrepiento de que lo hice",
+        "Me arrepiento que lo hice"
+      ],
+      "correcta": 0,
+      "explicacion": "'Arrepentirse' lleva 'de que'."
+    },
+    {
+      "id": 135,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Me quejé de que hacía frío",
+        "Me quejé que hacía frío"
+      ],
+      "correcta": 0,
+      "explicacion": "'Quejarse' rige preposición 'de'."
+    },
+    {
+      "id": 136,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Se trata de que participen todos",
+        "Se trata que participen todos"
+      ],
+      "correcta": 0,
+      "explicacion": "'Tratarse' lleva 'de que'."
+    },
+    {
+      "id": 137,
+      "categoria": "queismo",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "Tengo miedo de que suspenda",
+        "Tengo miedo que suspenda"
+      ],
+      "correcta": 0,
+      "explicacion": "'Tener miedo' lleva 'de que'."
+    },
+    {
+      "id": 138,
+      "categoria": "queismo",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Tengo ganas de que llegue el verano",
+        "Tengo ganas que llegue el verano"
+      ],
+      "correcta": 0,
+      "explicacion": "'Tener ganas' lleva 'de que'."
+    },
+    {
+      "id": 139,
+      "categoria": "queismo",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Tengo la impresión de que miente",
+        "Tengo la impresión que miente"
+      ],
+      "correcta": 0,
+      "explicacion": "'Tener la impresión' lleva 'de que'."
+    },
+    {
+      "id": 140,
+      "categoria": "queismo",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "Tengo la sensación de que me observan",
+        "Tengo la sensación que me observan"
+      ],
+      "correcta": 0,
+      "explicacion": "'Tener la sensación' lleva 'de que'."
+    },
+    {
+      "id": 141,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Tengo la certeza de que vendrá",
+        "Tengo la certeza que vendrá"
+      ],
+      "correcta": 0,
+      "explicacion": "'Tener la certeza' lleva 'de que'."
+    },
+    {
+      "id": 142,
+      "categoria": "queismo",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "Estoy convencido de que es inocente",
+        "Estoy convencido que es inocente"
+      ],
+      "correcta": 0,
+      "explicacion": "'Estar convencido' lleva 'de que'."
+    },
+    {
+      "id": 143,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Estoy harto de que no me escuches",
+        "Estoy harto que no me escuches"
+      ],
+      "correcta": 0,
+      "explicacion": "'Estar harto' lleva 'de que'."
+    },
+    {
+      "id": 144,
+      "categoria": "queismo",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "Estoy cansado de que llegues tarde",
+        "Estoy cansado que llegues tarde"
+      ],
+      "correcta": 0,
+      "explicacion": "'Estar cansado' lleva 'de que'."
+    },
+    {
+      "id": 145,
+      "categoria": "queismo",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Estoy pendiente de que me llamen",
+        "Estoy pendiente que me llamen"
+      ],
+      "correcta": 0,
+      "explicacion": "'Estar pendiente' lleva 'de que'."
+    },
+    {
+      "id": 146,
+      "categoria": "queismo",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "Estoy orgulloso de que hayas ganado",
+        "Estoy orgulloso que hayas ganado"
+      ],
+      "correcta": 0,
+      "explicacion": "'Estar orgulloso' lleva 'de que'."
+    },
+    {
+      "id": 147,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Me avergüenzo de que lo sepan",
+        "Me avergüenzo que lo sepan"
+      ],
+      "correcta": 0,
+      "explicacion": "'Avergonzarse' rige preposición 'de'."
+    },
+    {
+      "id": 148,
+      "categoria": "queismo",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "Me preocupo de que no falte nada",
+        "Me preocupo que no falte nada"
+      ],
+      "correcta": 0,
+      "explicacion": "'Preocuparse' lleva 'de que'."
+    },
+    {
+      "id": 149,
+      "categoria": "queismo",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Me encargo de que todo esté listo",
+        "Me encargo que todo esté listo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Encargarse' rige preposición 'de'."
+    },
+    {
+      "id": 150,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Me aseguro de que funcione",
+        "Me aseguro que funcione"
+      ],
+      "correcta": 0,
+      "explicacion": "'Asegurarse' lleva 'de que'."
+    },
+    {
+      "id": 151,
+      "categoria": "queismo",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Me fío de que cumplirá",
+        "Me fío que cumplirá"
+      ],
+      "correcta": 0,
+      "explicacion": "'Fiarse' rige preposición 'de'."
+    },
+    {
+      "id": 152,
+      "categoria": "queismo",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "Me percaté de que faltaba algo",
+        "Me percaté que faltaba algo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Percatarse' lleva 'de que'."
+    },
+    {
+      "id": 153,
+      "categoria": "queismo",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "Se aprovechó de que estaba distraído",
+        "Se aprovechó que estaba distraído"
+      ],
+      "correcta": 0,
+      "explicacion": "'Aprovecharse' lleva 'de que'."
+    },
+    {
+      "id": 154,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Se quejó de que no le avisaron",
+        "Se quejó que no le avisaron"
+      ],
+      "correcta": 0,
+      "explicacion": "'Quejarse' rige preposición 'de'."
+    },
+    {
+      "id": 155,
+      "categoria": "queismo",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "Se olvidó de que tenía que llamar",
+        "Se olvidó que tenía que llamar"
+      ],
+      "correcta": 0,
+      "explicacion": "'Olvidarse' lleva 'de que'."
+    },
+    {
+      "id": 156,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Se alegró de que aprobaras",
+        "Se alegró que aprobaras"
+      ],
+      "correcta": 0,
+      "explicacion": "'Alegrarse' rige preposición 'de'."
+    },
+    {
+      "id": 157,
+      "categoria": "queismo",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "Se enteró de que lo despidieron",
+        "Se enteró que lo despidieron"
+      ],
+      "correcta": 0,
+      "explicacion": "'Enterarse' lleva 'de que'."
+    },
+    {
+      "id": 158,
+      "categoria": "queismo",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Se dio cuenta de que era tarde",
+        "Se dio cuenta que era tarde"
+      ],
+      "correcta": 0,
+      "explicacion": "'Darse cuenta' siempre lleva 'de'."
+    },
+    {
+      "id": 159,
+      "categoria": "queismo",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Se acordó de que era festivo",
+        "Se acordó que era festivo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Acordarse' rige preposición 'de'."
+    },
+    {
+      "id": 160,
+      "categoria": "queismo",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "Se arrepintió de que lo supieran",
+        "Se arrepintió que lo supieran"
+      ],
+      "correcta": 0,
+      "explicacion": "'Arrepentirse' lleva 'de que'."
+    },
+    {
+      "id": 161,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Depende de que aprueben el proyecto",
+        "Depende que aprueben el proyecto"
+      ],
+      "correcta": 0,
+      "explicacion": "'Depender' rige preposición 'de'."
+    },
+    {
+      "id": 162,
+      "categoria": "queismo",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "Consta de que asistió",
+        "Consta que asistió"
+      ],
+      "correcta": 0,
+      "explicacion": "'Constar' en este sentido lleva 'de que'."
+    },
+    {
+      "id": 163,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Se jacta de que es el mejor",
+        "Se jacta que es el mejor"
+      ],
+      "correcta": 0,
+      "explicacion": "'Jactarse' rige preposición 'de'."
+    },
+    {
+      "id": 164,
+      "categoria": "queismo",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "Se ufana de que ganó",
+        "Se ufana que ganó"
+      ],
+      "correcta": 0,
+      "explicacion": "'Ufanarse' lleva 'de que'."
+    },
+    {
+      "id": 165,
+      "categoria": "queismo",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Se vanagloria de que lo consiguió",
+        "Se vanagloria que lo consiguió"
+      ],
+      "correcta": 0,
+      "explicacion": "'Vanagloriarse' lleva 'de que'."
+    },
+    {
+      "id": 166,
+      "categoria": "queismo",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "Presumo de que soy puntual",
+        "Presumo que soy puntual"
+      ],
+      "correcta": 0,
+      "explicacion": "'Presumir de' lleva 'de que'."
+    },
+    {
+      "id": 167,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Informó de que había cambios",
+        "Informó que había cambios"
+      ],
+      "correcta": 0,
+      "explicacion": "'Informar de' lleva 'de que'."
+    },
+    {
+      "id": 168,
+      "categoria": "queismo",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "Avisó de que llegaría tarde",
+        "Avisó que llegaría tarde"
+      ],
+      "correcta": 0,
+      "explicacion": "'Avisar de' lleva 'de que'."
+    },
+    {
+      "id": 169,
+      "categoria": "queismo",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Advirtió de que era peligroso",
+        "Advirtió que era peligroso"
+      ],
+      "correcta": 0,
+      "explicacion": "'Advertir de' lleva 'de que'."
+    },
+    {
+      "id": 170,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Convenció de que era necesario",
+        "Convenció que era necesario"
+      ],
+      "correcta": 0,
+      "explicacion": "'Convencer de' lleva 'de que'."
+    },
+    {
+      "id": 171,
+      "categoria": "queismo",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Persuadió de que aceptara",
+        "Persuadió que aceptara"
+      ],
+      "correcta": 0,
+      "explicacion": "'Persuadir de' lleva 'de que'."
+    },
+    {
+      "id": 172,
+      "categoria": "queismo",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "Se cercioró de que estaba bien",
+        "Se cercioró que estaba bien"
+      ],
+      "correcta": 0,
+      "explicacion": "'Cerciorarse' rige preposición 'de'."
+    },
+    {
+      "id": 173,
+      "categoria": "queismo",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "Se lamentó de que no vinieran",
+        "Se lamentó que no vinieran"
+      ],
+      "correcta": 0,
+      "explicacion": "'Lamentarse' lleva 'de que'."
+    },
+    {
+      "id": 174,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Se congratuló de que ganaran",
+        "Se congratuló que ganaran"
+      ],
+      "correcta": 0,
+      "explicacion": "'Congratularse' lleva 'de que'."
+    },
+    {
+      "id": 175,
+      "categoria": "queismo",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "Se enorgullece de que sea su hijo",
+        "Se enorgullece que sea su hijo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Enorgullecerse' lleva 'de que'."
+    },
+    {
+      "id": 176,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Se abstuvo de que lo vieran",
+        "Se abstuvo que lo vieran"
+      ],
+      "correcta": 0,
+      "explicacion": "'Abstenerse' rige preposición 'de'."
+    },
+    {
+      "id": 177,
+      "categoria": "queismo",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "Se cuidó de que no faltara nada",
+        "Se cuidó que no faltara nada"
+      ],
+      "correcta": 0,
+      "explicacion": "'Cuidarse de' lleva 'de que'."
+    },
+    {
+      "id": 178,
+      "categoria": "queismo",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Se libró de que lo castigaran",
+        "Se libró que lo castigaran"
+      ],
+      "correcta": 0,
+      "explicacion": "'Librarse de' lleva 'de que'."
+    },
+    {
+      "id": 179,
+      "categoria": "queismo",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Se salvó de que lo atropellaran",
+        "Se salvó que lo atropellaran"
+      ],
+      "correcta": 0,
+      "explicacion": "'Salvarse de' lleva 'de que'."
+    },
+    {
+      "id": 180,
+      "categoria": "queismo",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "Se escapa de que lo vean",
+        "Se escapa que lo vean"
+      ],
+      "correcta": 0,
+      "explicacion": "'Escaparse de' lleva 'de que'."
+    },
+    {
+      "id": 181,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Se protege de que le hagan daño",
+        "Se protege que le hagan daño"
+      ],
+      "correcta": 0,
+      "explicacion": "'Protegerse de' lleva 'de que'."
+    },
+    {
+      "id": 182,
+      "categoria": "queismo",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "Se guarda de que lo descubran",
+        "Se guarda que lo descubran"
+      ],
+      "correcta": 0,
+      "explicacion": "'Guardarse de' lleva 'de que'."
+    },
+    {
+      "id": 183,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Acuérdate de que tienes cita",
+        "Acuérdate que tienes cita"
+      ],
+      "correcta": 0,
+      "explicacion": "'Acordarse' siempre lleva 'de'."
+    },
+    {
+      "id": 184,
+      "categoria": "queismo",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "Olvídate de que existió",
+        "Olvídate que existió"
+      ],
+      "correcta": 0,
+      "explicacion": "'Olvidarse' rige preposición 'de'."
+    },
+    {
+      "id": 185,
+      "categoria": "queismo",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Alégrate de que haya venido",
+        "Alégrate que haya venido"
+      ],
+      "correcta": 0,
+      "explicacion": "'Alegrarse' lleva 'de que'."
+    },
+    {
+      "id": 186,
+      "categoria": "queismo",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "Encárgate de que no falte nada",
+        "Encárgate que no falte nada"
+      ],
+      "correcta": 0,
+      "explicacion": "'Encargarse' rige preposición 'de'."
+    },
+    {
+      "id": 187,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Asegúrate de que esté cerrado",
+        "Asegúrate que esté cerrado"
+      ],
+      "correcta": 0,
+      "explicacion": "'Asegurarse' lleva 'de que'."
+    },
+    {
+      "id": 188,
+      "categoria": "queismo",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "Preocúpate de que estudie",
+        "Preocúpate que estudie"
+      ],
+      "correcta": 0,
+      "explicacion": "'Preocuparse de' lleva 'de que'."
+    },
+    {
+      "id": 189,
+      "categoria": "queismo",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Fíate de que cumplirá",
+        "Fíate que cumplirá"
+      ],
+      "correcta": 0,
+      "explicacion": "'Fiarse' rige preposición 'de'."
+    },
+    {
+      "id": 190,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Hubo muchos accidentes",
+        "Hubieron muchos accidentes"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre va en singular."
+    },
+    {
+      "id": 191,
+      "categoria": "haber_impersonal",
+      "pregunta": "Elige la forma correcta:",
+      "opciones": [
+        "Había tres personas",
+        "Habían tres personas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal no se pluraliza."
+    },
+    {
+      "id": 192,
+      "categoria": "haber_impersonal",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Habrá problemas",
+        "Habrán problemas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre en singular."
+    },
+    {
+      "id": 193,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Ha habido quejas",
+        "Han habido quejas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal va en singular."
+    },
+    {
+      "id": 194,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Puede haber errores",
+        "Pueden haber errores"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 195,
+      "categoria": "haber_impersonal",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "Debe haber soluciones",
+        "Deben haber soluciones"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal no se pluraliza."
+    },
+    {
+      "id": 196,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "Tiene que haber razones",
+        "Tienen que haber razones"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 197,
+      "categoria": "haber_impersonal",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "Suele haber atascos",
+        "Suelen haber atascos"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal va en singular."
+    },
+    {
+      "id": 198,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Hubo fiestas",
+        "Hubieron fiestas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 199,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Había muchos invitados",
+        "Habían muchos invitados"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal no se pluraliza."
+    },
+    {
+      "id": 200,
+      "categoria": "haber_impersonal",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "Habrá sorpresas",
+        "Habrán sorpresas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 201,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Ha habido cambios",
+        "Han habido cambios"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal va en singular."
+    },
+    {
+      "id": 202,
+      "categoria": "haber_impersonal",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Hubo manifestaciones",
+        "Hubieron manifestaciones"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 203,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "Había veinte alumnos",
+        "Habían veinte alumnos"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal no se pluraliza."
+    },
+    {
+      "id": 204,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Habrá consecuencias",
+        "Habrán consecuencias"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 205,
+      "categoria": "haber_impersonal",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "Ha habido retrasos",
+        "Han habido retrasos"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal va en singular."
+    },
+    {
+      "id": 206,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Hubo varios heridos",
+        "Hubieron varios heridos"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 207,
+      "categoria": "haber_impersonal",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "Había pocas opciones",
+        "Habían pocas opciones"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal no se pluraliza."
+    },
+    {
+      "id": 208,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Habrá elecciones",
+        "Habrán elecciones"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 209,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "Ha habido incidentes",
+        "Han habido incidentes"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal va en singular."
+    },
+    {
+      "id": 210,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Hubo aplausos",
+        "Hubieron aplausos"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 211,
+      "categoria": "haber_impersonal",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "Había cien personas",
+        "Habían cien personas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal no se pluraliza."
+    },
+    {
+      "id": 212,
+      "categoria": "haber_impersonal",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Habrá novedades",
+        "Habrán novedades"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 213,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Ha habido protestas",
+        "Han habido protestas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal va en singular."
+    },
+    {
+      "id": 214,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Hubo tormentas",
+        "Hubieron tormentas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 215,
+      "categoria": "haber_impersonal",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "Había suficientes sillas",
+        "Habían suficientes sillas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal no se pluraliza."
+    },
+    {
+      "id": 216,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "Habrá oportunidades",
+        "Habrán oportunidades"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 217,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Ha habido mejoras",
+        "Han habido mejoras"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal va en singular."
+    },
+    {
+      "id": 218,
+      "categoria": "haber_impersonal",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "Hubo dos ganadores",
+        "Hubieron dos ganadores"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 219,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Había bastantes razones",
+        "Habían bastantes razones"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal no se pluraliza."
+    },
+    {
+      "id": 220,
+      "categoria": "haber_impersonal",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "Habrá dificultades",
+        "Habrán dificultades"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 221,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Ha habido recortes",
+        "Han habido recortes"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal va en singular."
+    },
+    {
+      "id": 222,
+      "categoria": "haber_impersonal",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Hubo varias reuniones",
+        "Hubieron varias reuniones"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 223,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "Había demasiados coches",
+        "Habían demasiados coches"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal no se pluraliza."
+    },
+    {
+      "id": 224,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Habrá más ofertas",
+        "Habrán más ofertas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 225,
+      "categoria": "haber_impersonal",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "Ha habido avances",
+        "Han habido avances"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal va en singular."
+    },
+    {
+      "id": 226,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Hubo cinco candidatos",
+        "Hubieron cinco candidatos"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 227,
+      "categoria": "haber_impersonal",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "Había algunos problemas",
+        "Habían algunos problemas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal no se pluraliza."
+    },
+    {
+      "id": 228,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Habrá nuevas reglas",
+        "Habrán nuevas reglas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 229,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "Ha habido críticas",
+        "Han habido críticas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal va en singular."
+    },
+    {
+      "id": 230,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Puede haber muchas causas",
+        "Pueden haber muchas causas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 231,
+      "categoria": "haber_impersonal",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "Debe haber más recursos",
+        "Deben haber más recursos"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal no se pluraliza."
+    },
+    {
+      "id": 232,
+      "categoria": "haber_impersonal",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Tiene que haber explicaciones",
+        "Tienen que haber explicaciones"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 233,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Suele haber retrasos",
+        "Suelen haber retrasos"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal va en singular."
+    },
+    {
+      "id": 234,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Va a haber cambios",
+        "Van a haber cambios"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 235,
+      "categoria": "haber_impersonal",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "Podría haber excepciones",
+        "Podrían haber excepciones"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal no se pluraliza."
+    },
+    {
+      "id": 236,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "Debería haber alternativas",
+        "Deberían haber alternativas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 237,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Solía haber menos coches",
+        "Solían haber menos coches"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal va en singular."
+    },
+    {
+      "id": 238,
+      "categoria": "haber_impersonal",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "Iba a haber sorpresas",
+        "Iban a haber sorpresas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 239,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Pudo haber víctimas",
+        "Pudieron haber víctimas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal no se pluraliza."
+    },
+    {
+      "id": 240,
+      "categoria": "haber_impersonal",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "Hubo que tomar medidas",
+        "Hubieron que tomar medidas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 241,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Había que esperar",
+        "Habían que esperar"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal va en singular."
+    },
+    {
+      "id": 242,
+      "categoria": "haber_impersonal",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Habrá que decidir",
+        "Habrán que decidir"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 243,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "Ha habido que cancelar",
+        "Han habido que cancelar"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal no se pluraliza."
+    },
+    {
+      "id": 244,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Hubo muchos asistentes",
+        "Hubieron muchos asistentes"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 245,
+      "categoria": "haber_impersonal",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "Había bastante gente",
+        "Habían bastante gente"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal va en singular."
+    },
+    {
+      "id": 246,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Habrá miles de personas",
+        "Habrán miles de personas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 247,
+      "categoria": "haber_impersonal",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "Ha habido numerosos fallos",
+        "Han habido numerosos fallos"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal no se pluraliza."
+    },
+    {
+      "id": 248,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Hubo varias propuestas",
+        "Hubieron varias propuestas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 249,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "Había tantos errores",
+        "Habían tantos errores"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal va en singular."
+    },
+    {
+      "id": 250,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Habrá pocas plazas",
+        "Habrán pocas plazas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 251,
+      "categoria": "haber_impersonal",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "Ha habido algunas quejas",
+        "Han habido algunas quejas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal no se pluraliza."
+    },
+    {
+      "id": 252,
+      "categoria": "haber_impersonal",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Hubo ciertas dudas",
+        "Hubieron ciertas dudas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' impersonal siempre singular."
+    },
+    {
+      "id": 253,
+      "categoria": "posesivos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Detrás de mí",
+        "Detrás mío"
+      ],
+      "correcta": 0,
+      "explicacion": "Los adverbios de lugar no admiten posesivos."
+    },
+    {
+      "id": 254,
+      "categoria": "posesivos",
+      "pregunta": "Elige la forma correcta:",
+      "opciones": [
+        "Delante de ti",
+        "Delante tuyo"
+      ],
+      "correcta": 0,
+      "explicacion": "Los adverbios de lugar usan 'de + pronombre'."
+    },
+    {
+      "id": 255,
+      "categoria": "posesivos",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Encima de él",
+        "Encima suyo"
+      ],
+      "correcta": 0,
+      "explicacion": "No se usa posesivo con adverbios de lugar."
+    },
+    {
+      "id": 256,
+      "categoria": "posesivos",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Debajo de ella",
+        "Debajo suyo"
+      ],
+      "correcta": 0,
+      "explicacion": "Los adverbios de lugar no admiten posesivos."
+    },
+    {
+      "id": 257,
+      "categoria": "posesivos",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Al lado de nosotros",
+        "Al lado nuestro"
+      ],
+      "correcta": 0,
+      "explicacion": "Aunque extendido, es preferible 'de + pronombre'."
+    },
+    {
+      "id": 258,
+      "categoria": "posesivos",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "Cerca de vosotros",
+        "Cerca vuestro"
+      ],
+      "correcta": 0,
+      "explicacion": "Los adverbios de lugar no admiten posesivos."
+    },
+    {
+      "id": 259,
+      "categoria": "posesivos",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "Lejos de ellos",
+        "Lejos suyo"
+      ],
+      "correcta": 0,
+      "explicacion": "No se usa posesivo con adverbios de lugar."
+    },
+    {
+      "id": 260,
+      "categoria": "posesivos",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "Enfrente de mí",
+        "Enfrente mío"
+      ],
+      "correcta": 0,
+      "explicacion": "Los adverbios de lugar usan 'de + pronombre'."
+    },
+    {
+      "id": 261,
+      "categoria": "posesivos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Alrededor de ti",
+        "Alrededor tuyo"
+      ],
+      "correcta": 0,
+      "explicacion": "No se usa posesivo con adverbios de lugar."
+    },
+    {
+      "id": 262,
+      "categoria": "posesivos",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Dentro de él",
+        "Dentro suyo"
+      ],
+      "correcta": 0,
+      "explicacion": "Los adverbios de lugar no admiten posesivos."
+    },
+    {
+      "id": 263,
+      "categoria": "posesivos",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "Fuera de ella",
+        "Fuera suyo"
+      ],
+      "correcta": 0,
+      "explicacion": "Los adverbios de lugar usan 'de + pronombre'."
+    },
+    {
+      "id": 264,
+      "categoria": "posesivos",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Arriba de nosotros",
+        "Arriba nuestro"
+      ],
+      "correcta": 0,
+      "explicacion": "No se usa posesivo con adverbios de lugar."
+    },
+    {
+      "id": 265,
+      "categoria": "posesivos",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Abajo de vosotros",
+        "Abajo vuestro"
+      ],
+      "correcta": 0,
+      "explicacion": "Los adverbios de lugar no admiten posesivos."
+    },
+    {
+      "id": 266,
+      "categoria": "posesivos",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "En contra de mí",
+        "En contra mía"
+      ],
+      "correcta": 0,
+      "explicacion": "Las locuciones adverbiales usan 'de + pronombre'."
+    },
+    {
+      "id": 267,
+      "categoria": "posesivos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "A favor de ti",
+        "A favor tuyo"
+      ],
+      "correcta": 0,
+      "explicacion": "No se usa posesivo con locuciones adverbiales."
+    },
+    {
+      "id": 268,
+      "categoria": "posesivos",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "En lugar de él",
+        "En lugar suyo"
+      ],
+      "correcta": 0,
+      "explicacion": "Las locuciones usan 'de + pronombre'."
+    },
+    {
+      "id": 269,
+      "categoria": "posesivos",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "A través de ella",
+        "A través suyo"
+      ],
+      "correcta": 0,
+      "explicacion": "No se usa posesivo con locuciones."
+    },
+    {
+      "id": 270,
+      "categoria": "posesivos",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "Por medio de nosotros",
+        "Por medio nuestro"
+      ],
+      "correcta": 0,
+      "explicacion": "Las locuciones usan 'de + pronombre'."
+    },
+    {
+      "id": 271,
+      "categoria": "posesivos",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "A costa de vosotros",
+        "A costa vuestra"
+      ],
+      "correcta": 0,
+      "explicacion": "No se usa posesivo con locuciones."
+    },
+    {
+      "id": 272,
+      "categoria": "posesivos",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "Por culpa de ellos",
+        "Por culpa suya"
+      ],
+      "correcta": 0,
+      "explicacion": "Las locuciones usan 'de + pronombre'."
+    },
+    {
+      "id": 273,
+      "categoria": "posesivos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Detrás de nosotros",
+        "Detrás nuestro"
+      ],
+      "correcta": 0,
+      "explicacion": "Los adverbios de lugar no admiten posesivos."
+    },
+    {
+      "id": 274,
+      "categoria": "posesivos",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "Delante de ellos",
+        "Delante suyo"
+      ],
+      "correcta": 0,
+      "explicacion": "Los adverbios de lugar usan 'de + pronombre'."
+    },
+    {
+      "id": 275,
+      "categoria": "posesivos",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Encima de mí",
+        "Encima mío"
+      ],
+      "correcta": 0,
+      "explicacion": "No se usa posesivo con adverbios de lugar."
+    },
+    {
+      "id": 276,
+      "categoria": "posesivos",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Debajo de ti",
+        "Debajo tuyo"
+      ],
+      "correcta": 0,
+      "explicacion": "Los adverbios de lugar no admiten posesivos."
+    },
+    {
+      "id": 277,
+      "categoria": "posesivos",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Al lado de él",
+        "Al lado suyo"
+      ],
+      "correcta": 0,
+      "explicacion": "Es preferible 'de + pronombre' con locuciones."
+    },
+    {
+      "id": 278,
+      "categoria": "posesivos",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "Cerca de mí",
+        "Cerca mío"
+      ],
+      "correcta": 0,
+      "explicacion": "Los adverbios de lugar usan 'de + pronombre'."
+    },
+    {
+      "id": 279,
+      "categoria": "posesivos",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "Lejos de ti",
+        "Lejos tuyo"
+      ],
+      "correcta": 0,
+      "explicacion": "No se usa posesivo con adverbios de lugar."
+    },
+    {
+      "id": 280,
+      "categoria": "posesivos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Enfrente de nosotros",
+        "Enfrente nuestro"
+      ],
+      "correcta": 0,
+      "explicacion": "Los adverbios de lugar no admiten posesivos."
+    },
+    {
+      "id": 281,
+      "categoria": "posesivos",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "Alrededor de vosotros",
+        "Alrededor vuestro"
+      ],
+      "correcta": 0,
+      "explicacion": "Los adverbios usan 'de + pronombre'."
+    },
+    {
+      "id": 282,
+      "categoria": "posesivos",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Dentro de mí",
+        "Dentro mío"
+      ],
+      "correcta": 0,
+      "explicacion": "No se usa posesivo con adverbios de lugar."
+    },
+    {
+      "id": 283,
+      "categoria": "posesivos",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "Fuera de ti",
+        "Fuera tuyo"
+      ],
+      "correcta": 0,
+      "explicacion": "Los adverbios de lugar no admiten posesivos."
+    },
+    {
+      "id": 284,
+      "categoria": "posesivos",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Detrás de vosotros",
+        "Detrás vuestro"
+      ],
+      "correcta": 0,
+      "explicacion": "Los adverbios usan 'de + pronombre'."
+    },
+    {
+      "id": 285,
+      "categoria": "posesivos",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Delante de mí",
+        "Delante mío"
+      ],
+      "correcta": 0,
+      "explicacion": "No se usa posesivo con adverbios de lugar."
+    },
+    {
+      "id": 286,
+      "categoria": "posesivos",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "Encima de nosotros",
+        "Encima nuestro"
+      ],
+      "correcta": 0,
+      "explicacion": "Los adverbios de lugar no admiten posesivos."
+    },
+    {
+      "id": 287,
+      "categoria": "posesivos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Debajo de ellos",
+        "Debajo suyo"
+      ],
+      "correcta": 0,
+      "explicacion": "Los adverbios usan 'de + pronombre'."
+    },
+    {
+      "id": 288,
+      "categoria": "posesivos",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "En torno a mí",
+        "En torno mío"
+      ],
+      "correcta": 0,
+      "explicacion": "Las locuciones usan 'de + pronombre'."
+    },
+    {
+      "id": 289,
+      "categoria": "posesivos",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "En medio de ti",
+        "En medio tuyo"
+      ],
+      "correcta": 0,
+      "explicacion": "No se usa posesivo con locuciones."
+    },
+    {
+      "id": 290,
+      "categoria": "posesivos",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "A espaldas de él",
+        "A espaldas suyo"
+      ],
+      "correcta": 0,
+      "explicacion": "Las locuciones usan 'de + pronombre'."
+    },
+    {
+      "id": 291,
+      "categoria": "posesivos",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Por encima de ella",
+        "Por encima suyo"
+      ],
+      "correcta": 0,
+      "explicacion": "No se usa posesivo con locuciones."
+    },
+    {
+      "id": 292,
+      "categoria": "posesivos",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "Por debajo de nosotros",
+        "Por debajo nuestro"
+      ],
+      "correcta": 0,
+      "explicacion": "Las locuciones usan 'de + pronombre'."
+    },
+    {
+      "id": 293,
+      "categoria": "posesivos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Por delante de vosotros",
+        "Por delante vuestro"
+      ],
+      "correcta": 0,
+      "explicacion": "No se usa posesivo con locuciones."
+    },
+    {
+      "id": 294,
+      "categoria": "posesivos",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "Por detrás de ellos",
+        "Por detrás suyo"
+      ],
+      "correcta": 0,
+      "explicacion": "Las locuciones usan 'de + pronombre'."
+    },
+    {
+      "id": 295,
+      "categoria": "posesivos",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "En frente de mí",
+        "En frente mío"
+      ],
+      "correcta": 0,
+      "explicacion": "No se usa posesivo con adverbios de lugar."
+    },
+    {
+      "id": 296,
+      "categoria": "posesivos",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Al margen de ti",
+        "Al margen tuyo"
+      ],
+      "correcta": 0,
+      "explicacion": "Las locuciones usan 'de + pronombre'."
+    },
+    {
+      "id": 297,
+      "categoria": "posesivos",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "A lo largo de él",
+        "A lo largo suyo"
+      ],
+      "correcta": 0,
+      "explicacion": "No se usa posesivo con locuciones."
+    },
+    {
+      "id": 298,
+      "categoria": "posesivos",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "A partir de ella",
+        "A partir suyo"
+      ],
+      "correcta": 0,
+      "explicacion": "Las locuciones usan 'de + pronombre'."
+    },
+    {
+      "id": 299,
+      "categoria": "posesivos",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "A raíz de nosotros",
+        "A raíz nuestro"
+      ],
+      "correcta": 0,
+      "explicacion": "No se usa posesivo con locuciones."
+    },
+    {
+      "id": 300,
+      "categoria": "posesivos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Con respecto a mí",
+        "Con respecto mío"
+      ],
+      "correcta": 0,
+      "explicacion": "Las locuciones usan 'de + pronombre'."
+    },
+    {
+      "id": 301,
+      "categoria": "posesivos",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "En relación a ti",
+        "En relación tuyo"
+      ],
+      "correcta": 0,
+      "explicacion": "No se usa posesivo con locuciones."
+    },
+    {
+      "id": 302,
+      "categoria": "posesivos",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "A diferencia de él",
+        "A diferencia suyo"
+      ],
+      "correcta": 0,
+      "explicacion": "Las locuciones usan 'de + pronombre'."
+    },
+    {
+      "id": 303,
+      "categoria": "posesivos",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "En comparación con ella",
+        "En comparación suyo"
+      ],
+      "correcta": 0,
+      "explicacion": "No se usa posesivo con locuciones."
+    },
+    {
+      "id": 304,
+      "categoria": "posesivos",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Por causa de nosotros",
+        "Por causa nuestra"
+      ],
+      "correcta": 0,
+      "explicacion": "Las locuciones usan 'de + pronombre'."
+    },
+    {
+      "id": 305,
+      "categoria": "posesivos",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "A pesar de vosotros",
+        "A pesar vuestro"
+      ],
+      "correcta": 0,
+      "explicacion": "No se usa posesivo con locuciones."
+    },
+    {
+      "id": 306,
+      "categoria": "posesivos",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "En vez de ellos",
+        "En vez suyo"
+      ],
+      "correcta": 0,
+      "explicacion": "Las locuciones usan 'de + pronombre'."
+    },
+    {
+      "id": 307,
+      "categoria": "posesivos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Además de mí",
+        "Además mío"
+      ],
+      "correcta": 0,
+      "explicacion": "No se usa posesivo con locuciones."
+    },
+    {
+      "id": 308,
+      "categoria": "posesivos",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "Aparte de ti",
+        "Aparte tuyo"
+      ],
+      "correcta": 0,
+      "explicacion": "Las locuciones usan 'de + pronombre'."
+    },
+    {
+      "id": 309,
+      "categoria": "posesivos",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Excepto yo",
+        "Excepto mí"
+      ],
+      "correcta": 0,
+      "explicacion": "'Excepto' rige nominativo, no oblicuo."
+    },
+    {
+      "id": 310,
+      "categoria": "posesivos",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "Salvo tú",
+        "Salvo ti"
+      ],
+      "correcta": 0,
+      "explicacion": "'Salvo' rige nominativo, no oblicuo."
+    },
+    {
+      "id": 311,
+      "categoria": "posesivos",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Menos él",
+        "Menos sí"
+      ],
+      "correcta": 0,
+      "explicacion": "'Menos' rige nominativo."
+    },
+    {
+      "id": 312,
+      "categoria": "posesivos",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "Incluso ella",
+        "Incluso sí"
+      ],
+      "correcta": 0,
+      "explicacion": "'Incluso' rige nominativo."
+    },
+    {
+      "id": 313,
+      "categoria": "posesivos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Según yo",
+        "Según mí"
+      ],
+      "correcta": 0,
+      "explicacion": "'Según' rige nominativo."
+    },
+    {
+      "id": 314,
+      "categoria": "posesivos",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "Entre tú y yo",
+        "Entre ti y mí"
+      ],
+      "correcta": 0,
+      "explicacion": "'Entre' rige nominativo en sujeto coordinado."
+    },
+    {
+      "id": 315,
+      "categoria": "posesivos",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Detrás de todos nosotros",
+        "Detrás de todos nuestro"
+      ],
+      "correcta": 0,
+      "explicacion": "Los adverbios usan 'de + pronombre'."
+    },
+    {
+      "id": 316,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'Vamos ___ el partido'",
+      "opciones": [
+        "a ver",
+        "haber"
+      ],
+      "correcta": 0,
+      "explicacion": "'A ver' indica observar; 'haber' es verbo auxiliar."
+    },
+    {
+      "id": 317,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? 'Lo ___ yo'",
+      "opciones": [
+        "echo",
+        "hecho"
+      ],
+      "correcta": 0,
+      "explicacion": "'Echo' de echar; 'hecho' de hacer."
+    },
+    {
+      "id": 318,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'El fontanero cambió el ___'",
+      "opciones": [
+        "tubo",
+        "tuvo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Tubo' es cilindro; 'tuvo' es verbo tener."
+    },
+    {
+      "id": 319,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? '___ muchas opciones'",
+      "opciones": [
+        "Hay",
+        "Ahí"
+      ],
+      "correcta": 0,
+      "explicacion": "'Hay' de haber; 'ahí' es lugar."
+    },
+    {
+      "id": 320,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'Voy ___ casa'",
+      "opciones": [
+        "a",
+        "ha"
+      ],
+      "correcta": 0,
+      "explicacion": "'A' es preposición; 'ha' es verbo haber."
+    },
+    {
+      "id": 321,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? 'La ___ del jardín'",
+      "opciones": [
+        "valla",
+        "vaya"
+      ],
+      "correcta": 0,
+      "explicacion": "'Valla' es cerca; 'vaya' es verbo ir."
+    },
+    {
+      "id": 322,
+      "categoria": "homofonos",
+      "pregunta": "Completa: '¿___ venido tu hermano?'",
+      "opciones": [
+        "Ha",
+        "A"
+      ],
+      "correcta": 0,
+      "explicacion": "'Ha' de haber; 'a' es preposición."
+    },
+    {
+      "id": 323,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? 'La ___ de madera'",
+      "opciones": [
+        "aya",
+        "haya"
+      ],
+      "correcta": 0,
+      "explicacion": "'Aya' es niñera; 'haya' es árbol o verbo."
+    },
+    {
+      "id": 324,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'No sé si ___ más'",
+      "opciones": [
+        "hay",
+        "ay"
+      ],
+      "correcta": 0,
+      "explicacion": "'Hay' de haber; 'ay' es exclamación."
+    },
+    {
+      "id": 325,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? '¡___, qué dolor!'",
+      "opciones": [
+        "Ay",
+        "Hay"
+      ],
+      "correcta": 0,
+      "explicacion": "'Ay' expresa dolor; 'hay' es verbo haber."
+    },
+    {
+      "id": 326,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'Déjalo ___ en la mesa'",
+      "opciones": [
+        "ahí",
+        "hay"
+      ],
+      "correcta": 0,
+      "explicacion": "'Ahí' indica lugar; 'hay' es verbo haber."
+    },
+    {
+      "id": 327,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? 'Ya lo he ___'",
+      "opciones": [
+        "hecho",
+        "echo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Hecho' de hacer; 'echo' de echar."
+    },
+    {
+      "id": 328,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'Te ___ de menos'",
+      "opciones": [
+        "echo",
+        "hecho"
+      ],
+      "correcta": 0,
+      "explicacion": "'Echo' de echar; 'echo de menos' = extrañar."
+    },
+    {
+      "id": 329,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? 'El ___ de agua'",
+      "opciones": [
+        "tubo",
+        "tuvo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Tubo' es conducto; 'tuvo' es verbo tener."
+    },
+    {
+      "id": 330,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'Él ___ que irse'",
+      "opciones": [
+        "tuvo",
+        "tubo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Tuvo' de tener; 'tubo' es cilindro."
+    },
+    {
+      "id": 331,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? '___ que estudiar más'",
+      "opciones": [
+        "A ver",
+        "Haber"
+      ],
+      "correcta": 0,
+      "explicacion": "'A ver' = vamos a ver; 'haber' es verbo."
+    },
+    {
+      "id": 332,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'Puede ___ más gente'",
+      "opciones": [
+        "haber",
+        "a ver"
+      ],
+      "correcta": 0,
+      "explicacion": "'Haber' con infinitivo; 'a ver' es ver."
+    },
+    {
+      "id": 333,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? 'La ___ de publicidad'",
+      "opciones": [
+        "valla",
+        "vaya"
+      ],
+      "correcta": 0,
+      "explicacion": "'Valla' es panel; 'vaya' es verbo ir."
+    },
+    {
+      "id": 334,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'Espero que ___ bien'",
+      "opciones": [
+        "vaya",
+        "valla"
+      ],
+      "correcta": 0,
+      "explicacion": "'Vaya' de ir; 'valla' es cerca."
+    },
+    {
+      "id": 335,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? 'No ___ adónde ir'",
+      "opciones": [
+        "sé",
+        "se"
+      ],
+      "correcta": 0,
+      "explicacion": "'Sé' de saber; 'se' es pronombre."
+    },
+    {
+      "id": 336,
+      "categoria": "homofonos",
+      "pregunta": "Completa: '___ lo dije ayer'",
+      "opciones": [
+        "Se",
+        "Sé"
+      ],
+      "correcta": 0,
+      "explicacion": "'Se' pronombre reflexivo; 'sé' es verbo."
+    },
+    {
+      "id": 337,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? '___ tú mismo'",
+      "opciones": [
+        "Sé",
+        "Se"
+      ],
+      "correcta": 0,
+      "explicacion": "'Sé' imperativo de ser; 'se' es pronombre."
+    },
+    {
+      "id": 338,
+      "categoria": "homofonos",
+      "pregunta": "Completa: '¿___ vas a quedar?'",
+      "opciones": [
+        "Te",
+        "Té"
+      ],
+      "correcta": 0,
+      "explicacion": "'Te' es pronombre; 'té' es infusión."
+    },
+    {
+      "id": 339,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? 'Quiero un ___'",
+      "opciones": [
+        "té",
+        "te"
+      ],
+      "correcta": 0,
+      "explicacion": "'Té' es bebida; 'te' es pronombre."
+    },
+    {
+      "id": 340,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'Dame ___ libro'",
+      "opciones": [
+        "tu",
+        "tú"
+      ],
+      "correcta": 0,
+      "explicacion": "'Tu' posesivo; 'tú' es pronombre personal."
+    },
+    {
+      "id": 341,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? '___ eres el mejor'",
+      "opciones": [
+        "Tú",
+        "Tu"
+      ],
+      "correcta": 0,
+      "explicacion": "'Tú' pronombre personal; 'tu' es posesivo."
+    },
+    {
+      "id": 342,
+      "categoria": "homofonos",
+      "pregunta": "Completa: '¿Es para ___?'",
+      "opciones": [
+        "mí",
+        "mi"
+      ],
+      "correcta": 0,
+      "explicacion": "'Mí' con preposición; 'mi' es posesivo."
+    },
+    {
+      "id": 343,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? '___ casa es grande'",
+      "opciones": [
+        "Mi",
+        "Mí"
+      ],
+      "correcta": 0,
+      "explicacion": "'Mi' posesivo; 'mí' es pronombre."
+    },
+    {
+      "id": 344,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'Lo hizo por ___ mismo'",
+      "opciones": [
+        "sí",
+        "si"
+      ],
+      "correcta": 0,
+      "explicacion": "'Sí' pronombre reflexivo; 'si' condicional."
+    },
+    {
+      "id": 345,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? '___ vienes, avísame'",
+      "opciones": [
+        "Si",
+        "Sí"
+      ],
+      "correcta": 0,
+      "explicacion": "'Si' condicional; 'sí' afirmación."
+    },
+    {
+      "id": 346,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'Dijo que ___'",
+      "opciones": [
+        "sí",
+        "si"
+      ],
+      "correcta": 0,
+      "explicacion": "'Sí' afirmación; 'si' condicional."
+    },
+    {
+      "id": 347,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? '___ le gusta el fútbol'",
+      "opciones": [
+        "Él",
+        "El"
+      ],
+      "correcta": 0,
+      "explicacion": "'Él' pronombre; 'el' artículo."
+    },
+    {
+      "id": 348,
+      "categoria": "homofonos",
+      "pregunta": "Completa: '___ coche es rojo'",
+      "opciones": [
+        "El",
+        "Él"
+      ],
+      "correcta": 0,
+      "explicacion": "'El' artículo; 'él' es pronombre."
+    },
+    {
+      "id": 349,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? 'Lo quiero más ___'",
+      "opciones": [
+        "aún",
+        "aun"
+      ],
+      "correcta": 0,
+      "explicacion": "'Aún' = todavía; 'aun' = incluso."
+    },
+    {
+      "id": 350,
+      "categoria": "homofonos",
+      "pregunta": "Completa: '___ así lo intentó'",
+      "opciones": [
+        "Aun",
+        "Aún"
+      ],
+      "correcta": 0,
+      "explicacion": "'Aun' = incluso; 'aún' = todavía."
+    },
+    {
+      "id": 351,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? 'No ha llegado ___'",
+      "opciones": [
+        "aún",
+        "aun"
+      ],
+      "correcta": 0,
+      "explicacion": "'Aún' = todavía; 'aun' = incluso."
+    },
+    {
+      "id": 352,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'Solo ___ tres euros'",
+      "opciones": [
+        "dé",
+        "de"
+      ],
+      "correcta": 0,
+      "explicacion": "'Dé' de dar; 'de' es preposición."
+    },
+    {
+      "id": 353,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? 'La casa ___ Pedro'",
+      "opciones": [
+        "de",
+        "dé"
+      ],
+      "correcta": 0,
+      "explicacion": "'De' preposición; 'dé' es verbo dar."
+    },
+    {
+      "id": 354,
+      "categoria": "homofonos",
+      "pregunta": "Completa: '¿___ lo sabías?'",
+      "opciones": [
+        "Más",
+        "Mas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Más' cantidad; 'mas' = pero."
+    },
+    {
+      "id": 355,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? 'Lo intentó, ___ no pudo'",
+      "opciones": [
+        "mas",
+        "más"
+      ],
+      "correcta": 0,
+      "explicacion": "'Mas' = pero; 'más' es cantidad."
+    },
+    {
+      "id": 356,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'Quiero ___ comida'",
+      "opciones": [
+        "más",
+        "mas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Más' cantidad; 'mas' = pero."
+    },
+    {
+      "id": 357,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? '___ ahora lo sé'",
+      "opciones": [
+        "Sólo",
+        "Solo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Solo' puede ir sin tilde."
+    },
+    {
+      "id": 358,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'Se quedó ___'",
+      "opciones": [
+        "solo",
+        "sólo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Solo' adjetivo (sin compañía)."
+    },
+    {
+      "id": 359,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? 'El ___ de la película'",
+      "opciones": [
+        "porque",
+        "porqué"
+      ],
+      "correcta": 0,
+      "explicacion": "'Porqué' sustantivo; 'porque' conjunción."
+    },
+    {
+      "id": 360,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'No sé ___ lo hizo'",
+      "opciones": [
+        "por qué",
+        "porque"
+      ],
+      "correcta": 0,
+      "explicacion": "'Por qué' interrogativo; 'porque' es causa."
+    },
+    {
+      "id": 361,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? 'Lo hizo ___ quiso'",
+      "opciones": [
+        "porque",
+        "por qué"
+      ],
+      "correcta": 0,
+      "explicacion": "'Porque' causa; 'por qué' pregunta."
+    },
+    {
+      "id": 362,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'Ese es el ___ de todo'",
+      "opciones": [
+        "porqué",
+        "porque"
+      ],
+      "correcta": 0,
+      "explicacion": "'Porqué' = motivo; 'porque' = causa."
+    },
+    {
+      "id": 363,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? 'El libro ___ leí'",
+      "opciones": [
+        "que",
+        "qué"
+      ],
+      "correcta": 0,
+      "explicacion": "'Que' relativo; 'qué' interrogativo."
+    },
+    {
+      "id": 364,
+      "categoria": "homofonos",
+      "pregunta": "Completa: '¿___ quieres?'",
+      "opciones": [
+        "Qué",
+        "Que"
+      ],
+      "correcta": 0,
+      "explicacion": "'Qué' interrogativo; 'que' relativo."
+    },
+    {
+      "id": 365,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? 'Dime ___ hora es'",
+      "opciones": [
+        "qué",
+        "que"
+      ],
+      "correcta": 0,
+      "explicacion": "'Qué' interrogativo indirecto."
+    },
+    {
+      "id": 366,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'Creo ___ vendrá'",
+      "opciones": [
+        "que",
+        "qué"
+      ],
+      "correcta": 0,
+      "explicacion": "'Que' conjunción; 'qué' interrogativo."
+    },
+    {
+      "id": 367,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? 'No sé ___ hacer'",
+      "opciones": [
+        "qué",
+        "que"
+      ],
+      "correcta": 0,
+      "explicacion": "'Qué' interrogativo indirecto."
+    },
+    {
+      "id": 368,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'La persona ___ llamó'",
+      "opciones": [
+        "que",
+        "qué"
+      ],
+      "correcta": 0,
+      "explicacion": "'Que' relativo; 'qué' interrogativo."
+    },
+    {
+      "id": 369,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? '¿___ estás?'",
+      "opciones": [
+        "Cómo",
+        "Como"
+      ],
+      "correcta": 0,
+      "explicacion": "'Cómo' interrogativo; 'como' comparativo."
+    },
+    {
+      "id": 370,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'Hazlo ___ puedas'",
+      "opciones": [
+        "como",
+        "cómo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Como' modo; 'cómo' pregunta."
+    },
+    {
+      "id": 371,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? 'No sé ___ llegó'",
+      "opciones": [
+        "cómo",
+        "como"
+      ],
+      "correcta": 0,
+      "explicacion": "'Cómo' interrogativo indirecto."
+    },
+    {
+      "id": 372,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'Es tan alto ___ su padre'",
+      "opciones": [
+        "como",
+        "cómo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Como' comparativo; 'cómo' interrogativo."
+    },
+    {
+      "id": 373,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? '¿___ vas?'",
+      "opciones": [
+        "Adónde",
+        "Adonde"
+      ],
+      "correcta": 0,
+      "explicacion": "'Adónde' interrogativo; 'adonde' relativo."
+    },
+    {
+      "id": 374,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'El lugar ___ vamos'",
+      "opciones": [
+        "adonde",
+        "adónde"
+      ],
+      "correcta": 0,
+      "explicacion": "'Adonde' relativo; 'adónde' interrogativo."
+    },
+    {
+      "id": 375,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? '¿___ vives?'",
+      "opciones": [
+        "Dónde",
+        "Donde"
+      ],
+      "correcta": 0,
+      "explicacion": "'Dónde' interrogativo; 'donde' relativo."
+    },
+    {
+      "id": 376,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'La casa ___ nací'",
+      "opciones": [
+        "donde",
+        "dónde"
+      ],
+      "correcta": 0,
+      "explicacion": "'Donde' relativo; 'dónde' interrogativo."
+    },
+    {
+      "id": 377,
+      "categoria": "homofonos",
+      "pregunta": "¿Cuál es correcta? '¿___ viene?'",
+      "opciones": [
+        "Cuándo",
+        "Cuando"
+      ],
+      "correcta": 0,
+      "explicacion": "'Cuándo' interrogativo; 'cuando' relativo."
+    },
+    {
+      "id": 378,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'Llámame ___ llegues'",
+      "opciones": [
+        "cuando",
+        "cuándo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Cuando' temporal; 'cuándo' pregunta."
+    },
+    {
+      "id": 379,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "dentífrico",
+        "dentrífico"
+      ],
+      "correcta": 0,
+      "explicacion": "Se escribe 'dentífrico', no existe 'dentrífico'."
+    },
+    {
+      "id": 380,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "Elige la forma correcta:",
+      "opciones": [
+        "esparadrapo",
+        "esparatrapo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Esparadrapo' es lo correcto."
+    },
+    {
+      "id": 381,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "almohada",
+        "almuhada"
+      ],
+      "correcta": 0,
+      "explicacion": "Se escribe 'almohada' con 'o'."
+    },
+    {
+      "id": 382,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "murciélago",
+        "murciégalo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Murciélago' es la forma correcta."
+    },
+    {
+      "id": 383,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "tobillo",
+        "tobíllo"
+      ],
+      "correcta": 0,
+      "explicacion": "Se escribe 'tobillo' sin tilde."
+    },
+    {
+      "id": 384,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "albóndiga",
+        "almóndiga"
+      ],
+      "correcta": 0,
+      "explicacion": "'Albóndiga' es lo correcto, con 'b'."
+    },
+    {
+      "id": 385,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "cocodrilo",
+        "cocotrílo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Cocodrilo' es la forma correcta."
+    },
+    {
+      "id": 386,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "azotea",
+        "azotéa"
+      ],
+      "correcta": 0,
+      "explicacion": "Se escribe 'azotea' sin tilde."
+    },
+    {
+      "id": 387,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "beneficencia",
+        "beneficiencia"
+      ],
+      "correcta": 0,
+      "explicacion": "'Beneficencia' sin 'i' extra."
+    },
+    {
+      "id": 388,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "idiosincrasia",
+        "ideosincracia"
+      ],
+      "correcta": 0,
+      "explicacion": "'Idiosincrasia' con 'io' y 'sia'."
+    },
+    {
+      "id": 389,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "aeropuerto",
+        "aroepuerto"
+      ],
+      "correcta": 0,
+      "explicacion": "'Aeropuerto' es lo correcto."
+    },
+    {
+      "id": 390,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "arrebatar",
+        "arrrebatar"
+      ],
+      "correcta": 0,
+      "explicacion": "'Arrebatar' con dos 'r'."
+    },
+    {
+      "id": 391,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "croqueta",
+        "cocreta"
+      ],
+      "correcta": 0,
+      "explicacion": "'Croqueta' es la forma correcta."
+    },
+    {
+      "id": 392,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "intrínseco",
+        "intrísico"
+      ],
+      "correcta": 0,
+      "explicacion": "'Intrínseco' es lo correcto."
+    },
+    {
+      "id": 393,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "injerencia",
+        "ingerencia"
+      ],
+      "correcta": 0,
+      "explicacion": "'Injerencia' con 'j'."
+    },
+    {
+      "id": 394,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "idoneidad",
+        "ideoneidad"
+      ],
+      "correcta": 0,
+      "explicacion": "'Idoneidad' sin 'e' extra."
+    },
+    {
+      "id": 395,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "solidaridad",
+        "solidariedad"
+      ],
+      "correcta": 0,
+      "explicacion": "'Solidaridad' sin 'ie'."
+    },
+    {
+      "id": 396,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "exuberante",
+        "exhuberante"
+      ],
+      "correcta": 0,
+      "explicacion": "'Exuberante' sin 'h'."
+    },
+    {
+      "id": 397,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "abogado",
+        "abugado"
+      ],
+      "correcta": 0,
+      "explicacion": "'Abogado' con 'o'."
+    },
+    {
+      "id": 398,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "helicóptero",
+        "helicótero"
+      ],
+      "correcta": 0,
+      "explicacion": "'Helicóptero' con 'p'."
+    },
+    {
+      "id": 399,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "meteorología",
+        "metereología"
+      ],
+      "correcta": 0,
+      "explicacion": "'Meteorología' sin 'e' extra."
+    },
+    {
+      "id": 400,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "periódico",
+        "preiódico"
+      ],
+      "correcta": 0,
+      "explicacion": "'Periódico' es lo correcto."
+    },
+    {
+      "id": 401,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "refrigerador",
+        "refrijerador"
+      ],
+      "correcta": 0,
+      "explicacion": "'Refrigerador' con 'g'."
+    },
+    {
+      "id": 402,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "serpiente",
+        "sierpente"
+      ],
+      "correcta": 0,
+      "explicacion": "'Serpiente' es lo correcto."
+    },
+    {
+      "id": 403,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "esternón",
+        "externón"
+      ],
+      "correcta": 0,
+      "explicacion": "'Esternón' sin 'x'."
+    },
+    {
+      "id": 404,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "otorrinolaringólogo",
+        "otorrinolaringológo"
+      ],
+      "correcta": 0,
+      "explicacion": "Sin tilde en la última 'o'."
+    },
+    {
+      "id": 405,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "espontáneo",
+        "expontáneo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Espontáneo' con 'es-'."
+    },
+    {
+      "id": 406,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "espagueti",
+        "expagueti"
+      ],
+      "correcta": 0,
+      "explicacion": "'Espagueti' con 'es-'."
+    },
+    {
+      "id": 407,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "dijiste",
+        "dijistes"
+      ],
+      "correcta": 0,
+      "explicacion": "'Dijiste' sin 's' final."
+    },
+    {
+      "id": 408,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "viniste",
+        "vinistes"
+      ],
+      "correcta": 0,
+      "explicacion": "'Viniste' sin 's' final."
+    },
+    {
+      "id": 409,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "hiciste",
+        "hicistes"
+      ],
+      "correcta": 0,
+      "explicacion": "'Hiciste' sin 's' final."
+    },
+    {
+      "id": 410,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "comiste",
+        "comistes"
+      ],
+      "correcta": 0,
+      "explicacion": "'Comiste' sin 's' final."
+    },
+    {
+      "id": 411,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "saliste",
+        "salistes"
+      ],
+      "correcta": 0,
+      "explicacion": "'Saliste' sin 's' final."
+    },
+    {
+      "id": 412,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "fuiste",
+        "fuistes"
+      ],
+      "correcta": 0,
+      "explicacion": "'Fuiste' sin 's' final."
+    },
+    {
+      "id": 413,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "pudiste",
+        "pudistes"
+      ],
+      "correcta": 0,
+      "explicacion": "'Pudiste' sin 's' final."
+    },
+    {
+      "id": 414,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "supiste",
+        "supistes"
+      ],
+      "correcta": 0,
+      "explicacion": "'Supiste' sin 's' final."
+    },
+    {
+      "id": 415,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "trajiste",
+        "trajistes"
+      ],
+      "correcta": 0,
+      "explicacion": "'Trajiste' sin 's' final."
+    },
+    {
+      "id": 416,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "viste",
+        "vistes"
+      ],
+      "correcta": 0,
+      "explicacion": "'Viste' (verbo ver) sin 's' final."
+    },
+    {
+      "id": 417,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "quisiste",
+        "quisistes"
+      ],
+      "correcta": 0,
+      "explicacion": "'Quisiste' sin 's' final."
+    },
+    {
+      "id": 418,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "previó",
+        "preveyó"
+      ],
+      "correcta": 0,
+      "explicacion": "'Previó' de prever, no 'preveer'."
+    },
+    {
+      "id": 419,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "proveyó",
+        "proveió"
+      ],
+      "correcta": 0,
+      "explicacion": "'Proveyó' de proveer."
+    },
+    {
+      "id": 420,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "satisfizo",
+        "satisfació"
+      ],
+      "correcta": 0,
+      "explicacion": "'Satisfizo' de satisfacer."
+    },
+    {
+      "id": 421,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "contradijo",
+        "contradició"
+      ],
+      "correcta": 0,
+      "explicacion": "'Contradijo' de contradecir."
+    },
+    {
+      "id": 422,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "maldijo",
+        "maldició"
+      ],
+      "correcta": 0,
+      "explicacion": "'Maldijo' de maldecir."
+    },
+    {
+      "id": 423,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "bendijo",
+        "bendició"
+      ],
+      "correcta": 0,
+      "explicacion": "'Bendijo' de bendecir."
+    },
+    {
+      "id": 424,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "predijo",
+        "predició"
+      ],
+      "correcta": 0,
+      "explicacion": "'Predijo' de predecir."
+    },
+    {
+      "id": 425,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "deshizo",
+        "deshació"
+      ],
+      "correcta": 0,
+      "explicacion": "'Deshizo' de deshacer."
+    },
+    {
+      "id": 426,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "rehízo",
+        "rehació"
+      ],
+      "correcta": 0,
+      "explicacion": "'Rehizo' de rehacer."
+    },
+    {
+      "id": 427,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "indujo",
+        "inducío"
+      ],
+      "correcta": 0,
+      "explicacion": "'Indujo' de inducir."
+    },
+    {
+      "id": 428,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "produjo",
+        "producío"
+      ],
+      "correcta": 0,
+      "explicacion": "'Produjo' de producir."
+    },
+    {
+      "id": 429,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "condujo",
+        "conducío"
+      ],
+      "correcta": 0,
+      "explicacion": "'Condujo' de conducir."
+    },
+    {
+      "id": 430,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "redujo",
+        "reducío"
+      ],
+      "correcta": 0,
+      "explicacion": "'Redujo' de reducir."
+    },
+    {
+      "id": 431,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "tradujo",
+        "traducío"
+      ],
+      "correcta": 0,
+      "explicacion": "'Tradujo' de traducir."
+    },
+    {
+      "id": 432,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "sedujo",
+        "seducío"
+      ],
+      "correcta": 0,
+      "explicacion": "'Sedujo' de seducir."
+    },
+    {
+      "id": 433,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "dedujo",
+        "deducío"
+      ],
+      "correcta": 0,
+      "explicacion": "'Dedujo' de deducir."
+    },
+    {
+      "id": 434,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "introdujo",
+        "introducío"
+      ],
+      "correcta": 0,
+      "explicacion": "'Introdujo' de introducir."
+    },
+    {
+      "id": 435,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "reprodujo",
+        "reproducío"
+      ],
+      "correcta": 0,
+      "explicacion": "'Reprodujo' de reproducir."
+    },
+    {
+      "id": 436,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "destruyó",
+        "destruío"
+      ],
+      "correcta": 0,
+      "explicacion": "'Destruyó' de destruir."
+    },
+    {
+      "id": 437,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "construyó",
+        "construío"
+      ],
+      "correcta": 0,
+      "explicacion": "'Construyó' de construir."
+    },
+    {
+      "id": 438,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "instruyó",
+        "instruío"
+      ],
+      "correcta": 0,
+      "explicacion": "'Instruyó' de instruir."
+    },
+    {
+      "id": 439,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "distribuyó",
+        "distribuío"
+      ],
+      "correcta": 0,
+      "explicacion": "'Distribuyó' de distribuir."
+    },
+    {
+      "id": 440,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "contribuyó",
+        "contribuío"
+      ],
+      "correcta": 0,
+      "explicacion": "'Contribuyó' de contribuir."
+    },
+    {
+      "id": 441,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "sustituyó",
+        "sustituío"
+      ],
+      "correcta": 0,
+      "explicacion": "'Sustituyó' de sustituir."
+    },
+    {
+      "id": 442,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Cuanto más estudio, más aprendo",
+        "Contra más estudio, más aprendo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Cuanto más', no 'contra más'."
+    },
+    {
+      "id": 443,
+      "categoria": "vulgarismos",
+      "pregunta": "Elige la forma correcta:",
+      "opciones": [
+        "Ve a comprar pan",
+        "Ves a comprar pan"
+      ],
+      "correcta": 0,
+      "explicacion": "'Ve' es imperativo de ir; 'ves' es presente."
+    },
+    {
+      "id": 444,
+      "categoria": "vulgarismos",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Anduve por el parque",
+        "Andé por el parque"
+      ],
+      "correcta": 0,
+      "explicacion": "'Anduve' es el pasado correcto de andar."
+    },
+    {
+      "id": 445,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "No me cabe en el bolsillo",
+        "No me cabo en el bolsillo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Cabe' de caber; 'cabo' no existe así."
+    },
+    {
+      "id": 446,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Conduje toda la noche",
+        "Conducí toda la noche"
+      ],
+      "correcta": 0,
+      "explicacion": "'Conduje' es el pasado de conducir."
+    },
+    {
+      "id": 447,
+      "categoria": "vulgarismos",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "Traduje el texto",
+        "Traducí el texto"
+      ],
+      "correcta": 0,
+      "explicacion": "'Traduje' es lo correcto."
+    },
+    {
+      "id": 448,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "Produje mucho ruido",
+        "Producí mucho ruido"
+      ],
+      "correcta": 0,
+      "explicacion": "'Produje' es el pasado de producir."
+    },
+    {
+      "id": 449,
+      "categoria": "vulgarismos",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "Induje a error",
+        "Inducí a error"
+      ],
+      "correcta": 0,
+      "explicacion": "'Induje' es lo correcto."
+    },
+    {
+      "id": 450,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Lo supe ayer",
+        "Lo supí ayer"
+      ],
+      "correcta": 0,
+      "explicacion": "'Supe' es el pasado de saber."
+    },
+    {
+      "id": 451,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "No quepo aquí",
+        "No cabo aquí"
+      ],
+      "correcta": 0,
+      "explicacion": "'Quepo' es presente de caber."
+    },
+    {
+      "id": 452,
+      "categoria": "vulgarismos",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "Ayer hube de irme",
+        "Ayer hubí de irme"
+      ],
+      "correcta": 0,
+      "explicacion": "'Hube' es el pasado de haber."
+    },
+    {
+      "id": 453,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Estuve allí",
+        "Estuvé allí"
+      ],
+      "correcta": 0,
+      "explicacion": "'Estuve' es lo correcto."
+    },
+    {
+      "id": 454,
+      "categoria": "vulgarismos",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Tuve suerte",
+        "Tuvé suerte"
+      ],
+      "correcta": 0,
+      "explicacion": "'Tuve' es el pasado de tener."
+    },
+    {
+      "id": 455,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "Pude hacerlo",
+        "Pudí hacerlo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Pude' es el pasado de poder."
+    },
+    {
+      "id": 456,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Puse el libro ahí",
+        "Pusí el libro ahí"
+      ],
+      "correcta": 0,
+      "explicacion": "'Puse' es lo correcto."
+    },
+    {
+      "id": 457,
+      "categoria": "vulgarismos",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "Hice la tarea",
+        "Hací la tarea"
+      ],
+      "correcta": 0,
+      "explicacion": "'Hice' es el pasado de hacer."
+    },
+    {
+      "id": 458,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Vine pronto",
+        "Viní pronto"
+      ],
+      "correcta": 0,
+      "explicacion": "'Vine' es el pasado de venir."
+    },
+    {
+      "id": 459,
+      "categoria": "vulgarismos",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "Dije la verdad",
+        "Dicí la verdad"
+      ],
+      "correcta": 0,
+      "explicacion": "'Dije' es lo correcto."
+    },
+    {
+      "id": 460,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Traje comida",
+        "Trají comida"
+      ],
+      "correcta": 0,
+      "explicacion": "'Traje' es el pasado de traer."
+    },
+    {
+      "id": 461,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "Quise ayudar",
+        "Querí ayudar"
+      ],
+      "correcta": 0,
+      "explicacion": "'Quise' es lo correcto."
+    },
+    {
+      "id": 462,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Satisfice sus dudas",
+        "Satisfací sus dudas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Satisfice' es lo correcto."
+    },
+    {
+      "id": 463,
+      "categoria": "vulgarismos",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "Previne el accidente",
+        "Prevení el accidente"
+      ],
+      "correcta": 0,
+      "explicacion": "'Previne' de prevenir."
+    },
+    {
+      "id": 464,
+      "categoria": "vulgarismos",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Detuve el coche",
+        "Detuvé el coche"
+      ],
+      "correcta": 0,
+      "explicacion": "'Detuve' es lo correcto."
+    },
+    {
+      "id": 465,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Obtuve buenas notas",
+        "Obtuvé buenas notas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Obtuve' es el pasado de obtener."
+    },
+    {
+      "id": 466,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Sostuve la puerta",
+        "Sostuvé la puerta"
+      ],
+      "correcta": 0,
+      "explicacion": "'Sostuve' es lo correcto."
+    },
+    {
+      "id": 467,
+      "categoria": "vulgarismos",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "Mantuve la calma",
+        "Mantuvé la calma"
+      ],
+      "correcta": 0,
+      "explicacion": "'Mantuve' de mantener."
+    },
+    {
+      "id": 468,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "Contuve la risa",
+        "Contuvé la risa"
+      ],
+      "correcta": 0,
+      "explicacion": "'Contuve' es lo correcto."
+    },
+    {
+      "id": 469,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Retuve el aliento",
+        "Retuvé el aliento"
+      ],
+      "correcta": 0,
+      "explicacion": "'Retuve' de retener."
+    },
+    {
+      "id": 470,
+      "categoria": "vulgarismos",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "Entretuve al niño",
+        "Entretuvé al niño"
+      ],
+      "correcta": 0,
+      "explicacion": "'Entretuve' es lo correcto."
+    },
+    {
+      "id": 471,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Cupe en el coche",
+        "Cabí en el coche"
+      ],
+      "correcta": 0,
+      "explicacion": "'Cupe' es el pasado de caber."
+    },
+    {
+      "id": 472,
+      "categoria": "vulgarismos",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "Reduje los gastos",
+        "Reducí los gastos"
+      ],
+      "correcta": 0,
+      "explicacion": "'Reduje' es lo correcto."
+    },
+    {
+      "id": 473,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Seduje con mi encanto",
+        "Seducí con mi encanto"
+      ],
+      "correcta": 0,
+      "explicacion": "'Seduje' de seducir."
+    },
+    {
+      "id": 474,
+      "categoria": "vulgarismos",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Deduje la respuesta",
+        "Deducí la respuesta"
+      ],
+      "correcta": 0,
+      "explicacion": "'Deduje' es lo correcto."
+    },
+    {
+      "id": 475,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "Introduje la llave",
+        "Introducí la llave"
+      ],
+      "correcta": 0,
+      "explicacion": "'Introduje' de introducir."
+    },
+    {
+      "id": 476,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Reproduje el sonido",
+        "Reproducí el sonido"
+      ],
+      "correcta": 0,
+      "explicacion": "'Reproduje' es lo correcto."
+    },
+    {
+      "id": 477,
+      "categoria": "vulgarismos",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "Impuse mis ideas",
+        "Imposí mis ideas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Impuse' de imponer."
+    },
+    {
+      "id": 478,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Compuse una canción",
+        "Composí una canción"
+      ],
+      "correcta": 0,
+      "explicacion": "'Compuse' es lo correcto."
+    },
+    {
+      "id": 479,
+      "categoria": "vulgarismos",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "Dispuse los muebles",
+        "Disposí los muebles"
+      ],
+      "correcta": 0,
+      "explicacion": "'Dispuse' de disponer."
+    },
+    {
+      "id": 480,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Propuse un plan",
+        "Proposí un plan"
+      ],
+      "correcta": 0,
+      "explicacion": "'Propuse' es lo correcto."
+    },
+    {
+      "id": 481,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "Expuse mis razones",
+        "Exposí mis razones"
+      ],
+      "correcta": 0,
+      "explicacion": "'Expuse' de exponer."
+    },
+    {
+      "id": 482,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Repuse las bebidas",
+        "Reposí las bebidas"
+      ],
+      "correcta": 0,
+      "explicacion": "'Repuse' de reponer."
+    },
+    {
+      "id": 483,
+      "categoria": "vulgarismos",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "Opuse resistencia",
+        "Oposí resistencia"
+      ],
+      "correcta": 0,
+      "explicacion": "'Opuse' es lo correcto."
+    },
+    {
+      "id": 484,
+      "categoria": "vulgarismos",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Supuse que vendría",
+        "Suposí que vendría"
+      ],
+      "correcta": 0,
+      "explicacion": "'Supuse' de suponer."
+    },
+    {
+      "id": 485,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Antepuse mi familia",
+        "Anteposí mi familia"
+      ],
+      "correcta": 0,
+      "explicacion": "'Antepuse' es lo correcto."
+    },
+    {
+      "id": 486,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Pospuse la reunión",
+        "Posposí la reunión"
+      ],
+      "correcta": 0,
+      "explicacion": "'Pospuse' de posponer."
+    },
+    {
+      "id": 487,
+      "categoria": "vulgarismos",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "Sobrepuse mis miedos",
+        "Sobreposí mis miedos"
+      ],
+      "correcta": 0,
+      "explicacion": "'Sobrepuse' es lo correcto."
+    },
+    {
+      "id": 488,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cómo se dice?",
+      "opciones": [
+        "Interpuse un recurso",
+        "Interposí un recurso"
+      ],
+      "correcta": 0,
+      "explicacion": "'Interpuse' de interponer."
+    },
+    {
+      "id": 489,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Ayer fui al cine",
+        "Ayer fuí al cine"
+      ],
+      "correcta": 0,
+      "explicacion": "'Fui' no lleva tilde."
+    },
+    {
+      "id": 490,
+      "categoria": "vulgarismos",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "Le di un regalo",
+        "Le dí un regalo"
+      ],
+      "correcta": 0,
+      "explicacion": "'Di' no lleva tilde."
+    },
+    {
+      "id": 491,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Vi una película",
+        "Ví una película"
+      ],
+      "correcta": 0,
+      "explicacion": "'Vi' no lleva tilde."
+    },
+    {
+      "id": 492,
+      "categoria": "vulgarismos",
+      "pregunta": "Elige la correcta:",
+      "opciones": [
+        "Fe en el futuro",
+        "Fé en el futuro"
+      ],
+      "correcta": 0,
+      "explicacion": "'Fe' no lleva tilde."
+    },
+    {
+      "id": 493,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Ti misma lo viste",
+        "Tí misma lo viste"
+      ],
+      "correcta": 0,
+      "explicacion": "'Ti' nunca lleva tilde."
+    },
+    {
+      "id": 494,
+      "categoria": "vulgarismos",
+      "pregunta": "Selecciona:",
+      "opciones": [
+        "Ojala que venga",
+        "Ojalá que venga"
+      ],
+      "correcta": 0,
+      "explicacion": "'Ojalá' lleva tilde en la última 'a'."
+    },
+    {
+      "id": 495,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cómo se escribe?",
+      "opciones": [
+        "A través del bosque",
+        "A travez del bosque"
+      ],
+      "correcta": 0,
+      "explicacion": "'Través' se escribe con 's'."
+    },
+    {
+      "id": 496,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Tal vez venga",
+        "Talvez venga"
+      ],
+      "correcta": 0,
+      "explicacion": "'Tal vez' se escribe separado."
+    },
+    {
+      "id": 497,
+      "categoria": "vulgarismos",
+      "pregunta": "Elige bien:",
+      "opciones": [
+        "De repente llegó",
+        "Derrepente llegó"
+      ],
+      "correcta": 0,
+      "explicacion": "'De repente' se escribe separado."
+    },
+    {
+      "id": 498,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es la correcta?",
+      "opciones": [
+        "Sobre todo estudia",
+        "Sobretodo estudia"
+      ],
+      "correcta": 0,
+      "explicacion": "'Sobre todo' separado = especialmente."
+    },
+    {
+      "id": 499,
+      "categoria": "vulgarismos",
+      "pregunta": "Selecciona la correcta:",
+      "opciones": [
+        "En serio lo digo",
+        "Enserio lo digo"
+      ],
+      "correcta": 0,
+      "explicacion": "'En serio' se escribe separado."
+    },
+    {
+      "id": 500,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Forma correcta?",
+      "opciones": [
+        "Por favor espera",
+        "Porfavor espera"
+      ],
+      "correcta": 0,
+      "explicacion": "'Por favor' se escribe separado."
+    }
+  ]
+}

@@ -7,6 +7,8 @@
 /illaverde/  /illaverde/index.html   200
 /figueroa    /figueroa/index.html    200
 /figueroa/   /figueroa/index.html    200
+/cazador     /cazador/index.html     200
+/cazador/    /cazador/index.html     200
 
 # SPA fallback para React Router
 /*    /index.html   200

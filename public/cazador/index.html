@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Cazador Ortográfico</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #000000;
+            --bg-surface: #0a0a0a;
+            --bg-elevated: #111111;
+            --text: #ffffff;
+            --text-secondary: #999999;
+            --text-muted: #666666;
+            --border: #222222;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --success: #22c55e;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --radius: 8px;
+            --radius-lg: 12px;
+            --transition: 150ms ease;
+        }
+
+        [data-theme="light"] {
+            --bg: #ffffff;
+            --bg-surface: #fafafa;
+            --bg-elevated: #f5f5f5;
+            --text: #000000;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            --border: #e5e5e5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 24px;
+            transition: background var(--transition), color var(--transition);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Enlace a Home - centrado en header */
+        .home-link {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 56px;
+            color: var(--text-muted);
+            transition: color var(--transition);
+            text-decoration: none;
+        }
+        .home-link:hover {
+            color: var(--text);
+        }
+        .home-link svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Toggle tema - esquina superior derecha */
+        .theme-toggle {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 50;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo svg {
+            width: 28px;
+            height: 28px;
+            color: var(--danger);
+        }
+
+        h1 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .icon-btn {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+
+        .icon-btn:hover {
+            background: var(--bg-elevated);
+            color: var(--text);
+        }
+
+        .icon-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Pantallas */
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        /* Config Screen */
+        .config-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            max-width: 480px;
+            margin: 48px auto;
+        }
+
+        .config-card h2 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .config-card h2 svg {
+            width: 20px;
+            height: 20px;
+            color: var(--text-muted);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px 14px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--text);
+            font-size: 0.9375rem;
+            font-family: inherit;
+            transition: border-color var(--transition);
+        }
+
+        .form-group input[type="number"] {
+            width: 100px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-group input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 20px;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            font-family: inherit;
+            border-radius: var(--radius);
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+
+        .btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+        }
+
+        .btn-secondary {
+            background: var(--bg-elevated);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: #fff;
+        }
+
+        .btn-success:hover {
+            filter: brightness(1.1);
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: #fff;
+        }
+
+        .btn-danger:hover {
+            filter: brightness(1.1);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-full {
+            width: 100%;
+        }
+
+        /* Marcador */
+        .scoreboard {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 16px;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .team-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 16px 20px;
+            text-align: center;
+            transition: all var(--transition);
+        }
+
+        .team-card.active {
+            border-color: var(--accent);
+        }
+
+        .team-card.team-1.active {
+            border-color: var(--accent);
+        }
+
+        .team-card.team-2.active {
+            border-color: var(--danger);
+        }
+
+        .team-name {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .team-score {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .team-1 .team-score {
+            color: var(--accent);
+        }
+
+        .team-2 .team-score {
+            color: var(--danger);
+        }
+
+        .vs {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Info de ronda */
+        .round-info {
+            text-align: center;
+            margin-bottom: 16px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .round-info strong {
+            color: var(--text);
+        }
+
+        /* Tablero */
+        .board-section {
+            margin-bottom: 24px;
+        }
+
+        .board-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 12px;
+        }
+
+        .board {
+            display: flex;
+            gap: 6px;
+            padding: 16px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow-x: auto;
+        }
+
+        .cell {
+            flex-shrink: 0;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            background: var(--bg-elevated);
+            position: relative;
+        }
+
+        .cell.danger-zone {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px dashed rgba(239, 68, 68, 0.3);
+        }
+
+        .cell.start {
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: var(--accent);
+        }
+
+        .cell.goal {
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: var(--success);
+        }
+
+        .token {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .token svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .token.contestant {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .token.hunter {
+            background: var(--danger);
+            color: #fff;
+        }
+
+        /* Panel de pregunta */
+        .question-panel {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .question-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .category-tag {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--warning);
+            background: rgba(245, 158, 11, 0.1);
+            padding: 4px 10px;
+            border-radius: 100px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .question-count {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+        }
+
+        .question-text {
+            font-size: 1.125rem;
+            font-weight: 500;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .option-btn {
+            padding: 14px 18px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--text);
+            font-size: 1rem;
+            font-family: inherit;
+            text-align: left;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+
+        .option-btn:hover:not(.correct):not(.incorrect) {
+            background: var(--bg-elevated);
+            border-color: var(--text-muted);
+        }
+
+        .option-btn.correct {
+            background: rgba(34, 197, 94, 0.15);
+            border-color: var(--success);
+            color: var(--success);
+        }
+
+        .option-btn.incorrect {
+            background: rgba(239, 68, 68, 0.15);
+            border-color: var(--danger);
+            color: var(--danger);
+        }
+
+        .explanation {
+            margin-top: 16px;
+            padding: 12px 16px;
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            display: none;
+        }
+
+        .explanation.visible {
+            display: block;
+        }
+
+        /* Controles */
+        .controls {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .controls .btn {
+            min-width: 160px;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            padding: 24px;
+        }
+
+        .modal-overlay.visible {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .modal-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .modal-icon.success {
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--success);
+        }
+
+        .modal-icon.danger {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--danger);
+        }
+
+        .modal-icon.info {
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--accent);
+        }
+
+        .modal-icon svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .modal h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .modal p {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        /* Resumen de ventajas en modal */
+        .advantages-summary {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .advantage-card {
+            padding: 16px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            text-align: center;
+        }
+
+        .advantage-card .team-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 4px;
+        }
+
+        .advantage-card .advantage-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .advantage-card:first-child .advantage-value {
+            color: var(--accent);
+        }
+
+        .advantage-card:last-child .advantage-value {
+            color: var(--danger);
+        }
+
+        .advantage-card .advantage-detail {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* Warmup Screen */
+        .warmup-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .warmup-header h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .warmup-header p {
+            color: var(--text-secondary);
+        }
+
+        .warmup-team-indicator {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .warmup-team-indicator.team-1 {
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--accent);
+        }
+
+        .warmup-team-indicator.team-2 {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--danger);
+        }
+
+        .warmup-stats {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 24px;
+        }
+
+        .warmup-stat {
+            text-align: center;
+        }
+
+        .warmup-stat-value {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .warmup-stat-value.success {
+            color: var(--success);
+        }
+
+        .warmup-stat-label {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+        }
+
+        .advantage-display {
+            text-align: center;
+            padding: 16px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            margin-bottom: 24px;
+        }
+
+        .advantage-display p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .advantage-display strong {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+
+        /* Timer */
+        .timer-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .timer-circle {
+            position: relative;
+            width: 120px;
+            height: 120px;
+        }
+
+        .timer-circle svg {
+            transform: rotate(-90deg);
+            width: 120px;
+            height: 120px;
+        }
+
+        .timer-circle .track {
+            fill: none;
+            stroke: var(--bg-elevated);
+            stroke-width: 8;
+        }
+
+        .timer-circle .progress {
+            fill: none;
+            stroke: var(--accent);
+            stroke-width: 8;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 0.5s linear;
+        }
+
+        .timer-circle .progress.warning {
+            stroke: var(--warning);
+        }
+
+        .timer-circle .progress.danger {
+            stroke: var(--danger);
+        }
+
+        .timer-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .timer-label {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        .warmup-score {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-bottom: 24px;
+            padding: 16px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+        }
+
+        .warmup-score-item {
+            text-align: center;
+        }
+
+        .warmup-score-value {
+            font-size: 1.75rem;
+            font-weight: 600;
+        }
+
+        .warmup-score-value.positive {
+            color: var(--success);
+        }
+
+        .warmup-score-value.negative {
+            color: var(--danger);
+        }
+
+        .warmup-score-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .warmup-advantage {
+            text-align: center;
+            padding: 12px 20px;
+            background: var(--bg-elevated);
+            border-radius: var(--radius);
+            margin-top: 16px;
+        }
+
+        .warmup-advantage-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .warmup-advantage-value {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        /* Touch screen y accesibilidad táctil */
+        .btn, .option-btn, .icon-btn {
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .option-btn {
+            min-height: 48px;
+        }
+
+        .controls .btn {
+            min-height: 48px;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            body {
+                padding: 16px;
+            }
+
+            .cell {
+                width: 44px;
+                height: 44px;
+            }
+
+            .token {
+                width: 32px;
+                height: 32px;
+            }
+
+            .token svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            .controls .btn {
+                width: 100%;
+            }
+
+            .home-link {
+                height: 44px;
+            }
+            .home-link svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Enlace a Home - centrado -->
+    <a href="/" class="home-link" title="Volver a adri-app">
+        <svg viewBox="0 0 100 100">
+            <polygon points="50,5 95,82 5,82" fill="currentColor"/>
+            <line x1="50" y1="56" x2="50" y2="5" stroke="var(--bg)" stroke-width="4"/>
+            <line x1="50" y1="56" x2="95" y2="82" stroke="var(--bg)" stroke-width="4"/>
+            <line x1="50" y1="56" x2="5" y2="82" stroke="var(--bg)" stroke-width="4"/>
+        </svg>
+    </a>
+
+    <!-- Toggle tema - esquina superior derecha -->
+    <button class="icon-btn theme-toggle" id="btnTheme" title="Cambiar tema">
+        <svg id="iconMoon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        <svg id="iconSun" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                <!-- Diana del cazador -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--danger)"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                <h1>El Cazador Ortográfico</h1>
+            </div>
+            <div class="header-actions">
+                <button class="icon-btn" id="btnConfig" title="Configuración">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Pantalla: Configuración -->
+        <div class="screen active" id="screenConfig">
+            <div class="config-card">
+                <h2>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    Configurar equipos
+                </h2>
+                <div class="form-group">
+                    <label for="team1Name">Nombre del Equipo 1</label>
+                    <input type="text" id="team1Name" placeholder="Ej: Los Ortógrafos" maxlength="20">
+                </div>
+                <div class="form-group">
+                    <label for="team2Name">Nombre del Equipo 2</label>
+                    <input type="text" id="team2Name" placeholder="Ej: Los Cazadores" maxlength="20">
+                </div>
+                <div class="form-group">
+                    <label for="totalRounds">Número de rondas</label>
+                    <input type="number" id="totalRounds" min="1" max="10" value="4">
+                </div>
+                <button class="btn btn-primary btn-full" id="btnStartWarmup">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                    Empezar rondas iniciales
+                </button>
+            </div>
+        </div>
+
+        <!-- Pantalla: Ronda inicial (warmup) -->
+        <div class="screen" id="screenWarmup">
+            <div class="warmup-header">
+                <span class="warmup-team-indicator" id="warmupTeamIndicator">Equipo 1</span>
+                <h2 id="warmupTitle">Ronda inicial de Equipo 1</h2>
+                <p>60 segundos. Acierto +1 / Error -1. Ventaja mínima: 1, máxima: 4.</p>
+            </div>
+
+            <div class="timer-container">
+                <div class="timer-circle">
+                    <svg viewBox="0 0 120 120">
+                        <circle class="track" cx="60" cy="60" r="52"/>
+                        <circle class="progress" id="timerProgress" cx="60" cy="60" r="52"
+                            stroke-dasharray="326.73" stroke-dashoffset="0"/>
+                    </svg>
+                    <span class="timer-text" id="timerText">60</span>
+                </div>
+                <span class="timer-label">segundos restantes</span>
+            </div>
+
+            <div class="warmup-score">
+                <div class="warmup-score-item">
+                    <div class="warmup-score-value positive" id="warmupCorrect">0</div>
+                    <div class="warmup-score-label">Aciertos</div>
+                </div>
+                <div class="warmup-score-item">
+                    <div class="warmup-score-value negative" id="warmupErrors">0</div>
+                    <div class="warmup-score-label">Errores</div>
+                </div>
+                <div class="warmup-score-item">
+                    <div class="warmup-advantage">
+                        <div class="warmup-advantage-label">Ventaja actual</div>
+                        <div class="warmup-advantage-value" id="warmupAdvantage">2</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question-panel">
+                <div class="question-meta">
+                    <span class="category-tag" id="warmupCategory">Categoría</span>
+                    <span class="question-count" id="warmupCount">Pregunta 1</span>
+                </div>
+                <p class="question-text" id="warmupQuestion">Cargando...</p>
+                <div class="options-grid" id="warmupOptions"></div>
+                <div class="explanation" id="warmupExplanation"></div>
+            </div>
+
+            <div class="controls">
+                <button class="btn btn-success" id="btnWarmupEnd" style="display:none">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                    <span id="btnWarmupEndText">Continuar</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Pantalla: Juego principal -->
+        <div class="screen" id="screenGame">
+            <div class="scoreboard">
+                <div class="team-card team-1 active" id="team1Card">
+                    <div class="team-name" id="team1Label">Equipo 1</div>
+                    <div class="team-score" id="score1">0</div>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-card team-2" id="team2Card">
+                    <div class="team-name" id="team2Label">Equipo 2</div>
+                    <div class="team-score" id="score2">0</div>
+                </div>
+            </div>
+
+            <div class="round-info" id="roundInfo">Ronda 1 de 4</div>
+
+            <div class="board-section">
+                <div class="board-label" id="boardLabel">Tablero de persecución</div>
+                <div class="board" id="board"></div>
+            </div>
+
+            <div class="question-panel">
+                <div class="question-meta">
+                    <span class="category-tag" id="gameCategory">Categoría</span>
+                    <span class="question-count" id="gameCount">Pregunta 1</span>
+                </div>
+                <p class="question-text" id="gameQuestion">Pulsa "Nueva ronda" para empezar</p>
+                <div class="options-grid" id="gameOptions"></div>
+                <div class="explanation" id="gameExplanation"></div>
+            </div>
+
+            <div class="controls" id="gameControls">
+                <button class="btn btn-primary" id="btnContestantCorrect" style="display:none">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                    Concursante acierta
+                </button>
+                <button class="btn btn-danger" id="btnHunterCorrect" style="display:none">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                    Cazador acierta
+                </button>
+                <button class="btn btn-secondary" id="btnBothFail" style="display:none">
+                    Fallan ambos
+                </button>
+                <button class="btn btn-primary" id="btnNextQuestion" style="display:none">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                    Siguiente pregunta
+                </button>
+                <button class="btn btn-secondary" id="btnNewRound">
+                    Nueva ronda
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de resultado -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-icon" id="modalIcon">
+                <svg id="modalIconTrophy" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6m12 5h1.5a2.5 2.5 0 0 0 0-5H18M6 9a6 6 0 0 0 12 0V4H6v5zm6 13v-4m-4 4h8m-6-4a2 2 0 0 0 4 0"/></svg>
+                <svg id="modalIconTarget" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                <svg id="modalIconInfo" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4m0-4h.01"/></svg>
+            </div>
+            <h3 id="modalTitle">¡Resultado!</h3>
+            <p id="modalSubtitle">Descripción del resultado</p>
+            <div id="modalExtraContent"></div>
+            <button class="btn btn-primary" id="btnModalClose">Continuar</button>
+        </div>
+    </div>
+
+    <script>
+        // ═══════════════════════════════════════════
+        // ESTADO GLOBAL
+        // ═══════════════════════════════════════════
+        let state = {
+            teams: { 1: 'Equipo 1', 2: 'Equipo 2' },
+            scores: { 1: 0, 2: 0 },
+            currentTeam: 1,
+            contestantPos: 0,
+            hunterPos: -2,
+            // Ventajas obtenidas en warmup por cada equipo
+            advantages: { 1: 2, 2: 2 },
+            // Equipo haciendo warmup actual (1 o 2)
+            warmupTeam: 1,
+            currentRound: 0,
+            totalRounds: 4,
+            chasesInRound: 0,
+            roundActive: false,
+            preguntas: [],
+            preguntaActual: 0,
+            gameQuestionNum: 0,
+            warmup: { correct: 0, errors: 0, score: 0, total: 0, timerInterval: null, timeLeft: 60 }
+        };
+
+        // Categorías
+        const categoryNames = {
+            'analogias': 'Analogías',
+            'dequeismo': 'Dequeísmo',
+            'queismo': 'Queísmo',
+            'haber_impersonal': 'Haber impersonal',
+            'posesivos': 'Posesivos',
+            'homofonos': 'Homófonos',
+            'palabras_inexistentes': 'Inexistentes',
+            'vulgarismos': 'Vulgarismos'
+        };
+
+        // DOM
+        const $ = id => document.getElementById(id);
+
+        // ═══════════════════════════════════════════
+        // INICIALIZACIÓN
+        // ═══════════════════════════════════════════
+        async function init() {
+            await loadQuestions();
+            setupEventListeners();
+        }
+
+        // Preguntas embebidas (fallback si no carga el JSON)
+        const FALLBACK_QUESTIONS = [
+            { id: 1, categoria: 'analogias', pregunta: '¿Cuál es correcta?', opciones: ['discusión', 'discursión'], correcta: 0, explicacion: 'Viene de DISCUTIR, no de discurso' },
+            { id: 2, categoria: 'analogias', pregunta: '¿Cuál es correcta?', opciones: ['prever', 'preveer'], correcta: 0, explicacion: 'PRE + VER = ver antes' },
+            { id: 3, categoria: 'analogias', pregunta: '¿Cuál es correcta?', opciones: ['espontáneo', 'espontaneo'], correcta: 0, explicacion: 'Lleva tilde (esdrújula)' },
+            { id: 4, categoria: 'analogias', pregunta: '¿Cuál es correcta?', opciones: ['satisfecho', 'satisfacido'], correcta: 0, explicacion: 'Participio irregular de satisfacer' },
+            { id: 5, categoria: 'dequeismo', pregunta: '¿Cuál es correcta?', opciones: ['Pienso que tienes razón', 'Pienso de que tienes razón'], correcta: 0, explicacion: 'PENSAR no lleva "de"' },
+            { id: 6, categoria: 'dequeismo', pregunta: '¿Cuál es correcta?', opciones: ['Creo que vendrá', 'Creo de que vendrá'], correcta: 0, explicacion: 'CREER no lleva "de"' },
+            { id: 7, categoria: 'dequeismo', pregunta: '¿Cuál es correcta?', opciones: ['Dijo que sí', 'Dijo de que sí'], correcta: 0, explicacion: 'DECIR no lleva "de"' },
+            { id: 8, categoria: 'queismo', pregunta: '¿Cuál es correcta?', opciones: ['Me alegro de que vengas', 'Me alegro que vengas'], correcta: 0, explicacion: 'ALEGRARSE DE algo' },
+            { id: 9, categoria: 'queismo', pregunta: '¿Cuál es correcta?', opciones: ['Me di cuenta de que llegaba tarde', 'Me di cuenta que llegaba tarde'], correcta: 0, explicacion: 'DARSE CUENTA DE algo' },
+            { id: 10, categoria: 'queismo', pregunta: '¿Cuál es correcta?', opciones: ['Estoy seguro de que lo sabe', 'Estoy seguro que lo sabe'], correcta: 0, explicacion: 'ESTAR SEGURO DE algo' },
+            { id: 11, categoria: 'haber_impersonal', pregunta: '¿Cuál es correcta?', opciones: ['Hubo muchos problemas', 'Hubieron muchos problemas'], correcta: 0, explicacion: 'HABER impersonal siempre en singular' },
+            { id: 12, categoria: 'haber_impersonal', pregunta: '¿Cuál es correcta?', opciones: ['Había veinte personas', 'Habían veinte personas'], correcta: 0, explicacion: 'HABER impersonal siempre en singular' },
+            { id: 13, categoria: 'haber_impersonal', pregunta: '¿Cuál es correcta?', opciones: ['Habrá fiestas este verano', 'Habrán fiestas este verano'], correcta: 0, explicacion: 'HABER impersonal siempre en singular' },
+            { id: 14, categoria: 'posesivos', pregunta: '¿Cuál es correcta?', opciones: ['Detrás de mí', 'Detrás mío'], correcta: 0, explicacion: 'Adverbios llevan DE + pronombre' },
+            { id: 15, categoria: 'posesivos', pregunta: '¿Cuál es correcta?', opciones: ['Delante de ti', 'Delante tuyo'], correcta: 0, explicacion: 'DELANTE DE + pronombre' },
+            { id: 16, categoria: 'posesivos', pregunta: '¿Cuál es correcta?', opciones: ['Encima de él', 'Encima suyo'], correcta: 0, explicacion: 'ENCIMA DE + pronombre' },
+            { id: 17, categoria: 'homofonos', pregunta: 'Completa: "¡___ si puedes venir!"', opciones: ['A ver', 'Haber'], correcta: 0, explicacion: 'A VER = vamos a ver' },
+            { id: 18, categoria: 'homofonos', pregunta: 'Completa: "Le ___ mucho de menos"', opciones: ['echo', 'hecho'], correcta: 0, explicacion: 'ECHAR de menos (verbo echar)' },
+            { id: 19, categoria: 'homofonos', pregunta: 'Completa: "Ya he ___ los deberes"', opciones: ['hecho', 'echo'], correcta: 0, explicacion: 'HECHO = participio de hacer' },
+            { id: 20, categoria: 'homofonos', pregunta: 'Completa: "___ muchas personas"', opciones: ['Hay', 'Ahí', 'Ay'], correcta: 0, explicacion: 'HAY = verbo haber (existir)' },
+            { id: 21, categoria: 'homofonos', pregunta: 'Completa: "El fontanero cambió el ___"', opciones: ['tubo', 'tuvo'], correcta: 0, explicacion: 'TUBO = cilindro' },
+            { id: 22, categoria: 'homofonos', pregunta: 'Completa: "María ___ que irse"', opciones: ['tuvo', 'tubo'], correcta: 0, explicacion: 'TUVO = verbo tener' },
+            { id: 23, categoria: 'palabras_inexistentes', pregunta: '¿Cuál es correcta?', opciones: ['dentífrico', 'dentrífico'], correcta: 0, explicacion: 'DENTÍFRICO (diente + fricar)' },
+            { id: 24, categoria: 'palabras_inexistentes', pregunta: '¿Cuál es correcta?', opciones: ['esparadrapo', 'esparatrapo'], correcta: 0, explicacion: 'ESPARADRAPO (del italiano)' },
+            { id: 25, categoria: 'palabras_inexistentes', pregunta: '¿Cuál es correcta?', opciones: ['almohada', 'almoada'], correcta: 0, explicacion: 'ALMOHADA lleva H intercalada' },
+            { id: 26, categoria: 'palabras_inexistentes', pregunta: '¿Cuál es correcta?', opciones: ['murciélago', 'murciégalo'], correcta: 0, explicacion: 'MURCIÉLAGO (tiene las 5 vocales)' },
+            { id: 27, categoria: 'vulgarismos', pregunta: '¿Cuál es correcta?', opciones: ['Cuanto más estudias, mejor', 'Contra más estudias, mejor'], correcta: 0, explicacion: '"Contra más" es vulgarismo' },
+            { id: 28, categoria: 'vulgarismos', pregunta: '¿Cuál es correcta?', opciones: ['Ve a comprar pan', 'Ves a comprar pan'], correcta: 0, explicacion: 'Imperativo de IR = VE' },
+            { id: 29, categoria: 'vulgarismos', pregunta: '¿Cuál es correcta?', opciones: ['Ayer anduve mucho', 'Ayer andé mucho'], correcta: 0, explicacion: 'Pretérito de ANDAR = anduve' },
+            { id: 30, categoria: 'vulgarismos', pregunta: '¿Cuál es correcta?', opciones: ['Sentaos aquí', 'Sentaros aquí'], correcta: 0, explicacion: 'Imperativo + os = sentaos' }
+        ];
+
+        async function loadQuestions() {
+            try {
+                const response = await fetch('preguntas.json');
+                if (!response.ok) throw new Error('HTTP ' + response.status);
+                const data = await response.json();
+                state.preguntas = shuffleArray(data.preguntas);
+                console.log('Cargadas', state.preguntas.length, 'preguntas del JSON');
+            } catch (e) {
+                console.warn('Usando preguntas embebidas (fetch falló):', e.message);
+                state.preguntas = shuffleArray(FALLBACK_QUESTIONS);
+            }
+        }
+
+        function shuffleArray(arr) {
+            const a = [...arr];
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+        }
+
+        function setupEventListeners() {
+            // Tema
+            $('btnTheme').addEventListener('click', toggleTheme);
+
+            // Config
+            $('btnStartWarmup').addEventListener('click', startWarmupPhase);
+            $('btnConfig').addEventListener('click', () => showScreen('screenConfig'));
+
+            // Warmup
+            $('btnWarmupEnd').addEventListener('click', handleWarmupEndButton);
+
+            // Game
+            $('btnContestantCorrect').addEventListener('click', () => handleAction('contestant'));
+            $('btnHunterCorrect').addEventListener('click', () => handleAction('hunter'));
+            $('btnBothFail').addEventListener('click', () => handleAction('both_fail'));
+            $('btnNextQuestion').addEventListener('click', onNextQuestion);
+            $('btnNewRound').addEventListener('click', handleNewRoundClick);
+
+            // Modal
+            $('btnModalClose').addEventListener('click', closeModal);
+        }
+
+        function toggleTheme() {
+            const isDark = !document.body.hasAttribute('data-theme');
+            if (isDark) {
+                document.body.setAttribute('data-theme', 'light');
+                $('iconMoon').style.display = 'none';
+                $('iconSun').style.display = 'block';
+            } else {
+                document.body.removeAttribute('data-theme');
+                $('iconMoon').style.display = 'block';
+                $('iconSun').style.display = 'none';
+            }
+        }
+
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            $(screenId).classList.add('active');
+        }
+
+        // ═══════════════════════════════════════════
+        // WARMUP - Rondas iniciales para ambos equipos
+        // ═══════════════════════════════════════════
+        const WARMUP_DURATION = 60;
+        const CIRCLE_CIRCUMFERENCE = 326.73;
+
+        function startWarmupPhase() {
+            // Leer configuración (solo desde pantalla de config)
+            state.teams[1] = $('team1Name').value.trim() || 'Equipo 1';
+            state.teams[2] = $('team2Name').value.trim() || 'Equipo 2';
+            state.totalRounds = Math.max(1, Math.min(10, parseInt($('totalRounds').value) || 4));
+            state.scores = { 1: 0, 2: 0 };
+            state.currentRound = 0;
+            state.gameQuestionNum = 0;
+
+            startNextRoundWarmups();
+        }
+
+        // Iniciar warmups para una nueva ronda (reutilizable entre rondas)
+        function startNextRoundWarmups() {
+            state.currentRound++;
+            state.chasesInRound = 0;
+            state.advantages = { 1: 2, 2: 2 };
+            state.warmupTeam = 1;
+            // Barajar preguntas para variedad en cada ronda
+            state.preguntas = shuffleArray(state.preguntas);
+            state.preguntaActual = 0;
+
+            startWarmupForTeam(1);
+        }
+
+        function startWarmupForTeam(teamNum) {
+            state.warmupTeam = teamNum;
+            state.warmup = { correct: 0, errors: 0, score: 0, total: 0, timerInterval: null, timeLeft: WARMUP_DURATION };
+
+            // Actualizar indicador de equipo
+            const indicator = $('warmupTeamIndicator');
+            indicator.textContent = state.teams[teamNum];
+            indicator.className = 'warmup-team-indicator team-' + teamNum;
+            $('warmupTitle').textContent = 'Ronda inicial de ' + state.teams[teamNum];
+
+            $('btnWarmupEnd').style.display = 'none';
+
+            showScreen('screenWarmup');
+            updateWarmupDisplay();
+            showWarmupQuestion();
+            startWarmupTimer();
+        }
+
+        function startWarmupTimer() {
+            state.warmup.timeLeft = WARMUP_DURATION;
+            updateTimerDisplay();
+
+            state.warmup.timerInterval = setInterval(() => {
+                state.warmup.timeLeft--;
+                updateTimerDisplay();
+
+                if (state.warmup.timeLeft <= 0) {
+                    finishWarmup();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const time = state.warmup.timeLeft;
+            $('timerText').textContent = time;
+
+            const progress = $('timerProgress');
+            const offset = CIRCLE_CIRCUMFERENCE * (1 - time / WARMUP_DURATION);
+            progress.style.strokeDashoffset = offset;
+
+            progress.classList.remove('warning', 'danger');
+            if (time <= 10) {
+                progress.classList.add('danger');
+            } else if (time <= 20) {
+                progress.classList.add('warning');
+            }
+        }
+
+        function updateWarmupDisplay() {
+            $('warmupCorrect').textContent = state.warmup.correct;
+            $('warmupErrors').textContent = state.warmup.errors;
+
+            const advantage = Math.max(1, Math.min(4, 2 + state.warmup.score));
+            $('warmupAdvantage').textContent = advantage;
+        }
+
+        // Barajar opciones para que la correcta no esté siempre en la misma posición
+        function shuffleOptions(opciones, correcta) {
+            const indices = opciones.map((_, i) => i);
+            for (let i = indices.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [indices[i], indices[j]] = [indices[j], indices[i]];
+            }
+            return {
+                opciones: indices.map(i => opciones[i]),
+                correcta: indices.indexOf(correcta)
+            };
+        }
+
+        function showWarmupQuestion() {
+            const p = state.preguntas[state.preguntaActual];
+            const shuffled = shuffleOptions(p.opciones, p.correcta);
+            $('warmupCategory').textContent = categoryNames[p.categoria] || p.categoria;
+            $('warmupCount').textContent = 'Pregunta ' + (state.warmup.total + 1);
+            $('warmupQuestion').textContent = p.pregunta;
+            $('warmupExplanation').textContent = p.explicacion;
+            $('warmupExplanation').classList.remove('visible');
+
+            const container = $('warmupOptions');
+            while (container.firstChild) container.removeChild(container.firstChild);
+
+            shuffled.opciones.forEach((opt, i) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = opt;
+                btn.addEventListener('click', () => handleWarmupAnswer(i, shuffled.correcta));
+                container.appendChild(btn);
+            });
+        }
+
+        function handleWarmupAnswer(selected, correct) {
+            const buttons = $('warmupOptions').querySelectorAll('.option-btn');
+            buttons.forEach((btn, i) => {
+                btn.style.pointerEvents = 'none';
+                if (i === correct) btn.classList.add('correct');
+                else if (i === selected) btn.classList.add('incorrect');
+            });
+
+            if (selected === correct) {
+                state.warmup.correct++;
+                state.warmup.score++;
+            } else {
+                state.warmup.errors++;
+                state.warmup.score--;
+            }
+            state.warmup.total++;
+
+            updateWarmupDisplay();
+            $('warmupExplanation').classList.add('visible');
+
+            setTimeout(() => {
+                if (state.warmup.timerInterval) {
+                    nextWarmupQuestion();
+                }
+            }, 1500);
+        }
+
+        function nextWarmupQuestion() {
+            state.preguntaActual++;
+            if (state.preguntaActual >= state.preguntas.length) {
+                state.preguntaActual = 0;
+                state.preguntas = shuffleArray(state.preguntas);
+            }
+            showWarmupQuestion();
+        }
+
+        function finishWarmup() {
+            if (state.warmup.timerInterval) {
+                clearInterval(state.warmup.timerInterval);
+                state.warmup.timerInterval = null;
+            }
+
+            const buttons = $('warmupOptions').querySelectorAll('.option-btn');
+            buttons.forEach(btn => btn.style.pointerEvents = 'none');
+
+            // Guardar ventaja del equipo actual
+            state.advantages[state.warmupTeam] = Math.max(1, Math.min(4, 2 + state.warmup.score));
+
+            $('btnWarmupEnd').style.display = 'inline-flex';
+
+            if (state.warmupTeam === 1) {
+                $('btnWarmupEndText').textContent = 'Warmup de ' + state.teams[2];
+            } else {
+                $('btnWarmupEndText').textContent = 'Ver resumen y empezar';
+            }
+        }
+
+        function handleWarmupEndButton() {
+            if (state.warmupTeam === 1) {
+                startWarmupForTeam(2);
+            } else {
+                showWarmupSummaryAndStartGame();
+            }
+        }
+
+        function showWarmupSummaryAndStartGame() {
+            // Preparar pantalla de juego
+            $('team1Label').textContent = state.teams[1];
+            $('team2Label').textContent = state.teams[2];
+            $('score1').textContent = state.scores[1];
+            $('score2').textContent = state.scores[2];
+            state.currentTeam = 1;
+
+            renderBoard();
+            showScreen('screenGame');
+            updateRoundInfo();
+            setGameButtonsState('between_rounds');
+            $('btnNewRound').textContent = 'Empezar persecución';
+
+            // Construir resumen de ventajas con DOM seguro
+            const extra = $('modalExtraContent');
+            while (extra.firstChild) extra.removeChild(extra.firstChild);
+
+            const summary = document.createElement('div');
+            summary.className = 'advantages-summary';
+
+            [1, 2].forEach(t => {
+                const card = document.createElement('div');
+                card.className = 'advantage-card';
+
+                const label = document.createElement('div');
+                label.className = 'team-label';
+                label.textContent = state.teams[t];
+
+                const val = document.createElement('div');
+                val.className = 'advantage-value';
+                val.textContent = state.advantages[t] + ' casillas';
+
+                const detail = document.createElement('div');
+                detail.className = 'advantage-detail';
+                detail.textContent = '(cuando escapa)';
+
+                card.appendChild(label);
+                card.appendChild(val);
+                card.appendChild(detail);
+                summary.appendChild(card);
+            });
+
+            extra.appendChild(summary);
+
+            showModal(
+                'info',
+                'Ronda ' + state.currentRound + ' — Preliminares completadas',
+                'Ventaja de cada equipo al escapar del cazador:'
+            );
+        }
+
+        // ═══════════════════════════════════════════
+        // JUEGO PRINCIPAL - Persecuciones
+        // ═══════════════════════════════════════════
+
+        function updateRoundInfo() {
+            const el = $('roundInfo');
+            if (state.currentRound > 0) {
+                let info = 'Ronda ' + state.currentRound + ' de ' + state.totalRounds;
+                if (state.chasesInRound > 0 && state.roundActive) {
+                    info += ' — Persecución ' + state.chasesInRound + ' de 2';
+                }
+                el.textContent = info;
+            } else {
+                el.textContent = 'Pulsa el botón para empezar';
+            }
+
+            if (state.roundActive && state.chasesInRound > 0) {
+                const escaper = state.currentTeam;
+                const hunter = state.currentTeam === 1 ? 2 : 1;
+                $('boardLabel').textContent =
+                    state.teams[escaper] + ' escapa / ' + state.teams[hunter] + ' caza';
+            } else {
+                $('boardLabel').textContent = 'Tablero de persecución';
+            }
+        }
+
+        function renderBoard() {
+            const board = $('board');
+            while (board.firstChild) board.removeChild(board.firstChild);
+
+            // La ventaja depende del equipo que escapa (currentTeam)
+            const advantage = state.advantages[state.currentTeam] || 2;
+            const minCell = -advantage;
+
+            for (let i = minCell; i <= 7; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'cell';
+                cell.id = 'cell-' + i;
+
+                if (i < 0) cell.classList.add('danger-zone');
+                else if (i === 0) cell.classList.add('start');
+                else if (i === 7) cell.classList.add('goal');
+
+                const label = document.createElement('span');
+                label.textContent = i === 7 ? 'META' : String(i);
+                cell.appendChild(label);
+                board.appendChild(cell);
+            }
+
+            updateTokens();
+        }
+
+        function updateTokens() {
+            document.querySelectorAll('.token').forEach(t => t.remove());
+
+            // Concursante
+            const cCell = $('cell-' + state.contestantPos);
+            if (cCell) {
+                const token = document.createElement('div');
+                token.className = 'token contestant';
+                const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                svg.setAttribute('viewBox', '0 0 24 24');
+                svg.setAttribute('fill', 'none');
+                svg.setAttribute('stroke', 'currentColor');
+                svg.setAttribute('stroke-width', '1.5');
+                svg.setAttribute('stroke-linecap', 'round');
+                svg.setAttribute('stroke-linejoin', 'round');
+                const path1 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                path1.setAttribute('d', 'M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2');
+                const circle1 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle1.setAttribute('cx', '12');
+                circle1.setAttribute('cy', '7');
+                circle1.setAttribute('r', '4');
+                svg.appendChild(path1);
+                svg.appendChild(circle1);
+                token.appendChild(svg);
+                cCell.appendChild(token);
+            }
+
+            // Cazador
+            const hCell = $('cell-' + state.hunterPos);
+            if (hCell) {
+                const token = document.createElement('div');
+                token.className = 'token hunter';
+                const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                svg.setAttribute('viewBox', '0 0 24 24');
+                svg.setAttribute('fill', 'none');
+                svg.setAttribute('stroke', 'currentColor');
+                svg.setAttribute('stroke-width', '1.5');
+                svg.setAttribute('stroke-linecap', 'round');
+                svg.setAttribute('stroke-linejoin', 'round');
+                [10, 6, 2].forEach(r => {
+                    const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                    c.setAttribute('cx', '12');
+                    c.setAttribute('cy', '12');
+                    c.setAttribute('r', String(r));
+                    svg.appendChild(c);
+                });
+                token.appendChild(svg);
+                hCell.appendChild(token);
+            }
+        }
+
+        // Control de visibilidad de botones según estado
+        function setGameButtonsState(mode) {
+            const show = id => $(id).style.display = 'inline-flex';
+            const hide = id => $(id).style.display = 'none';
+
+            if (mode === 'action_buttons') {
+                show('btnContestantCorrect');
+                show('btnHunterCorrect');
+                show('btnBothFail');
+                hide('btnNextQuestion');
+                hide('btnNewRound');
+                $('btnContestantCorrect').disabled = false;
+                $('btnHunterCorrect').disabled = false;
+                $('btnBothFail').disabled = false;
+            } else if (mode === 'next_question') {
+                // Mantener acciones activas para permitir doble acierto
+                show('btnContestantCorrect');
+                show('btnHunterCorrect');
+                show('btnBothFail');
+                $('btnContestantCorrect').disabled = false;
+                $('btnHunterCorrect').disabled = false;
+                $('btnBothFail').disabled = false;
+                show('btnNextQuestion');
+                hide('btnNewRound');
+            } else if (mode === 'between_rounds') {
+                hide('btnContestantCorrect');
+                hide('btnHunterCorrect');
+                hide('btnBothFail');
+                hide('btnNextQuestion');
+                // Mostrar botón si quedan persecuciones o rondas
+                if (state.chasesInRound < 2 || state.currentRound < state.totalRounds) {
+                    show('btnNewRound');
+                } else {
+                    hide('btnNewRound');
+                }
+            }
+        }
+
+        // Enrutador: decide si toca persecución o nueva ronda de warmups
+        function handleNewRoundClick() {
+            if (state.chasesInRound < 2) {
+                startChase();
+            } else if (state.currentRound < state.totalRounds) {
+                startNextRoundWarmups();
+            } else {
+                showGameEnd();
+            }
+        }
+
+        // Iniciar una persecución dentro de la ronda actual
+        function startChase() {
+            state.chasesInRound++;
+
+            const advantage = state.advantages[state.currentTeam];
+            state.contestantPos = 0;
+            state.hunterPos = -advantage;
+            state.roundActive = true;
+
+            renderBoard();
+            updateRoundInfo();
+            showGameQuestion();
+            setGameButtonsState('action_buttons');
+
+            $('team1Card').classList.toggle('active', state.currentTeam === 1);
+            $('team2Card').classList.toggle('active', state.currentTeam === 2);
+        }
+
+        function showGameQuestion() {
+            state.preguntaActual++;
+            if (state.preguntaActual >= state.preguntas.length) {
+                state.preguntaActual = 0;
+                state.preguntas = shuffleArray(state.preguntas);
+            }
+
+            state.gameQuestionNum++;
+            const p = state.preguntas[state.preguntaActual];
+            const shuffled = shuffleOptions(p.opciones, p.correcta);
+            $('gameCategory').textContent = categoryNames[p.categoria] || p.categoria;
+            $('gameCount').textContent = 'Pregunta ' + state.gameQuestionNum;
+            $('gameQuestion').textContent = p.pregunta;
+            $('gameExplanation').textContent = p.explicacion;
+            $('gameExplanation').classList.remove('visible');
+
+            const container = $('gameOptions');
+            while (container.firstChild) container.removeChild(container.firstChild);
+
+            shuffled.opciones.forEach((opt, i) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = opt;
+                btn.addEventListener('click', () => revealGameAnswer(i, shuffled.correcta));
+                container.appendChild(btn);
+            });
+        }
+
+        function revealGameAnswer(selected, correct) {
+            const buttons = $('gameOptions').querySelectorAll('.option-btn');
+            buttons.forEach((btn, i) => {
+                btn.style.pointerEvents = 'none';
+                if (i === correct) btn.classList.add('correct');
+                else if (i === selected) btn.classList.add('incorrect');
+            });
+            $('gameExplanation').classList.add('visible');
+        }
+
+        // Manejar acción tras revelar respuesta
+        function handleAction(action) {
+            if (!state.roundActive) return;
+
+            if (action === 'contestant') {
+                state.contestantPos++;
+            } else if (action === 'hunter') {
+                state.hunterPos++;
+            }
+            // 'both_fail' → nadie avanza
+
+            updateTokens();
+
+            if (checkRoundEnd()) return;
+
+            // Mostrar "Siguiente pregunta" para que el profesor controle el ritmo
+            setGameButtonsState('next_question');
+        }
+
+        // Solo carga nueva pregunta, NO resetea posiciones
+        function onNextQuestion() {
+            showGameQuestion();
+            setGameButtonsState('action_buttons');
+        }
+
+        function checkRoundEnd() {
+            if (state.contestantPos >= 7) {
+                endRound('saved');
+                return true;
+            }
+            if (state.hunterPos >= state.contestantPos) {
+                endRound('caught');
+                return true;
+            }
+            return false;
+        }
+
+        function endRound(result) {
+            state.roundActive = false;
+
+            // Limpiar contenido extra del modal
+            const extra = $('modalExtraContent');
+            while (extra.firstChild) extra.removeChild(extra.firstChild);
+
+            if (result === 'saved') {
+                state.scores[state.currentTeam] += 2;
+                showModal('success', '¡Salvado!',
+                    'El concursante de ' + state.teams[state.currentTeam] + ' llegó a la meta. +2 puntos.');
+            } else {
+                const otherTeam = state.currentTeam === 1 ? 2 : 1;
+                state.scores[otherTeam] += 1;
+                showModal('danger', '¡Cazado!',
+                    'El cazador atrapó al concursante de ' + state.teams[state.currentTeam] + '. +1 punto para ' + state.teams[otherTeam] + '.');
+            }
+
+            $('score1').textContent = state.scores[1];
+            $('score2').textContent = state.scores[2];
+
+            // Alternar equipo para la siguiente persecución
+            state.currentTeam = state.currentTeam === 1 ? 2 : 1;
+
+            // Comprobar si el juego ha terminado (todas las persecuciones de todas las rondas)
+            const gameOver = state.chasesInRound >= 2 && state.currentRound >= state.totalRounds;
+
+            if (gameOver) {
+                // Tras cerrar el modal de resultado, mostrar fin de juego
+                $('btnModalClose').onclick = () => {
+                    closeModal();
+                    showGameEnd();
+                };
+            } else {
+                // Actualizar texto del botón según el siguiente paso
+                if (state.chasesInRound < 2) {
+                    $('btnNewRound').textContent = 'Siguiente persecución';
+                } else {
+                    $('btnNewRound').textContent = 'Siguiente ronda (preliminares)';
+                }
+            }
+
+            setGameButtonsState('between_rounds');
+            updateRoundInfo();
+        }
+
+        function showGameEnd() {
+            const extra = $('modalExtraContent');
+            while (extra.firstChild) extra.removeChild(extra.firstChild);
+
+            const s1 = state.scores[1];
+            const s2 = state.scores[2];
+            let title, subtitle;
+
+            if (s1 > s2) {
+                title = '¡' + state.teams[1] + ' gana!';
+                subtitle = 'Resultado final: ' + s1 + ' - ' + s2;
+            } else if (s2 > s1) {
+                title = '¡' + state.teams[2] + ' gana!';
+                subtitle = 'Resultado final: ' + s1 + ' - ' + s2;
+            } else {
+                title = '¡Empate!';
+                subtitle = 'Resultado final: ' + s1 + ' - ' + s2;
+            }
+
+            showModal('success', title, subtitle);
+
+            // Tras cerrar el modal de fin, volver a config
+            $('btnModalClose').onclick = () => {
+                closeModal();
+                showScreen('screenConfig');
+                $('btnModalClose').onclick = closeModal;
+            };
+        }
+
+        function showModal(type, title, subtitle) {
+            $('modalIcon').className = 'modal-icon ' + type;
+            $('modalIconTrophy').style.display = type === 'success' ? 'block' : 'none';
+            $('modalIconTarget').style.display = type === 'danger' ? 'block' : 'none';
+            $('modalIconInfo').style.display = type === 'info' ? 'block' : 'none';
+            $('modalTitle').textContent = title;
+            $('modalSubtitle').textContent = subtitle;
+            // Resetear handler personalizado (el addEventListener base siempre funciona)
+            $('btnModalClose').onclick = null;
+            $('modalOverlay').classList.add('visible');
+        }
+
+        function closeModal() {
+            $('modalOverlay').classList.remove('visible');
+        }
+
+        init();
+    </script>
+</body>
+</html>

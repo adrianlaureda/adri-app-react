@@ -49,6 +49,14 @@ const IconText = () => (
   </svg>
 );
 
+const IconTarget = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <circle cx="12" cy="12" r="10"/>
+    <circle cx="12" cy="12" r="6"/>
+    <circle cx="12" cy="12" r="2"/>
+  </svg>
+);
+
 const IconTheater = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
     <circle cx="9" cy="9" r="7"/>
@@ -69,6 +77,7 @@ const RECURSOS = [
   { id: 'pasapalabra', title: 'Pasapalabra', icon: IconClock, href: '/pasapalabra', available: true },
   { id: 'escape', title: 'Escape Room', icon: IconLock, href: '/escape', available: true },
   { id: 'tabu', title: 'Tabú', icon: IconGrid, href: '/tabu', available: true },
+  { id: 'cazador', title: 'Cazador', icon: IconTarget, href: '/cazador', available: true },
   { id: 'ortografia', title: 'Ortografía', icon: IconText, href: 'https://docs.google.com/presentation/d/1EQBXlCPrh8doL-SM2q-oxEWivtXqWJ8g6glaKfxIapc/present', available: true, external: true },
   { id: 'improvisacion', title: 'Improvisación', icon: IconTheater, href: '/improvisacion', available: true },
 ];

@@ -47,6 +47,14 @@ const IconText = () => (
   </svg>
 );
 
+const IconTarget = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <circle cx="12" cy="12" r="10"/>
+    <circle cx="12" cy="12" r="6"/>
+    <circle cx="12" cy="12" r="2"/>
+  </svg>
+);
+
 const IconTheater = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
     <circle cx="9" cy="9" r="7"/>
@@ -99,6 +107,14 @@ const RECURSOS = [
     description: 'Generador de tarjetas de Tabú para trabajar vocabulario de forma lúdica',
     icon: IconGrid,
     href: '/tabu',
+    available: true
+  },
+  {
+    id: 'cazador',
+    title: 'El Cazador Ortográfico',
+    description: 'Juego competitivo por equipos: escapa del cazador respondiendo preguntas de ortografía',
+    icon: IconTarget,
+    href: '/cazador',
     available: true
   },
   {
