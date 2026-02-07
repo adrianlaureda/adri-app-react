@@ -464,6 +464,60 @@
             color: var(--text-muted);
         }
 
+        .chase-timer-container {
+            display: none;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .chase-timer-container.active {
+            display: flex;
+        }
+
+        .chase-timer-circle {
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+
+        .chase-timer-circle svg {
+            transform: rotate(-90deg);
+            width: 80px;
+            height: 80px;
+        }
+
+        .chase-timer-circle .track {
+            fill: none;
+            stroke: var(--bg-elevated);
+            stroke-width: 8;
+        }
+
+        .chase-timer-circle .progress {
+            fill: none;
+            stroke: var(--accent);
+            stroke-width: 8;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 0.5s linear;
+        }
+
+        .chase-timer-circle .progress.warning {
+            stroke: var(--warning);
+        }
+
+        .chase-timer-circle .progress.danger {
+            stroke: var(--danger);
+        }
+
+        .chase-timer-circle .chase-timer-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
         .question-text {
             font-size: 1.125rem;
             font-weight: 500;
@@ -1025,6 +1079,17 @@
                 <div class="board" id="board"></div>
             </div>
 
+            <div class="chase-timer-container" id="chaseTimerContainer">
+                <div class="chase-timer-circle" id="chaseTimerCircle">
+                    <svg viewBox="0 0 120 120">
+                        <circle class="track" cx="60" cy="60" r="52"/>
+                        <circle class="progress" id="chaseTimerProgress" cx="60" cy="60" r="52"
+                            stroke-dasharray="326.73" stroke-dashoffset="0"/>
+                    </svg>
+                    <span class="chase-timer-text" id="chaseTimerText">30</span>
+                </div>
+            </div>
+
             <div class="question-panel">
                 <div class="question-meta">
                     <span class="category-tag" id="gameCategory">Categoría</span>
@@ -1043,6 +1108,10 @@
                 <button class="btn btn-danger" id="btnHunterCorrect" style="display:none">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
                     Cazador acierta
+                </button>
+                <button class="btn btn-success" id="btnBothCorrect" style="display:none">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L7 17l-5-5M22 10l-7.5 7.5L13 16"/></svg>
+                    Aciertan ambos
                 </button>
                 <button class="btn btn-secondary" id="btnBothFail" style="display:none">
                     Fallan ambos
@@ -1106,7 +1175,12 @@
             'posesivos': 'Posesivos',
             'homofonos': 'Homófonos',
             'palabras_inexistentes': 'Inexistentes',
-            'vulgarismos': 'Vulgarismos'
+            'vulgarismos': 'Vulgarismos',
+            'tildes': 'Tildes',
+            'b_v': 'B / V',
+            'g_j': 'G / J',
+            'h': 'Uso de H',
+            'll_y': 'LL / Y'
         };
 
         // DOM
@@ -1190,6 +1264,7 @@
             // Game
             $('btnContestantCorrect').addEventListener('click', () => handleAction('contestant'));
             $('btnHunterCorrect').addEventListener('click', () => handleAction('hunter'));
+            $('btnBothCorrect').addEventListener('click', () => handleAction('both_correct'));
             $('btnBothFail').addEventListener('click', () => handleAction('both_fail'));
             $('btnNextQuestion').addEventListener('click', onNextQuestion);
             $('btnNewRound').addEventListener('click', handleNewRoundClick);
@@ -1565,25 +1640,29 @@
             if (mode === 'action_buttons') {
                 show('btnContestantCorrect');
                 show('btnHunterCorrect');
+                show('btnBothCorrect');
                 show('btnBothFail');
                 hide('btnNextQuestion');
                 hide('btnNewRound');
                 $('btnContestantCorrect').disabled = false;
                 $('btnHunterCorrect').disabled = false;
+                $('btnBothCorrect').disabled = false;
                 $('btnBothFail').disabled = false;
             } else if (mode === 'next_question') {
-                // Mantener acciones activas para permitir doble acierto
                 show('btnContestantCorrect');
                 show('btnHunterCorrect');
+                show('btnBothCorrect');
                 show('btnBothFail');
                 $('btnContestantCorrect').disabled = false;
                 $('btnHunterCorrect').disabled = false;
+                $('btnBothCorrect').disabled = false;
                 $('btnBothFail').disabled = false;
                 show('btnNextQuestion');
                 hide('btnNewRound');
             } else if (mode === 'between_rounds') {
                 hide('btnContestantCorrect');
                 hide('btnHunterCorrect');
+                hide('btnBothCorrect');
                 hide('btnBothFail');
                 hide('btnNextQuestion');
                 // Mostrar botón si quedan persecuciones o rondas
@@ -1624,6 +1703,54 @@
             $('team2Card').classList.toggle('active', state.currentTeam === 2);
         }
 
+        // ═══════════════════════════════════════════
+        // TEMPORIZADOR DE PERSECUCIÓN (30s)
+        // ═══════════════════════════════════════════
+        const CHASE_DURATION = 30;
+        let chaseTimerInterval = null;
+        let chaseTimeLeft = CHASE_DURATION;
+
+        function startChaseTimer() {
+            clearChaseTimer();
+            chaseTimeLeft = CHASE_DURATION;
+            $('chaseTimerContainer').classList.add('active');
+            updateChaseTimerDisplay();
+            chaseTimerInterval = setInterval(() => {
+                chaseTimeLeft--;
+                updateChaseTimerDisplay();
+                if (chaseTimeLeft <= 0) {
+                    clearChaseTimer();
+                    handleChaseTimeout();
+                }
+            }, 1000);
+        }
+
+        function clearChaseTimer() {
+            if (chaseTimerInterval) {
+                clearInterval(chaseTimerInterval);
+                chaseTimerInterval = null;
+            }
+            $('chaseTimerContainer').classList.remove('active');
+        }
+
+        function updateChaseTimerDisplay() {
+            $('chaseTimerText').textContent = chaseTimeLeft;
+            const progress = $('chaseTimerProgress');
+            const offset = CIRCLE_CIRCUMFERENCE * (1 - chaseTimeLeft / CHASE_DURATION);
+            progress.style.strokeDashoffset = offset;
+            progress.classList.remove('warning', 'danger');
+            if (chaseTimeLeft <= 5) progress.classList.add('danger');
+            else if (chaseTimeLeft <= 10) progress.classList.add('warning');
+        }
+
+        function handleChaseTimeout() {
+            // Tiempo agotado: revelar respuesta y pasar a siguiente
+            const buttons = $('gameOptions').querySelectorAll('.option-btn');
+            buttons.forEach(btn => btn.style.pointerEvents = 'none');
+            $('gameExplanation').classList.add('visible');
+            setGameButtonsState('next_question');
+        }
+
         function showGameQuestion() {
             state.preguntaActual++;
             if (state.preguntaActual >= state.preguntas.length) {
@@ -1650,6 +1777,8 @@
                 btn.addEventListener('click', () => revealGameAnswer(i, shuffled.correcta));
                 container.appendChild(btn);
             });
+
+            startChaseTimer();
         }
 
         function revealGameAnswer(selected, correct) {
@@ -1665,10 +1794,14 @@
         // Manejar acción tras revelar respuesta
         function handleAction(action) {
             if (!state.roundActive) return;
+            clearChaseTimer();
 
             if (action === 'contestant') {
                 state.contestantPos++;
             } else if (action === 'hunter') {
+                state.hunterPos++;
+            } else if (action === 'both_correct') {
+                state.contestantPos++;
                 state.hunterPos++;
             }
             // 'both_fail' → nadie avanza
@@ -1701,6 +1834,7 @@
 
         function endRound(result) {
             state.roundActive = false;
+            clearChaseTimer();
 
             // Limpiar contenido extra del modal
             const extra = $('modalExtraContent');

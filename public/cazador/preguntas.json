@@ -1,9 +1,4 @@
 {
-  "metadata": {
-    "titulo": "El Cazador Ortográfico",
-    "nivel": "2º ESO",
-    "total_preguntas": 500
-  },
   "preguntas": [
     {
       "id": 1,
@@ -33,7 +28,7 @@
       "pregunta": "¿Cómo se escribe correctamente?",
       "opciones": [
         "satisfecho",
-        "satisfecho"
+        "satisfacido"
       ],
       "correcta": 0,
       "explicacion": "Viene de 'satisfacer', con 'ch'."
@@ -250,7 +245,7 @@
     {
       "id": 23,
       "categoria": "analogias",
-      "pregunta": "Selecciona:",
+      "pregunta": "Completa: 'Hay que ___ la basura al contenedor' (= lanzar)",
       "opciones": [
         "arrojar",
         "arrogar"
@@ -294,7 +289,7 @@
     {
       "id": 27,
       "categoria": "analogias",
-      "pregunta": "¿Cómo se escribe?",
+      "pregunta": "Completa: 'El pastel quedó ___ por la lluvia'",
       "opciones": [
         "deshecho",
         "desecho"
@@ -316,7 +311,7 @@
     {
       "id": 29,
       "categoria": "analogias",
-      "pregunta": "Selecciona la correcta:",
+      "pregunta": "Completa: 'Ella, ___, fue invitada' (= también)",
       "opciones": [
         "asimismo",
         "así mismo"
@@ -327,24 +322,24 @@
     {
       "id": 30,
       "categoria": "analogias",
-      "pregunta": "¿Forma correcta?",
+      "pregunta": "Completa: '___ debes estudiar el tema 3' (= especialmente)",
       "opciones": [
         "sobretodo",
         "sobre todo"
       ],
-      "correcta": 0,
+      "correcta": 1,
       "explicacion": "'Sobre todo' = especialmente; 'sobretodo' = abrigo."
     },
     {
       "id": 31,
       "categoria": "analogias",
-      "pregunta": "¿Cuál es correcta?",
+      "pregunta": "¿Cuál es la forma preferida por la RAE para 'inmediatamente'?",
       "opciones": [
-        "en seguida",
-        "enseguida"
+        "enseguida",
+        "en seguida"
       ],
       "correcta": 0,
-      "explicacion": "Ambas son correctas, pero la RAE prefiere 'enseguida'."
+      "explicacion": "Ambas son correctas, pero la RAE prefiere 'enseguida' (junto)."
     },
     {
       "id": 32,
@@ -360,7 +355,7 @@
     {
       "id": 33,
       "categoria": "analogias",
-      "pregunta": "¿Cómo se dice?",
+      "pregunta": "Completa: 'Había árboles ___ a la casa' (= alrededor)",
       "opciones": [
         "en torno",
         "entorno"
@@ -371,7 +366,7 @@
     {
       "id": 34,
       "categoria": "analogias",
-      "pregunta": "Selecciona:",
+      "pregunta": "Completa: '___ ya lo sabes, no hace falta repetirlo' (= así que)",
       "opciones": [
         "conque",
         "con que"
@@ -382,7 +377,7 @@
     {
       "id": 35,
       "categoria": "analogias",
-      "pregunta": "¿Cuál es la correcta?",
+      "pregunta": "Completa: '¿___ no vienes a la fiesta?'",
       "opciones": [
         "por qué",
         "porqué"
@@ -393,7 +388,7 @@
     {
       "id": 36,
       "categoria": "analogias",
-      "pregunta": "¿Forma correcta?",
+      "pregunta": "Completa: 'No vine ___ estaba enfermo' (= causa)",
       "opciones": [
         "porque",
         "por que"
@@ -404,7 +399,7 @@
     {
       "id": 37,
       "categoria": "analogias",
-      "pregunta": "Elige bien:",
+      "pregunta": "Completa: 'No quiero café, ___ té' (= pero)",
       "opciones": [
         "sino",
         "si no"
@@ -415,7 +410,7 @@
     {
       "id": 38,
       "categoria": "analogias",
-      "pregunta": "¿Cuál es correcta?",
+      "pregunta": "Completa: '___ de eso, todo bien' (= además)",
       "opciones": [
         "aparte",
         "a parte"
@@ -437,7 +432,7 @@
     {
       "id": 40,
       "categoria": "analogias",
-      "pregunta": "Selecciona la correcta:",
+      "pregunta": "Completa: 'El detective ___ las pistas' (= encuentra)",
       "opciones": [
         "halla",
         "haya"
@@ -448,18 +443,18 @@
     {
       "id": 41,
       "categoria": "analogias",
-      "pregunta": "¿Cuál es la correcta?",
+      "pregunta": "Completa: 'El niño se ___ de la bicicleta' (= caer)",
       "opciones": [
-        "calló",
-        "cayó"
+        "cayó",
+        "calló"
       ],
       "correcta": 0,
-      "explicacion": "'Calló' = guardar silencio; 'cayó' = caer."
+      "explicacion": "'Cayó' = caer; 'calló' = guardar silencio."
     },
     {
       "id": 42,
       "categoria": "analogias",
-      "pregunta": "¿Forma correcta?",
+      "pregunta": "Completa: 'Queso ___ para la pasta' (= desmenuzado)",
       "opciones": [
         "rallado",
         "rayado"
@@ -470,7 +465,7 @@
     {
       "id": 43,
       "categoria": "analogias",
-      "pregunta": "Elige la correcta:",
+      "pregunta": "Completa: 'La ___ del jardín está muy alta' (= planta)",
       "opciones": [
         "hierba",
         "hierva"
@@ -481,29 +476,29 @@
     {
       "id": 44,
       "categoria": "analogias",
-      "pregunta": "¿Cuál es correcta?",
+      "pregunta": "Completa: 'Este terreno es muy ___' (= extenso)",
       "opciones": [
-        "basto",
-        "vasto"
+        "vasto",
+        "basto"
       ],
       "correcta": 0,
-      "explicacion": "'Basto' = tosco; 'vasto' = extenso."
+      "explicacion": "'Vasto' = extenso; 'basto' = tosco."
     },
     {
       "id": 45,
       "categoria": "analogias",
-      "pregunta": "¿Cómo se dice?",
+      "pregunta": "Completa: 'Voy a ___ un secreto' (= descubrir)",
       "opciones": [
-        "rebelar",
-        "revelar"
+        "revelar",
+        "rebelar"
       ],
       "correcta": 0,
-      "explicacion": "'Rebelar' = sublevarse; 'revelar' = descubrir."
+      "explicacion": "'Revelar' = descubrir; 'rebelar' = sublevarse."
     },
     {
       "id": 46,
       "categoria": "analogias",
-      "pregunta": "Selecciona:",
+      "pregunta": "Completa: 'Voy a ___ un vídeo' (= registrar)",
       "opciones": [
         "grabar",
         "gravar"
@@ -514,7 +509,7 @@
     {
       "id": 47,
       "categoria": "analogias",
-      "pregunta": "¿Cuál es la correcta?",
+      "pregunta": "Completa: 'Mi abuela era muy ___' (= que sabe mucho)",
       "opciones": [
         "sabia",
         "savia"
@@ -525,7 +520,7 @@
     {
       "id": 48,
       "categoria": "analogias",
-      "pregunta": "¿Forma correcta?",
+      "pregunta": "Completa: 'Puso ___ en el anzuelo' (= carnada)",
       "opciones": [
         "cebo",
         "sebo"
@@ -536,7 +531,7 @@
     {
       "id": 49,
       "categoria": "analogias",
-      "pregunta": "Elige bien:",
+      "pregunta": "Completa: 'Había ___ personas en la sala'",
       "opciones": [
         "cien",
         "ciento"
@@ -547,7 +542,7 @@
     {
       "id": 50,
       "categoria": "analogias",
-      "pregunta": "¿Cuál es correcta?",
+      "pregunta": "Completa: 'Tiene ___ años'",
       "opciones": [
         "veintiún",
         "veintiuno"
@@ -558,13 +553,13 @@
     {
       "id": 51,
       "categoria": "analogias",
-      "pregunta": "¿Cómo se escribe?",
+      "pregunta": "¿Cuál es el ordinal culto de 'once'?",
       "opciones": [
-        "decimoprimero",
-        "undécimo"
+        "undécimo",
+        "decimoprimero"
       ],
       "correcta": 0,
-      "explicacion": "Ambas correctas, 'undécimo' es más formal."
+      "explicacion": "'Undécimo' es la forma culta; 'decimoprimero' también es válida pero menos formal."
     },
     {
       "id": 52,
@@ -3638,7 +3633,7 @@
     {
       "id": 331,
       "categoria": "homofonos",
-      "pregunta": "¿Cuál es correcta? '___ que estudiar más'",
+      "pregunta": "Completa: '___ si puedes venir mañana' (= vamos a ver)",
       "opciones": [
         "A ver",
         "Haber"
@@ -3891,7 +3886,7 @@
     {
       "id": 354,
       "categoria": "homofonos",
-      "pregunta": "Completa: '¿___ lo sabías?'",
+      "pregunta": "Completa: 'Quiero ___ tiempo' (= mayor cantidad)",
       "opciones": [
         "Más",
         "Mas"
@@ -3951,8 +3946,8 @@
         "porque",
         "porqué"
       ],
-      "correcta": 0,
-      "explicacion": "'Porqué' sustantivo; 'porque' conjunción."
+      "correcta": 1,
+      "explicacion": "'Porqué' = sustantivo (motivo, razón); 'porque' = conjunción causal."
     },
     {
       "id": 360,
@@ -5504,6 +5499,3926 @@
       ],
       "correcta": 0,
       "explicacion": "'Por favor' se escribe separado."
+    },
+    {
+      "id": 501,
+      "categoria": "tildes",
+      "pregunta": "Completa: '___ sabes la respuesta'",
+      "opciones": [
+        "Tú",
+        "Tu"
+      ],
+      "correcta": 0,
+      "explicacion": "TÚ con tilde = pronombre personal"
+    },
+    {
+      "id": 502,
+      "categoria": "tildes",
+      "pregunta": "Completa: 'Dame ___ libro'",
+      "opciones": [
+        "tu",
+        "tú"
+      ],
+      "correcta": 0,
+      "explicacion": "TU sin tilde = posesivo"
+    },
+    {
+      "id": 503,
+      "categoria": "tildes",
+      "pregunta": "Completa: '___ fue quien lo dijo'",
+      "opciones": [
+        "Él",
+        "El"
+      ],
+      "correcta": 0,
+      "explicacion": "ÉL con tilde = pronombre personal"
+    },
+    {
+      "id": 504,
+      "categoria": "tildes",
+      "pregunta": "Completa: '___ coche es rojo'",
+      "opciones": [
+        "El",
+        "Él"
+      ],
+      "correcta": 0,
+      "explicacion": "EL sin tilde = artículo"
+    },
+    {
+      "id": 505,
+      "categoria": "tildes",
+      "pregunta": "Completa: 'Quiero ___ café'",
+      "opciones": [
+        "más",
+        "mas"
+      ],
+      "correcta": 0,
+      "explicacion": "MÁS con tilde = cantidad"
+    },
+    {
+      "id": 506,
+      "categoria": "tildes",
+      "pregunta": "Completa: 'Lo intenté, ___ no pude'",
+      "opciones": [
+        "mas",
+        "más"
+      ],
+      "correcta": 0,
+      "explicacion": "MAS sin tilde = pero (conjunción adversativa)"
+    },
+    {
+      "id": 507,
+      "categoria": "tildes",
+      "pregunta": "Completa: 'Dijo que ___'",
+      "opciones": [
+        "sí",
+        "si"
+      ],
+      "correcta": 0,
+      "explicacion": "SÍ con tilde = afirmación"
+    },
+    {
+      "id": 508,
+      "categoria": "tildes",
+      "pregunta": "Completa: '___ vienes, avísame'",
+      "opciones": [
+        "Si",
+        "Sí"
+      ],
+      "correcta": 0,
+      "explicacion": "SI sin tilde = condicional"
+    },
+    {
+      "id": 509,
+      "categoria": "tildes",
+      "pregunta": "Completa: 'Ya lo ___'",
+      "opciones": [
+        "sé",
+        "se"
+      ],
+      "correcta": 0,
+      "explicacion": "SÉ con tilde = verbo saber"
+    },
+    {
+      "id": 510,
+      "categoria": "tildes",
+      "pregunta": "Completa: '___ lo dijo a todos'",
+      "opciones": [
+        "Se",
+        "Sé"
+      ],
+      "correcta": 0,
+      "explicacion": "SE sin tilde = pronombre reflexivo"
+    },
+    {
+      "id": 511,
+      "categoria": "tildes",
+      "pregunta": "Completa: 'Quiero una taza de ___'",
+      "opciones": [
+        "té",
+        "te"
+      ],
+      "correcta": 0,
+      "explicacion": "TÉ con tilde = infusión"
+    },
+    {
+      "id": 512,
+      "categoria": "tildes",
+      "pregunta": "Completa: '___ lo dije ayer'",
+      "opciones": [
+        "Te",
+        "Té"
+      ],
+      "correcta": 0,
+      "explicacion": "TE sin tilde = pronombre"
+    },
+    {
+      "id": 513,
+      "categoria": "tildes",
+      "pregunta": "Completa: 'Espero que me ___ una oportunidad'",
+      "opciones": [
+        "dé",
+        "de"
+      ],
+      "correcta": 0,
+      "explicacion": "DÉ con tilde = verbo dar"
+    },
+    {
+      "id": 514,
+      "categoria": "tildes",
+      "pregunta": "Completa: 'La casa ___ mi abuela'",
+      "opciones": [
+        "de",
+        "dé"
+      ],
+      "correcta": 0,
+      "explicacion": "DE sin tilde = preposición"
+    },
+    {
+      "id": 515,
+      "categoria": "tildes",
+      "pregunta": "Completa: '___ no ha llegado'",
+      "opciones": [
+        "Aún",
+        "Aun"
+      ],
+      "correcta": 0,
+      "explicacion": "AÚN con tilde = todavía"
+    },
+    {
+      "id": 516,
+      "categoria": "tildes",
+      "pregunta": "Completa: '___ así, lo intentaré'",
+      "opciones": [
+        "Aun",
+        "Aún"
+      ],
+      "correcta": 0,
+      "explicacion": "AUN sin tilde = incluso"
+    },
+    {
+      "id": 517,
+      "categoria": "tildes",
+      "pregunta": "Completa: '¿___ lo has guardado?'",
+      "opciones": [
+        "Dónde",
+        "Donde"
+      ],
+      "correcta": 0,
+      "explicacion": "DÓNDE con tilde = interrogativo"
+    },
+    {
+      "id": 518,
+      "categoria": "tildes",
+      "pregunta": "Completa: 'La casa ___ nací'",
+      "opciones": [
+        "donde",
+        "dónde"
+      ],
+      "correcta": 0,
+      "explicacion": "DONDE sin tilde = relativo"
+    },
+    {
+      "id": 519,
+      "categoria": "tildes",
+      "pregunta": "Completa: '¿___ te llamas?'",
+      "opciones": [
+        "Cómo",
+        "Como"
+      ],
+      "correcta": 0,
+      "explicacion": "CÓMO con tilde = interrogativo"
+    },
+    {
+      "id": 520,
+      "categoria": "tildes",
+      "pregunta": "Completa: 'Hazlo ___ quieras'",
+      "opciones": [
+        "como",
+        "cómo"
+      ],
+      "correcta": 0,
+      "explicacion": "COMO sin tilde = relativo/comparativo"
+    },
+    {
+      "id": 521,
+      "categoria": "tildes",
+      "pregunta": "Completa: '¿___ llegas?'",
+      "opciones": [
+        "Cuándo",
+        "Cuando"
+      ],
+      "correcta": 0,
+      "explicacion": "CUÁNDO con tilde = interrogativo"
+    },
+    {
+      "id": 522,
+      "categoria": "tildes",
+      "pregunta": "Completa: '___ llueve, me quedo en casa'",
+      "opciones": [
+        "Cuando",
+        "Cuándo"
+      ],
+      "correcta": 0,
+      "explicacion": "CUANDO sin tilde = relativo/temporal"
+    },
+    {
+      "id": 523,
+      "categoria": "tildes",
+      "pregunta": "Completa: '¿___ es eso?'",
+      "opciones": [
+        "Qué",
+        "Que"
+      ],
+      "correcta": 0,
+      "explicacion": "QUÉ con tilde = interrogativo"
+    },
+    {
+      "id": 524,
+      "categoria": "tildes",
+      "pregunta": "Completa: 'Dijo ___ vendría'",
+      "opciones": [
+        "que",
+        "qué"
+      ],
+      "correcta": 0,
+      "explicacion": "QUE sin tilde = conjunción"
+    },
+    {
+      "id": 525,
+      "categoria": "tildes",
+      "pregunta": "Completa: '¡___ bonito!'",
+      "opciones": [
+        "Qué",
+        "Que"
+      ],
+      "correcta": 0,
+      "explicacion": "QUÉ con tilde = exclamativo"
+    },
+    {
+      "id": 526,
+      "categoria": "tildes",
+      "pregunta": "Completa: 'No sé ___ quieres'",
+      "opciones": [
+        "qué",
+        "que"
+      ],
+      "correcta": 0,
+      "explicacion": "QUÉ con tilde = interrogativo indirecto"
+    },
+    {
+      "id": 527,
+      "categoria": "tildes",
+      "pregunta": "¿Cuál lleva tilde?",
+      "opciones": [
+        "canción",
+        "cancion"
+      ],
+      "correcta": 0,
+      "explicacion": "Aguda terminada en -n: lleva tilde"
+    },
+    {
+      "id": 528,
+      "categoria": "tildes",
+      "pregunta": "¿Cuál lleva tilde?",
+      "opciones": [
+        "árbol",
+        "arbol"
+      ],
+      "correcta": 0,
+      "explicacion": "Llana NO terminada en vocal/n/s: lleva tilde"
+    },
+    {
+      "id": 529,
+      "categoria": "tildes",
+      "pregunta": "¿Cuál lleva tilde?",
+      "opciones": [
+        "música",
+        "musica"
+      ],
+      "correcta": 0,
+      "explicacion": "Esdrújula: siempre lleva tilde"
+    },
+    {
+      "id": 530,
+      "categoria": "tildes",
+      "pregunta": "¿Cuál lleva tilde?",
+      "opciones": [
+        "teléfono",
+        "telefono"
+      ],
+      "correcta": 0,
+      "explicacion": "Esdrújula: siempre lleva tilde"
+    },
+    {
+      "id": 531,
+      "categoria": "tildes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "examen",
+        "exámen"
+      ],
+      "correcta": 0,
+      "explicacion": "Llana terminada en -n: NO lleva tilde"
+    },
+    {
+      "id": 532,
+      "categoria": "tildes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "joven",
+        "jóven"
+      ],
+      "correcta": 0,
+      "explicacion": "Llana terminada en -n: NO lleva tilde"
+    },
+    {
+      "id": 533,
+      "categoria": "tildes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "volumen",
+        "volúmen"
+      ],
+      "correcta": 0,
+      "explicacion": "Llana terminada en -n: NO lleva tilde"
+    },
+    {
+      "id": 534,
+      "categoria": "tildes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "imagen",
+        "imágen"
+      ],
+      "correcta": 0,
+      "explicacion": "Llana terminada en -n: NO lleva tilde"
+    },
+    {
+      "id": 535,
+      "categoria": "tildes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "resumen",
+        "resúmen"
+      ],
+      "correcta": 0,
+      "explicacion": "Llana terminada en -n: NO lleva tilde"
+    },
+    {
+      "id": 536,
+      "categoria": "tildes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "caracteres",
+        "carácteres"
+      ],
+      "correcta": 0,
+      "explicacion": "El plural cambia la sílaba tónica: ca-rac-TE-res"
+    },
+    {
+      "id": 537,
+      "categoria": "tildes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "regímenes",
+        "regimenes"
+      ],
+      "correcta": 0,
+      "explicacion": "Esdrújula en plural: lleva tilde"
+    },
+    {
+      "id": 538,
+      "categoria": "tildes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "café",
+        "cafe"
+      ],
+      "correcta": 0,
+      "explicacion": "Aguda terminada en vocal: lleva tilde"
+    },
+    {
+      "id": 539,
+      "categoria": "tildes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "también",
+        "tambien"
+      ],
+      "correcta": 0,
+      "explicacion": "Aguda terminada en -n: lleva tilde"
+    },
+    {
+      "id": 540,
+      "categoria": "tildes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "sofá",
+        "sofa"
+      ],
+      "correcta": 0,
+      "explicacion": "Aguda terminada en vocal: lleva tilde"
+    },
+    {
+      "id": 541,
+      "categoria": "tildes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "azúcar",
+        "azucar"
+      ],
+      "correcta": 0,
+      "explicacion": "Llana terminada en -r: lleva tilde"
+    },
+    {
+      "id": 542,
+      "categoria": "tildes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "lápiz",
+        "lapiz"
+      ],
+      "correcta": 0,
+      "explicacion": "Llana terminada en -z: lleva tilde"
+    },
+    {
+      "id": 543,
+      "categoria": "tildes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "difícil",
+        "dificil"
+      ],
+      "correcta": 0,
+      "explicacion": "Llana terminada en -l: lleva tilde"
+    },
+    {
+      "id": 544,
+      "categoria": "tildes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "fácil",
+        "facil"
+      ],
+      "correcta": 0,
+      "explicacion": "Llana terminada en -l: lleva tilde"
+    },
+    {
+      "id": 545,
+      "categoria": "tildes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "útil",
+        "util"
+      ],
+      "correcta": 0,
+      "explicacion": "Llana terminada en -l: lleva tilde"
+    },
+    {
+      "id": 546,
+      "categoria": "tildes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "día",
+        "dia"
+      ],
+      "correcta": 0,
+      "explicacion": "Hiato: vocal cerrada tónica + abierta lleva tilde"
+    },
+    {
+      "id": 547,
+      "categoria": "tildes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "río",
+        "rio"
+      ],
+      "correcta": 0,
+      "explicacion": "Hiato: vocal cerrada tónica + abierta lleva tilde"
+    },
+    {
+      "id": 548,
+      "categoria": "tildes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "país",
+        "pais"
+      ],
+      "correcta": 0,
+      "explicacion": "Hiato: vocal cerrada tónica + abierta lleva tilde"
+    },
+    {
+      "id": 549,
+      "categoria": "tildes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "raíz",
+        "raiz"
+      ],
+      "correcta": 0,
+      "explicacion": "Hiato: vocal cerrada tónica + abierta lleva tilde"
+    },
+    {
+      "id": 550,
+      "categoria": "tildes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "maíz",
+        "maiz"
+      ],
+      "correcta": 0,
+      "explicacion": "Hiato: vocal cerrada tónica + abierta lleva tilde"
+    },
+    {
+      "id": 551,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "absolver",
+        "avsolver"
+      ],
+      "correcta": 0,
+      "explicacion": "Siempre B antes de consonante (abs-)"
+    },
+    {
+      "id": 552,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "obstáculo",
+        "ovstáculo"
+      ],
+      "correcta": 0,
+      "explicacion": "Siempre B antes de consonante (obs-)"
+    },
+    {
+      "id": 553,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "observar",
+        "ovservar"
+      ],
+      "correcta": 0,
+      "explicacion": "Siempre B antes de consonante (obs-)"
+    },
+    {
+      "id": 554,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "obtener",
+        "ovtener"
+      ],
+      "correcta": 0,
+      "explicacion": "Siempre B antes de consonante (obt-)"
+    },
+    {
+      "id": 555,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "subrayar",
+        "suvrayar"
+      ],
+      "correcta": 0,
+      "explicacion": "Prefijo SUB- siempre con B"
+    },
+    {
+      "id": 556,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "escribir",
+        "escrivir"
+      ],
+      "correcta": 0,
+      "explicacion": "Terminación -BIR siempre con B (excepto hervir, servir, vivir)"
+    },
+    {
+      "id": 557,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "recibir",
+        "recivir"
+      ],
+      "correcta": 0,
+      "explicacion": "Terminación -BIR siempre con B"
+    },
+    {
+      "id": 558,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "prohibir",
+        "prohivir"
+      ],
+      "correcta": 0,
+      "explicacion": "Terminación -BIR siempre con B"
+    },
+    {
+      "id": 559,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "vivir",
+        "vibir"
+      ],
+      "correcta": 0,
+      "explicacion": "VIVIR es excepción: siempre con V"
+    },
+    {
+      "id": 560,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "hervir",
+        "herbir"
+      ],
+      "correcta": 0,
+      "explicacion": "HERVIR es excepción: siempre con V"
+    },
+    {
+      "id": 561,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "servir",
+        "serbir"
+      ],
+      "correcta": 0,
+      "explicacion": "SERVIR es excepción: siempre con V"
+    },
+    {
+      "id": 562,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "amabilidad",
+        "amavilidad"
+      ],
+      "correcta": 0,
+      "explicacion": "Terminación -BILIDAD siempre con B"
+    },
+    {
+      "id": 563,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "habilidad",
+        "havilidad"
+      ],
+      "correcta": 0,
+      "explicacion": "Terminación -BILIDAD siempre con B"
+    },
+    {
+      "id": 564,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "posibilidad",
+        "posivilidad"
+      ],
+      "correcta": 0,
+      "explicacion": "Terminación -BILIDAD siempre con B"
+    },
+    {
+      "id": 565,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "movilidad",
+        "mobilidad"
+      ],
+      "correcta": 0,
+      "explicacion": "Excepción: MOVILIDAD viene de MOVER, con V"
+    },
+    {
+      "id": 566,
+      "categoria": "b_v",
+      "pregunta": "Completa: 'Ayer ___ mucha gente'",
+      "opciones": [
+        "hubo",
+        "huvo"
+      ],
+      "correcta": 0,
+      "explicacion": "HABER siempre con B"
+    },
+    {
+      "id": 567,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "caber",
+        "caver"
+      ],
+      "correcta": 0,
+      "explicacion": "CABER siempre con B"
+    },
+    {
+      "id": 568,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "saber",
+        "saver"
+      ],
+      "correcta": 0,
+      "explicacion": "SABER siempre con B"
+    },
+    {
+      "id": 569,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "beber",
+        "bever"
+      ],
+      "correcta": 0,
+      "explicacion": "BEBER siempre con B"
+    },
+    {
+      "id": 570,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "deber",
+        "dever"
+      ],
+      "correcta": 0,
+      "explicacion": "DEBER siempre con B"
+    },
+    {
+      "id": 571,
+      "categoria": "b_v",
+      "pregunta": "Completa: 'Iba ___ muy rápido'",
+      "opciones": [
+        "anduve",
+        "andube"
+      ],
+      "correcta": 0,
+      "explicacion": "Pretérito de ANDAR: anduve con V"
+    },
+    {
+      "id": 572,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "estuve",
+        "estube"
+      ],
+      "correcta": 0,
+      "explicacion": "Pretérito de ESTAR: estuve con V"
+    },
+    {
+      "id": 573,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "tuve",
+        "tube"
+      ],
+      "correcta": 0,
+      "explicacion": "Pretérito de TENER: tuve con V"
+    },
+    {
+      "id": 574,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "nuevo",
+        "nuebo"
+      ],
+      "correcta": 0,
+      "explicacion": "NUEVO siempre con V"
+    },
+    {
+      "id": 575,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "nieve",
+        "niebe"
+      ],
+      "correcta": 0,
+      "explicacion": "NIEVE siempre con V"
+    },
+    {
+      "id": 576,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "nave",
+        "nabe"
+      ],
+      "correcta": 0,
+      "explicacion": "NAVE siempre con V"
+    },
+    {
+      "id": 577,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "volver",
+        "bolver"
+      ],
+      "correcta": 0,
+      "explicacion": "VOLVER siempre con V"
+    },
+    {
+      "id": 578,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "envolver",
+        "embolver"
+      ],
+      "correcta": 0,
+      "explicacion": "ENVOLVER: en- + volver, con V"
+    },
+    {
+      "id": 579,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "resolver",
+        "resólber"
+      ],
+      "correcta": 0,
+      "explicacion": "RESOLVER: re- + solver, con V"
+    },
+    {
+      "id": 580,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "llevar",
+        "llebar"
+      ],
+      "correcta": 0,
+      "explicacion": "LLEVAR siempre con V"
+    },
+    {
+      "id": 581,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "lavar",
+        "labar"
+      ],
+      "correcta": 0,
+      "explicacion": "LAVAR siempre con V"
+    },
+    {
+      "id": 582,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "levantar",
+        "lebantar"
+      ],
+      "correcta": 0,
+      "explicacion": "LEVANTAR siempre con V"
+    },
+    {
+      "id": 583,
+      "categoria": "b_v",
+      "pregunta": "Completa: 'Este paisaje es muy ___'",
+      "opciones": [
+        "bello",
+        "vello"
+      ],
+      "correcta": 0,
+      "explicacion": "BELLO = hermoso. VELLO = pelo fino"
+    },
+    {
+      "id": 584,
+      "categoria": "b_v",
+      "pregunta": "Completa: 'Tiene ___ en los brazos'",
+      "opciones": [
+        "vello",
+        "bello"
+      ],
+      "correcta": 0,
+      "explicacion": "VELLO = pelo fino del cuerpo"
+    },
+    {
+      "id": 585,
+      "categoria": "b_v",
+      "pregunta": "Completa: 'El ___ nos protege del sol'",
+      "opciones": [
+        "toldo",
+        "tolbo"
+      ],
+      "correcta": 0,
+      "explicacion": "TOLDO siempre con D"
+    },
+    {
+      "id": 586,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "revelación",
+        "rebelación"
+      ],
+      "correcta": 0,
+      "explicacion": "REVELACIÓN = mostrar algo oculto"
+    },
+    {
+      "id": 587,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "rebelión",
+        "revelión"
+      ],
+      "correcta": 0,
+      "explicacion": "REBELIÓN = sublevarse"
+    },
+    {
+      "id": 588,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "caballo",
+        "cavallo"
+      ],
+      "correcta": 0,
+      "explicacion": "CABALLO siempre con B"
+    },
+    {
+      "id": 589,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "caballero",
+        "cavallero"
+      ],
+      "correcta": 0,
+      "explicacion": "CABALLERO: de caballo, con B"
+    },
+    {
+      "id": 590,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "avanzar",
+        "abanzar"
+      ],
+      "correcta": 0,
+      "explicacion": "AVANZAR siempre con V"
+    },
+    {
+      "id": 591,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "abrazar",
+        "avrazar"
+      ],
+      "correcta": 0,
+      "explicacion": "ABRAZAR siempre con B"
+    },
+    {
+      "id": 592,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "embargo",
+        "envargo"
+      ],
+      "correcta": 0,
+      "explicacion": "Siempre M antes de B: em-bar-go"
+    },
+    {
+      "id": 593,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "enviar",
+        "embiar"
+      ],
+      "correcta": 0,
+      "explicacion": "ENVIAR siempre con V, y N antes de V"
+    },
+    {
+      "id": 594,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "inventar",
+        "imbentar"
+      ],
+      "correcta": 0,
+      "explicacion": "INVENTAR con V, y N antes de V"
+    },
+    {
+      "id": 595,
+      "categoria": "b_v",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "invitar",
+        "imbitar"
+      ],
+      "correcta": 0,
+      "explicacion": "INVITAR con V, y N antes de V"
+    },
+    {
+      "id": 596,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "coger",
+        "cojer"
+      ],
+      "correcta": 0,
+      "explicacion": "COGER siempre con G"
+    },
+    {
+      "id": 597,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "proteger",
+        "protejer"
+      ],
+      "correcta": 0,
+      "explicacion": "Terminación -GER siempre con G"
+    },
+    {
+      "id": 598,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "escoger",
+        "escojer"
+      ],
+      "correcta": 0,
+      "explicacion": "Terminación -GER siempre con G"
+    },
+    {
+      "id": 599,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "recoger",
+        "recojer"
+      ],
+      "correcta": 0,
+      "explicacion": "Terminación -GER siempre con G"
+    },
+    {
+      "id": 600,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "dirigir",
+        "dirijir"
+      ],
+      "correcta": 0,
+      "explicacion": "Terminación -GIR siempre con G"
+    },
+    {
+      "id": 601,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "elegir",
+        "elejir"
+      ],
+      "correcta": 0,
+      "explicacion": "Terminación -GIR siempre con G"
+    },
+    {
+      "id": 602,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "corregir",
+        "correjir"
+      ],
+      "correcta": 0,
+      "explicacion": "Terminación -GIR siempre con G"
+    },
+    {
+      "id": 603,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "exigir",
+        "exijir"
+      ],
+      "correcta": 0,
+      "explicacion": "Terminación -GIR siempre con G"
+    },
+    {
+      "id": 604,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "surgir",
+        "surjir"
+      ],
+      "correcta": 0,
+      "explicacion": "Terminación -GIR siempre con G"
+    },
+    {
+      "id": 605,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "rugir",
+        "rujir"
+      ],
+      "correcta": 0,
+      "explicacion": "Terminación -GIR siempre con G"
+    },
+    {
+      "id": 606,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "tejer",
+        "teger"
+      ],
+      "correcta": 0,
+      "explicacion": "TEJER es excepción: siempre con J"
+    },
+    {
+      "id": 607,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "crujir",
+        "crugir"
+      ],
+      "correcta": 0,
+      "explicacion": "CRUJIR es excepción: siempre con J"
+    },
+    {
+      "id": 608,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "generoso",
+        "jeneroso"
+      ],
+      "correcta": 0,
+      "explicacion": "GEN- siempre con G"
+    },
+    {
+      "id": 609,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "genial",
+        "jenial"
+      ],
+      "correcta": 0,
+      "explicacion": "GEN- siempre con G"
+    },
+    {
+      "id": 610,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "gente",
+        "jente"
+      ],
+      "correcta": 0,
+      "explicacion": "GEN- siempre con G"
+    },
+    {
+      "id": 611,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "general",
+        "jeneral"
+      ],
+      "correcta": 0,
+      "explicacion": "GEN- siempre con G"
+    },
+    {
+      "id": 612,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "genio",
+        "jenio"
+      ],
+      "correcta": 0,
+      "explicacion": "GEN- siempre con G"
+    },
+    {
+      "id": 613,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "gemelo",
+        "jemelo"
+      ],
+      "correcta": 0,
+      "explicacion": "GEM- siempre con G"
+    },
+    {
+      "id": 614,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "geografía",
+        "jeografía"
+      ],
+      "correcta": 0,
+      "explicacion": "GEO- (tierra) siempre con G"
+    },
+    {
+      "id": 615,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "geometría",
+        "jeometría"
+      ],
+      "correcta": 0,
+      "explicacion": "GEO- (tierra) siempre con G"
+    },
+    {
+      "id": 616,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "geología",
+        "jeología"
+      ],
+      "correcta": 0,
+      "explicacion": "GEO- (tierra) siempre con G"
+    },
+    {
+      "id": 617,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "mensaje",
+        "mensage"
+      ],
+      "correcta": 0,
+      "explicacion": "Terminación -AJE siempre con J"
+    },
+    {
+      "id": 618,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "viaje",
+        "viage"
+      ],
+      "correcta": 0,
+      "explicacion": "Terminación -AJE siempre con J"
+    },
+    {
+      "id": 619,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "paisaje",
+        "paisage"
+      ],
+      "correcta": 0,
+      "explicacion": "Terminación -AJE siempre con J"
+    },
+    {
+      "id": 620,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "garaje",
+        "garage"
+      ],
+      "correcta": 0,
+      "explicacion": "Terminación -AJE siempre con J"
+    },
+    {
+      "id": 621,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "aterrizaje",
+        "aterrizage"
+      ],
+      "correcta": 0,
+      "explicacion": "Terminación -AJE siempre con J"
+    },
+    {
+      "id": 622,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "equipaje",
+        "equipage"
+      ],
+      "correcta": 0,
+      "explicacion": "Terminación -AJE siempre con J"
+    },
+    {
+      "id": 623,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "coraje",
+        "corage"
+      ],
+      "correcta": 0,
+      "explicacion": "Terminación -AJE siempre con J"
+    },
+    {
+      "id": 624,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "relojería",
+        "relogería"
+      ],
+      "correcta": 0,
+      "explicacion": "Derivados de RELOJ: con J"
+    },
+    {
+      "id": 625,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "brujería",
+        "brugería"
+      ],
+      "correcta": 0,
+      "explicacion": "Derivados de BRUJA: con J"
+    },
+    {
+      "id": 626,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "extranjero",
+        "extrangero"
+      ],
+      "correcta": 0,
+      "explicacion": "Terminación -JERO con J"
+    },
+    {
+      "id": 627,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "pasajero",
+        "pasagero"
+      ],
+      "correcta": 0,
+      "explicacion": "Terminación -JERO con J"
+    },
+    {
+      "id": 628,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "cajero",
+        "cagero"
+      ],
+      "correcta": 0,
+      "explicacion": "Terminación -JERO con J"
+    },
+    {
+      "id": 629,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "consejero",
+        "consegero"
+      ],
+      "correcta": 0,
+      "explicacion": "Terminación -JERO con J"
+    },
+    {
+      "id": 630,
+      "categoria": "g_j",
+      "pregunta": "Completa: 'El profesor me ___ que estudiara'",
+      "opciones": [
+        "dijo",
+        "digo"
+      ],
+      "correcta": 0,
+      "explicacion": "Pretérito de DECIR: dijo con J"
+    },
+    {
+      "id": 631,
+      "categoria": "g_j",
+      "pregunta": "Completa: 'Nos ___ muchos regalos'",
+      "opciones": [
+        "trajeron",
+        "trageron"
+      ],
+      "correcta": 0,
+      "explicacion": "Pretérito de TRAER: trajeron con J"
+    },
+    {
+      "id": 632,
+      "categoria": "g_j",
+      "pregunta": "Completa: 'Lo ___ en la mesa'",
+      "opciones": [
+        "dejé",
+        "degé"
+      ],
+      "correcta": 0,
+      "explicacion": "DEJAR siempre con J"
+    },
+    {
+      "id": 633,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "lejía",
+        "legía"
+      ],
+      "correcta": 0,
+      "explicacion": "LEJÍA siempre con J"
+    },
+    {
+      "id": 634,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "jirafa",
+        "girafa"
+      ],
+      "correcta": 0,
+      "explicacion": "JIRAFA siempre con J"
+    },
+    {
+      "id": 635,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "jinete",
+        "ginete"
+      ],
+      "correcta": 0,
+      "explicacion": "JINETE siempre con J"
+    },
+    {
+      "id": 636,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "ojo",
+        "ogo"
+      ],
+      "correcta": 0,
+      "explicacion": "OJO siempre con J"
+    },
+    {
+      "id": 637,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "gigante",
+        "jigante"
+      ],
+      "correcta": 0,
+      "explicacion": "GIGANTE con G (gi-)"
+    },
+    {
+      "id": 638,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "colegio",
+        "colejio"
+      ],
+      "correcta": 0,
+      "explicacion": "COLEGIO siempre con G (-gio)"
+    },
+    {
+      "id": 639,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "refugio",
+        "refujio"
+      ],
+      "correcta": 0,
+      "explicacion": "Terminación -GIO con G"
+    },
+    {
+      "id": 640,
+      "categoria": "g_j",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "magia",
+        "majia"
+      ],
+      "correcta": 0,
+      "explicacion": "Terminación -GIA con G"
+    },
+    {
+      "id": 641,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "almohada",
+        "almoada"
+      ],
+      "correcta": 0,
+      "explicacion": "ALMOHADA lleva H intercalada"
+    },
+    {
+      "id": 642,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "zanahoria",
+        "sanahoria"
+      ],
+      "correcta": 0,
+      "explicacion": "ZANAHORIA: con Z y H"
+    },
+    {
+      "id": 643,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "ahora",
+        "aora"
+      ],
+      "correcta": 0,
+      "explicacion": "AHORA lleva H intercalada"
+    },
+    {
+      "id": 644,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "alcohol",
+        "alcool"
+      ],
+      "correcta": 0,
+      "explicacion": "ALCOHOL lleva H intercalada"
+    },
+    {
+      "id": 645,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "bahía",
+        "baía"
+      ],
+      "correcta": 0,
+      "explicacion": "BAHÍA lleva H intercalada"
+    },
+    {
+      "id": 646,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "búho",
+        "búo"
+      ],
+      "correcta": 0,
+      "explicacion": "BÚHO lleva H intercalada"
+    },
+    {
+      "id": 647,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "vehículo",
+        "veículo"
+      ],
+      "correcta": 0,
+      "explicacion": "VEHÍCULO lleva H intercalada"
+    },
+    {
+      "id": 648,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "cohete",
+        "coete"
+      ],
+      "correcta": 0,
+      "explicacion": "COHETE lleva H intercalada"
+    },
+    {
+      "id": 649,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "humano",
+        "umano"
+      ],
+      "correcta": 0,
+      "explicacion": "HUM- siempre con H"
+    },
+    {
+      "id": 650,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "humilde",
+        "umilde"
+      ],
+      "correcta": 0,
+      "explicacion": "HUM- siempre con H"
+    },
+    {
+      "id": 651,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "humor",
+        "umor"
+      ],
+      "correcta": 0,
+      "explicacion": "HUM- siempre con H"
+    },
+    {
+      "id": 652,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "húmedo",
+        "úmedo"
+      ],
+      "correcta": 0,
+      "explicacion": "HUM- siempre con H"
+    },
+    {
+      "id": 653,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "humo",
+        "umo"
+      ],
+      "correcta": 0,
+      "explicacion": "HUM- siempre con H"
+    },
+    {
+      "id": 654,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "hueso",
+        "ueso"
+      ],
+      "correcta": 0,
+      "explicacion": "HUE- siempre con H"
+    },
+    {
+      "id": 655,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "huevo",
+        "uevo"
+      ],
+      "correcta": 0,
+      "explicacion": "HUE- siempre con H"
+    },
+    {
+      "id": 656,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "hueco",
+        "ueco"
+      ],
+      "correcta": 0,
+      "explicacion": "HUE- siempre con H"
+    },
+    {
+      "id": 657,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "huerta",
+        "uerta"
+      ],
+      "correcta": 0,
+      "explicacion": "HUE- siempre con H"
+    },
+    {
+      "id": 658,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "huérfano",
+        "uérfano"
+      ],
+      "correcta": 0,
+      "explicacion": "HUE- siempre con H"
+    },
+    {
+      "id": 659,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "huelga",
+        "uelga"
+      ],
+      "correcta": 0,
+      "explicacion": "HUE- siempre con H"
+    },
+    {
+      "id": 660,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "huir",
+        "uir"
+      ],
+      "correcta": 0,
+      "explicacion": "HUI- siempre con H"
+    },
+    {
+      "id": 661,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "hierro",
+        "ierro"
+      ],
+      "correcta": 0,
+      "explicacion": "HIE- siempre con H"
+    },
+    {
+      "id": 662,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "hierba",
+        "ierba"
+      ],
+      "correcta": 0,
+      "explicacion": "HIE- siempre con H"
+    },
+    {
+      "id": 663,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "hielo",
+        "ielo"
+      ],
+      "correcta": 0,
+      "explicacion": "HIE- siempre con H"
+    },
+    {
+      "id": 664,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "hospital",
+        "ospital"
+      ],
+      "correcta": 0,
+      "explicacion": "HOSP- siempre con H"
+    },
+    {
+      "id": 665,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "hotel",
+        "otel"
+      ],
+      "correcta": 0,
+      "explicacion": "HOT- siempre con H"
+    },
+    {
+      "id": 666,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "historia",
+        "istoria"
+      ],
+      "correcta": 0,
+      "explicacion": "HIST- siempre con H"
+    },
+    {
+      "id": 667,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "hipopótamo",
+        "ipopótamo"
+      ],
+      "correcta": 0,
+      "explicacion": "HIPO- (debajo) siempre con H"
+    },
+    {
+      "id": 668,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "hiperactividad",
+        "iperactividad"
+      ],
+      "correcta": 0,
+      "explicacion": "HIPER- (exceso) siempre con H"
+    },
+    {
+      "id": 669,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "hemisferio",
+        "emisferio"
+      ],
+      "correcta": 0,
+      "explicacion": "HEMI- (mitad) siempre con H"
+    },
+    {
+      "id": 670,
+      "categoria": "h",
+      "pregunta": "Completa: 'Ella ___ ido al cine'",
+      "opciones": [
+        "ha",
+        "a"
+      ],
+      "correcta": 0,
+      "explicacion": "HA = verbo haber (ella ha ido)"
+    },
+    {
+      "id": 671,
+      "categoria": "h",
+      "pregunta": "Completa: 'Voy ___ casa'",
+      "opciones": [
+        "a",
+        "ha"
+      ],
+      "correcta": 0,
+      "explicacion": "A = preposición (voy a casa)"
+    },
+    {
+      "id": 672,
+      "categoria": "h",
+      "pregunta": "Completa: '¡___! ¡Qué dolor!'",
+      "opciones": [
+        "Ah",
+        "A"
+      ],
+      "correcta": 0,
+      "explicacion": "AH = interjección de sorpresa/dolor"
+    },
+    {
+      "id": 673,
+      "categoria": "h",
+      "pregunta": "Completa: 'Le ___ un vistazo al libro'",
+      "opciones": [
+        "echo",
+        "hecho"
+      ],
+      "correcta": 0,
+      "explicacion": "ECHO = verbo echar (echar un vistazo)"
+    },
+    {
+      "id": 674,
+      "categoria": "h",
+      "pregunta": "Completa: 'Ya he ___ la tarea'",
+      "opciones": [
+        "hecho",
+        "echo"
+      ],
+      "correcta": 0,
+      "explicacion": "HECHO = participio de hacer"
+    },
+    {
+      "id": 675,
+      "categoria": "h",
+      "pregunta": "Completa: 'El ___ de que llueva...'",
+      "opciones": [
+        "hecho",
+        "echo"
+      ],
+      "correcta": 0,
+      "explicacion": "HECHO = sustantivo (suceso)"
+    },
+    {
+      "id": 676,
+      "categoria": "h",
+      "pregunta": "Completa: '___ que te dije que vinieras'",
+      "opciones": [
+        "Hasta",
+        "Asta"
+      ],
+      "correcta": 0,
+      "explicacion": "HASTA = preposición de límite"
+    },
+    {
+      "id": 677,
+      "categoria": "h",
+      "pregunta": "Completa: 'El ___ del toro'",
+      "opciones": [
+        "asta",
+        "hasta"
+      ],
+      "correcta": 0,
+      "explicacion": "ASTA = cuerno del toro"
+    },
+    {
+      "id": 678,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "hora",
+        "ora"
+      ],
+      "correcta": 0,
+      "explicacion": "HORA siempre con H"
+    },
+    {
+      "id": 679,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "honor",
+        "onor"
+      ],
+      "correcta": 0,
+      "explicacion": "HONOR siempre con H"
+    },
+    {
+      "id": 680,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "herida",
+        "erida"
+      ],
+      "correcta": 0,
+      "explicacion": "HERIR → herida, con H"
+    },
+    {
+      "id": 681,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "hermano",
+        "ermano"
+      ],
+      "correcta": 0,
+      "explicacion": "HERMANO siempre con H"
+    },
+    {
+      "id": 682,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "hermoso",
+        "ermoso"
+      ],
+      "correcta": 0,
+      "explicacion": "HERMOSO siempre con H"
+    },
+    {
+      "id": 683,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "habitar",
+        "abitar"
+      ],
+      "correcta": 0,
+      "explicacion": "HAB- siempre con H"
+    },
+    {
+      "id": 684,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "habitación",
+        "abitación"
+      ],
+      "correcta": 0,
+      "explicacion": "HAB- siempre con H"
+    },
+    {
+      "id": 685,
+      "categoria": "h",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "prohibir",
+        "proibir"
+      ],
+      "correcta": 0,
+      "explicacion": "PROHIBIR lleva H intercalada"
+    },
+    {
+      "id": 686,
+      "categoria": "ll_y",
+      "pregunta": "Completa: 'Espero que ___ solución'",
+      "opciones": [
+        "haya",
+        "halla"
+      ],
+      "correcta": 0,
+      "explicacion": "HAYA = subjuntivo de haber"
+    },
+    {
+      "id": 687,
+      "categoria": "ll_y",
+      "pregunta": "Completa: 'La policía no ___ pruebas'",
+      "opciones": [
+        "halla",
+        "haya"
+      ],
+      "correcta": 0,
+      "explicacion": "HALLA = encuentra (verbo hallar)"
+    },
+    {
+      "id": 688,
+      "categoria": "ll_y",
+      "pregunta": "Completa: 'Se ___ del caballo'",
+      "opciones": [
+        "cayó",
+        "calló"
+      ],
+      "correcta": 0,
+      "explicacion": "CAYÓ = verbo caer"
+    },
+    {
+      "id": 689,
+      "categoria": "ll_y",
+      "pregunta": "Completa: 'El niño se ___'",
+      "opciones": [
+        "calló",
+        "cayó"
+      ],
+      "correcta": 0,
+      "explicacion": "CALLÓ = dejó de hablar (verbo callar)"
+    },
+    {
+      "id": 690,
+      "categoria": "ll_y",
+      "pregunta": "Completa: '___ por la ventana'",
+      "opciones": [
+        "Rayó",
+        "Ralló"
+      ],
+      "correcta": 0,
+      "explicacion": "RAYÓ = hizo rayas / amaneció"
+    },
+    {
+      "id": 691,
+      "categoria": "ll_y",
+      "pregunta": "Completa: '___ el queso para la pasta'",
+      "opciones": [
+        "Ralló",
+        "Rayó"
+      ],
+      "correcta": 0,
+      "explicacion": "RALLÓ = desmenuzó con rallador"
+    },
+    {
+      "id": 692,
+      "categoria": "ll_y",
+      "pregunta": "Completa: '¡___ que ver!'",
+      "opciones": [
+        "Vaya",
+        "Valla"
+      ],
+      "correcta": 0,
+      "explicacion": "VAYA = exclamación / subjuntivo de ir"
+    },
+    {
+      "id": 693,
+      "categoria": "ll_y",
+      "pregunta": "Completa: 'Saltó la ___ del jardín'",
+      "opciones": [
+        "valla",
+        "vaya"
+      ],
+      "correcta": 0,
+      "explicacion": "VALLA = cerca, barrera"
+    },
+    {
+      "id": 694,
+      "categoria": "ll_y",
+      "pregunta": "Completa: 'El ___ pasa por el pueblo'",
+      "opciones": [
+        "arroyo",
+        "arrollo"
+      ],
+      "correcta": 0,
+      "explicacion": "ARROYO = río pequeño"
+    },
+    {
+      "id": 695,
+      "categoria": "ll_y",
+      "pregunta": "Completa: 'Si no freno, te ___'",
+      "opciones": [
+        "arrollo",
+        "arroyo"
+      ],
+      "correcta": 0,
+      "explicacion": "ARROLLO = verbo arrollar (atropellar)"
+    },
+    {
+      "id": 696,
+      "categoria": "ll_y",
+      "pregunta": "Completa: 'El ___ asado estaba buenísimo'",
+      "opciones": [
+        "pollo",
+        "poyo"
+      ],
+      "correcta": 0,
+      "explicacion": "POLLO = ave de corral"
+    },
+    {
+      "id": 697,
+      "categoria": "ll_y",
+      "pregunta": "Completa: 'Se sentó en el ___ de piedra'",
+      "opciones": [
+        "poyo",
+        "pollo"
+      ],
+      "correcta": 0,
+      "explicacion": "POYO = banco de piedra"
+    },
+    {
+      "id": 698,
+      "categoria": "ll_y",
+      "pregunta": "Completa: 'Tiene un ___ de diamantes'",
+      "opciones": [
+        "collar",
+        "coyar"
+      ],
+      "correcta": 0,
+      "explicacion": "COLLAR siempre con LL"
+    },
+    {
+      "id": 699,
+      "categoria": "ll_y",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "calle",
+        "caye"
+      ],
+      "correcta": 0,
+      "explicacion": "CALLE siempre con LL"
+    },
+    {
+      "id": 700,
+      "categoria": "ll_y",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "silla",
+        "siya"
+      ],
+      "correcta": 0,
+      "explicacion": "SILLA siempre con LL"
+    },
+    {
+      "id": 701,
+      "categoria": "ll_y",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "botella",
+        "boteya"
+      ],
+      "correcta": 0,
+      "explicacion": "BOTELLA siempre con LL"
+    },
+    {
+      "id": 702,
+      "categoria": "ll_y",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "estrella",
+        "estreya"
+      ],
+      "correcta": 0,
+      "explicacion": "ESTRELLA siempre con LL"
+    },
+    {
+      "id": 703,
+      "categoria": "ll_y",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "orilla",
+        "oriya"
+      ],
+      "correcta": 0,
+      "explicacion": "ORILLA siempre con LL"
+    },
+    {
+      "id": 704,
+      "categoria": "ll_y",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "amarillo",
+        "amariyo"
+      ],
+      "correcta": 0,
+      "explicacion": "AMARILLO siempre con LL"
+    },
+    {
+      "id": 705,
+      "categoria": "ll_y",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "anillo",
+        "aniyo"
+      ],
+      "correcta": 0,
+      "explicacion": "ANILLO siempre con LL"
+    },
+    {
+      "id": 706,
+      "categoria": "ll_y",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "sencillo",
+        "senciyo"
+      ],
+      "correcta": 0,
+      "explicacion": "Diminutivo -ILLO siempre con LL"
+    },
+    {
+      "id": 707,
+      "categoria": "ll_y",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "cuchillo",
+        "cuchiyo"
+      ],
+      "correcta": 0,
+      "explicacion": "Diminutivo -ILLO siempre con LL"
+    },
+    {
+      "id": 708,
+      "categoria": "ll_y",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "martillo",
+        "martiyo"
+      ],
+      "correcta": 0,
+      "explicacion": "Diminutivo -ILLO siempre con LL"
+    },
+    {
+      "id": 709,
+      "categoria": "ll_y",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "ayer",
+        "aller"
+      ],
+      "correcta": 0,
+      "explicacion": "AYER siempre con Y"
+    },
+    {
+      "id": 710,
+      "categoria": "ll_y",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "mayor",
+        "mallor"
+      ],
+      "correcta": 0,
+      "explicacion": "MAYOR siempre con Y"
+    },
+    {
+      "id": 711,
+      "categoria": "ll_y",
+      "pregunta": "¿Cuál es el nombre del quinto mes del año?",
+      "opciones": [
+        "mayo",
+        "mallo"
+      ],
+      "correcta": 0,
+      "explicacion": "MAYO (mes) siempre con Y"
+    },
+    {
+      "id": 712,
+      "categoria": "ll_y",
+      "pregunta": "Completa: 'Cayó un ___ durante la tormenta'",
+      "opciones": [
+        "rayo",
+        "rallo"
+      ],
+      "correcta": 0,
+      "explicacion": "RAYO (de luz/tormenta) siempre con Y"
+    },
+    {
+      "id": 713,
+      "categoria": "ll_y",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "playa",
+        "plalla"
+      ],
+      "correcta": 0,
+      "explicacion": "PLAYA siempre con Y"
+    },
+    {
+      "id": 714,
+      "categoria": "ll_y",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "joya",
+        "jolla"
+      ],
+      "correcta": 0,
+      "explicacion": "JOYA siempre con Y"
+    },
+    {
+      "id": 715,
+      "categoria": "ll_y",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "hoyo",
+        "hollo"
+      ],
+      "correcta": 0,
+      "explicacion": "HOYO (agujero) siempre con Y"
+    },
+    {
+      "id": 716,
+      "categoria": "ll_y",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "apoyar",
+        "apollar"
+      ],
+      "correcta": 0,
+      "explicacion": "APOYAR siempre con Y"
+    },
+    {
+      "id": 717,
+      "categoria": "ll_y",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "cayeron",
+        "calleron"
+      ],
+      "correcta": 0,
+      "explicacion": "CAER → cayeron con Y"
+    },
+    {
+      "id": 718,
+      "categoria": "ll_y",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "leyeron",
+        "lelleron"
+      ],
+      "correcta": 0,
+      "explicacion": "LEER → leyeron con Y"
+    },
+    {
+      "id": 719,
+      "categoria": "ll_y",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "oyeron",
+        "olleron"
+      ],
+      "correcta": 0,
+      "explicacion": "OÍR → oyeron con Y"
+    },
+    {
+      "id": 720,
+      "categoria": "ll_y",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "creyeron",
+        "crelleron"
+      ],
+      "correcta": 0,
+      "explicacion": "CREER → creyeron con Y"
+    },
+    {
+      "id": 721,
+      "categoria": "ll_y",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "huyeron",
+        "hulleron"
+      ],
+      "correcta": 0,
+      "explicacion": "HUIR → huyeron con Y"
+    },
+    {
+      "id": 722,
+      "categoria": "ll_y",
+      "pregunta": "Completa: 'Te voy a ___ un secreto'",
+      "opciones": [
+        "revelar",
+        "rebellar"
+      ],
+      "correcta": 0,
+      "explicacion": "REVELAR = contar un secreto"
+    },
+    {
+      "id": 723,
+      "categoria": "ll_y",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "yate",
+        "llate"
+      ],
+      "correcta": 0,
+      "explicacion": "YATE siempre con Y"
+    },
+    {
+      "id": 724,
+      "categoria": "ll_y",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "yema",
+        "llema"
+      ],
+      "correcta": 0,
+      "explicacion": "YEMA siempre con Y"
+    },
+    {
+      "id": 725,
+      "categoria": "ll_y",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "yoga",
+        "lloga"
+      ],
+      "correcta": 0,
+      "explicacion": "YOGA siempre con Y"
+    },
+    {
+      "id": 726,
+      "categoria": "ll_y",
+      "pregunta": "Completa: 'La ___ del huevo'",
+      "opciones": [
+        "yema",
+        "llema"
+      ],
+      "correcta": 0,
+      "explicacion": "YEMA siempre con Y"
+    },
+    {
+      "id": 727,
+      "categoria": "ll_y",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "llamar",
+        "yamar"
+      ],
+      "correcta": 0,
+      "explicacion": "LLAMAR siempre con LL"
+    },
+    {
+      "id": 728,
+      "categoria": "ll_y",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "lluvia",
+        "yuvia"
+      ],
+      "correcta": 0,
+      "explicacion": "LLUVIA siempre con LL"
+    },
+    {
+      "id": 729,
+      "categoria": "ll_y",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "llave",
+        "yave"
+      ],
+      "correcta": 0,
+      "explicacion": "LLAVE siempre con LL"
+    },
+    {
+      "id": 730,
+      "categoria": "ll_y",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "llegar",
+        "yegar"
+      ],
+      "correcta": 0,
+      "explicacion": "LLEGAR siempre con LL"
+    },
+    {
+      "id": 731,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'Debe ___ un error'",
+      "opciones": [
+        "haber",
+        "a ver"
+      ],
+      "correcta": 0,
+      "explicacion": "HABER = verbo (debe haber)"
+    },
+    {
+      "id": 732,
+      "categoria": "homofonos",
+      "pregunta": "Completa: '¡___! ¡Qué dices!'",
+      "opciones": [
+        "A ver",
+        "Haber"
+      ],
+      "correcta": 0,
+      "explicacion": "A VER = expresión de sorpresa"
+    },
+    {
+      "id": 733,
+      "categoria": "homofonos",
+      "pregunta": "Completa: '___ llovido mucho'",
+      "opciones": [
+        "Ha",
+        "A"
+      ],
+      "correcta": 0,
+      "explicacion": "HA = verbo haber (ha llovido)"
+    },
+    {
+      "id": 734,
+      "categoria": "homofonos",
+      "pregunta": "Completa: '¿___ que hora quedamos?'",
+      "opciones": [
+        "A",
+        "Ha"
+      ],
+      "correcta": 0,
+      "explicacion": "A = preposición"
+    },
+    {
+      "id": 735,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'El ___ de agua se rompió'",
+      "opciones": [
+        "tubo",
+        "tuvo"
+      ],
+      "correcta": 0,
+      "explicacion": "TUBO = cilindro hueco"
+    },
+    {
+      "id": 736,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'No ___ tiempo de acabar'",
+      "opciones": [
+        "tuvo",
+        "tubo"
+      ],
+      "correcta": 0,
+      "explicacion": "TUVO = pretérito de tener"
+    },
+    {
+      "id": 737,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'Pon las flores en el ___'",
+      "opciones": [
+        "vaso",
+        "baso"
+      ],
+      "correcta": 0,
+      "explicacion": "VASO = recipiente"
+    },
+    {
+      "id": 738,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'Me ___ en los datos'",
+      "opciones": [
+        "baso",
+        "vaso"
+      ],
+      "correcta": 0,
+      "explicacion": "BASO = verbo basar"
+    },
+    {
+      "id": 739,
+      "categoria": "homofonos",
+      "pregunta": "Completa: '___ está tu libro'",
+      "opciones": [
+        "Ahí",
+        "Hay",
+        "Ay"
+      ],
+      "correcta": 0,
+      "explicacion": "AHÍ = lugar (ahí está)"
+    },
+    {
+      "id": 740,
+      "categoria": "homofonos",
+      "pregunta": "Completa: '___ muchos errores'",
+      "opciones": [
+        "Hay",
+        "Ahí",
+        "Ay"
+      ],
+      "correcta": 0,
+      "explicacion": "HAY = verbo haber (existir)"
+    },
+    {
+      "id": 741,
+      "categoria": "homofonos",
+      "pregunta": "Completa: '¡___! Me he pinchado'",
+      "opciones": [
+        "Ay",
+        "Hay",
+        "Ahí"
+      ],
+      "correcta": 0,
+      "explicacion": "AY = exclamación de dolor"
+    },
+    {
+      "id": 742,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'Lo ___ con buena intención'",
+      "opciones": [
+        "hizo",
+        "izo"
+      ],
+      "correcta": 0,
+      "explicacion": "HIZO = pretérito de hacer"
+    },
+    {
+      "id": 743,
+      "categoria": "homofonos",
+      "pregunta": "Completa: '___ la bandera en el mástil'",
+      "opciones": [
+        "Izó",
+        "Hizo"
+      ],
+      "correcta": 0,
+      "explicacion": "IZAR = subir una bandera"
+    },
+    {
+      "id": 744,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'Nos ___ al río a bañarnos'",
+      "opciones": [
+        "fuimos",
+        "fuímos"
+      ],
+      "correcta": 0,
+      "explicacion": "Monosílabo: FUIMOS no lleva tilde"
+    },
+    {
+      "id": 745,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'Le ___ de tu parte'",
+      "opciones": [
+        "hablé",
+        "ablé"
+      ],
+      "correcta": 0,
+      "explicacion": "HABLAR siempre con H"
+    },
+    {
+      "id": 746,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'Se puso a ___ sin parar'",
+      "opciones": [
+        "llorar",
+        "yorar"
+      ],
+      "correcta": 0,
+      "explicacion": "LLORAR siempre con LL"
+    },
+    {
+      "id": 747,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'No quiero ___ nada'",
+      "opciones": [
+        "oír",
+        "hoir"
+      ],
+      "correcta": 0,
+      "explicacion": "OÍR no lleva H"
+    },
+    {
+      "id": 748,
+      "categoria": "homofonos",
+      "pregunta": "Completa: '¡___ que viene el lobo!'",
+      "opciones": [
+        "Eh",
+        "He",
+        "E"
+      ],
+      "correcta": 0,
+      "explicacion": "EH = interjección de advertencia"
+    },
+    {
+      "id": 749,
+      "categoria": "homofonos",
+      "pregunta": "Completa: '___ visto la película'",
+      "opciones": [
+        "He",
+        "Eh"
+      ],
+      "correcta": 0,
+      "explicacion": "HE = verbo haber (he visto)"
+    },
+    {
+      "id": 750,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'El barco llegó a ___'",
+      "opciones": [
+        "buen puerto",
+        "vuen puerto"
+      ],
+      "correcta": 0,
+      "explicacion": "BUEN siempre con B"
+    },
+    {
+      "id": 751,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'Habla en ___ baja'",
+      "opciones": [
+        "voz",
+        "boz"
+      ],
+      "correcta": 0,
+      "explicacion": "VOZ siempre con V"
+    },
+    {
+      "id": 752,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'Tengo un ___ muy fuerte'",
+      "opciones": [
+        "dolor",
+        "dolór"
+      ],
+      "correcta": 0,
+      "explicacion": "Aguda terminada en -r: NO lleva tilde"
+    },
+    {
+      "id": 753,
+      "categoria": "homofonos",
+      "pregunta": "Completa: '¿___ o verdad?'",
+      "opciones": [
+        "Mito",
+        "Míto"
+      ],
+      "correcta": 0,
+      "explicacion": "Llana terminada en vocal: NO lleva tilde"
+    },
+    {
+      "id": 754,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'El ___ del bosque es precioso'",
+      "opciones": [
+        "paisaje",
+        "paisage"
+      ],
+      "correcta": 0,
+      "explicacion": "Terminación -AJE con J"
+    },
+    {
+      "id": 755,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'Quiero que ___ la verdad'",
+      "opciones": [
+        "diga",
+        "dija"
+      ],
+      "correcta": 0,
+      "explicacion": "DECIR → subjuntivo: diga con G"
+    },
+    {
+      "id": 756,
+      "categoria": "homofonos",
+      "pregunta": "Completa: 'Le ___ al profesor la duda'",
+      "opciones": [
+        "pregunté",
+        "pregunte"
+      ],
+      "correcta": 0,
+      "explicacion": "PREGUNTÉ = pasado; PREGUNTE = subjuntivo"
+    },
+    {
+      "id": 757,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "improvisar",
+        "inprovisar"
+      ],
+      "correcta": 0,
+      "explicacion": "IM- antes de P: improvisar"
+    },
+    {
+      "id": 758,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "infringir",
+        "inflijir"
+      ],
+      "correcta": 0,
+      "explicacion": "INFRINGIR = violar una norma"
+    },
+    {
+      "id": 759,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "influir",
+        "influyir"
+      ],
+      "correcta": 0,
+      "explicacion": "INFLUIR: sin Y en infinitivo"
+    },
+    {
+      "id": 760,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es la forma más frecuente según la RAE?",
+      "opciones": [
+        "conciencia",
+        "consciencia"
+      ],
+      "correcta": 0,
+      "explicacion": "Ambas son correctas, pero 'conciencia' es la forma más frecuente según la RAE."
+    },
+    {
+      "id": 761,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "idiosincrasia",
+        "idiosincracia"
+      ],
+      "correcta": 0,
+      "explicacion": "IDIOSINCRASIA: con S final"
+    },
+    {
+      "id": 762,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "espontáneo",
+        "expontáneo"
+      ],
+      "correcta": 0,
+      "explicacion": "ESPONTÁNEO: sin X"
+    },
+    {
+      "id": 763,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "espectáculo",
+        "expectáculo"
+      ],
+      "correcta": 0,
+      "explicacion": "ESPECTÁCULO: sin X"
+    },
+    {
+      "id": 764,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "extraordinario",
+        "estraordinario"
+      ],
+      "correcta": 0,
+      "explicacion": "EXTRAORDINARIO: con X (extra-)"
+    },
+    {
+      "id": 765,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "excelente",
+        "escelente"
+      ],
+      "correcta": 0,
+      "explicacion": "EXCELENTE: con X"
+    },
+    {
+      "id": 766,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "excursión",
+        "escursión"
+      ],
+      "correcta": 0,
+      "explicacion": "EXCURSIÓN: con X"
+    },
+    {
+      "id": 767,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "experiencia",
+        "esperiencia"
+      ],
+      "correcta": 0,
+      "explicacion": "EXPERIENCIA: con X"
+    },
+    {
+      "id": 768,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "explicar",
+        "esplicar"
+      ],
+      "correcta": 0,
+      "explicacion": "EXPLICAR: con X"
+    },
+    {
+      "id": 769,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "expresar",
+        "espresar"
+      ],
+      "correcta": 0,
+      "explicacion": "EXPRESAR: con X"
+    },
+    {
+      "id": 770,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "exprimir",
+        "esprimir"
+      ],
+      "correcta": 0,
+      "explicacion": "EXPRIMIR: con X"
+    },
+    {
+      "id": 771,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "extravagante",
+        "estravagante"
+      ],
+      "correcta": 0,
+      "explicacion": "EXTRAVAGANTE: con X (extra-)"
+    },
+    {
+      "id": 772,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "privilegio",
+        "previlegió"
+      ],
+      "correcta": 0,
+      "explicacion": "PRIVILEGIO: pri- no pre-"
+    },
+    {
+      "id": 773,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "adecuado",
+        "adecúado"
+      ],
+      "correcta": 0,
+      "explicacion": "ADECUADO: llana terminada en vocal, sin tilde"
+    },
+    {
+      "id": 774,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "adolescente",
+        "adolecente"
+      ],
+      "correcta": 0,
+      "explicacion": "ADOLESCENTE: con SC"
+    },
+    {
+      "id": 775,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "concienciar",
+        "concienziar"
+      ],
+      "correcta": 0,
+      "explicacion": "CONCIENCIAR: con CI"
+    },
+    {
+      "id": 776,
+      "categoria": "analogias",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "consciente",
+        "conciente"
+      ],
+      "correcta": 0,
+      "explicacion": "CONSCIENTE: con SC"
+    },
+    {
+      "id": 777,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Opino que es mejor",
+        "Opino de que es mejor"
+      ],
+      "correcta": 0,
+      "explicacion": "OPINAR no lleva 'de': opino que"
+    },
+    {
+      "id": 778,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Considero que es justo",
+        "Considero de que es justo"
+      ],
+      "correcta": 0,
+      "explicacion": "CONSIDERAR no lleva 'de'"
+    },
+    {
+      "id": 779,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Resulta que no hay",
+        "Resulta de que no hay"
+      ],
+      "correcta": 0,
+      "explicacion": "RESULTAR no lleva 'de'"
+    },
+    {
+      "id": 780,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Parece que va a llover",
+        "Parece de que va a llover"
+      ],
+      "correcta": 0,
+      "explicacion": "PARECER no lleva 'de'"
+    },
+    {
+      "id": 781,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Espero que vengas",
+        "Espero de que vengas"
+      ],
+      "correcta": 0,
+      "explicacion": "ESPERAR no lleva 'de'"
+    },
+    {
+      "id": 782,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Deseo que todo salga bien",
+        "Deseo de que todo salga bien"
+      ],
+      "correcta": 0,
+      "explicacion": "DESEAR no lleva 'de'"
+    },
+    {
+      "id": 783,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Necesito que me ayudes",
+        "Necesito de que me ayudes"
+      ],
+      "correcta": 0,
+      "explicacion": "NECESITAR no lleva 'de'"
+    },
+    {
+      "id": 784,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Imagino que es difícil",
+        "Imagino de que es difícil"
+      ],
+      "correcta": 0,
+      "explicacion": "IMAGINAR no lleva 'de'"
+    },
+    {
+      "id": 785,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Supongo que tienes razón",
+        "Supongo de que tienes razón"
+      ],
+      "correcta": 0,
+      "explicacion": "SUPONER no lleva 'de'"
+    },
+    {
+      "id": 786,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Le comunico que está listo",
+        "Le comunico de que está listo"
+      ],
+      "correcta": 0,
+      "explicacion": "COMUNICAR no lleva 'de'"
+    },
+    {
+      "id": 787,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Es evidente que miente",
+        "Es evidente de que miente"
+      ],
+      "correcta": 0,
+      "explicacion": "SER + adjetivo no lleva 'de'"
+    },
+    {
+      "id": 788,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Es posible que llueva",
+        "Es posible de que llueva"
+      ],
+      "correcta": 0,
+      "explicacion": "SER + adjetivo no lleva 'de'"
+    },
+    {
+      "id": 789,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Es cierto que lo dijo",
+        "Es cierto de que lo dijo"
+      ],
+      "correcta": 0,
+      "explicacion": "SER + adjetivo no lleva 'de'"
+    },
+    {
+      "id": 790,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Es importante que estudies",
+        "Es importante de que estudies"
+      ],
+      "correcta": 0,
+      "explicacion": "SER + adjetivo no lleva 'de'"
+    },
+    {
+      "id": 791,
+      "categoria": "dequeismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Es probable que apruebe",
+        "Es probable de que apruebe"
+      ],
+      "correcta": 0,
+      "explicacion": "SER + adjetivo no lleva 'de'"
+    },
+    {
+      "id": 792,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Tengo miedo de que suspenda",
+        "Tengo miedo que suspenda"
+      ],
+      "correcta": 0,
+      "explicacion": "TENER MIEDO DE algo"
+    },
+    {
+      "id": 793,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Estoy harto de que me ignoren",
+        "Estoy harto que me ignoren"
+      ],
+      "correcta": 0,
+      "explicacion": "ESTAR HARTO DE algo"
+    },
+    {
+      "id": 794,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Me enteré de que se fue",
+        "Me enteré que se fue"
+      ],
+      "correcta": 0,
+      "explicacion": "ENTERARSE DE algo"
+    },
+    {
+      "id": 795,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Se quejó de que hacía frío",
+        "Se quejó que hacía frío"
+      ],
+      "correcta": 0,
+      "explicacion": "QUEJARSE DE algo"
+    },
+    {
+      "id": 796,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Me olvidé de que tenía cita",
+        "Me olvidé que tenía cita"
+      ],
+      "correcta": 0,
+      "explicacion": "OLVIDARSE DE algo"
+    },
+    {
+      "id": 797,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Insistió en que viniéramos",
+        "Insistió que viniéramos"
+      ],
+      "correcta": 0,
+      "explicacion": "INSISTIR EN algo"
+    },
+    {
+      "id": 798,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Confío en que lo hará bien",
+        "Confío que lo hará bien"
+      ],
+      "correcta": 0,
+      "explicacion": "CONFIAR EN algo"
+    },
+    {
+      "id": 799,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Se fijó en que faltaba uno",
+        "Se fijó que faltaba uno"
+      ],
+      "correcta": 0,
+      "explicacion": "FIJARSE EN algo"
+    },
+    {
+      "id": 800,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Sueño con que me toque",
+        "Sueño que me toque"
+      ],
+      "correcta": 0,
+      "explicacion": "SOÑAR CON algo"
+    },
+    {
+      "id": 801,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Me acordé de que era festivo",
+        "Me acordé que era festivo"
+      ],
+      "correcta": 0,
+      "explicacion": "ACORDARSE DE algo"
+    },
+    {
+      "id": 802,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Me aseguré de que estaba bien",
+        "Me aseguré que estaba bien"
+      ],
+      "correcta": 0,
+      "explicacion": "ASEGURARSE DE algo"
+    },
+    {
+      "id": 803,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Estoy convencido de que es así",
+        "Estoy convencido que es así"
+      ],
+      "correcta": 0,
+      "explicacion": "ESTAR CONVENCIDO DE algo"
+    },
+    {
+      "id": 804,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Me preocupo de que coman bien",
+        "Me preocupo que coman bien"
+      ],
+      "correcta": 0,
+      "explicacion": "PREOCUPARSE DE algo"
+    },
+    {
+      "id": 805,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Se trata de que aprendas",
+        "Se trata que aprendas"
+      ],
+      "correcta": 0,
+      "explicacion": "TRATARSE DE algo"
+    },
+    {
+      "id": 806,
+      "categoria": "queismo",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "No cabe duda de que es cierto",
+        "No cabe duda que es cierto"
+      ],
+      "correcta": 0,
+      "explicacion": "CABER DUDA DE algo"
+    },
+    {
+      "id": 807,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "conducir",
+        "conducío"
+      ],
+      "correcta": 0,
+      "explicacion": "Participio de CONDUCIR: conducido"
+    },
+    {
+      "id": 808,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Pon la mesa",
+        "Poner la mesa"
+      ],
+      "correcta": 0,
+      "explicacion": "Imperativo de PONER: pon (no *poner)"
+    },
+    {
+      "id": 809,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Sal de aquí",
+        "Salir de aquí"
+      ],
+      "correcta": 0,
+      "explicacion": "Imperativo de SALIR: sal"
+    },
+    {
+      "id": 810,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Haz los deberes",
+        "Hacer los deberes"
+      ],
+      "correcta": 0,
+      "explicacion": "Imperativo de HACER: haz"
+    },
+    {
+      "id": 811,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "la gente dice",
+        "la gente dicen"
+      ],
+      "correcta": 0,
+      "explicacion": "GENTE es singular: dice, no dicen"
+    },
+    {
+      "id": 812,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Hace calor",
+        "Hacen calores"
+      ],
+      "correcta": 0,
+      "explicacion": "HACER impersonal siempre en singular"
+    },
+    {
+      "id": 813,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Ojalá apruebe",
+        "Ojalá que apruebe"
+      ],
+      "correcta": 0,
+      "explicacion": "OJALÁ ya implica deseo, no necesita 'que'"
+    },
+    {
+      "id": 814,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "a lo mejor viene",
+        "a lo mejor venga"
+      ],
+      "correcta": 0,
+      "explicacion": "A LO MEJOR + indicativo (no subjuntivo)"
+    },
+    {
+      "id": 815,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "dijiste",
+        "dijistes"
+      ],
+      "correcta": 0,
+      "explicacion": "2ª persona singular NO lleva -S final en pretérito"
+    },
+    {
+      "id": 816,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "viniste",
+        "vinistes"
+      ],
+      "correcta": 0,
+      "explicacion": "2ª persona singular NO lleva -S final"
+    },
+    {
+      "id": 817,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "hiciste",
+        "hicistes"
+      ],
+      "correcta": 0,
+      "explicacion": "2ª persona singular NO lleva -S final"
+    },
+    {
+      "id": 818,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "trajiste",
+        "trajistes"
+      ],
+      "correcta": 0,
+      "explicacion": "2ª persona singular NO lleva -S final"
+    },
+    {
+      "id": 819,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Le dije que viniera",
+        "Le dije de que viniera"
+      ],
+      "correcta": 0,
+      "explicacion": "DECIR no lleva 'de' → le dije que"
+    },
+    {
+      "id": 820,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Si hubiera sabido...",
+        "Si habría sabido..."
+      ],
+      "correcta": 0,
+      "explicacion": "Condicional irreal: si + HUBIERA, no habría"
+    },
+    {
+      "id": 821,
+      "categoria": "vulgarismos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Me se ha caído",
+        "Se me ha caído"
+      ],
+      "correcta": 1,
+      "explicacion": "Orden correcto: SE ME (no me se)"
+    },
+    {
+      "id": 822,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Puede haber problemas",
+        "Pueden haber problemas"
+      ],
+      "correcta": 0,
+      "explicacion": "HABER impersonal: siempre singular"
+    },
+    {
+      "id": 823,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Ha habido accidentes",
+        "Han habido accidentes"
+      ],
+      "correcta": 0,
+      "explicacion": "HABER impersonal: siempre singular"
+    },
+    {
+      "id": 824,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Debe de haber razones",
+        "Deben de haber razones"
+      ],
+      "correcta": 0,
+      "explicacion": "HABER impersonal: siempre singular"
+    },
+    {
+      "id": 825,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Había cientos de personas",
+        "Habían cientos de personas"
+      ],
+      "correcta": 0,
+      "explicacion": "HABER impersonal: siempre singular"
+    },
+    {
+      "id": 826,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Hay varios candidatos",
+        "Habemos varios candidatos"
+      ],
+      "correcta": 0,
+      "explicacion": "HABEMOS no existe: hay varios"
+    },
+    {
+      "id": 827,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Hubo manifestaciones",
+        "Hubieron manifestaciones"
+      ],
+      "correcta": 0,
+      "explicacion": "HABER impersonal: siempre singular"
+    },
+    {
+      "id": 828,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Va a haber cambios",
+        "Van a haber cambios"
+      ],
+      "correcta": 0,
+      "explicacion": "HABER impersonal: siempre singular"
+    },
+    {
+      "id": 829,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Tiene que haber soluciones",
+        "Tienen que haber soluciones"
+      ],
+      "correcta": 0,
+      "explicacion": "HABER impersonal: siempre singular"
+    },
+    {
+      "id": 830,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Había dos coches",
+        "Habían dos coches"
+      ],
+      "correcta": 0,
+      "explicacion": "HABER impersonal: dos coches NO es sujeto"
+    },
+    {
+      "id": 831,
+      "categoria": "haber_impersonal",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Hubo muchas quejas",
+        "Hubieron muchas quejas"
+      ],
+      "correcta": 0,
+      "explicacion": "HABER impersonal: siempre singular"
+    },
+    {
+      "id": 832,
+      "categoria": "posesivos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Cerca de nosotros",
+        "Cerca nuestro"
+      ],
+      "correcta": 0,
+      "explicacion": "Adverbio + DE + pronombre, no posesivo"
+    },
+    {
+      "id": 833,
+      "categoria": "posesivos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Al lado de ella",
+        "Al lado suyo"
+      ],
+      "correcta": 0,
+      "explicacion": "Adverbio + DE + pronombre"
+    },
+    {
+      "id": 834,
+      "categoria": "posesivos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Enfrente de mí",
+        "Enfrente mío"
+      ],
+      "correcta": 0,
+      "explicacion": "Adverbio + DE + pronombre"
+    },
+    {
+      "id": 835,
+      "categoria": "posesivos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Alrededor de ti",
+        "Alrededor tuyo"
+      ],
+      "correcta": 0,
+      "explicacion": "Adverbio + DE + pronombre"
+    },
+    {
+      "id": 836,
+      "categoria": "posesivos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "En contra de ellos",
+        "En contra suya"
+      ],
+      "correcta": 0,
+      "explicacion": "Adverbio + DE + pronombre"
+    },
+    {
+      "id": 837,
+      "categoria": "posesivos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Debajo de mí",
+        "Debajo mío"
+      ],
+      "correcta": 0,
+      "explicacion": "Adverbio + DE + pronombre"
+    },
+    {
+      "id": 838,
+      "categoria": "posesivos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "A través de nosotros",
+        "A través nuestro"
+      ],
+      "correcta": 0,
+      "explicacion": "Locución + DE + pronombre"
+    },
+    {
+      "id": 839,
+      "categoria": "posesivos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "En lugar de ti",
+        "En lugar tuyo"
+      ],
+      "correcta": 0,
+      "explicacion": "Locución + DE + pronombre"
+    },
+    {
+      "id": 840,
+      "categoria": "posesivos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Lejos de él",
+        "Lejos suyo"
+      ],
+      "correcta": 0,
+      "explicacion": "Adverbio + DE + pronombre"
+    },
+    {
+      "id": 841,
+      "categoria": "posesivos",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "Dentro de mí",
+        "Dentro mío"
+      ],
+      "correcta": 0,
+      "explicacion": "Adverbio + DE + pronombre"
+    },
+    {
+      "id": 842,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "idiosincrasia",
+        "idiosincracia"
+      ],
+      "correcta": 0,
+      "explicacion": "Se escribe con S, no con C"
+    },
+    {
+      "id": 843,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál es correcta?",
+      "opciones": [
+        "tobogán",
+        "tobogan"
+      ],
+      "correcta": 0,
+      "explicacion": "TOBOGÁN: aguda terminada en -n, lleva tilde"
+    },
+    {
+      "id": 844,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál existe?",
+      "opciones": [
+        "crocodilo",
+        "cocodrilo"
+      ],
+      "correcta": 1,
+      "explicacion": "COCODRILO: no lleva R en la primera sílaba"
+    },
+    {
+      "id": 845,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál existe?",
+      "opciones": [
+        "areopuerto",
+        "aeropuerto"
+      ],
+      "correcta": 1,
+      "explicacion": "AEROPUERTO: aero- (aire), no areo-"
+    },
+    {
+      "id": 846,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál existe?",
+      "opciones": [
+        "mondarina",
+        "mandarina"
+      ],
+      "correcta": 1,
+      "explicacion": "MANDARINA: con A"
+    },
+    {
+      "id": 847,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál existe?",
+      "opciones": [
+        "toballa",
+        "toalla"
+      ],
+      "correcta": 1,
+      "explicacion": "TOALLA: sin B"
+    },
+    {
+      "id": 848,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál existe?",
+      "opciones": [
+        "tortículis",
+        "tortícolis"
+      ],
+      "correcta": 1,
+      "explicacion": "TORTÍCOLIS: con O, no con U"
+    },
+    {
+      "id": 849,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál existe?",
+      "opciones": [
+        "antiparasidario",
+        "antiparasitario"
+      ],
+      "correcta": 1,
+      "explicacion": "Con T: antiparasitario"
+    },
+    {
+      "id": 850,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál existe?",
+      "opciones": [
+        "meteorología",
+        "metereología"
+      ],
+      "correcta": 0,
+      "explicacion": "METEOROLOGÍA: meteo-, no metere-"
+    },
+    {
+      "id": 851,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál existe?",
+      "opciones": [
+        "madalena",
+        "magdalena"
+      ],
+      "correcta": 1,
+      "explicacion": "MAGDALENA: con G intercalada"
+    },
+    {
+      "id": 852,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál existe?",
+      "opciones": [
+        "inaguración",
+        "inauguración"
+      ],
+      "correcta": 1,
+      "explicacion": "INAUGURACIÓN: con U después de NA"
+    },
+    {
+      "id": 853,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál existe?",
+      "opciones": [
+        "transcrición",
+        "transcripción"
+      ],
+      "correcta": 1,
+      "explicacion": "TRANSCRIPCIÓN: con P"
+    },
+    {
+      "id": 854,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál existe?",
+      "opciones": [
+        "diabetis",
+        "diabetes"
+      ],
+      "correcta": 1,
+      "explicacion": "DIABETES: termina en -ES"
+    },
+    {
+      "id": 855,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál existe?",
+      "opciones": [
+        "curriculo",
+        "currículo"
+      ],
+      "correcta": 1,
+      "explicacion": "CURRÍCULO: esdrújula con tilde"
+    },
+    {
+      "id": 856,
+      "categoria": "palabras_inexistentes",
+      "pregunta": "¿Cuál existe?",
+      "opciones": [
+        "desvastar",
+        "devastar"
+      ],
+      "correcta": 1,
+      "explicacion": "DEVASTAR: con V, no con SV"
     }
   ]
 }
