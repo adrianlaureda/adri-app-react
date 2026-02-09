@@ -68,6 +68,17 @@ const IconTheater = () => (
   </svg>
 );
 
+const IconWheel = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <circle cx="12" cy="12" r="10"/>
+    <circle cx="12" cy="12" r="3"/>
+    <line x1="12" y1="2" x2="12" y2="9"/>
+    <line x1="12" y1="15" x2="12" y2="22"/>
+    <line x1="2" y1="12" x2="9" y2="12"/>
+    <line x1="15" y1="12" x2="22" y2="12"/>
+  </svg>
+);
+
 const RECURSOS = [
   {
     id: 'pictos',
@@ -132,6 +143,14 @@ const RECURSOS = [
     description: 'Generador de situaciones aleatorias para ejercicios de dramatización e improvisación teatral',
     icon: IconTheater,
     href: '/improvisacion',
+    available: true
+  },
+  {
+    id: 'ruleta',
+    title: 'Ruleta de la Fortuna',
+    description: 'Juego de la Ruleta de la Fortuna con refranes, expresiones y gramática para repasar en clase',
+    icon: IconWheel,
+    href: '/ruleta',
     available: true
   }
 ];

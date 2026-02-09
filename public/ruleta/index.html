@@ -1,0 +1,2170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Ruleta de la Fortuna - 2º ESO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* Enlace a Home */
+        .home-link {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 56px;
+            color: var(--text-muted);
+            transition: color 0.2s ease;
+            text-decoration: none;
+        }
+        .home-link:hover { color: var(--text-primary); }
+        .home-link svg { width: 32px; height: 32px; }
+
+        :root {
+            --bg-primary: #050505;
+            --bg-secondary: #0a0a0a;
+            --bg-card: #111111;
+            --bg-card-hover: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --text-muted: #444444;
+            --border: rgba(255,255,255,0.08);
+            --accent-1: #00d4aa;
+            --accent-2: #00d4ff;
+            --accent-3: #f5a623;
+            --accent-4: #ff6b6b;
+            --accent-5: #a78bfa;
+            --accent-6: #4ade80;
+            --success: #22c55e;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+        }
+
+        body.light-mode {
+            --bg-primary: #f5f5f5;
+            --bg-secondary: #e8e8e8;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f0f0f0;
+            --text-primary: #111111;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            --border: rgba(0,0,0,0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow: hidden;
+            transition: background 0.3s, color 0.3s;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* ═══════════════════════════════════════════
+           PANTALLAS
+           ═══════════════════════════════════════════ */
+        .screen {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+            padding: 20px;
+        }
+
+        .screen.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* ═══════════════════════════════════════════
+           SETUP
+           ═══════════════════════════════════════════ */
+        .setup-container {
+            max-width: 540px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .setup-title {
+            font-size: 42px;
+            font-weight: 900;
+            margin-bottom: 6px;
+            line-height: 1.1;
+        }
+
+        .setup-title .accent { color: var(--accent-3); }
+
+        .setup-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 36px;
+        }
+
+        .setup-label {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        .player-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .player-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .player-num {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--accent-1);
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+
+        .player-row input {
+            flex: 1;
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .player-row input:focus {
+            border-color: var(--accent-1);
+        }
+
+        .player-row input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .player-controls {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            font-family: inherit;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-small:hover {
+            background: var(--bg-card-hover);
+            color: var(--text-primary);
+        }
+
+        .btn-start {
+            width: 100%;
+            padding: 16px;
+            border-radius: 14px;
+            border: none;
+            background: var(--accent-1);
+            color: #000;
+            font-family: inherit;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,212,170,0.3);
+        }
+
+        .btn-start:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* ═══════════════════════════════════════════
+           PANTALLA DE JUEGO
+           ═══════════════════════════════════════════ */
+        .game-screen {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            grid-template-rows: auto 1fr auto;
+            gap: 0;
+            padding: 0;
+            align-items: start;
+            justify-content: stretch;
+        }
+
+        .game-screen.active {
+            display: grid;
+        }
+
+        /* --- Barra superior --- */
+        .game-header {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 24px;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-secondary);
+        }
+
+        .game-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .game-info-item {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-secondary);
+        }
+
+        .game-info-item span {
+            color: var(--accent-3);
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .btn-end-game {
+            padding: 7px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--danger);
+            background: transparent;
+            color: var(--danger);
+            font-family: inherit;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-end-game:hover {
+            background: var(--danger);
+            color: #fff;
+        }
+
+        /* --- Panel lateral (ruleta + marcador) --- */
+        .sidebar {
+            grid-row: 2 / 4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 16px;
+            border-right: 1px solid var(--border);
+            background: var(--bg-secondary);
+            height: calc(100vh - 43px);
+            overflow-y: auto;
+        }
+
+        /* --- Ruleta --- */
+        .wheel-container {
+            position: relative;
+            width: 260px;
+            height: 260px;
+            margin-bottom: 14px;
+            flex-shrink: 0;
+        }
+
+        .wheel-canvas {
+            width: 260px;
+            height: 260px;
+            cursor: pointer;
+        }
+
+        .wheel-pointer {
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 11px solid transparent;
+            border-right: 11px solid transparent;
+            border-top: 22px solid var(--accent-3);
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+            z-index: 2;
+        }
+
+        .wheel-center {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 46px; height: 46px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 3px solid var(--accent-3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 10px;
+            color: var(--accent-3);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .btn-spin {
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            background: var(--accent-3);
+            color: #000;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-spin:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(245,166,35,0.3);
+        }
+
+        .btn-spin:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* --- Marcador --- */
+        .scoreboard {
+            width: 100%;
+        }
+
+        .scoreboard-title {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .player-score {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 10px;
+            border-radius: 8px;
+            margin-bottom: 3px;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .player-score.current {
+            background: rgba(245,166,35,0.1);
+            border-color: rgba(245,166,35,0.3);
+        }
+
+        .player-score .ps-num {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 10px;
+            flex-shrink: 0;
+        }
+
+        .player-score .ps-name {
+            flex: 1;
+            font-size: 12px;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .player-score .ps-points {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--accent-3);
+            min-width: 45px;
+            text-align: right;
+        }
+
+        /* --- Zona principal (frase + estado turno) --- */
+        .main-area {
+            grid-row: 2 / 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 32px 16px;
+            min-height: 0;
+        }
+
+        /* --- Categoría y pista --- */
+        .phrase-meta {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .phrase-category {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-2);
+            margin-bottom: 4px;
+        }
+
+        .phrase-hint {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* --- Panel de frase --- */
+        .phrase-board {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 5px;
+            margin-bottom: 24px;
+            max-width: 860px;
+        }
+
+        .word-group {
+            display: flex;
+            gap: 3px;
+        }
+
+        .word-separator {
+            width: 18px;
+        }
+
+        .letter-cell {
+            width: 46px;
+            height: 54px;
+            border-radius: 7px;
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-primary);
+            transition: all 0.3s;
+        }
+
+        .letter-cell.revealed {
+            background: var(--accent-1);
+            color: #000;
+            border-color: var(--accent-1);
+            animation: flipIn 0.4s ease;
+        }
+
+        .letter-cell.solved {
+            background: var(--accent-3);
+            color: #000;
+            border-color: var(--accent-3);
+            animation: flipIn 0.4s ease;
+        }
+
+        @keyframes flipIn {
+            0% { transform: rotateX(90deg); opacity: 0; }
+            100% { transform: rotateX(0deg); opacity: 1; }
+        }
+
+        /* --- Estado del turno --- */
+        .turn-status {
+            text-align: center;
+            min-height: 56px;
+        }
+
+        .turn-player {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .turn-result {
+            font-size: 26px;
+            font-weight: 800;
+            animation: popIn 0.3s ease;
+        }
+
+        .turn-result.points { color: var(--accent-3); }
+        .turn-result.lose-turn { color: var(--danger); }
+        .turn-result.bankrupt { color: var(--danger); }
+        .turn-result.wildcard { color: var(--accent-5); }
+
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            70% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .turn-instruction {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        /* --- Teclado --- */
+        .keyboard-area {
+            grid-row: 3 / 4;
+            padding: 12px 32px 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .keyboard-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 5px;
+            margin-bottom: 6px;
+        }
+
+        .keyboard-label {
+            font-size: 9px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 4px;
+        }
+
+        .key-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 7px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .key-btn:hover:not(:disabled) {
+            background: var(--accent-1);
+            color: #000;
+            border-color: var(--accent-1);
+            transform: translateY(-2px);
+        }
+
+        .key-btn:disabled {
+            opacity: 0.15;
+            cursor: not-allowed;
+            text-decoration: line-through;
+        }
+
+        .key-btn.vowel {
+            border-color: rgba(167,139,250,0.3);
+        }
+
+        .key-btn.vowel:hover:not(:disabled) {
+            background: var(--accent-5);
+            border-color: var(--accent-5);
+        }
+
+        .keyboard-actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .btn-action {
+            padding: 8px 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-action:hover:not(:disabled) {
+            background: var(--bg-card-hover);
+            color: var(--text-primary);
+        }
+
+        .btn-action:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .btn-action.resolve {
+            border-color: rgba(0,212,170,0.3);
+            color: var(--accent-1);
+        }
+
+        .btn-action.resolve:hover:not(:disabled) {
+            background: var(--accent-1);
+            color: #000;
+        }
+
+        .btn-action.pass {
+            border-color: rgba(255,107,107,0.3);
+            color: var(--accent-4);
+        }
+
+        .btn-action.pass:hover:not(:disabled) {
+            background: var(--accent-4);
+            color: #fff;
+        }
+
+        .btn-action.buy-vowel {
+            border-color: rgba(167,139,250,0.3);
+            color: var(--accent-5);
+        }
+
+        .btn-action.buy-vowel:hover:not(:disabled) {
+            background: var(--accent-5);
+            color: #000;
+        }
+
+        /* ═══════════════════════════════════════════
+           MODAL
+           ═══════════════════════════════════════════ */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+            max-width: 460px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .modal-phrase {
+            font-size: 15px;
+            color: var(--accent-3);
+            font-weight: 600;
+            margin-bottom: 4px;
+            word-break: break-word;
+        }
+
+        .modal-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .modal-btn {
+            padding: 12px 32px;
+            border-radius: 12px;
+            border: none;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .modal-btn.yes {
+            background: var(--success);
+            color: #fff;
+        }
+
+        .modal-btn.yes:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(34,197,94,0.3); }
+
+        .modal-btn.no {
+            background: var(--danger);
+            color: #fff;
+        }
+
+        .modal-btn.no:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(239,68,68,0.3); }
+
+        /* ═══════════════════════════════════════════
+           PANTALLA RESULTADOS
+           ═══════════════════════════════════════════ */
+        .results-container {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .results-title {
+            font-size: 38px;
+            font-weight: 900;
+            margin-bottom: 6px;
+        }
+
+        .results-subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 36px;
+        }
+
+        .podium {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 32px;
+            min-height: 200px;
+        }
+
+        .podium-place {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 130px;
+        }
+
+        .podium-name {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 130px;
+        }
+
+        .podium-points {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .podium-bar {
+            width: 100%;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 900;
+            color: #000;
+        }
+
+        .podium-place:nth-child(1) .podium-bar { height: 130px; background: var(--accent-3); }
+        .podium-place:nth-child(1) .podium-points { color: var(--accent-3); }
+        .podium-place:nth-child(2) .podium-bar { height: 90px; background: var(--text-secondary); }
+        .podium-place:nth-child(3) .podium-bar { height: 60px; background: #cd7f32; }
+
+        .rest-scores { text-align: left; }
+
+        .rest-score-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 14px;
+            border-radius: 10px;
+            margin-bottom: 4px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+        }
+
+        .rest-rank { font-size: 13px; font-weight: 700; color: var(--text-muted); min-width: 28px; }
+        .rest-name { flex: 1; font-size: 14px; font-weight: 500; }
+        .rest-pts { font-size: 14px; font-weight: 700; color: var(--accent-3); }
+
+        .btn-new-game {
+            margin-top: 28px;
+            padding: 14px 44px;
+            border-radius: 14px;
+            border: none;
+            background: var(--accent-1);
+            color: #000;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-new-game:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,212,170,0.3);
+        }
+
+        /* ═══════════════════════════════════════════
+           BANNER TRANSICION
+           ═══════════════════════════════════════════ */
+        .transition-banner {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 900;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s;
+        }
+
+        .transition-banner.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .transition-text {
+            font-size: 44px;
+            font-weight: 900;
+            color: var(--accent-3);
+            animation: popIn 0.5s ease;
+        }
+
+        .transition-sub {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-top: 8px;
+        }
+
+        /* ═══════════════════════════════════════════
+           TOGGLE TEMA
+           ═══════════════════════════════════════════ */
+        .theme-toggle {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 6px;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+            display: flex;
+            align-items: center;
+        }
+
+        .theme-toggle:hover { opacity: 1; }
+        .theme-toggle .icon-sun { display: block; }
+        .theme-toggle .icon-moon { display: none; }
+        body.light-mode .theme-toggle .icon-sun { display: none; }
+        body.light-mode .theme-toggle .icon-moon { display: block; }
+
+        /* ═══════════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════════ */
+        @media (max-width: 900px) {
+            .game-screen {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto 1fr auto;
+            }
+            .sidebar {
+                grid-row: auto;
+                flex-direction: row;
+                flex-wrap: wrap;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding: 10px;
+                gap: 10px;
+                justify-content: center;
+            }
+            .wheel-container { width: 160px; height: 160px; margin-bottom: 0; }
+            .wheel-canvas { width: 160px; height: 160px; }
+            .scoreboard { display: flex; flex-wrap: wrap; gap: 4px; }
+            .scoreboard-title { display: none; }
+            .player-score { padding: 4px 6px; }
+            .btn-spin { margin-bottom: 0; }
+            .letter-cell { width: 36px; height: 42px; font-size: 18px; }
+            .main-area { padding: 12px 16px 8px; }
+            .keyboard-area { padding: 8px 16px 12px; }
+        }
+
+        @media print {
+            .sidebar, .keyboard-area, .game-header { display: none; }
+            .main-area { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="/" class="home-link" title="Volver a adri-app">
+        <svg viewBox="0 0 100 100">
+            <polygon points="50,5 95,82 5,82" fill="currentColor"/>
+            <line x1="50" y1="56" x2="50" y2="5" stroke="var(--bg-primary)" stroke-width="4"/>
+            <line x1="50" y1="56" x2="95" y2="82" stroke="var(--bg-primary)" stroke-width="4"/>
+            <line x1="50" y1="56" x2="5" y2="82" stroke="var(--bg-primary)" stroke-width="4"/>
+        </svg>
+    </a>
+
+    <!-- ═══════════ PANTALLA SETUP ═══════════ -->
+    <div id="screen-setup" class="screen active">
+        <div class="setup-container">
+            <div class="setup-title">La Ruleta de la <span class="accent">Fortuna</span></div>
+
+            <div class="setup-label">Jugadores</div>
+            <div id="player-inputs" class="player-inputs"></div>
+
+            <div class="player-controls">
+                <button class="btn-small" id="btn-add-player">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align: middle; margin-right: 4px;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Añadir
+                </button>
+                <button class="btn-small" id="btn-remove-player">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align: middle; margin-right: 4px;"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Quitar
+                </button>
+            </div>
+
+            <button id="btn-start" class="btn-start">Comenzar</button>
+        </div>
+    </div>
+
+    <!-- ═══════════ PANTALLA DE JUEGO ═══════════ -->
+    <div id="screen-game" class="screen game-screen">
+        <!-- Barra superior -->
+        <div class="game-header">
+            <div class="game-info">
+                <div class="game-info-item">Panel <span id="panel-num">1</span></div>
+                <div class="game-info-item" id="spin-value-display"></div>
+            </div>
+            <div class="header-controls">
+                <button class="theme-toggle" id="btn-theme">
+                    <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+                <button class="btn-end-game" id="btn-end-game">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align: middle; margin-right: 4px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+                    Finalizar
+                </button>
+            </div>
+        </div>
+
+        <!-- Lateral: ruleta + marcador -->
+        <div class="sidebar">
+            <div class="wheel-container">
+                <div class="wheel-pointer"></div>
+                <canvas id="wheel-canvas" class="wheel-canvas"></canvas>
+                <div class="wheel-center" id="wheel-center">GIRA</div>
+            </div>
+            <button id="btn-spin" class="btn-spin">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align: middle; margin-right: 5px;"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                Girar · Espacio
+            </button>
+            <div class="scoreboard">
+                <div class="scoreboard-title">Marcador</div>
+                <div id="scoreboard-list"></div>
+            </div>
+        </div>
+
+        <!-- Centro: frase -->
+        <div class="main-area">
+            <div class="phrase-meta">
+                <div class="phrase-category" id="phrase-category"></div>
+                <div class="phrase-hint" id="phrase-hint"></div>
+            </div>
+            <div class="phrase-board" id="phrase-board"></div>
+            <div class="turn-status" id="turn-status"></div>
+        </div>
+
+        <!-- Inferior: teclado -->
+        <div class="keyboard-area">
+            <div class="keyboard-label">Consonantes</div>
+            <div class="keyboard-section" id="consonant-keys"></div>
+            <div class="keyboard-label" style="margin-top: 6px;">Vocales · 250 pts</div>
+            <div class="keyboard-section" id="vowel-keys"></div>
+            <div class="keyboard-actions">
+                <button id="btn-buy-vowel" class="btn-action buy-vowel" disabled>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px;"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><line x1="12" y1="6" x2="12" y2="18"/></svg>
+                    Comprar vocal
+                </button>
+                <button id="btn-resolve" class="btn-action resolve" disabled>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px;"><polyline points="20 6 9 17 4 12"/></svg>
+                    Resolver · Enter
+                </button>
+                <button id="btn-pass" class="btn-action pass" disabled>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px;"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>
+                    Pasar · Esc
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════ PANTALLA RESULTADOS ═══════════ -->
+    <div id="screen-results" class="screen">
+        <div class="results-container">
+            <div class="results-title">Clasificación Final</div>
+            <div class="results-subtitle" id="results-subtitle"></div>
+            <div class="podium" id="podium"></div>
+            <div class="rest-scores" id="rest-scores"></div>
+            <button class="btn-new-game" id="btn-new-game">Nueva partida</button>
+        </div>
+    </div>
+
+    <!-- ═══════════ MODAL RESOLVER ═══════════ -->
+    <div id="modal-resolve" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-title" id="modal-resolve-title"></div>
+            <div class="modal-phrase" id="modal-resolve-phrase"></div>
+            <div class="modal-desc">El jugador ha intentado resolver la frase oralmente</div>
+            <div class="modal-buttons">
+                <button class="modal-btn yes" id="modal-yes">Correcto</button>
+                <button class="modal-btn no" id="modal-no">Incorrecto</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════ MODAL FIN DE JUEGO ═══════════ -->
+    <div id="modal-end" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-title">¿Finalizar el juego?</div>
+            <div class="modal-desc">Se mostrará la clasificación final con los puntos acumulados</div>
+            <div class="modal-buttons">
+                <button class="modal-btn yes" id="modal-end-yes">Finalizar</button>
+                <button class="modal-btn no" id="modal-end-no">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════ BANNER TRANSICION ═══════════ -->
+    <div id="transition-banner" class="transition-banner">
+        <div class="transition-text" id="transition-text"></div>
+        <div class="transition-sub" id="transition-sub"></div>
+    </div>
+
+    <script>
+    /* ═══════════════════════════════════════════════════
+       BANCO DE FRASES (20 paneles)
+       Texto en mayúsculas sin tildes (convención del concurso)
+       ═══════════════════════════════════════════════════ */
+    const PHRASES = [
+        // Refranes que oyen en casa
+        { text: "MAS VALE TARDE QUE NUNCA", category: "Refrán", hint: "Mejor llegar que no ir" },
+        { text: "NO HAY MAL QUE POR BIEN NO VENGA", category: "Refrán", hint: "Algo bueno saldrá de esto" },
+        { text: "EN BOCA CERRADA NO ENTRAN MOSCAS", category: "Refrán", hint: "A veces es mejor callar" },
+        { text: "QUIEN TIENE UN AMIGO TIENE UN TESORO", category: "Refrán", hint: "Sobre la amistad" },
+        { text: "PERRO LADRADOR POCO MORDEDOR", category: "Refrán", hint: "Quien amenaza mucho hace poco" },
+        { text: "AL MAL TIEMPO BUENA CARA", category: "Refrán", hint: "Ser positivo ante los problemas" },
+        { text: "DE TAL PALO TAL ASTILLA", category: "Refrán", hint: "Los hijos se parecen a los padres" },
+        { text: "MAS VALE PREVENIR QUE CURAR", category: "Refrán", hint: "Mejor evitar el problema" },
+        // Gramática que están dando
+        { text: "EL SUJETO Y EL VERBO CONCUERDAN", category: "Gramática", hint: "Regla básica de la oración" },
+        { text: "LOS ADJETIVOS DESCRIBEN AL NOMBRE", category: "Gramática", hint: "Función de una categoría gramatical" },
+        { text: "EL VERBO TIENE TRES CONJUGACIONES", category: "Gramática", hint: "Primera, segunda y tercera" },
+        { text: "LA ORACION TIENE SUJETO Y PREDICADO", category: "Gramática", hint: "Las dos partes de una frase" },
+        { text: "HAY AHI Y AY SUENAN IGUAL PERO NO SIGNIFICAN LO MISMO", category: "Ortografía", hint: "Tres palabras que se confunden" },
+        { text: "DESPUES DE PUNTO SE ESCRIBE CON MAYUSCULA", category: "Ortografía", hint: "Regla básica de escritura" },
+        // Frases cotidianas y cultura cercana
+        { text: "EL QUE NO LLORA NO MAMA", category: "Dicho popular", hint: "Hay que pedir lo que quieres" },
+        { text: "CADA MAESTRILLO TIENE SU LIBRILLO", category: "Dicho popular", hint: "Cada uno tiene su forma de hacer las cosas" },
+        { text: "NO DEJES PARA MANANA LO QUE PUEDAS HACER HOY", category: "Consejo", hint: "Contra la procrastinación" },
+        { text: "ERES MAS LENTO QUE UNA TORTUGA", category: "Expresión", hint: "Se dice cuando alguien tarda mucho" },
+        { text: "LLUEVE SOBRE MOJADO", category: "Expresión", hint: "Cuando un problema se suma a otro" },
+        { text: "ESTAR EN LAS NUBES", category: "Expresión", hint: "No prestar atención en clase" },
+        // Más refranes
+        { text: "CRIA CUERVOS Y TE SACARAN LOS OJOS", category: "Refrán", hint: "La ingratitud de quien ayudas" },
+        { text: "A CABALLO REGALADO NO LE MIRES EL DIENTE", category: "Refrán", hint: "No critiques lo que te dan gratis" },
+        { text: "DIOS LOS CRIA Y ELLOS SE JUNTAN", category: "Refrán", hint: "Los que se parecen se buscan" },
+        { text: "CUANDO EL RIO SUENA AGUA LLEVA", category: "Refrán", hint: "Si se rumorea algo será por algo" },
+        { text: "MAS VALE SOLO QUE MAL ACOMPANADO", category: "Refrán", hint: "Mejor estar solo que con malas compañías" },
+        { text: "A FALTA DE PAN BUENAS SON TORTAS", category: "Refrán", hint: "Conformarse con lo que hay" },
+        { text: "EL QUE LA SIGUE LA CONSIGUE", category: "Refrán", hint: "La constancia tiene premio" },
+        { text: "NO ES ORO TODO LO QUE RELUCE", category: "Refrán", hint: "Las apariencias engañan" },
+        { text: "QUIEN SIEMBRA VIENTOS RECOGE TEMPESTADES", category: "Refrán", hint: "Las malas acciones tienen consecuencias" },
+        { text: "A PALABRAS NECIAS OIDOS SORDOS", category: "Refrán", hint: "No hagas caso a las tonterías" },
+        // Más expresiones
+        { text: "METER LA PATA", category: "Expresión", hint: "Equivocarse de forma embarazosa" },
+        { text: "PONERSE LAS PILAS", category: "Expresión", hint: "Empezar a esforzarse" },
+        { text: "TIRAR LA TOALLA", category: "Expresión", hint: "Rendirse ante algo difícil" },
+        { text: "NO TENER NI PIES NI CABEZA", category: "Expresión", hint: "Algo que no tiene sentido" },
+        { text: "SER PAN COMIDO", category: "Expresión", hint: "Algo muy fácil de hacer" },
+        { text: "DARLE VUELTAS AL COCO", category: "Expresión", hint: "Pensar demasiado en algo" },
+        { text: "COSTAR UN OJO DE LA CARA", category: "Expresión", hint: "Algo muy caro" },
+        { text: "IRSE POR LAS RAMAS", category: "Expresión", hint: "No ir al grano" },
+        // Más gramática y ortografía
+        { text: "LOS NOMBRES PROPIOS VAN CON MAYUSCULA", category: "Ortografía", hint: "Regla de los nombres de persona o lugar" },
+        { text: "UN VERBO IRREGULAR CAMBIA SU RAIZ", category: "Gramática", hint: "Por eso decimos 'pongo' y no 'pono'" },
+        { text: "EL PUNTO Y COMA SEPARA IDEAS RELACIONADAS", category: "Ortografía", hint: "Un signo de puntuación intermedio" },
+        { text: "EL DETERMINANTE VA DELANTE DEL NOMBRE", category: "Gramática", hint: "El, la, un, una, este, mi..." },
+        { text: "LAS PALABRAS AGUDAS LLEVAN TILDE SI ACABAN EN VOCAL", category: "Ortografía", hint: "Regla de acentuación" },
+        { text: "UN SINONIMO ES UNA PALABRA CON SIGNIFICADO PARECIDO", category: "Gramática", hint: "Por ejemplo: bonito y hermoso" },
+        // Dichos y frases cotidianas
+        { text: "AQUI HAY GATO ENCERRADO", category: "Dicho popular", hint: "Algo oculto o sospechoso" },
+        { text: "ERAMOS POCOS Y PARIO LA ABUELA", category: "Dicho popular", hint: "Cuando todo se complica más" },
+        { text: "MATAR DOS PAJAROS DE UN TIRO", category: "Dicho popular", hint: "Resolver dos cosas a la vez" },
+        { text: "DORMIRSE EN LOS LAURELES", category: "Expresión", hint: "Dejar de esforzarse tras un éxito" },
+        { text: "BUSCARLE TRES PIES AL GATO", category: "Expresión", hint: "Complicar lo que es sencillo" },
+        { text: "HACER LA VISTA GORDA", category: "Expresión", hint: "Fingir que no ves algo" },
+    ];
+
+    /* ═══════════════════════════════════════════════════
+       CONFIGURACION DE LA RULETA
+       ═══════════════════════════════════════════════════ */
+    const WHEEL_SEGMENTS = [
+        { label: "100",    value: 100,  color: "#e74c3c" },
+        { label: "200",    value: 200,  color: "#3498db" },
+        { label: "300",    value: 300,  color: "#2ecc71" },
+        { label: "400",    value: 400,  color: "#9b59b6" },
+        { label: "500",    value: 500,  color: "#f39c12" },
+        { label: "150",    value: 150,  color: "#1abc9c" },
+        { label: "250",    value: 250,  color: "#e67e22" },
+        { label: "PIERDE", value: -1,   color: "#2c3e50" },
+        { label: "350",    value: 350,  color: "#16a085" },
+        { label: "450",    value: 450,  color: "#8e44ad" },
+        { label: "600",    value: 600,  color: "#27ae60" },
+        { label: "700",    value: 700,  color: "#2980b9" },
+        { label: "QUIEBRA",value: -2,   color: "#1a1a2e" },
+        { label: "800",    value: 800,  color: "#d35400" },
+        { label: "550",    value: 550,  color: "#c0392b" },
+        { label: "900",    value: 900,  color: "#7d3c98" },
+        { label: "1000",   value: 1000, color: "#f1c40f" },
+        { label: "COMODIN",value: -3,   color: "#00d4aa" },
+        { label: "650",    value: 650,  color: "#e84393" },
+        { label: "750",    value: 750,  color: "#0984e3" },
+    ];
+
+    const CONSONANTS = "BCDFGHJKLMNPQRSTVWXYZ".split("");
+    const VOWELS     = "AEIOU".split("");
+    const VOWEL_COST = 250;
+
+    const PLAYER_COLORS = [
+        "#00d4aa", "#00d4ff", "#f5a623", "#ff6b6b",
+        "#a78bfa", "#4ade80", "#f472b6", "#fbbf24",
+        "#818cf8", "#34d399"
+    ];
+
+    /* ═══════════════════════════════════════════════════
+       ESTADO DEL JUEGO
+       ═══════════════════════════════════════════════════ */
+    const STATE = {
+        WAITING_SPIN:      "WAITING_SPIN",
+        SPINNING:          "SPINNING",
+        CHOOSING_CONSONANT:"CHOOSING_CONSONANT",
+        BUYING_VOWEL:      "BUYING_VOWEL",
+        RESOLVING:         "RESOLVING",
+        PANEL_TRANSITION:  "PANEL_TRANSITION",
+    };
+
+    let game = {
+        players: [],
+        currentPlayer: 0,
+        panelIndex: 0,
+        phrase: null,
+        revealedLetters: new Set(),
+        usedLetters: new Set(),
+        spinValue: 0,
+        state: STATE.WAITING_SPIN,
+        audioCtx: null,
+    };
+
+    /* ═══════════════════════════════════════════════════
+       REFERENCIAS DOM
+       ═══════════════════════════════════════════════════ */
+    const $ = (id) => document.getElementById(id);
+
+    /* ═══════════════════════════════════════════════════
+       SETUP
+       ═══════════════════════════════════════════════════ */
+    let playerCount = 3;
+
+    function renderPlayerInputs() {
+        const container = $("player-inputs");
+        // Guardar valores actuales
+        const currentValues = [];
+        container.querySelectorAll("input").forEach((inp, i) => {
+            currentValues[i] = inp.value;
+        });
+
+        container.textContent = "";
+        for (let i = 0; i < playerCount; i++) {
+            const row = document.createElement("div");
+            row.className = "player-row";
+
+            const num = document.createElement("div");
+            num.className = "player-num";
+            num.style.background = PLAYER_COLORS[i];
+            num.textContent = i + 1;
+
+            const input = document.createElement("input");
+            input.type = "text";
+            input.className = "player-name-input";
+            input.placeholder = "Jugador " + (i + 1);
+            input.maxLength = 20;
+            input.value = currentValues[i] || "";
+
+            row.appendChild(num);
+            row.appendChild(input);
+            container.appendChild(row);
+        }
+    }
+
+    function addPlayerInput() {
+        if (playerCount >= 10) return;
+        playerCount++;
+        renderPlayerInputs();
+    }
+
+    function removePlayerInput() {
+        if (playerCount <= 3) return;
+        playerCount--;
+        renderPlayerInputs();
+    }
+
+    function getPlayerNames() {
+        const names = [];
+        document.querySelectorAll(".player-name-input").forEach((inp, i) => {
+            const name = inp.value.trim();
+            names.push(name || ("Jugador " + (i + 1)));
+        });
+        return names;
+    }
+
+    function startGame() {
+        const names = getPlayerNames();
+        game.players = names.map(name => ({ name, score: 0 }));
+        game.currentPlayer = 0;
+        game.panelIndex = 0;
+
+        // Barajar frases
+        shuffleArray(PHRASES);
+
+        initAudio();
+        showScreen("screen-game");
+        loadPanel(0);
+        drawWheel(0);
+        renderScoreboard();
+        updateGameUI();
+    }
+
+    /* ═══════════════════════════════════════════════════
+       PANTALLAS
+       ═══════════════════════════════════════════════════ */
+    function showScreen(id) {
+        document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+        $(id).classList.add("active");
+    }
+
+    /* ═══════════════════════════════════════════════════
+       PANEL DE FRASE
+       ═══════════════════════════════════════════════════ */
+    function loadPanel(index) {
+        if (index >= PHRASES.length) {
+            endGame();
+            return;
+        }
+
+        game.phrase = PHRASES[index];
+        game.revealedLetters = new Set();
+        game.usedLetters = new Set();
+        game.panelIndex = index;
+        game.state = STATE.WAITING_SPIN;
+        game.spinValue = 0;
+
+        $("panel-num").textContent = index + 1;
+        $("phrase-category").textContent = game.phrase.category;
+        $("phrase-hint").textContent = game.phrase.hint;
+        $("wheel-center").textContent = "GIRA";
+        $("spin-value-display").textContent = "";
+        $("turn-status").textContent = "";
+
+        renderPhraseBoard();
+        renderKeyboard();
+        updateGameUI();
+    }
+
+    function renderPhraseBoard() {
+        const board = $("phrase-board");
+        board.textContent = "";
+
+        const words = game.phrase.text.split(" ");
+        words.forEach((word, wi) => {
+            const group = document.createElement("div");
+            group.className = "word-group";
+
+            for (const ch of word) {
+                const cell = document.createElement("div");
+                cell.className = "letter-cell";
+                cell.dataset.letter = ch;
+
+                if (game.revealedLetters.has(ch)) {
+                    cell.textContent = ch;
+                    cell.classList.add("revealed");
+                }
+                group.appendChild(cell);
+            }
+            board.appendChild(group);
+
+            if (wi < words.length - 1) {
+                const sep = document.createElement("div");
+                sep.className = "word-separator";
+                board.appendChild(sep);
+            }
+        });
+    }
+
+    function revealLetter(letter, className) {
+        className = className || "revealed";
+        const cells = document.querySelectorAll('.letter-cell[data-letter="' + letter + '"]');
+        let count = 0;
+        cells.forEach((cell, i) => {
+            if (!cell.classList.contains("revealed") && !cell.classList.contains("solved")) {
+                setTimeout(() => {
+                    cell.textContent = letter;
+                    cell.classList.add(className);
+                }, i * 80);
+                count++;
+            }
+        });
+        game.revealedLetters.add(letter);
+        return count;
+    }
+
+    function revealAll() {
+        const unique = new Set(game.phrase.text.replace(/ /g, ""));
+        unique.forEach(ch => game.revealedLetters.add(ch));
+
+        const cells = document.querySelectorAll(".letter-cell");
+        cells.forEach((cell, i) => {
+            if (!cell.classList.contains("revealed") && !cell.classList.contains("solved")) {
+                setTimeout(() => {
+                    cell.textContent = cell.dataset.letter;
+                    cell.classList.add("solved");
+                }, i * 40);
+            }
+        });
+    }
+
+    function countLetterInPhrase(letter) {
+        return (game.phrase.text.match(new RegExp(letter, "g")) || []).length;
+    }
+
+    function isPhraseFullyRevealed() {
+        const unique = new Set(game.phrase.text.replace(/ /g, ""));
+        for (const l of unique) {
+            if (!game.revealedLetters.has(l)) return false;
+        }
+        return true;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       TECLADO
+       ═══════════════════════════════════════════════════ */
+    function renderKeyboard() {
+        const conBox = $("consonant-keys");
+        const vowBox = $("vowel-keys");
+        conBox.textContent = "";
+        vowBox.textContent = "";
+
+        CONSONANTS.forEach(c => {
+            const btn = document.createElement("button");
+            btn.className = "key-btn";
+            btn.textContent = c;
+            btn.dataset.letter = c;
+            btn.disabled = game.usedLetters.has(c);
+            btn.addEventListener("click", () => pickLetter(c));
+            conBox.appendChild(btn);
+        });
+
+        VOWELS.forEach(v => {
+            const btn = document.createElement("button");
+            btn.className = "key-btn vowel";
+            btn.textContent = v;
+            btn.dataset.letter = v;
+            btn.disabled = game.usedLetters.has(v);
+            btn.addEventListener("click", () => pickLetter(v));
+            vowBox.appendChild(btn);
+        });
+    }
+
+    function disableKey(letter) {
+        const btn = document.querySelector('.key-btn[data-letter="' + letter + '"]');
+        if (btn) btn.disabled = true;
+    }
+
+    function setKeysEnabled(consonants, vowels) {
+        document.querySelectorAll("#consonant-keys .key-btn").forEach(btn => {
+            btn.disabled = !consonants || game.usedLetters.has(btn.dataset.letter);
+        });
+        document.querySelectorAll("#vowel-keys .key-btn").forEach(btn => {
+            btn.disabled = !vowels || game.usedLetters.has(btn.dataset.letter);
+        });
+    }
+
+    /* ═══════════════════════════════════════════════════
+       RULETA (CANVAS)
+       ═══════════════════════════════════════════════════ */
+    let wheelAngle = 0;
+    let wheelAnimId = null;
+
+    function drawWheel(angle) {
+        const canvas = $("wheel-canvas");
+        const dpr = window.devicePixelRatio || 1;
+        const size = canvas.clientWidth;
+
+        canvas.width = size * dpr;
+        canvas.height = size * dpr;
+
+        const ctx = canvas.getContext("2d");
+        ctx.scale(dpr, dpr);
+
+        const cx = size / 2;
+        const cy = size / 2;
+        const radius = size / 2 - 3;
+        const segCount = WHEEL_SEGMENTS.length;
+        const segAngle = (2 * Math.PI) / segCount;
+
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(angle);
+
+        for (let i = 0; i < segCount; i++) {
+            const seg = WHEEL_SEGMENTS[i];
+            const startA = i * segAngle;
+            const endA = startA + segAngle;
+
+            // Segmento
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.arc(0, 0, radius, startA, endA);
+            ctx.closePath();
+            ctx.fillStyle = seg.color;
+            ctx.fill();
+
+            // Borde
+            ctx.strokeStyle = "rgba(0,0,0,0.3)";
+            ctx.lineWidth = 1;
+            ctx.stroke();
+
+            // Texto
+            ctx.save();
+            ctx.rotate(startA + segAngle / 2);
+            ctx.textAlign = "right";
+            ctx.fillStyle = "#fff";
+            ctx.font = "bold " + (seg.label.length > 4 ? 8 : 11) + "px Inter, sans-serif";
+            ctx.shadowColor = "rgba(0,0,0,0.6)";
+            ctx.shadowBlur = 3;
+            ctx.fillText(seg.label, radius - 8, 4);
+            ctx.shadowBlur = 0;
+            ctx.restore();
+        }
+
+        ctx.restore();
+
+        // Borde exterior
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, 2 * Math.PI);
+        ctx.strokeStyle = "rgba(255,255,255,0.15)";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+    }
+
+    function spinWheel() {
+        if (game.state !== STATE.WAITING_SPIN) return;
+
+        game.state = STATE.SPINNING;
+        updateGameUI();
+        playSound("spin");
+
+        const extraAngle = Math.random() * 2 * Math.PI;
+        const totalSpin = (3 + Math.random() * 3) * 2 * Math.PI + extraAngle;
+        const duration = 2500 + Math.random() * 1500;
+        const startAngle = wheelAngle;
+        const startTime = performance.now();
+
+        function animate(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            // Deceleración cúbica
+            const eased = 1 - Math.pow(1 - progress, 3);
+            wheelAngle = startAngle + totalSpin * eased;
+
+            drawWheel(wheelAngle);
+
+            if (progress < 0.95 && elapsed % 80 < 16) {
+                playSound("tick");
+            }
+
+            if (progress < 1) {
+                wheelAnimId = requestAnimationFrame(animate);
+            } else {
+                wheelAnimId = null;
+                onSpinComplete();
+            }
+        }
+
+        wheelAnimId = requestAnimationFrame(animate);
+    }
+
+    function onSpinComplete() {
+        // La flecha está arriba (12 en punto = -π/2 en coords canvas)
+        const norm = ((wheelAngle % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+        const segAngle = (2 * Math.PI) / WHEEL_SEGMENTS.length;
+        const pointerAngle = ((-norm + 2 * Math.PI) % (2 * Math.PI) + 3 * Math.PI / 2) % (2 * Math.PI);
+        const segIndex = Math.floor(pointerAngle / segAngle) % WHEEL_SEGMENTS.length;
+
+        const segment = WHEEL_SEGMENTS[segIndex];
+        game.spinValue = segment.value;
+
+        const center = $("wheel-center");
+
+        if (segment.value === -1) {
+            // Pierde turno
+            center.textContent = "X";
+            showTurnResult("Pierde turno", "lose-turn");
+            playSound("loseTurn");
+            setTimeout(() => nextPlayer(), 1500);
+        } else if (segment.value === -2) {
+            // Quiebra
+            center.textContent = "0";
+            game.players[game.currentPlayer].score = 0;
+            renderScoreboard();
+            showTurnResult("¡Quiebra! 0 puntos", "bankrupt");
+            playSound("bankrupt");
+            setTimeout(() => nextPlayer(), 1500);
+        } else if (segment.value === -3) {
+            // Comodín
+            center.textContent = "★";
+            showTurnResult("¡Comodín!", "wildcard", "Elige consonante gratis (vale 500)");
+            playSound("wildcard");
+            game.spinValue = 500;
+            game.state = STATE.CHOOSING_CONSONANT;
+            updateGameUI();
+        } else {
+            center.textContent = segment.value;
+            showTurnResult(segment.value + " pts", "points", "Elige una consonante");
+            playSound("spinResult");
+            game.state = STATE.CHOOSING_CONSONANT;
+            updateGameUI();
+        }
+
+        $("spin-value-display").textContent = segment.label;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       LOGICA DE TURNO
+       ═══════════════════════════════════════════════════ */
+    function pickLetter(letter) {
+        if (game.state === STATE.CHOOSING_CONSONANT && CONSONANTS.includes(letter) && !game.usedLetters.has(letter)) {
+            game.usedLetters.add(letter);
+            disableKey(letter);
+
+            const count = countLetterInPhrase(letter);
+            if (count > 0) {
+                const points = game.spinValue * count;
+                game.players[game.currentPlayer].score += points;
+                revealLetter(letter);
+                playSound("correct");
+                showTurnResult("+" + points + " pts (" + letter + " x" + count + ")", "points");
+                renderScoreboard();
+
+                if (isPhraseFullyRevealed()) {
+                    setTimeout(() => panelSolved(), 600);
+                    return;
+                }
+
+                // Mismo jugador, nuevo giro
+                game.state = STATE.WAITING_SPIN;
+                updateGameUI();
+            } else {
+                playSound("wrong");
+                showTurnResult(letter + " no está", "lose-turn");
+                setTimeout(() => nextPlayer(), 1000);
+            }
+        } else if (game.state === STATE.BUYING_VOWEL && VOWELS.includes(letter) && !game.usedLetters.has(letter)) {
+            game.usedLetters.add(letter);
+            disableKey(letter);
+
+            game.players[game.currentPlayer].score -= VOWEL_COST;
+            renderScoreboard();
+
+            const count = countLetterInPhrase(letter);
+            if (count > 0) {
+                revealLetter(letter);
+                playSound("correct");
+                showTurnResult(letter + " aparece " + count + (count === 1 ? " vez" : " veces"), "points");
+
+                if (isPhraseFullyRevealed()) {
+                    setTimeout(() => panelSolved(), 600);
+                    return;
+                }
+
+                game.state = STATE.WAITING_SPIN;
+                updateGameUI();
+            } else {
+                playSound("wrong");
+                showTurnResult(letter + " no está (-" + VOWEL_COST + ")", "lose-turn");
+                setTimeout(() => nextPlayer(), 1000);
+            }
+        }
+    }
+
+    function enterBuyVowelMode() {
+        if (game.state !== STATE.WAITING_SPIN && game.state !== STATE.CHOOSING_CONSONANT) return;
+        if (game.players[game.currentPlayer].score < VOWEL_COST) return;
+        if (!VOWELS.some(v => !game.usedLetters.has(v))) return;
+
+        game.state = STATE.BUYING_VOWEL;
+        showTurnResult("Comprar vocal (-" + VOWEL_COST + ")", "wildcard", "Elige una vocal");
+        updateGameUI();
+    }
+
+    function passTurn() {
+        if (game.state === STATE.WAITING_SPIN || game.state === STATE.CHOOSING_CONSONANT || game.state === STATE.BUYING_VOWEL) {
+            nextPlayer();
+        }
+    }
+
+    function nextPlayer() {
+        game.currentPlayer = (game.currentPlayer + 1) % game.players.length;
+        game.state = STATE.WAITING_SPIN;
+        game.spinValue = 0;
+        $("wheel-center").textContent = "GIRA";
+        $("spin-value-display").textContent = "";
+        renderScoreboard();
+        updateGameUI();
+    }
+
+    function panelSolved() {
+        playSound("victory");
+
+        const name = game.players[game.currentPlayer].name;
+        $("transition-text").textContent = "¡" + name + " resuelve!";
+        $("transition-sub").textContent = game.phrase.text;
+        $("transition-banner").classList.add("active");
+
+        setTimeout(() => {
+            $("transition-banner").classList.remove("active");
+            loadPanel(game.panelIndex + 1);
+        }, 2500);
+    }
+
+    /* ═══════════════════════════════════════════════════
+       RESOLVER FRASE
+       ═══════════════════════════════════════════════════ */
+    function openResolveModal() {
+        if (game.state !== STATE.WAITING_SPIN && game.state !== STATE.CHOOSING_CONSONANT) return;
+
+        game.state = STATE.RESOLVING;
+
+        $("modal-resolve-title").textContent = "¿" + game.players[game.currentPlayer].name + " ha resuelto correctamente?";
+        $("modal-resolve-phrase").textContent = game.phrase.text;
+        $("modal-resolve").classList.add("active");
+    }
+
+    function resolveAnswer(correct) {
+        $("modal-resolve").classList.remove("active");
+
+        if (correct) {
+            // Bonus por letras no reveladas
+            const unique = new Set(game.phrase.text.replace(/ /g, ""));
+            let unrevealed = 0;
+            unique.forEach(l => { if (!game.revealedLetters.has(l)) unrevealed++; });
+
+            const bonus = unrevealed * 100;
+            game.players[game.currentPlayer].score += bonus;
+            renderScoreboard();
+
+            revealAll();
+            setTimeout(() => panelSolved(), 800);
+        } else {
+            playSound("wrong");
+            showTurnResult("Frase incorrecta", "lose-turn");
+            setTimeout(() => nextPlayer(), 1000);
+        }
+    }
+
+    /* ═══════════════════════════════════════════════════
+       FINALIZAR JUEGO
+       ═══════════════════════════════════════════════════ */
+    function confirmEndGame() {
+        $("modal-end").classList.add("active");
+    }
+
+    function endGame() {
+        $("modal-end").classList.remove("active");
+        showResults();
+    }
+
+    function showResults() {
+        const sorted = game.players.slice().sort((a, b) => b.score - a.score);
+        const podium = $("podium");
+        const rest = $("rest-scores");
+
+        $("results-subtitle").textContent = (game.panelIndex + 1) + (game.panelIndex === 0 ? " panel jugado" : " paneles jugados");
+
+        podium.textContent = "";
+        rest.textContent = "";
+
+        // Reordenar para el podio visual: 2º - 1º - 3º
+        const podiumData = [];
+        if (sorted.length >= 2) podiumData.push({ player: sorted[1], rank: 2 });
+        if (sorted.length >= 1) podiumData.push({ player: sorted[0], rank: 1 });
+        if (sorted.length >= 3) podiumData.push({ player: sorted[2], rank: 3 });
+
+        const barHeights = { 1: 130, 2: 90, 3: 60 };
+        const barColors  = { 1: "var(--accent-3)", 2: "var(--text-secondary)", 3: "#cd7f32" };
+
+        podiumData.forEach(({ player, rank }) => {
+            const place = document.createElement("div");
+            place.className = "podium-place";
+
+            const nameEl = document.createElement("div");
+            nameEl.className = "podium-name";
+            nameEl.textContent = player.name;
+
+            const ptsEl = document.createElement("div");
+            ptsEl.className = "podium-points";
+            ptsEl.textContent = player.score.toLocaleString();
+            if (rank === 1) ptsEl.style.color = "var(--accent-3)";
+
+            const bar = document.createElement("div");
+            bar.className = "podium-bar";
+            bar.style.height = barHeights[rank] + "px";
+            bar.style.background = barColors[rank];
+            bar.textContent = rank + "º";
+
+            place.appendChild(nameEl);
+            place.appendChild(ptsEl);
+            place.appendChild(bar);
+            podium.appendChild(place);
+        });
+
+        // Resto de jugadores
+        for (let i = 3; i < sorted.length; i++) {
+            const row = document.createElement("div");
+            row.className = "rest-score-row";
+
+            const rankEl = document.createElement("span");
+            rankEl.className = "rest-rank";
+            rankEl.textContent = (i + 1) + "º";
+
+            const nameEl = document.createElement("span");
+            nameEl.className = "rest-name";
+            nameEl.textContent = sorted[i].name;
+
+            const ptsEl = document.createElement("span");
+            ptsEl.className = "rest-pts";
+            ptsEl.textContent = sorted[i].score.toLocaleString();
+
+            row.appendChild(rankEl);
+            row.appendChild(nameEl);
+            row.appendChild(ptsEl);
+            rest.appendChild(row);
+        }
+
+        showScreen("screen-results");
+        playSound("victory");
+    }
+
+    function newGame() {
+        playerCount = 3;
+        game.players = [];
+        showScreen("screen-setup");
+        renderPlayerInputs();
+    }
+
+    /* ═══════════════════════════════════════════════════
+       UI HELPERS
+       ═══════════════════════════════════════════════════ */
+    function renderScoreboard() {
+        const list = $("scoreboard-list");
+        list.textContent = "";
+
+        game.players.forEach((p, i) => {
+            const row = document.createElement("div");
+            row.className = "player-score" + (i === game.currentPlayer ? " current" : "");
+
+            const num = document.createElement("div");
+            num.className = "ps-num";
+            num.style.background = PLAYER_COLORS[i];
+            num.style.color = "#000";
+            num.textContent = i + 1;
+
+            const name = document.createElement("span");
+            name.className = "ps-name";
+            name.textContent = p.name;
+
+            const pts = document.createElement("span");
+            pts.className = "ps-points";
+            pts.textContent = p.score.toLocaleString();
+
+            row.appendChild(num);
+            row.appendChild(name);
+            row.appendChild(pts);
+            list.appendChild(row);
+        });
+    }
+
+    function showTurnStatus() {
+        const status = $("turn-status");
+        const p = game.players[game.currentPlayer];
+        if (!p) return;
+
+        // No sobreescribir si hay un resultado visible (contiene .turn-result)
+        if (status.querySelector(".turn-result")) return;
+
+        status.textContent = "";
+
+        const nameEl = document.createElement("div");
+        nameEl.className = "turn-player";
+        nameEl.style.color = PLAYER_COLORS[game.currentPlayer];
+        nameEl.textContent = p.name;
+
+        const instrEl = document.createElement("div");
+        instrEl.className = "turn-instruction";
+
+        if (game.state === STATE.CHOOSING_CONSONANT) {
+            instrEl.textContent = "Elige una consonante";
+        } else if (game.state === STATE.BUYING_VOWEL) {
+            instrEl.textContent = "Elige una vocal";
+        } else {
+            instrEl.textContent = "Pulsa Girar o Espacio";
+        }
+
+        status.appendChild(nameEl);
+        status.appendChild(instrEl);
+    }
+
+    function showTurnResult(text, cls, instruction) {
+        const status = $("turn-status");
+        const p = game.players[game.currentPlayer];
+
+        status.textContent = "";
+
+        const nameEl = document.createElement("div");
+        nameEl.className = "turn-player";
+        nameEl.style.color = PLAYER_COLORS[game.currentPlayer];
+        nameEl.textContent = p.name;
+
+        const resultEl = document.createElement("div");
+        resultEl.className = "turn-result " + cls;
+        resultEl.textContent = text;
+
+        status.appendChild(nameEl);
+        status.appendChild(resultEl);
+
+        if (instruction) {
+            const instrEl = document.createElement("div");
+            instrEl.className = "turn-instruction";
+            instrEl.textContent = instruction;
+            status.appendChild(instrEl);
+        }
+    }
+
+    function updateGameUI() {
+        const btnSpin     = $("btn-spin");
+        const btnResolve  = $("btn-resolve");
+        const btnPass     = $("btn-pass");
+        const btnBuyVowel = $("btn-buy-vowel");
+
+        const isWaiting  = game.state === STATE.WAITING_SPIN;
+        const isChoosing = game.state === STATE.CHOOSING_CONSONANT;
+        const isBuying   = game.state === STATE.BUYING_VOWEL;
+
+        btnSpin.disabled    = !isWaiting;
+        btnResolve.disabled = !(isWaiting || isChoosing);
+        btnPass.disabled    = !(isWaiting || isChoosing || isBuying);
+
+        const canBuyVowel = (isWaiting || isChoosing) &&
+            game.players[game.currentPlayer] &&
+            game.players[game.currentPlayer].score >= VOWEL_COST &&
+            VOWELS.some(v => !game.usedLetters.has(v));
+        btnBuyVowel.disabled = !canBuyVowel;
+
+        if (isChoosing) {
+            setKeysEnabled(true, false);
+        } else if (isBuying) {
+            setKeysEnabled(false, true);
+        } else {
+            setKeysEnabled(false, false);
+        }
+
+        showTurnStatus();
+    }
+
+    function toggleTheme() {
+        document.body.classList.toggle("light-mode");
+    }
+
+    function shuffleArray(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+    }
+
+    /* ═══════════════════════════════════════════════════
+       SONIDOS (Web Audio API)
+       ═══════════════════════════════════════════════════ */
+    function initAudio() {
+        if (game.audioCtx) return;
+        try {
+            game.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        } catch (e) { /* sin audio */ }
+    }
+
+    function playSound(type) {
+        if (!game.audioCtx) return;
+        const ctx = game.audioCtx;
+        const now = ctx.currentTime;
+
+        try {
+            const osc  = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+
+            switch (type) {
+                case "tick":
+                    osc.frequency.value = 800;
+                    osc.type = "sine";
+                    gain.gain.setValueAtTime(0.03, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+                    osc.start(now); osc.stop(now + 0.05);
+                    break;
+
+                case "spin":
+                    osc.frequency.value = 300;
+                    osc.type = "sawtooth";
+                    gain.gain.setValueAtTime(0.08, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                    osc.start(now); osc.stop(now + 0.3);
+                    break;
+
+                case "spinResult":
+                    osc.frequency.setValueAtTime(400, now);
+                    osc.frequency.linearRampToValueAtTime(600, now + 0.15);
+                    osc.type = "sine";
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                    osc.start(now); osc.stop(now + 0.3);
+                    break;
+
+                case "correct":
+                    osc.frequency.setValueAtTime(523, now);
+                    osc.frequency.setValueAtTime(659, now + 0.1);
+                    osc.frequency.setValueAtTime(784, now + 0.2);
+                    osc.type = "sine";
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+                    osc.start(now); osc.stop(now + 0.4);
+                    break;
+
+                case "wrong":
+                    osc.frequency.setValueAtTime(300, now);
+                    osc.frequency.linearRampToValueAtTime(150, now + 0.3);
+                    osc.type = "square";
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                    osc.start(now); osc.stop(now + 0.3);
+                    break;
+
+                case "loseTurn":
+                    osc.frequency.setValueAtTime(400, now);
+                    osc.frequency.linearRampToValueAtTime(200, now + 0.4);
+                    osc.type = "sawtooth";
+                    gain.gain.setValueAtTime(0.08, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+                    osc.start(now); osc.stop(now + 0.4);
+                    break;
+
+                case "bankrupt":
+                    osc.frequency.setValueAtTime(200, now);
+                    osc.frequency.linearRampToValueAtTime(80, now + 0.6);
+                    osc.type = "sawtooth";
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
+                    osc.start(now); osc.stop(now + 0.6);
+                    break;
+
+                case "wildcard":
+                    osc.frequency.setValueAtTime(600, now);
+                    osc.frequency.setValueAtTime(800, now + 0.1);
+                    osc.frequency.setValueAtTime(1000, now + 0.2);
+                    osc.frequency.setValueAtTime(1200, now + 0.3);
+                    osc.type = "sine";
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+                    osc.start(now); osc.stop(now + 0.5);
+                    break;
+
+                case "victory":
+                    osc.type = "sine";
+                    [523, 659, 784, 1047].forEach((f, i) => {
+                        osc.frequency.setValueAtTime(f, now + i * 0.15);
+                    });
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.8);
+                    osc.start(now); osc.stop(now + 0.8);
+                    break;
+            }
+        } catch (e) { /* sin audio */ }
+    }
+
+    /* ═══════════════════════════════════════════════════
+       ATAJOS DE TECLADO
+       ═══════════════════════════════════════════════════ */
+    document.addEventListener("keydown", (e) => {
+        if (e.target.tagName === "INPUT") return;
+
+        // Modal activo
+        if (document.querySelector(".modal-overlay.active")) {
+            if (e.key === "Escape") {
+                document.querySelectorAll(".modal-overlay.active").forEach(m => m.classList.remove("active"));
+                if (game.state === STATE.RESOLVING) {
+                    game.state = STATE.WAITING_SPIN;
+                    updateGameUI();
+                }
+            }
+            return;
+        }
+
+        // Solo en pantalla de juego
+        if (!$("screen-game").classList.contains("active")) return;
+
+        if (e.key === " " || e.code === "Space") {
+            e.preventDefault();
+            spinWheel();
+        } else if (e.key === "Escape") {
+            passTurn();
+        } else if (e.key === "Enter") {
+            e.preventDefault();
+            openResolveModal();
+        } else {
+            const letter = e.key.toUpperCase();
+            if (/^[A-Z]$/.test(letter)) {
+                pickLetter(letter);
+            }
+        }
+    });
+
+    /* ═══════════════════════════════════════════════════
+       EVENT LISTENERS
+       ═══════════════════════════════════════════════════ */
+    $("btn-add-player").addEventListener("click", addPlayerInput);
+    $("btn-remove-player").addEventListener("click", removePlayerInput);
+    $("btn-start").addEventListener("click", startGame);
+    $("btn-spin").addEventListener("click", spinWheel);
+    $("btn-buy-vowel").addEventListener("click", enterBuyVowelMode);
+    $("btn-resolve").addEventListener("click", openResolveModal);
+    $("btn-pass").addEventListener("click", passTurn);
+    $("btn-end-game").addEventListener("click", confirmEndGame);
+    $("btn-theme").addEventListener("click", toggleTheme);
+    $("btn-new-game").addEventListener("click", newGame);
+    $("modal-yes").addEventListener("click", () => resolveAnswer(true));
+    $("modal-no").addEventListener("click", () => resolveAnswer(false));
+    $("modal-end-yes").addEventListener("click", endGame);
+    $("modal-end-no").addEventListener("click", () => $("modal-end").classList.remove("active"));
+
+    // Enter en inputs del setup
+    $("player-inputs").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            const inputs = Array.from(document.querySelectorAll(".player-name-input"));
+            const idx = inputs.indexOf(e.target);
+            if (idx < inputs.length - 1) {
+                inputs[idx + 1].focus();
+            } else {
+                startGame();
+            }
+        }
+    });
+
+    // Audio al primer click
+    document.addEventListener("click", () => initAudio(), { once: true });
+
+    // Redraw ruleta al redimensionar
+    window.addEventListener("resize", () => {
+        if ($("screen-game").classList.contains("active")) {
+            drawWheel(wheelAngle);
+        }
+    });
+
+    /* ═══════════════════════════════════════════════════
+       INIT
+       ═══════════════════════════════════════════════════ */
+    renderPlayerInputs();
+    </script>
+</body>
+</html>
