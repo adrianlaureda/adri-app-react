@@ -637,13 +637,13 @@
             <button class="tab-button" onclick="openTab(event, 'presentacion')"><svg class="icon" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Presentación</button>
             <button class="tab-button" onclick="openTab(event, 'demos')"><svg class="icon" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"/></svg> Demos</button>
             <button class="tab-button" onclick="openTab(event, 'menu')"><svg class="icon" viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg> Menú Narrativas</button>
+            <button class="tab-button" onclick="openTab(event, 'wispr')"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg> Dictado</button>
             <button class="tab-button" onclick="openTab(event, 'pasos')"><svg class="icon" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg> Pasos de la Formación</button>
             <button class="tab-button" onclick="openTab(event, 'comic')"><svg class="icon" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/></svg> Cómic</button>
             <button class="tab-button" onclick="openTab(event, 'prompts')"><svg class="icon" viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></svg> Gemas</button>
-            <button class="tab-button" onclick="openTab(event, 'pictogramas')"><svg class="icon" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg> Pictogramas IA</button>
-            <button class="tab-button" onclick="openTab(event, 'wispr')"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg> Dictado</button>
-            <button class="tab-button" onclick="openTab(event, 'aistudio')"><svg class="icon" viewBox="0 0 24 24"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg> Audio AI Studio</button>
+            <button class="tab-button" onclick="openTab(event, 'aistudio')"><svg class="icon" viewBox="0 0 24 24"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg> AI Studio</button>
             <button class="tab-button" onclick="openTab(event, 'suno')"><svg class="icon" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg> Suno</button>
+            <button class="tab-button" onclick="openTab(event, 'pictogramas')"><svg class="icon" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg> Pictogramas IA</button>
             <button class="tab-button" onclick="openTab(event, 'ayuda')"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg> Ayuda</button>
         </div>
     </div>
@@ -820,6 +820,98 @@
                     <li><svg class="icon" viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>Cuentos Tradicionales (6 narrativas)</li>
                     <li><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>Otras Culturas (4 narrativas)</li>
                     <li><svg class="icon" viewBox="0 0 24 24"><path d="M6 16V7a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v9l-2-2-3 2Z"/><path d="M13 7a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v9l-2-2-3 2Z"/></svg>Fábulas de Esopo (3 narrativas)</li>
+                </ul>
+            </section>
+        </div>
+
+        <!-- TAB WISPR FLOW -->
+        <div id="wispr" class="tab-content">
+            <section class="section">
+                <h2 class="section-title"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>DICTADO POR VOZ CON IA</h2>
+
+                <p>Escribe 3-4 veces más rápido dictando en lugar de teclear. Estas aplicaciones usan IA para limpiar tu dictado: eliminan muletillas, añaden puntuación y adaptan el tono automáticamente.</p>
+
+                <a href="https://docs.google.com/document/d/1aLkdLWWwGeCfM5jK2o9DjpnZT-Au074pXDKTFxskp1Y/edit" target="_blank" class="btn" style="margin-bottom: 2rem;"><svg class="icon" viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>Ver documento completo</a>
+
+                <!-- Comparativa -->
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Comparativa</h3>
+
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid var(--border);">
+                                <th style="padding: 0.75rem; text-align: left;"></th>
+                                <th style="padding: 0.75rem; text-align: center;">Typeless</th>
+                                <th style="padding: 0.75rem; text-align: center;">Wispr Flow</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 0.75rem;"><strong>Plan gratuito</strong></td>
+                                <td style="padding: 0.75rem; text-align: center; color: var(--success);"><strong>2.000 palabras/semana</strong></td>
+                                <td style="padding: 0.75rem; text-align: center;">2.000 palabras/semana</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 0.75rem;"><strong>Plataformas</strong></td>
+                                <td style="padding: 0.75rem; text-align: center; color: var(--success);"><strong>Mac, Windows, iOS, Android, Web</strong></td>
+                                <td style="padding: 0.75rem; text-align: center;">Mac, Windows, iOS</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 0.75rem;"><strong>Idiomas</strong></td>
+                                <td style="padding: 0.75rem; text-align: center;">100+</td>
+                                <td style="padding: 0.75rem; text-align: center;">100+</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 0.75rem;"><strong>Plan Pro</strong></td>
+                                <td style="padding: 0.75rem; text-align: center;">12€/mes (anual)</td>
+                                <td style="padding: 0.75rem; text-align: center;">10€/mes (anual)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="info-box success-box">
+                    <p><strong><svg class="icon" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Recomendación:</strong> Typeless ofrece más plataformas (incluido Android y Web) con el mismo límite gratuito. Ambas tienen precisión similar.</p>
+                </div>
+
+                <!-- Typeless -->
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>Typeless</h3>
+
+                <p>Aplicación de dictado por voz con IA disponible en todas las plataformas, incluyendo navegador web.</p>
+
+                <h4>Características principales</h4>
+                <ul>
+                    <li>Elimina automáticamente muletillas ("eh", "mmm", "este")</li>
+                    <li>Puntuación automática sin decirla</li>
+                    <li>Adapta el tono según el contexto</li>
+                    <li>Diccionario personal para términos específicos</li>
+                    <li>Privacidad: sin retención de datos ni entrenamiento de modelos</li>
+                </ul>
+
+                <p><a href="https://www.typeless.com" target="_blank" class="link-button"><svg class="icon" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>Typeless | Web oficial</a></p>
+
+                <!-- Wispr Flow -->
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>Wispr Flow</h3>
+
+                <p>Otra excelente opción de dictado por voz con IA, especialmente pulida en Mac e iOS.</p>
+
+                <h4>Características principales</h4>
+                <ul>
+                    <li>Elimina automáticamente muletillas</li>
+                    <li>Puntuación y formato automático</li>
+                    <li>Entiende autocorrecciones ("el martes, no, el miércoles" → escribe solo "miércoles")</li>
+                    <li>Adaptación de tono según contexto</li>
+                </ul>
+
+                <p><a href="https://wisprflow.ai/downloads" target="_blank" class="link-button"><svg class="icon" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>Wispr Flow | Descarga</a></p>
+
+                <!-- Cuántas palabras -->
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>¿Cuánto son 2.000 palabras?</h3>
+                <p>Aproximadamente 3-4 páginas de texto. Suficiente para:</p>
+                <ul>
+                    <li>8-10 correos electrónicos largos</li>
+                    <li>2-3 documentos educativos breves</li>
+                    <li>Múltiples mensajes y notas diarias</li>
                 </ul>
             </section>
         </div>
@@ -1418,11 +1510,292 @@ URL vídeo: [enlace a tu vídeo de NotebookLM] o "Sin vídeo"</div>
             </section>
         </div>
 
-                        <!-- TAB PICTOGRAMAS -->
+<!-- TAB AI STUDIO -->
+        <div id="aistudio" class="tab-content">
+            <section class="section">
+                <h2 class="section-title"><svg class="icon" viewBox="0 0 24 24"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg>GOOGLE AI STUDIO</h2>
+
+                <div class="sub-tabs">
+                    <button class="sub-tab-button active" onclick="openSubTab(event, 'aistudio', 'aistudio-audio-sub')"><svg class="icon" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg> Generación de Audio</button>
+                    <button class="sub-tab-button" onclick="openSubTab(event, 'aistudio', 'aistudio-apps-sub')"><svg class="icon" viewBox="0 0 24 24" style="width:16px;height:16px"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> Generación de Apps</button>
+                </div>
+
+                <!-- SUB-TAB: AUDIO -->
+                <div id="aistudio-audio-sub" class="sub-tab-content active">
+
+                <p>Google AI Studio ofrece generación de texto a voz (TTS) con <strong>Gemini 2.5</strong>, permitiendo crear audio de alta calidad con uno o varios oradores. El TTS es <strong>controlable</strong>: puedes usar lenguaje natural para guiar el estilo, acento, ritmo y tono del audio.</p>
+
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+                    <a href="https://aistudio.google.com/generate-speech" target="_blank" class="btn"><svg class="icon" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Generar Audio TTS</a>
+                    <a href="https://ai.google.dev/gemini-api/docs/speech-generation" target="_blank" class="btn" style="background: var(--bg-elevated); border: 1px solid var(--border);"><svg class="icon" viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>Documentación</a>
+                </div>
+
+                <div class="info-box success-box">
+                    <p><strong><svg class="icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Flujo recomendado:</strong> Los modelos TTS solo generan audio, pero puedes usar <strong>Gemini primero para escribir el guion</strong> y luego pasarlo al TTS para que lo lea. Así controlas exactamente qué se dice y cómo.</p>
+                </div>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><circle cx="9" cy="9" r="2"/><path d="M17 6v4"/><path d="M15 8h4"/></svg>Dos modos de generación</h3>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Un solo orador</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Ideal para narraciones, audiolibros, explicaciones. Elige una de las 30 voces disponibles y genera el audio directamente.</p>
+                    </div>
+                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Varios oradores (hasta 2)</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Perfecto para diálogos, podcasts, entrevistas. Asigna diferentes voces a cada interlocutor con nombres como "Speaker1" y "Speaker2".</p>
+                    </div>
+                </div>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>Pasos para generar audio</h3>
+
+                <ol>
+                    <li><strong>Accede a AI Studio:</strong> Ve a <a href="https://aistudio.google.com/generate-speech" target="_blank">aistudio.google.com/generate-speech</a> e inicia sesión con tu cuenta de Google</li>
+                    <li><strong>Escribe o pega tu texto:</strong> El guion que quieres convertir en audio</li>
+                    <li><strong>Selecciona la voz:</strong> Elige entre las 30 voces disponibles (Zephyr, Puck, Charon, etc.)</li>
+                    <li><strong>Ajusta el estilo (opcional):</strong> Añade instrucciones de estilo en el prompt</li>
+                    <li><strong>Genera y descarga:</strong> Escucha el resultado y descarga el archivo de audio</li>
+                </ol>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>30 voces disponibles</h3>
+
+                <p style="margin-bottom: 1rem;">Cada voz tiene una personalidad diferente. Aquí algunas destacadas:</p>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem; margin: 1rem 0;">
+                    <div style="background: var(--bg-elevated); padding: 0.75rem; border-radius: 8px; text-align: center; border: 1px solid var(--border);"><strong>Zephyr</strong><br><span style="font-size: 0.85rem; color: var(--text-secondary);">Brillante</span></div>
+                    <div style="background: var(--bg-elevated); padding: 0.75rem; border-radius: 8px; text-align: center; border: 1px solid var(--border);"><strong>Puck</strong><br><span style="font-size: 0.85rem; color: var(--text-secondary);">Optimista</span></div>
+                    <div style="background: var(--bg-elevated); padding: 0.75rem; border-radius: 8px; text-align: center; border: 1px solid var(--border);"><strong>Charon</strong><br><span style="font-size: 0.85rem; color: var(--text-secondary);">Informativa</span></div>
+                    <div style="background: var(--bg-elevated); padding: 0.75rem; border-radius: 8px; text-align: center; border: 1px solid var(--border);"><strong>Leda</strong><br><span style="font-size: 0.85rem; color: var(--text-secondary);">Juvenil</span></div>
+                    <div style="background: var(--bg-elevated); padding: 0.75rem; border-radius: 8px; text-align: center; border: 1px solid var(--border);"><strong>Fenrir</strong><br><span style="font-size: 0.85rem; color: var(--text-secondary);">Enérgica</span></div>
+                    <div style="background: var(--bg-elevated); padding: 0.75rem; border-radius: 8px; text-align: center; border: 1px solid var(--border);"><strong>Aoede</strong><br><span style="font-size: 0.85rem; color: var(--text-secondary);">Relajada</span></div>
+                </div>
+
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">Puedes probar todas las voces en la <a href="https://aistudio.google.com/apps/bundled/voice-library" target="_blank">Biblioteca de Voces</a> de AI Studio.</p>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Control del estilo con instrucciones</h3>
+
+                <p>Puedes controlar cómo suena el audio usando lenguaje natural:</p>
+
+                <div style="background: var(--bg-elevated); padding: 1rem; border-radius: 8px; border-left: 3px solid var(--accent); margin: 1rem 0;">
+                    <p style="font-family: monospace; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Un orador:</strong></p>
+                    <p style="font-family: monospace; font-size: 0.85rem; color: var(--text-secondary);">"Di con un susurro misterioso: 'Érase una vez, en un bosque encantado...'"</p>
+                </div>
+
+                <div style="background: var(--bg-elevated); padding: 1rem; border-radius: 8px; border-left: 3px solid var(--success); margin: 1rem 0;">
+                    <p style="font-family: monospace; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Varios oradores:</strong></p>
+                    <p style="font-family: monospace; font-size: 0.85rem; color: var(--text-secondary);">"Haz que Speaker1 suene cansado y aburrido, y Speaker2 suene emocionado y feliz:<br>Speaker1: Bueno... ¿qué toca hoy?<br>Speaker2: ¡No te lo vas a creer!"</p>
+                </div>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Ideas de uso en el aula</h3>
+
+                <ul>
+                    <li><strong>Audiocuentos:</strong> Narraciones de los cuentos que crees con NotebookLM</li>
+                    <li><strong>Podcasts educativos:</strong> Diálogos entre dos "expertos" explicando un tema</li>
+                    <li><strong>Dictados con voz natural:</strong> Textos para practicar ortografía</li>
+                    <li><strong>Materiales accesibles:</strong> Versiones audio para alumnado NEAE</li>
+                    <li><strong>Aprendizaje de idiomas:</strong> Textos en diferentes idiomas (soporta 24)</li>
+                </ul>
+
+                <div class="info-box">
+                    <p><strong><svg class="icon" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Gratuito:</strong> AI Studio es completamente gratuito para uso personal y educativo.</p>
+                </div>
+
+                </div>
+
+                <!-- SUB-TAB: GENERACIÓN DE APPS -->
+                <div id="aistudio-apps-sub" class="sub-tab-content">
+
+                <p>Google AI Studio incluye un generador de aplicaciones web que permite crear prototipos funcionales <strong>sin escribir código</strong>. Describes lo que quieres en lenguaje natural y Gemini genera una aplicación completa con interfaz visual e interactividad.</p>
+
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+                    <a href="https://aistudio.google.com" target="_blank" class="btn"><svg class="icon" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Abrir AI Studio</a>
+                </div>
+
+                <div class="info-box success-box">
+                    <p><strong><svg class="icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Sin programación:</strong> No necesitas saber programar. Solo describes tu idea y la IA genera la aplicación completa. Puedes iterar pidiéndole cambios en lenguaje natural.</p>
+                </div>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>¿Qué es?</h3>
+
+                <p>La función <strong>"Build with Gemini"</strong> de AI Studio permite crear aplicaciones web interactivas describiendo lo que quieres. Gemini genera automáticamente todo el código (HTML, CSS, JavaScript) y te muestra una vista previa en directo que puedes probar al instante.</p>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>Pasos para crear una aplicación</h3>
+
+                <ol>
+                    <li><strong>Accede a AI Studio:</strong> Ve a <a href="https://aistudio.google.com" target="_blank">aistudio.google.com</a> e inicia sesión con tu cuenta de Google</li>
+                    <li><strong>Selecciona "Build":</strong> En el menú lateral o en la pantalla principal, busca la opción de crear aplicaciones</li>
+                    <li><strong>Describe tu idea:</strong> Escribe en lenguaje natural qué quieres crear</li>
+                    <li><strong>Espera la generación:</strong> Gemini creará la estructura, el diseño y la lógica automáticamente</li>
+                    <li><strong>Prueba en la vista previa:</strong> Interactúa con tu app en el panel derecho</li>
+                    <li><strong>Itera:</strong> Pide cambios ("hazlo más colorido", "añade un botón de reinicio") y Gemini actualiza el código</li>
+                    <li><strong>Comparte o descarga:</strong> Obtén un enlace público o descarga el código</li>
+                </ol>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Cómo describir tu idea</h3>
+
+                <p>Cuanto más detallada sea tu descripción, mejor será el resultado. Incluye:</p>
+
+                <ul>
+                    <li><strong>Qué hace la app:</strong> su propósito principal</li>
+                    <li><strong>Para quién es:</strong> alumnado de primaria, secundaria, profesorado...</li>
+                    <li><strong>Qué elementos tiene:</strong> botones, formularios, imágenes, preguntas...</li>
+                    <li><strong>Cómo se ve:</strong> colores, estilo, tema</li>
+                </ul>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-title">Ejemplo de descripción</span>
+                        <button class="btn btn-copy" onclick="copyCode(this)"><svg class="icon" viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>Copiar</button>
+                    </div>
+                    <div class="code-block">Crea un quiz interactivo sobre las partes de la célula para alumnado de 1º ESO.
+Debe tener:
+- 8 preguntas tipo test con 4 opciones cada una
+- Feedback inmediato al seleccionar (verde=correcto, rojo=incorrecto)
+- Barra de progreso
+- Puntuación final con mensaje motivador
+- Diseño moderno con colores suaves
+- Botón para reiniciar el quiz</div>
+                </div>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Ideas de aplicaciones para el aula</h3>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>Quizzes y tests</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Cuestionarios interactivos sobre cualquier tema con puntuación y feedback inmediato.</p>
+                    </div>
+                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/></svg>Juegos educativos</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Memory, emparejar conceptos, sopa de letras, ahorcado temático...</p>
+                    </div>
+                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>Contenido interactivo</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Líneas del tiempo, mapas conceptuales navegables, fichas con pestañas.</p>
+                    </div>
+                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Calculadoras y simuladores</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Calculadoras de notas, simuladores de experimentos, convertidores de unidades.</p>
+                    </div>
+                </div>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Consejos para mejores resultados</h3>
+
+                <div class="info-box">
+                    <ul>
+                        <li><strong>Sé específico:</strong> "quiz de 8 preguntas sobre la célula" funciona mejor que "algo sobre biología"</li>
+                        <li><strong>Describe la experiencia:</strong> menciona colores, animaciones, sonidos si los quieres</li>
+                        <li><strong>Itera sin miedo:</strong> puedes pedir cambios tantas veces como quieras ("cambia los colores a azul", "añade una explicación tras cada respuesta")</li>
+                        <li><strong>Prueba antes de compartir:</strong> usa la vista previa para verificar que todo funciona</li>
+                        <li><strong>Descarga el código:</strong> puedes descargar el HTML y subirlo a cualquier plataforma (Moodle, Google Sites, etc.)</li>
+                    </ul>
+                </div>
+
+                <div class="info-box success-box" style="margin-top: 1.5rem;">
+                    <p><strong><svg class="icon" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Gratuito:</strong> La generación de aplicaciones en AI Studio es completamente gratuita con tu cuenta de Google.</p>
+                </div>
+
+                </div>
+
+            </section>
+        </div>
+
+<!-- TAB SUNO -->
+        <div id="suno" class="tab-content">
+            <section class="section">
+                <h2 class="section-title"><svg class="icon" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>SUNO: MÚSICA CON IA</h2>
+
+                <p>Suno es una herramienta de IA que genera canciones completas (música + letra cantada) a partir de texto. Tiene un enorme potencial pedagógico para crear materiales memorables que el alumnado no olvidará.</p>
+
+                <a href="https://suno.com/create" target="_blank" class="btn" style="margin-bottom: 2rem;"><svg class="icon" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Crear canción en Suno</a>
+
+                <div class="info-box success-box">
+                    <p><strong><svg class="icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Flujo recomendado:</strong> Usa <strong>Gemini o ChatGPT para escribir la letra primero</strong>, y luego pégala en Suno en modo "Custom". Así controlas exactamente qué dice la canción y te aseguras de que el contenido sea correcto.</p>
+                </div>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><circle cx="9" cy="9" r="2"/><path d="M17 6v4"/><path d="M15 8h4"/></svg>Dos modos de creación</h3>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Modo Simple</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Describes lo que quieres y Suno genera letra + música automáticamente. Rápido pero menos control sobre el contenido exacto.</p>
+                    </div>
+                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--accent);">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; color: var(--accent);"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>Modo Custom (Recomendado)</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);"><strong>Tú escribes la letra</strong> y Suno pone la música. Control total del contenido. Perfecto para contenido educativo preciso.</p>
+                    </div>
+                </div>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>Cómo usar el modo Custom</h3>
+
+                <ol>
+                    <li><strong>Genera la letra con IA:</strong> Pide a Gemini o ChatGPT que escriba una letra de canción sobre tu tema:
+                        <div style="background: var(--bg-elevated); padding: 0.75rem; border-radius: 8px; margin: 0.5rem 0; font-size: 0.9rem;">
+                            "Escribe la letra de una canción infantil pegadiza sobre los planetas del sistema solar. Incluye estribillo que se repita. Formato: verso, estribillo, verso, estribillo."
+                        </div>
+                    </li>
+                    <li><strong>Accede a Suno:</strong> Ve a <a href="https://suno.com/create" target="_blank">suno.com/create</a> e inicia sesión</li>
+                    <li><strong>Activa modo Custom:</strong> Busca el toggle "Custom" para activarlo</li>
+                    <li><strong>Pega tu letra:</strong> En el campo "Lyrics", pega la letra que generaste</li>
+                    <li><strong>Elige el estilo:</strong> En "Style of Music" escribe el género (ej: "pop infantil alegre", "rap educativo", "balada tranquila")</li>
+                    <li><strong>Genera y elige:</strong> Suno crea 2 versiones. Escúchalas y descarga la mejor</li>
+                </ol>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>Usos pedagógicos</h3>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>Contenido curricular</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Canciones para memorizar tablas de multiplicar, verbos irregulares, fechas históricas, elementos de la tabla periódica...</p>
+                    </div>
+                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Convivencia</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Himnos de clase, canciones sobre normas de convivencia, valores, respeto, trabajo en equipo...</p>
+                    </div>
+                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Motivación</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Canciones personalizadas para el grupo, celebraciones, fin de curso, bienvenida a nuevos alumnos...</p>
+                    </div>
+                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Idiomas</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Canciones en inglés, gallego, francés... para practicar vocabulario, estructuras gramaticales, pronunciación...</p>
+                    </div>
+                </div>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>Estilos musicales que funcionan bien</h3>
+
+                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0;">
+                    <span style="background: var(--bg-elevated); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border);">pop infantil alegre</span>
+                    <span style="background: var(--bg-elevated); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border);">rap educativo</span>
+                    <span style="background: var(--bg-elevated); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border);">folk acústico</span>
+                    <span style="background: var(--bg-elevated); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border);">rock suave</span>
+                    <span style="background: var(--bg-elevated); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border);">balada tranquila</span>
+                    <span style="background: var(--bg-elevated); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border);">música celta</span>
+                    <span style="background: var(--bg-elevated); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border);">reggaeton suave</span>
+                    <span style="background: var(--bg-elevated); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border);">instrumental relajante</span>
+                </div>
+
+                <div class="info-box warning-box">
+                    <p><strong><svg class="icon" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Créditos limitados:</strong> La versión gratuita tiene ~50 créditos diarios (10 canciones aprox). Planifica qué canciones quieres crear. Consejo: genera la letra primero con IA para no gastar créditos en letras que no te convencen.</p>
+                </div>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Ideas rápidas para probar</h3>
+
+                <ul>
+                    <li><strong>Matemáticas:</strong> "Rap educativo sobre las tablas de multiplicar del 7 y el 8"</li>
+                    <li><strong>Ciencias:</strong> "Canción pegadiza para memorizar los planetas del sistema solar en orden"</li>
+                    <li><strong>Lengua:</strong> "Balada sobre las reglas de acentuación en español"</li>
+                    <li><strong>Gallego:</strong> "Canción folk en gallego sobre las estaciones del año"</li>
+                    <li><strong>Convivencia:</strong> "Himno motivador para un equipo de clase, sobre trabajo en equipo"</li>
+                    <li><strong>Relajación:</strong> "Melodía instrumental suave para momento de lectura silenciosa"</li>
+                </ul>
+            </section>
+        </div>
+
+        <!-- TAB PICTOGRAMAS -->
         <div id="pictogramas" class="tab-content">
             <section class="section">
                 <h2 class="section-title"><svg class="icon" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>CREAR SECUENCIAS DE PICTOGRAMAS CON IA</h2>
-                
+
                 <h3 class="section-subtitle">¿Para qué sirve este flujo de trabajo?</h3>
                 <p>Este sistema te permite crear secuencias completas de pictogramas educativos estilo ARASAAC en pocos minutos, utilizando:</p>
                 <ul>
@@ -1530,274 +1903,6 @@ paso4_secar_toalla.png</div>
                 <h3 class="section-subtitle">RESUMEN DEL FLUJO COMPLETO</h3>
                 <p><strong>1.</strong> Abrir Gema → <strong>2.</strong> Responder 4 preguntas → <strong>3.</strong> Copiar prompt → <strong>4.</strong> Nuevo chat Gemini → <strong>5.</strong> Activar generación de imágenes → <strong>6.</strong> Pegar y generar → <strong>7.</strong> Ver resultados → <strong>8.</strong> Descargar</p>
                 <p class="time-badge"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Tiempo total: 2-4 minutos</p>
-            </section>
-        </div>
-
-<!-- TAB WISPR FLOW -->
-        <div id="wispr" class="tab-content">
-            <section class="section">
-                <h2 class="section-title"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>DICTADO POR VOZ CON IA</h2>
-
-                <p>Escribe 3-4 veces más rápido dictando en lugar de teclear. Estas aplicaciones usan IA para limpiar tu dictado: eliminan muletillas, añaden puntuación y adaptan el tono automáticamente.</p>
-
-                <a href="https://docs.google.com/document/d/1aLkdLWWwGeCfM5jK2o9DjpnZT-Au074pXDKTFxskp1Y/edit" target="_blank" class="btn" style="margin-bottom: 2rem;"><svg class="icon" viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>Ver documento completo</a>
-
-                <!-- Comparativa -->
-                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Comparativa</h3>
-
-                <div style="overflow-x: auto;">
-                    <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
-                        <thead>
-                            <tr style="border-bottom: 2px solid var(--border);">
-                                <th style="padding: 0.75rem; text-align: left;"></th>
-                                <th style="padding: 0.75rem; text-align: center;">Typeless</th>
-                                <th style="padding: 0.75rem; text-align: center;">Wispr Flow</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr style="border-bottom: 1px solid var(--border);">
-                                <td style="padding: 0.75rem;"><strong>Plan gratuito</strong></td>
-                                <td style="padding: 0.75rem; text-align: center; color: var(--success);"><strong>2.000 palabras/semana</strong></td>
-                                <td style="padding: 0.75rem; text-align: center;">2.000 palabras/semana</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid var(--border);">
-                                <td style="padding: 0.75rem;"><strong>Plataformas</strong></td>
-                                <td style="padding: 0.75rem; text-align: center; color: var(--success);"><strong>Mac, Windows, iOS, Android, Web</strong></td>
-                                <td style="padding: 0.75rem; text-align: center;">Mac, Windows, iOS</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid var(--border);">
-                                <td style="padding: 0.75rem;"><strong>Idiomas</strong></td>
-                                <td style="padding: 0.75rem; text-align: center;">100+</td>
-                                <td style="padding: 0.75rem; text-align: center;">100+</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid var(--border);">
-                                <td style="padding: 0.75rem;"><strong>Plan Pro</strong></td>
-                                <td style="padding: 0.75rem; text-align: center;">12€/mes (anual)</td>
-                                <td style="padding: 0.75rem; text-align: center;">10€/mes (anual)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="info-box success-box">
-                    <p><strong><svg class="icon" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Recomendación:</strong> Typeless ofrece más plataformas (incluido Android y Web) con el mismo límite gratuito. Ambas tienen precisión similar.</p>
-                </div>
-
-                <!-- Typeless -->
-                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>Typeless</h3>
-
-                <p>Aplicación de dictado por voz con IA disponible en todas las plataformas, incluyendo navegador web.</p>
-
-                <h4>Características principales</h4>
-                <ul>
-                    <li>Elimina automáticamente muletillas ("eh", "mmm", "este")</li>
-                    <li>Puntuación automática sin decirla</li>
-                    <li>Adapta el tono según el contexto</li>
-                    <li>Diccionario personal para términos específicos</li>
-                    <li>Privacidad: sin retención de datos ni entrenamiento de modelos</li>
-                </ul>
-
-                <p><a href="https://www.typeless.com" target="_blank" class="link-button"><svg class="icon" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>Typeless | Web oficial</a></p>
-
-                <!-- Wispr Flow -->
-                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>Wispr Flow</h3>
-
-                <p>Otra excelente opción de dictado por voz con IA, especialmente pulida en Mac e iOS.</p>
-
-                <h4>Características principales</h4>
-                <ul>
-                    <li>Elimina automáticamente muletillas</li>
-                    <li>Puntuación y formato automático</li>
-                    <li>Entiende autocorrecciones ("el martes, no, el miércoles" → escribe solo "miércoles")</li>
-                    <li>Adaptación de tono según contexto</li>
-                </ul>
-
-                <p><a href="https://wisprflow.ai/downloads" target="_blank" class="link-button"><svg class="icon" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>Wispr Flow | Descarga</a></p>
-
-                <!-- Cuántas palabras -->
-                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>¿Cuánto son 2.000 palabras?</h3>
-                <p>Aproximadamente 3-4 páginas de texto. Suficiente para:</p>
-                <ul>
-                    <li>8-10 correos electrónicos largos</li>
-                    <li>2-3 documentos educativos breves</li>
-                    <li>Múltiples mensajes y notas diarias</li>
-                </ul>
-            </section>
-        </div>
-
-<!-- TAB AUDIO AI STUDIO -->
-        <div id="aistudio" class="tab-content">
-            <section class="section">
-                <h2 class="section-title"><svg class="icon" viewBox="0 0 24 24"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg>AUDIO CON GOOGLE AI STUDIO</h2>
-
-                <p>Google AI Studio ofrece generación de texto a voz (TTS) con <strong>Gemini 2.5</strong>, permitiendo crear audio de alta calidad con uno o varios oradores. El TTS es <strong>controlable</strong>: puedes usar lenguaje natural para guiar el estilo, acento, ritmo y tono del audio.</p>
-
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
-                    <a href="https://aistudio.google.com/generate-speech" target="_blank" class="btn"><svg class="icon" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Generar Audio TTS</a>
-                    <a href="https://ai.google.dev/gemini-api/docs/speech-generation" target="_blank" class="btn" style="background: var(--bg-elevated); border: 1px solid var(--border);"><svg class="icon" viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>Documentación</a>
-                </div>
-
-                <div class="info-box success-box">
-                    <p><strong><svg class="icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Flujo recomendado:</strong> Los modelos TTS solo generan audio, pero puedes usar <strong>Gemini primero para escribir el guion</strong> y luego pasarlo al TTS para que lo lea. Así controlas exactamente qué se dice y cómo.</p>
-                </div>
-
-                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><circle cx="9" cy="9" r="2"/><path d="M17 6v4"/><path d="M15 8h4"/></svg>Dos modos de generación</h3>
-
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
-                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
-                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Un solo orador</h4>
-                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Ideal para narraciones, audiolibros, explicaciones. Elige una de las 30 voces disponibles y genera el audio directamente.</p>
-                    </div>
-                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
-                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Varios oradores (hasta 2)</h4>
-                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Perfecto para diálogos, podcasts, entrevistas. Asigna diferentes voces a cada interlocutor con nombres como "Speaker1" y "Speaker2".</p>
-                    </div>
-                </div>
-
-                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>Pasos para generar audio</h3>
-
-                <ol>
-                    <li><strong>Accede a AI Studio:</strong> Ve a <a href="https://aistudio.google.com/generate-speech" target="_blank">aistudio.google.com/generate-speech</a> e inicia sesión con tu cuenta de Google</li>
-                    <li><strong>Escribe o pega tu texto:</strong> El guion que quieres convertir en audio</li>
-                    <li><strong>Selecciona la voz:</strong> Elige entre las 30 voces disponibles (Zephyr, Puck, Charon, etc.)</li>
-                    <li><strong>Ajusta el estilo (opcional):</strong> Añade instrucciones de estilo en el prompt</li>
-                    <li><strong>Genera y descarga:</strong> Escucha el resultado y descarga el archivo de audio</li>
-                </ol>
-
-                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>30 voces disponibles</h3>
-
-                <p style="margin-bottom: 1rem;">Cada voz tiene una personalidad diferente. Aquí algunas destacadas:</p>
-
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem; margin: 1rem 0;">
-                    <div style="background: var(--bg-elevated); padding: 0.75rem; border-radius: 8px; text-align: center; border: 1px solid var(--border);"><strong>Zephyr</strong><br><span style="font-size: 0.85rem; color: var(--text-secondary);">Brillante</span></div>
-                    <div style="background: var(--bg-elevated); padding: 0.75rem; border-radius: 8px; text-align: center; border: 1px solid var(--border);"><strong>Puck</strong><br><span style="font-size: 0.85rem; color: var(--text-secondary);">Optimista</span></div>
-                    <div style="background: var(--bg-elevated); padding: 0.75rem; border-radius: 8px; text-align: center; border: 1px solid var(--border);"><strong>Charon</strong><br><span style="font-size: 0.85rem; color: var(--text-secondary);">Informativa</span></div>
-                    <div style="background: var(--bg-elevated); padding: 0.75rem; border-radius: 8px; text-align: center; border: 1px solid var(--border);"><strong>Leda</strong><br><span style="font-size: 0.85rem; color: var(--text-secondary);">Juvenil</span></div>
-                    <div style="background: var(--bg-elevated); padding: 0.75rem; border-radius: 8px; text-align: center; border: 1px solid var(--border);"><strong>Fenrir</strong><br><span style="font-size: 0.85rem; color: var(--text-secondary);">Enérgica</span></div>
-                    <div style="background: var(--bg-elevated); padding: 0.75rem; border-radius: 8px; text-align: center; border: 1px solid var(--border);"><strong>Aoede</strong><br><span style="font-size: 0.85rem; color: var(--text-secondary);">Relajada</span></div>
-                </div>
-
-                <p style="font-size: 0.9rem; color: var(--text-secondary);">Puedes probar todas las voces en la <a href="https://aistudio.google.com/apps/bundled/voice-library" target="_blank">Biblioteca de Voces</a> de AI Studio.</p>
-
-                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Control del estilo con instrucciones</h3>
-
-                <p>Puedes controlar cómo suena el audio usando lenguaje natural:</p>
-
-                <div style="background: var(--bg-elevated); padding: 1rem; border-radius: 8px; border-left: 3px solid var(--accent); margin: 1rem 0;">
-                    <p style="font-family: monospace; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Un orador:</strong></p>
-                    <p style="font-family: monospace; font-size: 0.85rem; color: var(--text-secondary);">"Di con un susurro misterioso: 'Érase una vez, en un bosque encantado...'"</p>
-                </div>
-
-                <div style="background: var(--bg-elevated); padding: 1rem; border-radius: 8px; border-left: 3px solid var(--success); margin: 1rem 0;">
-                    <p style="font-family: monospace; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Varios oradores:</strong></p>
-                    <p style="font-family: monospace; font-size: 0.85rem; color: var(--text-secondary);">"Haz que Speaker1 suene cansado y aburrido, y Speaker2 suene emocionado y feliz:<br>Speaker1: Bueno... ¿qué toca hoy?<br>Speaker2: ¡No te lo vas a creer!"</p>
-                </div>
-
-                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Ideas de uso en el aula</h3>
-
-                <ul>
-                    <li><strong>Audiocuentos:</strong> Narraciones de los cuentos que crees con NotebookLM</li>
-                    <li><strong>Podcasts educativos:</strong> Diálogos entre dos "expertos" explicando un tema</li>
-                    <li><strong>Dictados con voz natural:</strong> Textos para practicar ortografía</li>
-                    <li><strong>Materiales accesibles:</strong> Versiones audio para alumnado NEAE</li>
-                    <li><strong>Aprendizaje de idiomas:</strong> Textos en diferentes idiomas (soporta 24)</li>
-                </ul>
-
-                <div class="info-box">
-                    <p><strong><svg class="icon" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Gratuito:</strong> AI Studio es completamente gratuito para uso personal y educativo.</p>
-                </div>
-            </section>
-        </div>
-
-<!-- TAB SUNO -->
-        <div id="suno" class="tab-content">
-            <section class="section">
-                <h2 class="section-title"><svg class="icon" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>SUNO: MÚSICA CON IA</h2>
-
-                <p>Suno es una herramienta de IA que genera canciones completas (música + letra cantada) a partir de texto. Tiene un enorme potencial pedagógico para crear materiales memorables que el alumnado no olvidará.</p>
-
-                <a href="https://suno.com/create" target="_blank" class="btn" style="margin-bottom: 2rem;"><svg class="icon" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Crear canción en Suno</a>
-
-                <div class="info-box success-box">
-                    <p><strong><svg class="icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Flujo recomendado:</strong> Usa <strong>Gemini o ChatGPT para escribir la letra primero</strong>, y luego pégala en Suno en modo "Custom". Así controlas exactamente qué dice la canción y te aseguras de que el contenido sea correcto.</p>
-                </div>
-
-                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><circle cx="9" cy="9" r="2"/><path d="M17 6v4"/><path d="M15 8h4"/></svg>Dos modos de creación</h3>
-
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
-                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
-                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Modo Simple</h4>
-                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Describes lo que quieres y Suno genera letra + música automáticamente. Rápido pero menos control sobre el contenido exacto.</p>
-                    </div>
-                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--accent);">
-                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; color: var(--accent);"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>Modo Custom (Recomendado)</h4>
-                        <p style="font-size: 0.9rem; color: var(--text-secondary);"><strong>Tú escribes la letra</strong> y Suno pone la música. Control total del contenido. Perfecto para contenido educativo preciso.</p>
-                    </div>
-                </div>
-
-                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>Cómo usar el modo Custom</h3>
-
-                <ol>
-                    <li><strong>Genera la letra con IA:</strong> Pide a Gemini o ChatGPT que escriba una letra de canción sobre tu tema:
-                        <div style="background: var(--bg-elevated); padding: 0.75rem; border-radius: 8px; margin: 0.5rem 0; font-size: 0.9rem;">
-                            "Escribe la letra de una canción infantil pegadiza sobre los planetas del sistema solar. Incluye estribillo que se repita. Formato: verso, estribillo, verso, estribillo."
-                        </div>
-                    </li>
-                    <li><strong>Accede a Suno:</strong> Ve a <a href="https://suno.com/create" target="_blank">suno.com/create</a> e inicia sesión</li>
-                    <li><strong>Activa modo Custom:</strong> Busca el toggle "Custom" para activarlo</li>
-                    <li><strong>Pega tu letra:</strong> En el campo "Lyrics", pega la letra que generaste</li>
-                    <li><strong>Elige el estilo:</strong> En "Style of Music" escribe el género (ej: "pop infantil alegre", "rap educativo", "balada tranquila")</li>
-                    <li><strong>Genera y elige:</strong> Suno crea 2 versiones. Escúchalas y descarga la mejor</li>
-                </ol>
-
-                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>Usos pedagógicos</h3>
-
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
-                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
-                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>Contenido curricular</h4>
-                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Canciones para memorizar tablas de multiplicar, verbos irregulares, fechas históricas, elementos de la tabla periódica...</p>
-                    </div>
-                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
-                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Convivencia</h4>
-                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Himnos de clase, canciones sobre normas de convivencia, valores, respeto, trabajo en equipo...</p>
-                    </div>
-                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
-                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Motivación</h4>
-                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Canciones personalizadas para el grupo, celebraciones, fin de curso, bienvenida a nuevos alumnos...</p>
-                    </div>
-                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
-                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Idiomas</h4>
-                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Canciones en inglés, gallego, francés... para practicar vocabulario, estructuras gramaticales, pronunciación...</p>
-                    </div>
-                </div>
-
-                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>Estilos musicales que funcionan bien</h3>
-
-                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0;">
-                    <span style="background: var(--bg-elevated); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border);">pop infantil alegre</span>
-                    <span style="background: var(--bg-elevated); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border);">rap educativo</span>
-                    <span style="background: var(--bg-elevated); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border);">folk acústico</span>
-                    <span style="background: var(--bg-elevated); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border);">rock suave</span>
-                    <span style="background: var(--bg-elevated); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border);">balada tranquila</span>
-                    <span style="background: var(--bg-elevated); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border);">música celta</span>
-                    <span style="background: var(--bg-elevated); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border);">reggaeton suave</span>
-                    <span style="background: var(--bg-elevated); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border);">instrumental relajante</span>
-                </div>
-
-                <div class="info-box warning-box">
-                    <p><strong><svg class="icon" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Créditos limitados:</strong> La versión gratuita tiene ~50 créditos diarios (10 canciones aprox). Planifica qué canciones quieres crear. Consejo: genera la letra primero con IA para no gastar créditos en letras que no te convencen.</p>
-                </div>
-
-                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Ideas rápidas para probar</h3>
-
-                <ul>
-                    <li><strong>Matemáticas:</strong> "Rap educativo sobre las tablas de multiplicar del 7 y el 8"</li>
-                    <li><strong>Ciencias:</strong> "Canción pegadiza para memorizar los planetas del sistema solar en orden"</li>
-                    <li><strong>Lengua:</strong> "Balada sobre las reglas de acentuación en español"</li>
-                    <li><strong>Gallego:</strong> "Canción folk en gallego sobre las estaciones del año"</li>
-                    <li><strong>Convivencia:</strong> "Himno motivador para un equipo de clase, sobre trabajo en equipo"</li>
-                    <li><strong>Relajación:</strong> "Melodía instrumental suave para momento de lectura silenciosa"</li>
-                </ul>
             </section>
         </div>
 
