@@ -79,6 +79,13 @@ const IconWheel = () => (
   </svg>
 );
 
+const IconSearch = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <circle cx="11" cy="11" r="8"/>
+    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+  </svg>
+);
+
 const RECURSOS = [
   {
     id: 'pictos',
@@ -151,6 +158,14 @@ const RECURSOS = [
     description: 'Juego de la Ruleta de la Fortuna con refranes, expresiones y gramática para repasar en clase',
     icon: IconWheel,
     href: '/ruleta',
+    available: true
+  },
+  {
+    id: 'csi-retorico',
+    title: 'CSI Retórico',
+    description: 'Escape room de figuras literarias: identifica recursos retóricos y resuelve el caso contrarreloj',
+    icon: IconSearch,
+    href: '/csi-retorico',
     available: true
   }
 ];

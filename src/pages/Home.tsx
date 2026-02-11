@@ -81,6 +81,13 @@ const IconWheel = () => (
   </svg>
 );
 
+const IconSearch = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <circle cx="11" cy="11" r="8"/>
+    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+  </svg>
+);
+
 // Datos del carrusel
 const RECURSOS = [
   { id: 'pictos', title: 'Pictos', icon: IconPictos, href: '/pictos', available: true },
@@ -92,6 +99,7 @@ const RECURSOS = [
   { id: 'ortografia', title: 'Ortografía', icon: IconText, href: 'https://docs.google.com/presentation/d/1EQBXlCPrh8doL-SM2q-oxEWivtXqWJ8g6glaKfxIapc/present', available: true, external: true },
   { id: 'improvisacion', title: 'Improvisación', icon: IconTheater, href: '/improvisacion', available: true },
   { id: 'ruleta', title: 'Ruleta', icon: IconWheel, href: '/ruleta', available: true },
+  { id: 'csi-retorico', title: 'CSI Retórico', icon: IconSearch, href: '/csi-retorico', available: true },
 ];
 
 export function Home() {

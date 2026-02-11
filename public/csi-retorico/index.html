@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSI Retórico - Robo en la Gala Literaria</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #050505;
+            --bg-secondary: #0a0a0a;
+            --bg-card: #111111;
+            --bg-card-hover: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --text-muted: #444444;
+            --border: rgba(255,255,255,0.08);
+            --accent-1: #00d4aa;
+            --accent-2: #00d4ff;
+            --accent-3: #f5a623;
+            --accent-4: #ff6b6b;
+            --accent-5: #a78bfa;
+            --accent-6: #4ade80;
+            --success: #22c55e;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --scene-color: var(--accent-3);
+        }
+
+        body.light-mode {
+            --bg-primary: #f5f5f5;
+            --bg-secondary: #e8e8e8;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f0f0f0;
+            --text-primary: #111111;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            --border: rgba(0,0,0,0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background 0.3s, color 0.3s;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ═══ Controles fijos ═══ */
+        .top-bar {
+            position: fixed; top: 0; left: 0; right: 0;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 20px; z-index: 100;
+        }
+
+        .home-link {
+            position: fixed; top: 0; left: 50%; transform: translateX(-50%);
+            z-index: 1100; padding: 12px 16px;
+            color: var(--text-primary); transition: color 0.2s;
+            text-decoration: none;
+        }
+        .home-link:hover { color: var(--text-secondary); }
+        .home-link svg { width: 32px; height: 32px; }
+
+        /* ═══ Temporizador ═══ */
+        .timer-display {
+            display: flex; align-items: center; gap: 6px;
+            font-size: 15px; font-weight: 700;
+            font-variant-numeric: tabular-nums;
+            color: var(--text-secondary);
+            transition: color 0.3s;
+        }
+        .timer-display svg { width: 16px; height: 16px; }
+        .timer-display.warning { color: var(--warning); }
+        .timer-display.danger { color: var(--danger); animation: timer-pulse 1s ease-in-out infinite; }
+        @keyframes timer-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .timer-penalty {
+            position: fixed; top: 14px; right: 68px;
+            font-size: 14px; font-weight: 700;
+            color: var(--danger);
+            animation: penalty-float 1s ease forwards;
+            pointer-events: none; z-index: 101;
+        }
+        @keyframes penalty-float {
+            0% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-24px); }
+        }
+
+        .theme-toggle {
+            background: none; border: none; cursor: pointer;
+            color: var(--text-muted); transition: color 0.2s;
+            width: 36px; height: 36px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px;
+        }
+        .theme-toggle:hover { color: var(--text-primary); }
+        .theme-toggle svg { width: 18px; height: 18px; }
+
+        /* ═══ Barra de progreso ═══ */
+        .progress-bar {
+            position: fixed; top: 56px; left: 0; right: 0;
+            display: flex; justify-content: center; gap: 8px;
+            padding: 8px 20px; z-index: 99;
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .progress-bar.visible { opacity: 1; }
+
+        .progress-dot {
+            width: 10px; height: 10px; border-radius: 50%;
+            background: var(--text-muted); transition: all 0.3s;
+        }
+        .progress-dot.active { background: var(--scene-color); transform: scale(1.3); }
+        .progress-dot.done { background: var(--success); }
+
+        /* ═══ Pantallas ═══ */
+        .screen {
+            min-height: 100vh; width: 100%;
+            display: none; flex-direction: column;
+            align-items: center; justify-content: center;
+            padding: 80px 20px 40px;
+        }
+        .screen.active { display: flex; }
+
+        /* ═══ Pantalla título ═══ */
+        .title-screen { text-align: center; }
+
+        .title-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(245, 166, 35, 0.1);
+            border: 1px solid rgba(245, 166, 35, 0.2);
+            border-radius: 20px; padding: 6px 16px;
+            font-size: 12px; font-weight: 600;
+            color: var(--accent-3); text-transform: uppercase;
+            letter-spacing: 1.5px; margin-bottom: 24px;
+        }
+        .title-badge svg { width: 14px; height: 14px; }
+
+        .title-main {
+            font-size: clamp(36px, 8vw, 64px);
+            font-weight: 900; line-height: 1.05;
+            margin-bottom: 8px;
+        }
+        .title-main .accent { color: var(--accent-3); }
+
+        .title-sub {
+            font-size: clamp(16px, 3vw, 22px);
+            color: var(--text-secondary); font-weight: 300;
+            margin-bottom: 40px;
+        }
+
+        .title-intro {
+            max-width: 520px; margin: 0 auto 40px;
+            font-size: 15px; line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: var(--accent-3); color: #000;
+            border: none; border-radius: 12px;
+            padding: 14px 32px; font-size: 16px;
+            font-weight: 700; cursor: pointer;
+            font-family: inherit;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(245, 166, 35, 0.3);
+        }
+        .btn-primary:active { transform: translateY(0); }
+        .btn-primary svg { width: 18px; height: 18px; }
+
+        /* ═══ Pantalla de escena ═══ */
+        .scene-container {
+            max-width: 640px; width: 100%;
+        }
+
+        .scene-header {
+            text-align: center; margin-bottom: 24px;
+        }
+        .scene-number {
+            font-size: 12px; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 1.5px;
+            color: var(--scene-color); margin-bottom: 4px;
+        }
+        .scene-title {
+            font-size: 13px; color: var(--text-muted);
+        }
+
+        /* Tarjeta sospechoso */
+        .suspect-card {
+            display: flex; align-items: center; gap: 14px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px; padding: 14px 18px;
+            margin-bottom: 20px;
+        }
+        .suspect-icon {
+            width: 44px; height: 44px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .suspect-icon svg { width: 22px; height: 22px; }
+        .suspect-name { font-weight: 700; font-size: 16px; }
+        .suspect-role { font-size: 13px; color: var(--text-secondary); }
+
+        /* Declaración */
+        .statement-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px; padding: 20px 22px;
+            margin-bottom: 24px;
+            font-size: 15px; line-height: 1.8;
+            color: var(--text-secondary);
+            position: relative;
+        }
+        .statement-box::before {
+            content: '\201C'; position: absolute;
+            top: 8px; left: 14px;
+            font-size: 48px; font-weight: 800;
+            color: var(--text-muted); opacity: 0.3;
+            line-height: 1;
+        }
+
+        .highlight {
+            color: var(--scene-color);
+            font-weight: 600;
+            background: linear-gradient(to bottom, transparent 60%, rgba(245, 166, 35, 0.15) 60%);
+            padding: 0 2px; border-radius: 2px;
+            animation: pulse-highlight 2s ease-in-out infinite;
+        }
+        @keyframes pulse-highlight {
+            0%, 100% { background: linear-gradient(to bottom, transparent 60%, rgba(245, 166, 35, 0.15) 60%); }
+            50% { background: linear-gradient(to bottom, transparent 60%, rgba(245, 166, 35, 0.25) 60%); }
+        }
+
+        /* Colores de highlight por figura en escena mixta */
+        .hl-personificacion { --hl-color: #4ade80; color: #4ade80; background: linear-gradient(to bottom, transparent 60%, rgba(74,222,128,0.15) 60%); }
+        .hl-simil { --hl-color: #00d4ff; color: #00d4ff; background: linear-gradient(to bottom, transparent 60%, rgba(0,212,255,0.15) 60%); }
+        .hl-metafora { --hl-color: #a78bfa; color: #a78bfa; background: linear-gradient(to bottom, transparent 60%, rgba(167,139,250,0.15) 60%); }
+        .hl-hiperbole { --hl-color: #ff6b6b; color: #ff6b6b; background: linear-gradient(to bottom, transparent 60%, rgba(255,107,107,0.15) 60%); }
+
+        .hl-active {
+            animation: pulse-highlight-active 1.5s ease-in-out infinite;
+            outline: 2px solid var(--hl-color, var(--scene-color));
+            outline-offset: 2px;
+            border-radius: 3px;
+        }
+
+        @keyframes pulse-highlight-active {
+            0%, 100% { outline-color: var(--hl-color, var(--scene-color)); }
+            50% { outline-color: transparent; }
+        }
+
+        /* Área de preguntas */
+        .question-area {
+            animation: fadeSlideUp 0.4s ease;
+        }
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .question-text {
+            font-size: 15px; font-weight: 600;
+            margin-bottom: 14px; line-height: 1.4;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px; margin-bottom: 16px;
+        }
+
+        .option-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 14px; font-weight: 500;
+            color: var(--text-primary);
+            cursor: pointer; font-family: inherit;
+            transition: all 0.2s;
+            text-align: left; line-height: 1.4;
+        }
+        .option-btn:hover:not(:disabled) {
+            background: var(--bg-card-hover);
+            border-color: var(--scene-color);
+        }
+        .option-btn.correct {
+            background: rgba(34, 197, 94, 0.1);
+            border-color: var(--success);
+            color: var(--success);
+        }
+        .option-btn.wrong {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: var(--danger);
+            color: var(--danger);
+            animation: shake 0.4s ease;
+        }
+        .option-btn:disabled { cursor: default; opacity: 0.5; }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-4px); }
+            40%, 80% { transform: translateX(4px); }
+        }
+
+        /* Opciones de texto largo (3 opciones en step2) */
+        .options-list {
+            display: flex; flex-direction: column;
+            gap: 10px; margin-bottom: 16px;
+        }
+        .options-list .option-btn {
+            width: 100%;
+        }
+
+        /* Feedback */
+        .feedback {
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 13px; line-height: 1.5;
+            margin-bottom: 16px;
+            animation: fadeSlideUp 0.3s ease;
+        }
+        .feedback.error {
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            color: var(--danger);
+        }
+        .feedback.success {
+            background: rgba(34, 197, 94, 0.08);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            color: var(--success);
+        }
+
+        /* Ficha del recurso */
+        .rule-card {
+            background: var(--bg-card);
+            border: 1px solid var(--scene-color);
+            border-radius: 14px;
+            padding: 18px 20px;
+            margin-bottom: 16px;
+            animation: fadeSlideUp 0.4s ease;
+        }
+        .rule-card-header {
+            display: flex; align-items: center; gap: 8px;
+            margin-bottom: 10px;
+        }
+        .rule-card-header svg { width: 16px; height: 16px; color: var(--scene-color); }
+        .rule-card-label {
+            font-size: 11px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1.5px;
+            color: var(--scene-color);
+        }
+        .rule-card-title {
+            font-size: 18px; font-weight: 800;
+            margin-bottom: 8px; color: var(--scene-color);
+        }
+        .rule-card-def {
+            font-size: 14px; line-height: 1.6;
+            color: var(--text-secondary); margin-bottom: 10px;
+        }
+        .rule-card-trick {
+            font-size: 13px; line-height: 1.5;
+            color: var(--text-primary);
+            background: rgba(245, 166, 35, 0.06);
+            border-radius: 8px; padding: 10px 14px;
+        }
+        .rule-card-trick strong { color: var(--scene-color); }
+
+        /* Pista */
+        .clue-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin-bottom: 20px;
+            animation: fadeSlideUp 0.4s ease;
+        }
+        .clue-card-header {
+            display: flex; align-items: center; gap: 8px;
+            margin-bottom: 8px;
+        }
+        .clue-card-header svg { width: 16px; height: 16px; color: var(--accent-3); }
+        .clue-card-label {
+            font-size: 11px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1.5px;
+            color: var(--accent-3);
+        }
+        .clue-card-text {
+            font-size: 14px; line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        .btn-next {
+            display: flex; align-items: center; gap: 8px;
+            background: var(--scene-color); color: #000;
+            border: none; border-radius: 10px;
+            padding: 12px 24px; font-size: 14px;
+            font-weight: 700; cursor: pointer;
+            font-family: inherit;
+            transition: transform 0.15s;
+            margin: 0 auto;
+        }
+        .btn-next:hover { transform: translateY(-1px); }
+        .btn-next svg { width: 16px; height: 16px; }
+
+        /* ═══ Pantalla deducción ═══ */
+        .deduction-container {
+            max-width: 640px; width: 100%;
+        }
+        .deduction-title {
+            font-size: 28px; font-weight: 900;
+            text-align: center; margin-bottom: 8px;
+        }
+        .deduction-subtitle {
+            font-size: 14px; color: var(--text-secondary);
+            text-align: center; margin-bottom: 28px;
+        }
+
+        .clues-summary {
+            display: flex; flex-direction: column;
+            gap: 10px; margin-bottom: 28px;
+        }
+        .clue-summary-item {
+            display: flex; align-items: flex-start; gap: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px; padding: 12px 16px;
+        }
+        .clue-summary-icon {
+            width: 32px; height: 32px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .clue-summary-icon svg { width: 16px; height: 16px; }
+        .clue-summary-name { font-weight: 600; font-size: 14px; }
+        .clue-summary-text { font-size: 13px; color: var(--text-secondary); line-height: 1.4; }
+
+        .deduction-question {
+            font-size: 18px; font-weight: 700;
+            text-align: center; margin-bottom: 16px;
+        }
+
+        .suspects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .suspects-grid .option-btn {
+            display: flex; align-items: center; gap: 10px;
+            padding: 14px 16px;
+        }
+        .suspects-grid .option-btn .s-icon {
+            width: 32px; height: 32px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .suspects-grid .option-btn .s-icon svg { width: 16px; height: 16px; }
+        .suspects-grid .option-btn:last-child {
+            grid-column: 1 / -1;
+            justify-content: center;
+        }
+
+        /* ═══ Pantalla resultado ═══ */
+        .result-container {
+            max-width: 540px; width: 100%;
+            text-align: center;
+        }
+        .result-icon {
+            width: 80px; height: 80px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px;
+            animation: scaleIn 0.5s ease;
+        }
+        .result-icon svg { width: 40px; height: 40px; }
+        .result-icon.success-icon { background: rgba(34, 197, 94, 0.1); color: var(--success); }
+
+        @keyframes scaleIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .result-title {
+            font-size: 32px; font-weight: 900;
+            margin-bottom: 12px;
+        }
+        .result-text {
+            font-size: 15px; line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .score-summary {
+            display: flex; justify-content: center; gap: 32px;
+            margin-bottom: 32px;
+        }
+        .score-item { text-align: center; }
+        .score-value { font-size: 32px; font-weight: 800; color: var(--scene-color); }
+        .score-label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+        /* ═══ Escena mixta: indicador de fragmento ═══ */
+        .fragment-indicator {
+            display: flex; align-items: center; gap: 8px;
+            margin-bottom: 12px;
+        }
+        .fragment-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--text-muted); transition: all 0.3s;
+        }
+        .fragment-dot.active { transform: scale(1.4); }
+        .fragment-dot.done { background: var(--success); }
+
+        .fragment-text-box {
+            background: var(--bg-card);
+            border: 1px solid var(--scene-color);
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 15px; font-weight: 500;
+            line-height: 1.5;
+            color: var(--scene-color);
+            margin-bottom: 14px;
+            animation: fadeSlideUp 0.3s ease;
+        }
+
+        .mini-explanation {
+            font-size: 13px; color: var(--success);
+            line-height: 1.5; padding: 8px 12px;
+            background: rgba(34, 197, 94, 0.06);
+            border-radius: 8px; margin-bottom: 12px;
+            animation: fadeSlideUp 0.3s ease;
+        }
+
+        /* ═══ Responsive ═══ */
+        @media (max-width: 500px) {
+            .options-grid { grid-template-columns: 1fr; }
+            .suspects-grid { grid-template-columns: 1fr; }
+            .suspects-grid .option-btn:last-child { grid-column: auto; }
+            .title-main { font-size: 32px; }
+            .score-summary { gap: 20px; }
+        }
+
+        /* ═══ Print ═══ */
+        @media print {
+            .top-bar, .progress-bar, .btn-primary, .btn-next, .theme-toggle { display: none; }
+            body { background: white; color: black; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo centrado -->
+    <a href="/" class="home-link" title="Volver a adri-app">
+        <svg viewBox="0 0 100 100">
+            <polygon points="50,5 95,82 5,82" fill="currentColor"/>
+            <line x1="50" y1="56" x2="50" y2="5" stroke="var(--bg-primary)" stroke-width="4"/>
+            <line x1="50" y1="56" x2="95" y2="82" stroke="var(--bg-primary)" stroke-width="4"/>
+            <line x1="50" y1="56" x2="5" y2="82" stroke="var(--bg-primary)" stroke-width="4"/>
+        </svg>
+    </a>
+
+    <!-- Barra superior -->
+    <div class="top-bar">
+        <div class="timer-display" id="timerDisplay" style="display:none">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span id="timerText">8:00</span>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()" title="Cambiar tema">
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+    </div>
+
+    <!-- Barra de progreso -->
+    <div class="progress-bar" id="progressBar">
+        <div class="progress-dot" data-step="0"></div>
+        <div class="progress-dot" data-step="1"></div>
+        <div class="progress-dot" data-step="2"></div>
+        <div class="progress-dot" data-step="3"></div>
+        <div class="progress-dot" data-step="4"></div>
+        <div class="progress-dot" data-step="5"></div>
+    </div>
+
+    <!-- Pantalla: Título -->
+    <div class="screen active" id="screen-title">
+        <div class="title-screen">
+            <div class="title-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                Investigaci&oacute;n abierta
+            </div>
+            <h1 class="title-main">CSI <span class="accent">Ret&oacute;rico</span></h1>
+            <p class="title-sub">Robo en la Gala Literaria</p>
+            <p class="title-intro">
+                En la Gran Gala de los Premios Literarios, el Trofeo de Oro ha desaparecido.
+                Los cinco nominados son sospechosos. Cada uno ha declarado ante la polic&iacute;a literaria...
+                pero sus palabras est&aacute;n llenas de <strong>recursos literarios</strong>.
+                <br><br>
+                Identifica cada recurso y explica por qu&eacute; lo es para descubrir al culpable.
+            </p>
+            <button class="btn-primary" onclick="startGame()">
+                Comenzar investigaci&oacute;n
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Pantalla: Escena (contenido dinámico) -->
+    <div class="screen" id="screen-scene">
+        <div class="scene-container" id="sceneContent"></div>
+    </div>
+
+    <!-- Pantalla: Deducción -->
+    <div class="screen" id="screen-deduction">
+        <div class="deduction-container" id="deductionContent"></div>
+    </div>
+
+    <!-- Pantalla: Resultado -->
+    <div class="screen" id="screen-result">
+        <div class="result-container" id="resultContent"></div>
+    </div>
+
+    <script>
+    // ═══════════════════════════════════════════
+    // ICONOS SVG (Lucide)
+    // ═══════════════════════════════════════════
+
+    const ICONS = {
+        feather: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/></svg>',
+        glasses: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="15" r="4"/><circle cx="18" cy="15" r="4"/><path d="M14 15a2 2 0 0 0-4 0"/><path d="M2.5 13.5 4 15"/><path d="M22 13.5 20 15"/></svg>',
+        smartphone: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>',
+        penLine: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>',
+        newspaper: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>',
+        bookOpen: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>',
+        eye: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>',
+        arrowRight: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>',
+        check: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
+        shield: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>',
+        refresh: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>'
+    };
+
+    // ═══════════════════════════════════════════
+    // DATOS DE LAS ESCENAS
+    // ═══════════════════════════════════════════
+
+    const SCENES = [
+        {
+            suspect: { name: 'Do\u00f1a Aurora', role: 'Poetisa dram\u00e1tica', icon: 'feather', color: '#00d4ff' },
+            statementHTML: 'Aquella noche, las luces de la gala <span class="highlight">brillaban como estrellas ca\u00eddas del cielo</span>. Yo estaba en mi mesa, nerviosa como un flan, cuando o\u00ed un estruendo terrible desde los bastidores.',
+            step1: {
+                question: '\u00bfQu\u00e9 recurso literario aparece en el fragmento destacado?',
+                options: [
+                    { text: 'Comparaci\u00f3n', correct: true },
+                    { text: 'Met\u00e1fora', correct: false, feedback: 'Esto ser\u00eda met\u00e1fora: \u00abLas luces eran estrellas ca\u00eddas del cielo\u00bb. \u00bfEs eso lo que dice el fragmento? Compara e int\u00e9ntalo de nuevo.' },
+                    { text: 'Hip\u00e9rbole', correct: false, feedback: 'Esto ser\u00eda hip\u00e9rbole: \u00abLas luces brillaban m\u00e1s que mil soles juntos\u00bb. \u00bfEs eso lo que dice el fragmento? Compara e int\u00e9ntalo de nuevo.' },
+                    { text: 'Personificaci\u00f3n', correct: false, feedback: 'Esto ser\u00eda personificaci\u00f3n: \u00abLas luces bailaban nerviosas sobre el escenario\u00bb. \u00bfEs eso lo que dice el fragmento? Compara e int\u00e9ntalo de nuevo.' }
+                ]
+            },
+            step2: {
+                question: '\u00bfPor qu\u00e9 es una comparaci\u00f3n?',
+                options: [
+                    { text: 'Porque compara las luces con estrellas usando la palabra \u00abcomo\u00bb', correct: true },
+                    { text: 'Porque identifica las luces con estrellas directamente (luces = estrellas)', correct: false, feedback: 'Identificar ser\u00eda decir: \u00abLas luces eran estrellas\u00bb. \u00bfEs exactamente eso lo que dice? Relee el fragmento con atenci\u00f3n.' },
+                    { text: 'Porque exagera el brillo de las luces de forma imposible', correct: false, feedback: 'Exagerar ser\u00eda decir: \u00abLas luces brillaban m\u00e1s que un mill\u00f3n de soles\u00bb. \u00bfEs eso lo que hace el fragmento? Relee con atenci\u00f3n.' }
+                ]
+            },
+            ruleCard: {
+                title: 'COMPARACI\u00d3N',
+                definition: 'Compara dos elementos usando nexos comparativos: \u00abcomo\u00bb, \u00abigual que\u00bb, \u00abparece\u00bb, \u00abse asemeja a\u00bb.',
+                trick: '<strong>Truco:</strong> busca la palabra \u00abcomo\u00bb u otro nexo comparativo. Si lo encuentras, es comparaci\u00f3n.'
+            },
+            clue: 'Do\u00f1a Aurora estaba en la mesa 7. Tres camareros confirman que no se levant\u00f3 en toda la velada.'
+        },
+        {
+            suspect: { name: 'Don Raimundo', role: 'Cr\u00edtico literario', icon: 'glasses', color: '#ff6b6b' },
+            statementHTML: 'Llevo esperando este premio toda mi vida. <span class="highlight">He le\u00eddo un mill\u00f3n de libros</span> para merecer ese trofeo, y alguien me lo arrebata en mis propias narices.',
+            step1: {
+                question: '\u00bfQu\u00e9 recurso literario aparece en el fragmento destacado?',
+                options: [
+                    { text: 'Hip\u00e9rbole', correct: true },
+                    { text: 'Comparaci\u00f3n', correct: false, feedback: 'Esto ser\u00eda comparaci\u00f3n: \u00abHe le\u00eddo tantos libros como arena hay en la playa\u00bb. \u00bfEs eso lo que dice el fragmento? Compara e int\u00e9ntalo de nuevo.' },
+                    { text: 'Met\u00e1fora', correct: false, feedback: 'Esto ser\u00eda met\u00e1fora: \u00abLos libros son mi ox\u00edgeno\u00bb. \u00bfEs eso lo que dice el fragmento? Compara e int\u00e9ntalo de nuevo.' },
+                    { text: 'Personificaci\u00f3n', correct: false, feedback: 'Esto ser\u00eda personificaci\u00f3n: \u00abLos libros me llamaban desde la estanter\u00eda\u00bb. \u00bfEs eso lo que dice el fragmento? Compara e int\u00e9ntalo de nuevo.' }
+                ]
+            },
+            step2: {
+                question: '\u00bfPor qu\u00e9 es una hip\u00e9rbole?',
+                options: [
+                    { text: 'Porque exagera de forma desmesurada: es imposible leer un mill\u00f3n de libros', correct: true },
+                    { text: 'Porque compara la cantidad de libros le\u00eddos con un mill\u00f3n', correct: false, feedback: 'Comparar ser\u00eda decir: \u00abHe le\u00eddo tantos libros COMO p\u00e1ginas tiene una enciclopedia\u00bb. \u00bfEs eso lo que dice? Relee el fragmento.' },
+                    { text: 'Porque atribuye a los libros una cualidad humana', correct: false, feedback: 'Atribuir cualidades humanas ser\u00eda decir: \u00abLos libros me suplicaban que los leyera\u00bb. \u00bfHacen los libros algo humano en el fragmento? Relee con atenci\u00f3n.' }
+                ]
+            },
+            ruleCard: {
+                title: 'HIP\u00c9RBOLE',
+                definition: 'Exageraci\u00f3n desmesurada para dar \u00e9nfasis a una idea. La afirmaci\u00f3n es literalmente imposible o extremadamente improbable.',
+                trick: '<strong>Truco:</strong> preg\u00fantate \u00ab\u00bfes esto literalmente posible?\u00bb. Si no lo es, probablemente sea hip\u00e9rbole.'
+            },
+            clue: 'Don Raimundo fue visto subiendo al escenario justo antes del apag\u00f3n. Dice que solo iba a protestar por el veredicto del jurado.'
+        },
+        {
+            suspect: { name: 'Valentina Flash', role: 'Influencer y poeta urbana', icon: 'smartphone', color: '#4ade80' },
+            statementHTML: 'Yo estaba grabando un directo cuando se fue la luz. <span class="highlight">La oscuridad se trag\u00f3 la sala entera</span>. Mi m\u00f3vil lloraba pidiendo bater\u00eda. Solo las cortinas bailaban con el viento que entraba por la ventana.',
+            step1: {
+                question: '\u00bfQu\u00e9 recurso literario aparece en el fragmento destacado?',
+                options: [
+                    { text: 'Personificaci\u00f3n', correct: true },
+                    { text: 'Hip\u00e9rbole', correct: false, feedback: 'Esto ser\u00eda hip\u00e9rbole: \u00abSe hizo tan oscuro que no ve\u00edas ni tus propias manos\u00bb. \u00bfEs eso lo que dice el fragmento? Compara e int\u00e9ntalo de nuevo.' },
+                    { text: 'Met\u00e1fora', correct: false, feedback: 'Esto ser\u00eda met\u00e1fora: \u00abLa oscuridad era una manta negra sobre la sala\u00bb. \u00bfEs eso lo que dice el fragmento? Compara e int\u00e9ntalo de nuevo.' },
+                    { text: 'Comparaci\u00f3n', correct: false, feedback: 'Esto ser\u00eda comparaci\u00f3n: \u00abLa oscuridad cay\u00f3 como una cortina sobre la sala\u00bb. \u00bfEs eso lo que dice el fragmento? Compara e int\u00e9ntalo de nuevo.' }
+                ]
+            },
+            step2: {
+                question: '\u00bfPor qu\u00e9 es una personificaci\u00f3n?',
+                options: [
+                    { text: 'Porque atribuye una acci\u00f3n humana (tragar) a algo no humano (la oscuridad)', correct: true },
+                    { text: 'Porque exagera lo oscura que estaba la sala', correct: false, feedback: 'Exagerar ser\u00eda decir: \u00abLa sala se qued\u00f3 mil veces m\u00e1s oscura que una cueva\u00bb. \u00bfEs eso lo que dice? Relee el fragmento con atenci\u00f3n.' },
+                    { text: 'Porque compara la oscuridad con una persona que traga', correct: false, feedback: 'Comparar ser\u00eda decir: \u00abLa oscuridad era COMO una boca que se tragaba todo\u00bb. \u00bfEs exactamente eso lo que dice? Relee con atenci\u00f3n.' }
+                ]
+            },
+            ruleCard: {
+                title: 'PERSONIFICACI\u00d3N',
+                definition: 'Atribuir cualidades o acciones humanas a seres no humanos o cosas inanimadas.',
+                trick: '<strong>Truco:</strong> el sujeto NO es una persona, pero HACE algo de persona (hablar, llorar, bailar, tragar...).'
+            },
+            clue: 'Valentina perdi\u00f3 la conexi\u00f3n del directo cuando se fue la luz. Su v\u00eddeo grabado confirma que estaba en el ba\u00f1o retransmitiendo.'
+        },
+        {
+            suspect: { name: 'El Conde Verso', role: 'Novelista rom\u00e1ntico', icon: 'penLine', color: '#a78bfa' },
+            statementHTML: 'Esa noche, <span class="highlight">mis ojos eran dos reflectores</span> buscando en cada rinc\u00f3n. Mi coraz\u00f3n, un tambor de guerra. La gala se hab\u00eda convertido en una selva de emociones.',
+            step1: {
+                question: '\u00bfQu\u00e9 recurso literario aparece en el fragmento destacado?',
+                options: [
+                    { text: 'Met\u00e1fora', correct: true },
+                    { text: 'Comparaci\u00f3n', correct: false, feedback: 'Esto ser\u00eda comparaci\u00f3n: \u00abMis ojos brillaban como dos reflectores\u00bb. \u00bfEs eso lo que dice el fragmento? Compara e int\u00e9ntalo de nuevo.' },
+                    { text: 'Hip\u00e9rbole', correct: false, feedback: 'Esto ser\u00eda hip\u00e9rbole: \u00abMis ojos se abrieron tanto que ocupaban toda la cara\u00bb. \u00bfEs eso lo que dice el fragmento? Compara e int\u00e9ntalo de nuevo.' },
+                    { text: 'Personificaci\u00f3n', correct: false, feedback: 'Esto ser\u00eda personificaci\u00f3n: \u00abLos reflectores buscaban nerviosos en cada rinc\u00f3n\u00bb. \u00bfEs eso lo que dice el fragmento? Compara e int\u00e9ntalo de nuevo.' }
+                ]
+            },
+            step2: {
+                question: '\u00bfPor qu\u00e9 es una met\u00e1fora y NO una comparaci\u00f3n?',
+                options: [
+                    { text: 'Porque identifica ojos con reflectores directamente (A es B), sin usar \u00abcomo\u00bb', correct: true },
+                    { text: 'Porque compara los ojos con reflectores usando \u00abcomo\u00bb', correct: false, feedback: 'Comparar con \u00abcomo\u00bb ser\u00eda decir: \u00abMis ojos brillaban COMO reflectores\u00bb. \u00bfEs exactamente eso lo que dice? Relee el fragmento.' },
+                    { text: 'Porque exagera lo grandes que son sus ojos', correct: false, feedback: 'Exagerar ser\u00eda decir: \u00abMis ojos se volvieron enormes, del tama\u00f1o de platos\u00bb. \u00bfEs eso lo que dice? Relee el fragmento.' }
+                ]
+            },
+            ruleCard: {
+                title: 'MET\u00c1FORA',
+                definition: 'Identificaci\u00f3n directa: A ES B. No usa nexos comparativos como \u00abcomo\u00bb o \u00abparece\u00bb.',
+                trick: '<strong>Truco:</strong> la comparaci\u00f3n COMPARA (A es COMO B), la met\u00e1fora IDENTIFICA (A ES B). Si quitas el \u00abcomo\u00bb de una comparaci\u00f3n, tienes una met\u00e1fora.'
+            },
+            clue: 'El Conde Verso tiene antecedentes por robar piezas art\u00edsticas en subastas. Fue visto merodeando cerca de la vitrina del trofeo minutos antes del apag\u00f3n.'
+        },
+        {
+            type: 'mixed',
+            suspect: { name: 'Lupe Tinta', role: 'Periodista de sucesos', icon: 'newspaper', color: '#f5a623' },
+            statementHTML: '<span class="highlight hl-personificacion" data-idx="0">La gala dorm\u00eda de aburrimiento</span> hasta que ocurri\u00f3 el robo. Los invitados <span class="highlight hl-simil" data-idx="1">hu\u00edan como ratones asustados</span>. Yo agarr\u00e9 mi libreta, que <span class="highlight hl-metafora" data-idx="2">es mi espada m\u00e1s afilada</span>, y empec\u00e9 a tomar notas. Esa noche <span class="highlight hl-hiperbole" data-idx="3">entrevist\u00e9 a un bill\u00f3n de personas</span>.',
+            fragments: [
+                {
+                    text: 'La gala dorm\u00eda de aburrimiento',
+                    correct: 'Personificaci\u00f3n',
+                    cssClass: 'hl-personificacion',
+                    explanation: '\u00abDormir\u00bb es una acci\u00f3n humana. Una gala no puede dormir: se le atribuye un comportamiento de persona.'
+                },
+                {
+                    text: 'hu\u00edan como ratones asustados',
+                    correct: 'Comparaci\u00f3n',
+                    cssClass: 'hl-simil',
+                    explanation: 'Compara a los invitados con ratones usando la palabra \u00abcomo\u00bb. Es una comparaci\u00f3n expl\u00edcita.'
+                },
+                {
+                    text: 'es mi espada m\u00e1s afilada',
+                    correct: 'Met\u00e1fora',
+                    cssClass: 'hl-metafora',
+                    explanation: 'Identifica la libreta con una espada directamente (A ES B), sin usar \u00abcomo\u00bb.'
+                },
+                {
+                    text: 'entrevist\u00e9 a un bill\u00f3n de personas',
+                    correct: 'Hip\u00e9rbole',
+                    cssClass: 'hl-hiperbole',
+                    explanation: 'Es literalmente imposible entrevistar a un bill\u00f3n de personas. Exagera para enfatizar.'
+                }
+            ],
+            clue: 'Lupe Tinta dice que tom\u00f3 notas toda la noche, pero su libreta est\u00e1 completamente en blanco. Nadie la vio en la sala durante el apag\u00f3n.'
+        }
+    ];
+
+    const DEDUCTION = {
+        correct: 'El Conde Verso',
+        wrongFeedback: 'Revisa las pistas con atenci\u00f3n. \u00bfQui\u00e9n tiene antecedentes Y estaba cerca del trofeo?',
+        successText: 'El Conde Verso ten\u00eda antecedentes por robos art\u00edsticos y fue visto junto a la vitrina del trofeo antes del apag\u00f3n. Las pruebas no dejan lugar a dudas.'
+    };
+
+    // ═══════════════════════════════════════════
+    // ESTADO DEL JUEGO
+    // ═══════════════════════════════════════════
+
+    let currentScene = 0;
+    let mixedFragmentIdx = 0;
+    let errors = 0;
+    let totalCorrect = 0;
+
+    // Temporizador
+    const TOTAL_TIME = 8 * 60; // 8 minutos en segundos
+    const PENALTY_SECONDS = 90;
+    let timeRemaining = TOTAL_TIME;
+    let timerInterval = null;
+
+    function startTimer() {
+        timeRemaining = TOTAL_TIME;
+        updateTimerDisplay();
+        var timerEl = document.getElementById('timerDisplay');
+        timerEl.style.display = 'flex';
+        timerEl.classList.remove('warning', 'danger');
+        clearInterval(timerInterval);
+        timerInterval = setInterval(function() {
+            timeRemaining--;
+            updateTimerDisplay();
+            if (timeRemaining <= 0) {
+                clearInterval(timerInterval);
+                renderTimeUp();
+            }
+        }, 1000);
+    }
+
+    function stopTimer() {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
+
+    function updateTimerDisplay() {
+        var minutes = Math.max(0, Math.floor(timeRemaining / 60));
+        var seconds = Math.max(0, timeRemaining % 60);
+        var text = minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+        document.getElementById('timerText').textContent = text;
+
+        var timerEl = document.getElementById('timerDisplay');
+        timerEl.classList.remove('warning', 'danger');
+        if (timeRemaining <= 60) {
+            timerEl.classList.add('danger');
+        } else if (timeRemaining <= 120) {
+            timerEl.classList.add('warning');
+        }
+    }
+
+    function penalizeTime() {
+        timeRemaining = Math.max(0, timeRemaining - PENALTY_SECONDS);
+        updateTimerDisplay();
+
+        // Animación flotante "-15s"
+        var penalty = document.createElement('div');
+        penalty.className = 'timer-penalty';
+        penalty.textContent = '-' + PENALTY_SECONDS + 's';
+        document.body.appendChild(penalty);
+        penalty.addEventListener('animationend', function() { penalty.remove(); });
+
+        if (timeRemaining <= 0) {
+            clearInterval(timerInterval);
+            renderTimeUp();
+        }
+    }
+
+    function renderTimeUp() {
+        stopTimer();
+        document.getElementById('timerDisplay').style.display = 'none';
+        document.getElementById('progressBar').classList.remove('visible');
+
+        var container = document.getElementById('resultContent');
+        document.documentElement.style.setProperty('--scene-color', '#ef4444');
+
+        setHTML(container,
+            '<div class="result-icon" style="background:rgba(239,68,68,0.1);color:var(--danger)">' +
+                '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>' +
+            '</div>' +
+            '<div class="result-title" style="color:var(--danger)">\u00a1Tiempo agotado!</div>' +
+            '<div class="result-text">El culpable ha escapado. Los errores te han costado demasiado tiempo. \u00bfPodr\u00e1s resolverlo m\u00e1s r\u00e1pido la pr\u00f3xima vez?</div>' +
+            '<div class="score-summary">' +
+                '<div class="score-item"><div class="score-value" style="color:var(--danger)">' + errors + '</div><div class="score-label">Errores</div></div>' +
+                '<div class="score-item"><div class="score-value">' + totalCorrect + '</div><div class="score-label">Aciertos</div></div>' +
+            '</div>' +
+            '<button class="btn-primary" id="btnRestart" style="background:var(--danger)">' + ICONS.refresh + ' Intentar de nuevo</button>'
+        );
+
+        document.getElementById('btnRestart').addEventListener('click', startGame);
+        showScreen('screen-result');
+    }
+
+    // ═══════════════════════════════════════════
+    // FUNCIONES AUXILIARES (DOM seguro)
+    // ═══════════════════════════════════════════
+
+    // Todo el contenido es estático y predefinido, no hay input de usuario
+    function setHTML(el, html) {
+        if (typeof el === 'string') el = document.getElementById(el);
+        if (el) el.innerHTML = html;
+    }
+
+    // Barajar array (Fisher-Yates)
+    function shuffleArray(arr) {
+        var shuffled = arr.slice();
+        for (var i = shuffled.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var tmp = shuffled[i];
+            shuffled[i] = shuffled[j];
+            shuffled[j] = tmp;
+        }
+        return shuffled;
+    }
+
+    // ═══════════════════════════════════════════
+    // NAVEGACIÓN
+    // ═══════════════════════════════════════════
+
+    function showScreen(id) {
+        document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
+        document.getElementById(id).classList.add('active');
+        window.scrollTo(0, 0);
+    }
+
+    function updateProgress(step) {
+        var bar = document.getElementById('progressBar');
+        bar.classList.add('visible');
+        bar.querySelectorAll('.progress-dot').forEach(function(dot, i) {
+            dot.classList.remove('active', 'done');
+            dot.style.background = '';
+            if (i < step) dot.classList.add('done');
+            if (i === step) {
+                dot.classList.add('active');
+                if (i < SCENES.length) dot.style.background = SCENES[i].suspect.color;
+            }
+        });
+    }
+
+    function startGame() {
+        currentScene = 0;
+        errors = 0;
+        totalCorrect = 0;
+        startTimer();
+        renderScene(0);
+        showScreen('screen-scene');
+        updateProgress(0);
+    }
+
+    // ═══════════════════════════════════════════
+    // RENDERIZADO DE ESCENAS
+    // ═══════════════════════════════════════════
+
+    function renderScene(idx) {
+        var scene = SCENES[idx];
+        var container = document.getElementById('sceneContent');
+        document.documentElement.style.setProperty('--scene-color', scene.suspect.color);
+
+        if (scene.type === 'mixed') {
+            renderMixedScene(scene, container);
+        } else {
+            renderNormalScene(scene, idx, container);
+        }
+    }
+
+    function renderNormalScene(scene, idx, container) {
+        setHTML(container,
+            '<div class="scene-header">' +
+                '<div class="scene-number">Escena ' + (idx + 1) + ' de ' + SCENES.length + '</div>' +
+                '<div class="scene-title">Declaraci\u00f3n del sospechoso</div>' +
+            '</div>' +
+            '<div class="suspect-card">' +
+                '<div class="suspect-icon" style="background:' + scene.suspect.color + '15;color:' + scene.suspect.color + '">' + ICONS[scene.suspect.icon] + '</div>' +
+                '<div><div class="suspect-name">' + scene.suspect.name + '</div><div class="suspect-role">' + scene.suspect.role + '</div></div>' +
+            '</div>' +
+            '<div class="statement-box">' + scene.statementHTML + '</div>' +
+            '<div id="questionArea"></div>' +
+            '<div id="feedbackArea"></div>' +
+            '<div id="ruleArea"></div>' +
+            '<div id="clueArea"></div>' +
+            '<div id="nextArea"></div>'
+        );
+        renderStep1(scene);
+    }
+
+    function renderStep1(scene) {
+        var indices = shuffleArray(scene.step1.options.map(function(_, i) { return i; }));
+        var optionsHTML = indices.map(function(origIdx) {
+            return '<button class="option-btn" data-idx="' + origIdx + '">' + scene.step1.options[origIdx].text + '</button>';
+        }).join('');
+
+        setHTML('questionArea',
+            '<div class="question-area">' +
+                '<div class="question-text">' + scene.step1.question + '</div>' +
+                '<div class="options-grid">' + optionsHTML + '</div>' +
+            '</div>'
+        );
+
+        // Vincular eventos
+        document.querySelectorAll('#questionArea .option-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() { handleStep1(parseInt(this.dataset.idx)); });
+        });
+    }
+
+    function handleStep1(optIdx) {
+        var scene = SCENES[currentScene];
+        var option = scene.step1.options[optIdx];
+        var buttons = document.querySelectorAll('#questionArea .option-btn');
+        var clickedBtn = document.querySelector('#questionArea .option-btn[data-idx="' + optIdx + '"]');
+
+        if (option.correct) {
+            clickedBtn.classList.add('correct');
+            buttons.forEach(function(b) { b.disabled = true; });
+            totalCorrect++;
+            setHTML('feedbackArea', '');
+            setTimeout(function() { renderStep2(scene); }, 600);
+        } else {
+            clickedBtn.classList.add('wrong');
+            clickedBtn.disabled = true;
+            errors++;
+            penalizeTime();
+            setHTML('feedbackArea', '<div class="feedback error">' + option.feedback + '</div>');
+        }
+    }
+
+    function renderStep2(scene) {
+        var indices = shuffleArray(scene.step2.options.map(function(_, i) { return i; }));
+        var optionsHTML = indices.map(function(origIdx) {
+            return '<button class="option-btn" data-idx="' + origIdx + '">' + scene.step2.options[origIdx].text + '</button>';
+        }).join('');
+
+        setHTML('questionArea',
+            '<div class="question-area">' +
+                '<div class="question-text">' + scene.step2.question + '</div>' +
+                '<div class="options-list">' + optionsHTML + '</div>' +
+            '</div>'
+        );
+        setHTML('feedbackArea', '');
+
+        document.querySelectorAll('#questionArea .option-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() { handleStep2(parseInt(this.dataset.idx)); });
+        });
+
+        document.getElementById('questionArea').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function handleStep2(optIdx) {
+        var scene = SCENES[currentScene];
+        var option = scene.step2.options[optIdx];
+        var buttons = document.querySelectorAll('#questionArea .option-btn');
+        var clickedBtn = document.querySelector('#questionArea .option-btn[data-idx="' + optIdx + '"]');
+
+        if (option.correct) {
+            clickedBtn.classList.add('correct');
+            buttons.forEach(function(b) { b.disabled = true; });
+            totalCorrect++;
+            setHTML('feedbackArea', '');
+            setTimeout(function() { showRuleCard(scene); }, 500);
+        } else {
+            clickedBtn.classList.add('wrong');
+            clickedBtn.disabled = true;
+            errors++;
+            penalizeTime();
+            setHTML('feedbackArea', '<div class="feedback error">' + option.feedback + '</div>');
+        }
+    }
+
+    function showRuleCard(scene) {
+        setHTML('ruleArea',
+            '<div class="rule-card">' +
+                '<div class="rule-card-header">' + ICONS.bookOpen + '<span class="rule-card-label">Ficha del recurso</span></div>' +
+                '<div class="rule-card-title">' + scene.ruleCard.title + '</div>' +
+                '<div class="rule-card-def">' + scene.ruleCard.definition + '</div>' +
+                '<div class="rule-card-trick">' + scene.ruleCard.trick + '</div>' +
+            '</div>'
+        );
+        document.getElementById('ruleArea').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(function() { showClue(scene); }, 800);
+    }
+
+    function showClue(scene) {
+        setHTML('clueArea',
+            '<div class="clue-card">' +
+                '<div class="clue-card-header">' + ICONS.eye + '<span class="clue-card-label">Pista descubierta</span></div>' +
+                '<div class="clue-card-text">' + scene.clue + '</div>' +
+            '</div>'
+        );
+
+        var isLast = currentScene === SCENES.length - 1;
+        setHTML('nextArea',
+            '<button class="btn-next" id="btnNext">' +
+                (isLast ? 'Resolver el caso' : 'Siguiente escena') +
+                ICONS.arrowRight +
+            '</button>'
+        );
+
+        document.getElementById('btnNext').addEventListener('click', nextScene);
+        document.getElementById('clueArea').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // ═══════════════════════════════════════════
+    // ESCENA MIXTA
+    // ═══════════════════════════════════════════
+
+    function renderMixedScene(scene, container) {
+        mixedFragmentIdx = 0;
+
+        setHTML(container,
+            '<div class="scene-header">' +
+                '<div class="scene-number">Escena ' + SCENES.length + ' de ' + SCENES.length + ' \u2014 Prueba final</div>' +
+                '<div class="scene-title">Clasifica los cuatro recursos</div>' +
+            '</div>' +
+            '<div class="suspect-card">' +
+                '<div class="suspect-icon" style="background:' + scene.suspect.color + '15;color:' + scene.suspect.color + '">' + ICONS[scene.suspect.icon] + '</div>' +
+                '<div><div class="suspect-name">' + scene.suspect.name + '</div><div class="suspect-role">' + scene.suspect.role + '</div></div>' +
+            '</div>' +
+            '<div class="statement-box">' + scene.statementHTML + '</div>' +
+            '<div id="mixedProgress"></div>' +
+            '<div id="mixedFragment"></div>' +
+            '<div id="questionArea"></div>' +
+            '<div id="feedbackArea"></div>' +
+            '<div id="clueArea"></div>' +
+            '<div id="nextArea"></div>'
+        );
+
+        renderMixedFragment();
+    }
+
+    function renderMixedFragment() {
+        var scene = SCENES[currentScene];
+        var fragments = scene.fragments;
+
+        // Resaltar fragmento activo en el texto
+        document.querySelectorAll('.statement-box .highlight').forEach(function(el, i) {
+            el.classList.toggle('hl-active', i === mixedFragmentIdx);
+        });
+
+        // Indicador de progreso
+        var dotsHTML = fragments.map(function(_, i) {
+            var classes = 'fragment-dot';
+            var style = '';
+            if (i === mixedFragmentIdx) { classes += ' active'; style = 'background:' + scene.suspect.color; }
+            if (i < mixedFragmentIdx) { classes += ' done'; }
+            return '<div class="' + classes + '" style="' + style + '"></div>';
+        }).join('');
+
+        setHTML('mixedProgress',
+            '<div class="fragment-indicator">' + dotsHTML +
+            '<span style="font-size:12px;color:var(--text-muted);margin-left:4px">Fragmento ' + (mixedFragmentIdx + 1) + '/' + fragments.length + '</span></div>'
+        );
+
+        // Mostrar fragmento
+        var frag = fragments[mixedFragmentIdx];
+        setHTML('mixedFragment', '<div class="fragment-text-box">\u00ab' + frag.text + '\u00bb</div>');
+
+        // Opciones
+        var figureOptions = shuffleArray(['Comparaci\u00f3n', 'Hip\u00e9rbole', 'Personificaci\u00f3n', 'Met\u00e1fora']);
+        var optionsHTML = figureOptions.map(function(fig) {
+            return '<button class="option-btn" data-fig="' + fig + '">' + fig + '</button>';
+        }).join('');
+
+        setHTML('questionArea',
+            '<div class="question-area">' +
+                '<div class="question-text">\u00bfQu\u00e9 recurso literario es?</div>' +
+                '<div class="options-grid">' + optionsHTML + '</div>' +
+            '</div>'
+        );
+        setHTML('feedbackArea', '');
+
+        document.querySelectorAll('#questionArea .option-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() { handleMixedAnswer(this.dataset.fig, this); });
+        });
+    }
+
+    function handleMixedAnswer(answer, clickedBtn) {
+        var scene = SCENES[currentScene];
+        var frag = scene.fragments[mixedFragmentIdx];
+        var buttons = document.querySelectorAll('#questionArea .option-btn');
+
+        if (answer === frag.correct) {
+            clickedBtn.classList.add('correct');
+            buttons.forEach(function(b) { b.disabled = true; });
+            totalCorrect++;
+
+            setHTML('feedbackArea',
+                '<div class="mini-explanation">' + ICONS.check + ' <strong>' + frag.correct + ':</strong> ' + frag.explanation + '</div>'
+            );
+
+            mixedFragmentIdx++;
+
+            if (mixedFragmentIdx < scene.fragments.length) {
+                setTimeout(renderMixedFragment, 1200);
+            } else {
+                setTimeout(function() {
+                    document.querySelectorAll('.statement-box .highlight').forEach(function(el) { el.classList.remove('hl-active'); });
+                    setHTML('mixedProgress', '');
+                    setHTML('mixedFragment', '');
+                    setHTML('questionArea', '<div class="feedback success" style="text-align:center;font-weight:600">Los cuatro recursos identificados correctamente</div>');
+                    showClue(scene);
+                }, 1000);
+            }
+        } else {
+            clickedBtn.classList.add('wrong');
+            clickedBtn.disabled = true;
+            errors++;
+            penalizeTime();
+            var contraejemplos = {
+                'Comparaci\u00f3n': '\u00abCorre como el viento\u00bb',
+                'Hip\u00e9rbole': '\u00abTe lo he dicho un mill\u00f3n de veces\u00bb',
+                'Personificaci\u00f3n': '\u00abEl sol nos sonre\u00eda\u00bb',
+                'Met\u00e1fora': '\u00abEl tiempo es oro\u00bb'
+            };
+            setHTML('feedbackArea', '<div class="feedback error">Esto ser\u00eda ' + answer + ': ' + contraejemplos[answer] + '. \u00bfEs eso lo que ves en el fragmento? Int\u00e9ntalo de nuevo.</div>');
+        }
+    }
+
+    // ═══════════════════════════════════════════
+    // AVANCE DE ESCENA
+    // ═══════════════════════════════════════════
+
+    function nextScene() {
+        currentScene++;
+        if (currentScene < SCENES.length) {
+            renderScene(currentScene);
+            showScreen('screen-scene');
+            updateProgress(currentScene);
+            window.scrollTo(0, 0);
+        } else {
+            renderDeduction();
+            showScreen('screen-deduction');
+            updateProgress(SCENES.length);
+        }
+    }
+
+    // ═══════════════════════════════════════════
+    // DEDUCCIÓN
+    // ═══════════════════════════════════════════
+
+    function renderDeduction() {
+        var container = document.getElementById('deductionContent');
+        document.documentElement.style.setProperty('--scene-color', '#f5a623');
+
+        var cluesHTML = SCENES.map(function(scene) {
+            return '<div class="clue-summary-item">' +
+                '<div class="clue-summary-icon" style="background:' + scene.suspect.color + '15;color:' + scene.suspect.color + '">' + ICONS[scene.suspect.icon] + '</div>' +
+                '<div><div class="clue-summary-name">' + scene.suspect.name + '</div>' +
+                '<div class="clue-summary-text">' + scene.clue + '</div></div></div>';
+        }).join('');
+
+        var suspectsHTML = SCENES.map(function(scene) {
+            return '<button class="option-btn" data-suspect="' + scene.suspect.name + '">' +
+                '<div class="s-icon" style="background:' + scene.suspect.color + '15;color:' + scene.suspect.color + '">' + ICONS[scene.suspect.icon] + '</div>' +
+                scene.suspect.name + '</button>';
+        }).join('');
+
+        setHTML(container,
+            '<div class="deduction-title">Resoluci\u00f3n del caso</div>' +
+            '<div class="deduction-subtitle">Revisa todas las pistas reunidas</div>' +
+            '<div class="clues-summary">' + cluesHTML + '</div>' +
+            '<div class="deduction-question">\u00bfQui\u00e9n rob\u00f3 el Trofeo de Oro?</div>' +
+            '<div class="suspects-grid" id="suspectsGrid">' + suspectsHTML + '</div>' +
+            '<div id="deductionFeedback" style="margin-top:16px"></div>'
+        );
+
+        document.querySelectorAll('#suspectsGrid .option-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() { handleDeduction(this.dataset.suspect); });
+        });
+    }
+
+    function handleDeduction(name) {
+        var buttons = document.querySelectorAll('#suspectsGrid .option-btn');
+        var clickedBtn = Array.from(buttons).find(function(b) { return b.dataset.suspect === name; });
+
+        if (name === DEDUCTION.correct) {
+            clickedBtn.classList.add('correct');
+            buttons.forEach(function(b) { b.disabled = true; });
+            setTimeout(function() { renderResult(); }, 600);
+        } else {
+            clickedBtn.classList.add('wrong');
+            clickedBtn.disabled = true;
+            errors++;
+            penalizeTime();
+            setHTML('deductionFeedback', '<div class="feedback error">' + DEDUCTION.wrongFeedback + '</div>');
+        }
+    }
+
+    // ═══════════════════════════════════════════
+    // RESULTADO
+    // ═══════════════════════════════════════════
+
+    function renderResult() {
+        stopTimer();
+        document.getElementById('timerDisplay').style.display = 'none';
+
+        var container = document.getElementById('resultContent');
+        document.documentElement.style.setProperty('--scene-color', '#22c55e');
+
+        var minutes = Math.floor(timeRemaining / 60);
+        var seconds = timeRemaining % 60;
+        var timeText = minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+
+        setHTML(container,
+            '<div class="result-icon success-icon">' + ICONS.shield + '</div>' +
+            '<div class="result-title">\u00a1Caso resuelto!</div>' +
+            '<div class="result-text">' + DEDUCTION.successText + '</div>' +
+            '<div class="score-summary">' +
+                '<div class="score-item"><div class="score-value">' + totalCorrect + '</div><div class="score-label">Aciertos</div></div>' +
+                '<div class="score-item"><div class="score-value">' + errors + '</div><div class="score-label">Errores</div></div>' +
+                '<div class="score-item"><div class="score-value">' + timeText + '</div><div class="score-label">Tiempo restante</div></div>' +
+            '</div>' +
+            '<button class="btn-primary" id="btnRestart">' + ICONS.refresh + ' Jugar de nuevo</button>'
+        );
+
+        document.getElementById('btnRestart').addEventListener('click', startGame);
+        showScreen('screen-result');
+        document.getElementById('progressBar').classList.remove('visible');
+    }
+
+    // ═══════════════════════════════════════════
+    // TEMA
+    // ═══════════════════════════════════════════
+
+    function toggleTheme() {
+        document.body.classList.toggle('light-mode');
+        var isLight = document.body.classList.contains('light-mode');
+        document.querySelector('.icon-moon').style.display = isLight ? 'none' : 'block';
+        document.querySelector('.icon-sun').style.display = isLight ? 'block' : 'none';
+    }
+    </script>
+</body>
+</html>
