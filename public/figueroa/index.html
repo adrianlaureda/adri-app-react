@@ -169,6 +169,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            overflow-x: clip;
         }
 
         /* Flechas de scroll en tabs */
@@ -201,8 +202,8 @@
             background: var(--border);
             box-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }
-        .tab-arrow-left { left: 6px; }
-        .tab-arrow-right { right: 6px; }
+        .tab-arrow-left { right: calc(100% + 0.5rem); }
+        .tab-arrow-right { left: calc(100% + 0.5rem); }
         .tab-container.can-scroll-left .tab-arrow-left,
         .tab-container.can-scroll-right .tab-arrow-right {
             display: flex;
