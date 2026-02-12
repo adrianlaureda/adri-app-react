@@ -171,6 +171,43 @@
             z-index: 100;
         }
 
+        /* Flechas de scroll en tabs */
+        .tab-arrow {
+            position: absolute;
+            top: 4px;
+            bottom: 4px;
+            width: 2.25rem;
+            border: none;
+            border-radius: 6px;
+            background: var(--bg-elevated);
+            color: var(--text);
+            cursor: pointer;
+            z-index: 101;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: background var(--transition), box-shadow var(--transition);
+            padding: 0;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+        }
+        .tab-arrow svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            stroke-width: 2.5;
+            fill: none;
+        }
+        .tab-arrow:hover {
+            background: var(--border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        .tab-arrow-left { left: 6px; }
+        .tab-arrow-right { right: 6px; }
+        .tab-container.can-scroll-left .tab-arrow-left,
+        .tab-container.can-scroll-right .tab-arrow-right {
+            display: flex;
+        }
+
         .tabs {
             display: flex;
             max-width: 1200px;
@@ -632,6 +669,8 @@
     </header>
 
     <div class="tab-container">
+        <button class="tab-arrow tab-arrow-left" onclick="scrollTabs(-200)" aria-label="Anterior"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button class="tab-arrow tab-arrow-right" onclick="scrollTabs(200)" aria-label="Siguiente"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
         <div class="tabs">
             <button class="tab-button active" onclick="openTab(event, 'inicio')"><svg class="icon" viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg> Inicio</button>
             <button class="tab-button" onclick="openTab(event, 'presentacion')"><svg class="icon" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Presentación</button>
@@ -3165,8 +3204,25 @@ Añadir CUALQUIER texto fuera del bloque de código</div>
             }
             document.getElementById(tabName).classList.add('active');
             evt.currentTarget.classList.add('active');
+            evt.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
             window.scrollTo(0, 0);
         }
+
+        // Scroll de tabs con flechas
+        function scrollTabs(offset) {
+            document.querySelector('.tabs').scrollBy({ left: offset, behavior: 'smooth' });
+        }
+
+        function updateTabArrows() {
+            const tabs = document.querySelector('.tabs');
+            const container = document.querySelector('.tab-container');
+            container.classList.toggle('can-scroll-left', tabs.scrollLeft > 1);
+            container.classList.toggle('can-scroll-right', tabs.scrollLeft + tabs.clientWidth < tabs.scrollWidth - 1);
+        }
+
+        document.querySelector('.tabs').addEventListener('scroll', updateTabArrows);
+        window.addEventListener('load', updateTabArrows);
+        window.addEventListener('resize', updateTabArrows);
 
         // Sub-tab navigation
         function openSubTab(evt, parentId, subTabName) {
