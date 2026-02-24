@@ -1,0 +1,1737 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estación de Clasificación — Lengua 2º ESO</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-primary: #050505;
+  --bg-secondary: #0a0a0a;
+  --bg-card: #111111;
+  --bg-card-hover: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #888888;
+  --text-muted: #444444;
+  --border: rgba(255,255,255,0.08);
+  --accent-1: #00d4aa;
+  --accent-2: #00d4ff;
+  --accent-3: #f5a623;
+  --accent-4: #ff6b6b;
+  --accent-5: #a78bfa;
+  --accent-6: #4ade80;
+  --success: #22c55e;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+}
+body.light-mode {
+  --bg-primary: #f5f5f5;
+  --bg-secondary: #e8e8e8;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f0f0f0;
+  --text-primary: #111111;
+  --text-secondary: #666666;
+  --text-muted: #999999;
+  --border: rgba(0,0,0,0.08);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.3s, color 0.3s;
+  overflow-x: hidden;
+}
+
+/* BARRA SUPERIOR */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-secondary);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.topbar-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.topbar-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.icon-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 7px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.icon-btn:hover {
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+}
+.icon-btn svg { width: 16px; height: 16px; }
+
+/* MAIN */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* PANTALLAS */
+.screen {
+  display: none;
+  width: 100%;
+  max-width: 760px;
+  animation: fadeIn 0.3s ease;
+}
+.screen.active { display: flex; flex-direction: column; align-items: center; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== SETUP ===== */
+.setup-title {
+  font-size: 2.2rem;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+.setup-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.setup-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 28px;
+}
+
+.team-input-block {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+}
+.team-input-block.team1 { border-top: 3px solid var(--accent-2); }
+.team-input-block.team2 { border-top: 3px solid var(--accent-3); }
+
+.team-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.team1 .team-label { color: var(--accent-2); }
+.team2 .team-label { color: var(--accent-3); }
+
+.team-input {
+  width: 100%;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.team-input:focus { border-color: var(--accent-2); }
+.team2 .team-input:focus { border-color: var(--accent-3); }
+
+.section-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  align-self: flex-start;
+}
+.dif-btns {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 28px;
+}
+.dif-btn {
+  flex: 1;
+  padding: 14px 10px;
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+  text-align: center;
+}
+.dif-btn:hover { background: var(--bg-card-hover); color: var(--text-primary); }
+.dif-btn.selected.facil  { border-color: var(--success); color: var(--success); background: rgba(34,197,94,0.08); }
+.dif-btn.selected.medio  { border-color: var(--warning); color: var(--warning); background: rgba(245,158,11,0.08); }
+.dif-btn.selected.dificil { border-color: var(--danger); color: var(--danger); background: rgba(239,68,68,0.08); }
+
+.dif-desc {
+  font-size: 0.7rem;
+  font-weight: 500;
+  margin-top: 4px;
+  opacity: 0.7;
+}
+
+.btn-primary {
+  padding: 16px 48px;
+  background: var(--accent-1);
+  border: none;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #050505;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.02em;
+}
+.btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+
+/* ===== TUTORIAL ===== */
+.tutorial-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.tutorial-badge {
+  display: inline-block;
+  background: rgba(165,139,250,0.15);
+  border: 1px solid var(--accent-5);
+  color: var(--accent-5);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 100px;
+  margin-bottom: 12px;
+}
+.tutorial-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+.tutorial-info {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+}
+
+/* ===== INTRO FASE ===== */
+.intro-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  border-radius: 100px;
+  margin-bottom: 16px;
+}
+.intro-title {
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.intro-desc {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  text-align: center;
+  max-width: 440px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+.intro-puntos {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+}
+.intro-puntos span {
+  color: var(--warning);
+  font-weight: 700;
+}
+
+/* ===== SCOREBOARD ===== */
+.scoreboard {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.score-card {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s;
+}
+.score-card.active-team {
+  border-color: currentColor;
+  box-shadow: 0 0 0 1px currentColor, 0 0 24px rgba(0,0,0,0.4);
+}
+.score-card.team1 { color: var(--accent-2); }
+.score-card.team2 { color: var(--accent-3); }
+
+.score-team-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: inherit;
+}
+.score-pts {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: inherit;
+}
+
+/* ===== TURNO ===== */
+.turno-indicator {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  padding: 6px 16px;
+  border-radius: 100px;
+  border: 1px solid currentColor;
+}
+.turno-team1 { color: var(--accent-2); border-color: var(--accent-2); background: rgba(0,212,255,0.08); }
+.turno-team2 { color: var(--accent-3); border-color: var(--accent-3); background: rgba(245,166,35,0.08); }
+
+/* ===== WORD CARD ===== */
+.word-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 36px 40px;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 20px;
+  position: relative;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.word-main {
+  font-size: 2.6rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.word-frase {
+  font-size: 1.15rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+.word-frase .highlight {
+  font-weight: 800;
+  color: var(--text-primary);
+  background: rgba(255,255,255,0.06);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+.word-count {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* TIMER */
+.timer-bar-wrap {
+  width: 100%;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+.timer-bar {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.1s linear, background-color 0.5s;
+  background: var(--accent-1);
+}
+
+/* AVALANCHA — 3 palabras */
+.avalancha-words {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+.aval-card {
+  flex: 1;
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  padding: 20px 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+.aval-card.selected {
+  border-color: var(--accent-1);
+  box-shadow: 0 0 16px rgba(0,212,170,0.3);
+}
+.aval-card.correct {
+  border-color: var(--success);
+  background: rgba(34,197,94,0.1);
+}
+.aval-card.wrong {
+  border-color: var(--danger);
+  background: rgba(239,68,68,0.1);
+  animation: shake 0.4s;
+}
+.aval-card.done { opacity: 0.4; cursor: default; pointer-events: none; }
+.aval-word {
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+.aval-timer-mini {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+/* ===== CUBOS ===== */
+.cubos-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.cubos-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  width: 100%;
+}
+.cubo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 90px;
+  flex: 1;
+  max-width: 130px;
+  position: relative;
+  overflow: hidden;
+}
+.cubo:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+.cubo:active { transform: scale(0.94); }
+.cubo-icon { width: 28px; height: 28px; }
+.cubo-name {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.cubo.correct-flash {
+  animation: correctFlash 0.5s ease;
+}
+.cubo.wrong-flash {
+  animation: wrongFlash 0.5s ease;
+}
+
+@keyframes correctFlash {
+  0%   { transform: scale(1); box-shadow: none; }
+  30%  { transform: scale(1.08); box-shadow: 0 0 32px currentColor; }
+  100% { transform: scale(1); box-shadow: none; }
+}
+@keyframes wrongFlash {
+  0%,100% { transform: translateX(0); background: var(--bg-card); }
+  20%     { transform: translateX(-6px); background: rgba(239,68,68,0.15); }
+  40%     { transform: translateX(6px); }
+  60%     { transform: translateX(-4px); }
+  80%     { transform: translateX(4px); }
+}
+
+/* PALABRA VOLADORA */
+.flying-word {
+  position: fixed;
+  pointer-events: none;
+  font-weight: 800;
+  font-size: 1rem;
+  z-index: 999;
+  background: var(--success);
+  color: #050505;
+  padding: 4px 12px;
+  border-radius: 100px;
+  transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ===== FEEDBACK BUBBLE ===== */
+.feedback-bubble {
+  display: none;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  width: 100%;
+  text-align: center;
+  animation: fadeIn 0.2s ease;
+}
+.feedback-bubble.correct { border-color: var(--success); background: rgba(34,197,94,0.08); }
+.feedback-bubble.wrong   { border-color: var(--danger);  background: rgba(239,68,68,0.08); }
+.feedback-bubble .fb-icon { font-size: 1.5rem; margin-bottom: 6px; }
+.feedback-bubble .fb-text {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+.feedback-bubble .fb-text .fb-cat {
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.82rem;
+}
+
+/* ===== BONUS ===== */
+.bonus-banner {
+  background: linear-gradient(135deg, rgba(245,166,35,0.15), rgba(239,68,68,0.1));
+  border: 2px solid var(--warning);
+  border-radius: 14px;
+  padding: 14px 24px;
+  text-align: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.bonus-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--warning);
+  margin-bottom: 4px;
+}
+.bonus-desc {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+.bonus-team-turn {
+  font-size: 0.88rem;
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+/* ===== FASE AVALANCHA — TIMER GLOBAL ===== */
+.aval-timer-global {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+/* ===== RESULTADOS ===== */
+.results-title {
+  font-size: 2rem;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+.results-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 32px;
+}
+.results-cards {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 28px;
+}
+.results-card {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 28px 24px;
+  text-align: center;
+  position: relative;
+}
+.results-card.winner {
+  border-width: 2px;
+}
+.results-card.team1.winner { border-color: var(--accent-2); box-shadow: 0 0 40px rgba(0,212,255,0.15); }
+.results-card.team2.winner { border-color: var(--accent-3); box-shadow: 0 0 40px rgba(245,166,35,0.15); }
+.winner-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--warning);
+  color: #050505;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+.results-team-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.results-card.team1 .results-team-name { color: var(--accent-2); }
+.results-card.team2 .results-team-name { color: var(--accent-3); }
+.results-pts {
+  font-size: 3.5rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.results-card.team1 .results-pts { color: var(--accent-2); }
+.results-card.team2 .results-pts { color: var(--accent-3); }
+.results-detail {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+.results-btn {
+  padding: 14px 40px;
+  background: transparent;
+  border: 2px solid var(--accent-1);
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--accent-1);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.results-btn:hover { background: var(--accent-1); color: #050505; }
+
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20%     { transform: translateX(-6px); }
+  40%     { transform: translateX(6px); }
+  60%     { transform: translateX(-4px); }
+  80%     { transform: translateX(4px); }
+}
+
+/* Separador */
+.sep {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+  margin: 20px 0;
+}
+
+/* Botón siguiente turno */
+.btn-next-turn {
+  padding: 12px 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 14px;
+}
+.btn-next-turn:hover { background: var(--bg-card-hover); }
+
+/* Responsive */
+@media (max-width: 600px) {
+  .setup-grid { grid-template-columns: 1fr; }
+  .word-main { font-size: 2rem; }
+  .cubo { min-width: 70px; padding: 10px 8px; }
+  .cubo-name { font-size: 0.62rem; }
+  .avalancha-words { flex-direction: column; }
+  .results-cards { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- BARRA SUPERIOR -->
+<div class="topbar">
+  <div class="topbar-title">Estación de Clasificación</div>
+  <div class="topbar-actions">
+    <button class="icon-btn" id="btn-home" title="Volver a adri-app" onclick="window.location.href='/'">
+      <svg viewBox="0 0 100 100" width="28" height="28">
+        <polygon points="50,5 95,82 5,82" fill="currentColor"/>
+        <line x1="50" y1="56" x2="50" y2="5" stroke="var(--bg-primary)" stroke-width="4"/>
+        <line x1="50" y1="56" x2="95" y2="82" stroke="var(--bg-primary)" stroke-width="4"/>
+        <line x1="50" y1="56" x2="5" y2="82" stroke="var(--bg-primary)" stroke-width="4"/>
+      </svg>
+    </button>
+    <button class="icon-btn" id="btn-theme" title="Cambiar tema" onclick="toggleTheme()">
+      <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+      <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+        <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- ===== PANTALLA: SETUP ===== -->
+  <div class="screen active" id="screen-setup">
+    <div class="setup-title">Estación de Clasificación</div>
+    <div class="setup-subtitle">Clasifica palabras por categoría gramatical — 2 equipos</div>
+
+    <div class="setup-grid">
+      <div class="team-input-block team1">
+        <div class="team-label">Equipo 1</div>
+        <input class="team-input" id="nombre-team1" type="text" placeholder="Nombre del equipo..." value="Equipo 1" maxlength="20">
+      </div>
+      <div class="team-input-block team2">
+        <div class="team-label">Equipo 2</div>
+        <input class="team-input" id="nombre-team2" type="text" placeholder="Nombre del equipo..." value="Equipo 2" maxlength="20">
+      </div>
+    </div>
+
+    <div class="section-label">Dificultad</div>
+    <div class="dif-btns">
+      <button class="dif-btn facil selected" onclick="selectDificultad('facil')">
+        Fácil
+        <div class="dif-desc">Sust. · Adj. · Verbo</div>
+      </button>
+      <button class="dif-btn medio" onclick="selectDificultad('medio')">
+        Medio
+        <div class="dif-desc">+ Adv. · Det.</div>
+      </button>
+      <button class="dif-btn dificil" onclick="selectDificultad('dificil')">
+        Difícil
+        <div class="dif-desc">+ Pronombre</div>
+      </button>
+    </div>
+
+    <button class="btn-primary" onclick="iniciarJuego()">Comenzar</button>
+  </div>
+
+  <!-- ===== PANTALLA: TUTORIAL ===== -->
+  <div class="screen" id="screen-tutorial">
+    <div class="tutorial-header">
+      <div class="tutorial-badge">Tutorial</div>
+      <div class="tutorial-title">Aprende cómo funciona</div>
+      <div class="tutorial-info" id="tutorial-info">Toca la categoría correcta para cada palabra</div>
+    </div>
+
+    <div class="word-card" id="tutorial-word-card">
+      <div class="word-count" id="tutorial-counter"></div>
+      <div class="word-main" id="tutorial-word">—</div>
+    </div>
+
+    <div class="feedback-bubble" id="tutorial-feedback">
+      <div class="fb-icon" id="tutorial-fb-icon">✓</div>
+      <div class="fb-text" id="tutorial-fb-text"></div>
+    </div>
+
+    <div class="cubos-label">Toca la categoría correcta</div>
+    <div class="cubos-row" id="tutorial-cubos"></div>
+
+    <button class="btn-next-turn" id="tutorial-skip-btn" onclick="finalizarTutorial()" style="margin-top:24px">Saltar tutorial →</button>
+  </div>
+
+  <!-- ===== PANTALLA: INTRO FASE ===== -->
+  <div class="screen" id="screen-intro-fase">
+    <div class="intro-badge" id="intro-badge">Fase 1</div>
+    <div class="intro-title" id="intro-title">Básico</div>
+    <div class="intro-desc" id="intro-desc">Clasifica cada palabra en su categoría.</div>
+    <div class="intro-puntos" id="intro-puntos">Puntuación: <span>+2</span> por acierto</div>
+    <button class="btn-primary" onclick="empezarFase()">¡Empezar!</button>
+  </div>
+
+  <!-- ===== PANTALLA: JUEGO FASE 1 ===== -->
+  <div class="screen" id="screen-fase1">
+    <div class="scoreboard" id="sb-fase1"></div>
+    <div class="turno-indicator" id="turno-fase1"></div>
+
+    <div class="timer-bar-wrap"><div class="timer-bar" id="timer-fase1"></div></div>
+
+    <div class="word-card" id="f1-word-card">
+      <div class="word-count" id="f1-counter"></div>
+      <div class="word-main" id="f1-word">—</div>
+    </div>
+
+    <div class="feedback-bubble" id="f1-feedback">
+      <div class="fb-icon" id="f1-fb-icon">✓</div>
+      <div class="fb-text" id="f1-fb-text"></div>
+    </div>
+
+    <div class="cubos-label">Categoría gramatical</div>
+    <div class="cubos-row" id="f1-cubos"></div>
+  </div>
+
+  <!-- ===== PANTALLA: JUEGO FASE 2 ===== -->
+  <div class="screen" id="screen-fase2">
+    <div class="scoreboard" id="sb-fase2"></div>
+    <div class="turno-indicator" id="turno-fase2"></div>
+
+    <div class="timer-bar-wrap"><div class="timer-bar" id="timer-fase2"></div></div>
+
+    <div class="word-card" id="f2-word-card">
+      <div class="word-count" id="f2-counter"></div>
+      <div class="word-frase" id="f2-frase">—</div>
+    </div>
+
+    <div class="feedback-bubble" id="f2-feedback">
+      <div class="fb-icon" id="f2-fb-icon">✓</div>
+      <div class="fb-text" id="f2-fb-text"></div>
+    </div>
+
+    <div class="cubos-label">Categoría de la palabra destacada</div>
+    <div class="cubos-row" id="f2-cubos"></div>
+  </div>
+
+  <!-- ===== PANTALLA: JUEGO FASE 3 AVALANCHA ===== -->
+  <div class="screen" id="screen-fase3">
+    <div class="scoreboard" id="sb-fase3"></div>
+    <div class="turno-indicator" id="turno-fase3"></div>
+
+    <div class="aval-timer-global" id="aval-timer-global">Tiempo restante: 60s</div>
+    <div class="timer-bar-wrap"><div class="timer-bar" id="timer-fase3"></div></div>
+
+    <div class="avalancha-words" id="aval-words"></div>
+
+    <div class="feedback-bubble" id="f3-feedback">
+      <div class="fb-icon" id="f3-fb-icon">✓</div>
+      <div class="fb-text" id="f3-fb-text"></div>
+    </div>
+
+    <div class="cubos-label" id="aval-cubos-label" style="display:none">Clasificar la palabra seleccionada</div>
+    <div class="cubos-row" id="f3-cubos"></div>
+  </div>
+
+  <!-- ===== PANTALLA: BONUS ===== -->
+  <div class="screen" id="screen-bonus">
+    <div class="scoreboard" id="sb-bonus"></div>
+    <div class="bonus-banner">
+      <div class="bonus-title">⚡ Bonus Robo</div>
+      <div class="bonus-desc">Palabra ambigua — ¿sabes qué categoría es aquí?</div>
+      <div class="bonus-team-turn" id="bonus-team-turn"></div>
+    </div>
+
+    <div class="word-card" id="bonus-word-card">
+      <div class="word-main" id="bonus-word">—</div>
+      <div class="word-frase" id="bonus-frase" style="margin-top:12px;font-size:1rem"></div>
+    </div>
+
+    <div class="feedback-bubble" id="bonus-feedback">
+      <div class="fb-icon" id="bonus-fb-icon">✓</div>
+      <div class="fb-text" id="bonus-fb-text"></div>
+    </div>
+
+    <div class="cubos-label">Toca la categoría correcta</div>
+    <div class="cubos-row" id="bonus-cubos"></div>
+  </div>
+
+  <!-- ===== PANTALLA: RESULTADOS ===== -->
+  <div class="screen" id="screen-resultados">
+    <div class="results-title" id="results-title">¡Fin del juego!</div>
+    <div class="results-subtitle" id="results-subtitle"></div>
+    <div class="results-cards" id="results-cards"></div>
+    <button class="results-btn" onclick="reiniciar()">Nueva partida</button>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+// =====================================================
+// DATOS
+// =====================================================
+const palabras = {
+  sustantivo: ["perro","mesa","ciudad","amor","libro","canción","película","amigo","clase","pantalla","río","montaña","viaje","problema","solución","música","risa","silencio","nube","bosque","ordenador","móvil","partido","árbitro","novela","personaje","escena","miedo","ilusión","verdad","verano","tarde","noche","mañana","semana","precio","tienda","barrio","país","idioma","recuerdo","sueño","viento","playa","estrella","luna","sol","agua","fuego","tierra"],
+  adjetivo:   ["rápido","enorme","triste","brillante","pequeño","oscuro","alegre","lento","difícil","bonito","gracioso","inteligente","valiente","curioso","antiguo","moderno","tranquilo","nervioso","fuerte","débil","frío","caliente","dulce","amargo","suave","áspero","limpio","sucio","lleno","vacío","nuevo","viejo","joven","alto","bajo","gordo","delgado","rico","pobre","famoso","divertido","aburrido","emocionante","peligroso","seguro","raro","normal","especial","simple","complejo"],
+  verbo:      ["correr","saltar","reír","llorar","cantar","bailar","estudiar","jugar","comer","dormir","hablar","escuchar","mirar","pensar","recordar","olvidar","soñar","volar","nadar","escribir","leer","dibujar","pintar","gritar","susurrar","caminar","trotar","descansar","trabajar","crear","destruir","construir","aprender","enseñar","preguntar","responder","ganar","perder","empezar","terminar","vivir","morir","amar","odiar","esperar","llegar","irse","quedarse","volver","seguir"],
+  adverbio:   ["rápidamente","aquí","hoy","siempre","nunca","muy","poco","bastante","quizás","así","bien","mal","allí","ahora","antes","después","arriba","abajo","cerca","lejos","pronto","tarde","temprano","ya","todavía","también","tampoco","sí","no","quizá","demasiado","apenas","exactamente","probablemente","seguramente","claramente","fácilmente","lentamente","suavemente","juntos","solo","constantemente","frecuentemente","raramente","literalmente","básicamente","obviamente","definitivamente","absolutamente"],
+  determinante:["el","la","los","las","un","una","unos","unas","este","esta","estos","estas","ese","esa","esos","esas","aquel","aquella","mi","tu","su","nuestro","nuestra","vuestro","vuestra","sus","mis","tus","algún","alguna","ningún","ninguna","todo","toda","todos","todas","mucho","mucha","poco","poca","cada","ambos","varios","cualquier","otro","otra","mismo","misma","tal","semejante"],
+  pronombre:  ["yo","tú","él","ella","nosotros","vosotros","ellos","ellas","me","te","se","nos","os","le","la","lo","les","las","los","mí","ti","sí","algo","alguien","nada","nadie","todo","todos","uno","una","quien","que","cual","cuanto","esto","eso","aquello","este","ese","aquel"]
+};
+
+const frases = [
+  {frase:"Mi [perro] corre muy rápido por el parque.",palabra:"perro",categoria:"sustantivo"},
+  {frase:"El coche [rojo] tardó en arrancar.",palabra:"rojo",categoria:"adjetivo"},
+  {frase:"Ayer [comimos] pizza con toda la familia.",palabra:"comimos",categoria:"verbo"},
+  {frase:"Habló [muy] alto para que todos le escucharan.",palabra:"muy",categoria:"adverbio"},
+  {frase:"[Ese] libro me parece increíblemente aburrido.",palabra:"Ese",categoria:"determinante"},
+  {frase:"[Ella] llegó tarde a clase sin explicación.",palabra:"Ella",categoria:"pronombre"},
+  {frase:"La [música] llenó la sala de energía.",palabra:"música",categoria:"sustantivo"},
+  {frase:"Es una película [emocionante] para toda la familia.",palabra:"emocionante",categoria:"adjetivo"},
+  {frase:"Mañana [estudiaremos] para el examen de lengua.",palabra:"estudiaremos",categoria:"verbo"},
+  {frase:"Llegaron [tarde] al concierto y se perdieron lo mejor.",palabra:"tarde",categoria:"adverbio"},
+  {frase:"[Las] tormentas de verano son espectaculares.",palabra:"Las",categoria:"determinante"},
+  {frase:"[Nosotros] somos los mejores amigos de la clase.",palabra:"Nosotros",categoria:"pronombre"},
+  {frase:"El [silencio] del bosque era misterioso.",palabra:"silencio",categoria:"sustantivo"},
+  {frase:"Tenía una mirada [triste] que me partía el corazón.",palabra:"triste",categoria:"adjetivo"},
+  {frase:"Los pájaros [cantan] todas las mañanas del año.",palabra:"cantan",categoria:"verbo"},
+  {frase:"[Siempre] hace lo mismo en cada clase.",palabra:"Siempre",categoria:"adverbio"},
+  {frase:"[Mi] madre trabaja en un hospital.",palabra:"Mi",categoria:"determinante"},
+  {frase:"¿[Quién] llamó por teléfono esta mañana?",palabra:"Quién",categoria:"pronombre"},
+  {frase:"La [amistad] es el mejor tesoro del mundo.",palabra:"amistad",categoria:"sustantivo"},
+  {frase:"Busco un trabajo [estable] y bien pagado.",palabra:"estable",categoria:"adjetivo"}
+];
+
+const ambiguas = [
+  {palabra:"sobre",frase:"Pon el papel [sobre] la mesa.",categoria:"determinante",explicacion:"Aquí 'sobre' es una preposición que indica lugar"},
+  {palabra:"bajo",frase:"Vive en el [bajo] del edificio.",categoria:"sustantivo",explicacion:"Aquí 'bajo' es un sustantivo (tipo de piso)"},
+  {palabra:"como",frase:"Corro [como] el viento.",categoria:"adverbio",explicacion:"Aquí 'como' es un adverbio de modo (comparación)"},
+  {palabra:"claro",frase:"El cielo está muy [claro] hoy.",categoria:"adjetivo",explicacion:"Aquí 'claro' es un adjetivo que describe el cielo"},
+  {palabra:"medio",frase:"Bebió [medio] vaso de agua.",categoria:"determinante",explicacion:"Aquí 'medio' es un determinante indefinido"},
+  {palabra:"principal",frase:"Es el [principal] problema del equipo.",categoria:"adjetivo",explicacion:"Aquí 'principal' es un adjetivo calificativo"},
+  {palabra:"siguiente",frase:"El [siguiente] capítulo es mejor.",categoria:"determinante",explicacion:"Aquí 'siguiente' funciona como determinante ordinal"},
+  {palabra:"bien",frase:"Habla [bien] el inglés.",categoria:"adverbio",explicacion:"Aquí 'bien' es un adverbio de modo"}
+];
+
+// =====================================================
+// CONFIGURACIÓN DE CATEGORÍAS
+// =====================================================
+const catConfig = {
+  sustantivo:  { color: "#00d4aa", icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18"/></svg>` },
+  adjetivo:    { color: "#a78bfa", icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="2" fill="currentColor" stroke="none"/><circle cx="15" cy="14" r="2" fill="currentColor" stroke="none" opacity="0.6"/><path d="M8 16c2-1 6-1 8 0"/></svg>` },
+  verbo:       { color: "#f5a623", icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>` },
+  adverbio:    { color: "#00d4ff", icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>` },
+  determinante:{ color: "#f59e0b", icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>` },
+  pronombre:   { color: "#ff6b6b", icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>` }
+};
+
+const CATS_POR_DIF = {
+  facil:    ["sustantivo","adjetivo","verbo"],
+  medio:    ["sustantivo","adjetivo","verbo","adverbio","determinante"],
+  dificil:  ["sustantivo","adjetivo","verbo","adverbio","determinante","pronombre"]
+};
+
+// =====================================================
+// ESTADO GLOBAL
+// =====================================================
+let G = {};
+
+function resetState() {
+  G = {
+    dificultad: "facil",
+    cats: [],
+    nombres: ["Equipo 1","Equipo 2"],
+    puntos: [0, 0],
+    aciertos: [0, 0],
+    fallos: [0, 0],
+    turnoActual: 0, // 0 o 1
+    faseActual: 0,  // 0=tutorial,1,2,3,bonus,resultados
+    // Tutorial
+    tutorialPalabras: [],
+    tutorialIdx: 0,
+    tutorialEsperando: false,
+    // Fase 1
+    f1UsedPalabras: {0:[], 1:[]},
+    f1Contadores: [0, 0],
+    f1Timer: null,
+    f1Seconds: 5,
+    f1CurrentWord: null,
+    f1Esperando: false,
+    // Fase 2
+    f2UsedFrases: [],
+    f2Contadores: [0, 0],
+    f2Timer: null,
+    f2Seconds: 10,
+    f2CurrentFrase: null,
+    f2Esperando: false,
+    // Fase 3 avalancha
+    f3GlobalTimer: null,
+    f3GlobalSecs: 60,
+    f3Clasificaciones: [0,0],
+    f3CurrentWords: [],
+    f3SelectedWordIdx: null,
+    f3Esperando: false,
+    // Bonus
+    bonusAmbiguaIdx: null,
+    bonusUsadas: [],
+    bonusEnIntento: 0, // 0=primer equipo (perdedor), 1=rival
+    bonusPrimerEquipo: 0,
+    // Fase completadas
+    f1Done: [false,false],
+    f2Done: [false,false],
+    f3Done: [false,false]
+  };
+}
+resetState();
+
+// =====================================================
+// TEMA
+// =====================================================
+function toggleTheme() {
+  document.body.classList.toggle('light-mode');
+  const isLight = document.body.classList.contains('light-mode');
+  document.getElementById('icon-moon').style.display = isLight ? 'none' : 'block';
+  document.getElementById('icon-sun').style.display  = isLight ? 'block' : 'none';
+}
+
+// =====================================================
+// SETUP
+// =====================================================
+function selectDificultad(d) {
+  G.dificultad = d;
+  document.querySelectorAll('.dif-btn').forEach(b => b.classList.remove('selected'));
+  document.querySelector('.dif-btn.' + d).classList.add('selected');
+}
+
+function iniciarJuego() {
+  G.nombres[0] = document.getElementById('nombre-team1').value.trim() || "Equipo 1";
+  G.nombres[1] = document.getElementById('nombre-team2').value.trim() || "Equipo 2";
+  G.cats = CATS_POR_DIF[G.dificultad];
+  G.puntos = [0,0];
+  G.aciertos = [0,0];
+  G.fallos = [0,0];
+  G.turnoActual = 0;
+  mostrarTutorial();
+}
+
+// =====================================================
+// UTILIDADES
+// =====================================================
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i=a.length-1;i>0;i--) {
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function randomFromCats(cats, exclude=[]) {
+  // Devuelve {palabra, categoria} aleatoria dentro de las categorías disponibles
+  const cat = cats[Math.floor(Math.random()*cats.length)];
+  const pool = palabras[cat].filter(p => !exclude.includes(p));
+  if (!pool.length) return {palabra: palabras[cat][0], categoria: cat};
+  return {palabra: pool[Math.floor(Math.random()*pool.length)], categoria: cat};
+}
+
+function renderScoreboard(containerId) {
+  const el = document.getElementById(containerId);
+  el.innerHTML = G.nombres.map((n,i) => `
+    <div class="score-card team${i+1} ${G.turnoActual===i?'active-team':''}">
+      <div class="score-team-name">${n}</div>
+      <div class="score-pts">${G.puntos[i]}</div>
+    </div>`).join('');
+}
+
+function renderTurno(elId) {
+  const el = document.getElementById(elId);
+  const t = G.turnoActual;
+  el.className = `turno-indicator turno-team${t+1}`;
+  el.textContent = `Turno de ${G.nombres[t]}`;
+}
+
+function renderCubos(containerId, cats, clickFn) {
+  const el = document.getElementById(containerId);
+  el.innerHTML = cats.map(cat => {
+    const c = catConfig[cat];
+    return `
+    <div class="cubo" id="cubo-${containerId}-${cat}" style="border-color:${c.color}20;--cubo-color:${c.color}"
+         onclick="${clickFn}('${cat}')" role="button" aria-label="${cat}">
+      <div class="cubo-icon" style="color:${c.color}">${c.icon}</div>
+      <div class="cubo-name" style="color:${c.color}">${cat}</div>
+    </div>`;
+  }).join('');
+}
+
+function flashCubo(containerId, cat, correct) {
+  const el = document.getElementById(`cubo-${containerId}-${cat}`);
+  if (!el) return;
+  el.classList.remove('correct-flash','wrong-flash');
+  void el.offsetWidth;
+  el.classList.add(correct ? 'correct-flash' : 'wrong-flash');
+  setTimeout(()=>el.classList.remove('correct-flash','wrong-flash'), 600);
+}
+
+function showFeedback(fbId, iconId, textId, correct, text) {
+  const fb = document.getElementById(fbId);
+  fb.className = `feedback-bubble ${correct?'correct':'wrong'}`;
+  fb.style.display = 'block';
+  document.getElementById(iconId).textContent = correct ? '✓' : '✗';
+  document.getElementById(textId).innerHTML = text;
+}
+
+function hideFeedback(fbId) {
+  document.getElementById(fbId).style.display='none';
+}
+
+// PALABRA VOLADORA
+function flyWord(word, fromEl, toEl) {
+  const from = fromEl.getBoundingClientRect();
+  const to   = toEl.getBoundingClientRect();
+  const el = document.createElement('div');
+  el.className = 'flying-word';
+  el.textContent = word;
+  el.style.left = (from.left + from.width/2) + 'px';
+  el.style.top  = (from.top  + from.height/2) + 'px';
+  document.body.appendChild(el);
+  requestAnimationFrame(()=>{
+    el.style.left = (to.left + to.width/2) + 'px';
+    el.style.top  = (to.top  + to.height/2) + 'px';
+    el.style.opacity = '0';
+    el.style.transform = 'scale(0.5)';
+  });
+  setTimeout(()=>el.remove(), 550);
+}
+
+// FRASE con palabra resaltada
+function fraseHtml(frase) {
+  return frase.replace(/\[([^\]]+)\]/g, '<span class="highlight">$1</span>');
+}
+
+// =====================================================
+// TUTORIAL
+// =====================================================
+const TUTORIAL_PALABRAS = [
+  {palabra:"ciudad",   categoria:"sustantivo",  explicacion:"'ciudad' es un SUSTANTIVO porque nombra un lugar"},
+  {palabra:"enorme",   categoria:"adjetivo",    explicacion:"'enorme' es un ADJETIVO porque describe cómo es algo"},
+  {palabra:"correr",   categoria:"verbo",        explicacion:"'correr' es un VERBO porque expresa una acción"}
+];
+
+function mostrarTutorial() {
+  G.tutorialPalabras = TUTORIAL_PALABRAS.filter(tp => G.cats.includes(tp.categoria));
+  if (!G.tutorialPalabras.length) {
+    // Si dificultad fácil, usar las 3 base
+    G.tutorialPalabras = TUTORIAL_PALABRAS.slice(0,3);
+  }
+  G.tutorialIdx = 0;
+  G.tutorialEsperando = false;
+  renderCubos('tutorial-cubos', G.cats, 'clasificarTutorial');
+  hideFeedback('tutorial-feedback');
+  showScreen('screen-tutorial');
+  cargarTutorialPalabra();
+}
+
+function cargarTutorialPalabra() {
+  hideFeedback('tutorial-feedback');
+  const item = G.tutorialPalabras[G.tutorialIdx];
+  document.getElementById('tutorial-word').textContent = item.palabra;
+  document.getElementById('tutorial-counter').textContent = `${G.tutorialIdx+1}/${G.tutorialPalabras.length}`;
+  document.getElementById('tutorial-info').textContent = 'Toca la categoría correcta';
+  G.tutorialEsperando = false;
+  // Habilitar cubos
+  document.querySelectorAll('#tutorial-cubos .cubo').forEach(c=>c.style.pointerEvents='');
+}
+
+function clasificarTutorial(cat) {
+  if (G.tutorialEsperando) return;
+  const item = G.tutorialPalabras[G.tutorialIdx];
+  const correct = cat === item.categoria;
+  G.tutorialEsperando = true;
+  // Deshabilitar cubos temporalmente
+  document.querySelectorAll('#tutorial-cubos .cubo').forEach(c=>c.style.pointerEvents='none');
+  flashCubo('tutorial-cubos', cat, correct);
+
+  if (correct) {
+    showFeedback('tutorial-feedback','tutorial-fb-icon','tutorial-fb-text', true,
+      `¡Correcto! ${item.explicacion}`);
+    setTimeout(()=>{
+      G.tutorialIdx++;
+      if (G.tutorialIdx >= G.tutorialPalabras.length) {
+        finalizarTutorial();
+      } else {
+        cargarTutorialPalabra();
+      }
+    }, 1800);
+  } else {
+    showFeedback('tutorial-feedback','tutorial-fb-icon','tutorial-fb-text', false,
+      `No es esa. La categoría correcta es <span class="fb-cat">${item.categoria}</span>. ${item.explicacion}`);
+    setTimeout(()=>{
+      document.querySelectorAll('#tutorial-cubos .cubo').forEach(c=>c.style.pointerEvents='');
+      G.tutorialEsperando = false;
+    }, 1500);
+  }
+}
+
+function finalizarTutorial() {
+  mostrarIntroFase(1);
+}
+
+// =====================================================
+// INTRO FASE
+// =====================================================
+const faseInfo = [
+  null,
+  {badge:"Fase 1", titulo:"Básico", desc:"Una palabra a la vez. 5 segundos para clasificarla. 8 palabras por equipo.", puntos:"+2 puntos por acierto", bgColor:"#00d4aa"},
+  {badge:"Fase 2", titulo:"Contexto", desc:"Se muestra una frase. Clasifica la palabra destacada en su contexto.", puntos:"+3 puntos por acierto", bgColor:"#00d4ff"},
+  {badge:"Fase 3", titulo:"Avalancha", desc:"3 palabras simultáneas. Selecciona una y clasifícala. 60 segundos por equipo.", puntos:"+2 puntos por acierto", bgColor:"#f5a623"}
+];
+
+function mostrarIntroFase(n) {
+  G.faseActual = n;
+  const info = faseInfo[n];
+  const badge = document.getElementById('intro-badge');
+  badge.textContent = info.badge;
+  badge.style.background = info.bgColor + '22';
+  badge.style.border = `1px solid ${info.bgColor}`;
+  badge.style.color = info.bgColor;
+  document.getElementById('intro-title').textContent = info.titulo;
+  document.getElementById('intro-desc').textContent = info.desc;
+  document.getElementById('intro-puntos').innerHTML = `Puntuación: <span>${info.puntos}</span>`;
+  showScreen('screen-intro-fase');
+}
+
+function empezarFase() {
+  if (G.faseActual === 1) iniciarFase1();
+  else if (G.faseActual === 2) iniciarFase2();
+  else if (G.faseActual === 3) iniciarFase3();
+}
+
+// =====================================================
+// FASE 1 — BÁSICO
+// =====================================================
+function iniciarFase1() {
+  G.f1Contadores = [0,0];
+  G.f1UsedPalabras = {0:[],1:[]};
+  G.f1Done = [false,false];
+  G.turnoActual = 0;
+  renderCubos('f1-cubos', G.cats, 'clasificarF1');
+  showScreen('screen-fase1');
+  cargarF1Turno();
+}
+
+function cargarF1Turno() {
+  renderScoreboard('sb-fase1');
+  renderTurno('turno-fase1');
+  hideFeedback('f1-feedback');
+  // Si el equipo actual ya terminó sus 8 palabras, pasar al otro
+  if (G.f1Contadores[G.turnoActual] >= 8) {
+    G.f1Done[G.turnoActual] = true;
+    if (G.f1Done[0] && G.f1Done[1]) {
+      // Bonus antes de fase 2
+      setTimeout(()=>mostrarBonus(2), 400);
+      return;
+    }
+    G.turnoActual = 1 - G.turnoActual;
+    cargarF1Turno();
+    return;
+  }
+  const usado = [...G.f1UsedPalabras[0],...G.f1UsedPalabras[1]];
+  const item = randomFromCats(G.cats, usado);
+  G.f1CurrentWord = item;
+  G.f1UsedPalabras[G.turnoActual].push(item.palabra);
+  document.getElementById('f1-word').textContent = item.palabra;
+  document.getElementById('f1-counter').textContent = `${G.f1Contadores[G.turnoActual]+1}/8`;
+  G.f1Esperando = false;
+  document.querySelectorAll('#f1-cubos .cubo').forEach(c=>c.style.pointerEvents='');
+  iniciarTimerF1();
+}
+
+function iniciarTimerF1() {
+  clearInterval(G.f1Timer);
+  G.f1Seconds = 5;
+  const bar = document.getElementById('timer-fase1');
+  bar.style.width = '100%';
+  bar.style.background = 'var(--accent-1)';
+  G.f1Timer = setInterval(()=>{
+    G.f1Seconds -= 0.1;
+    const pct = (G.f1Seconds/5)*100;
+    bar.style.width = Math.max(0,pct)+'%';
+    if (pct < 40) bar.style.background = 'var(--warning)';
+    if (pct < 20) bar.style.background = 'var(--danger)';
+    if (G.f1Seconds <= 0) {
+      clearInterval(G.f1Timer);
+      tiempoAgotadoF1();
+    }
+  }, 100);
+}
+
+function tiempoAgotadoF1() {
+  if (G.f1Esperando) return;
+  G.f1Esperando = true;
+  document.querySelectorAll('#f1-cubos .cubo').forEach(c=>c.style.pointerEvents='none');
+  G.fallos[G.turnoActual]++;
+  showFeedback('f1-feedback','f1-fb-icon','f1-fb-text', false,
+    `¡Tiempo! Era <span class="fb-cat">${G.f1CurrentWord.categoria}</span>`);
+  G.f1Contadores[G.turnoActual]++;
+  setTimeout(()=>{
+    // Pasar al otro equipo si los dos tienen palabras pendientes
+    const otroEquipo = 1 - G.turnoActual;
+    if (G.f1Contadores[otroEquipo] < 8 && !G.f1Done[otroEquipo]) {
+      G.turnoActual = otroEquipo;
+    }
+    cargarF1Turno();
+  }, 1800);
+}
+
+function clasificarF1(cat) {
+  if (G.f1Esperando) return;
+  clearInterval(G.f1Timer);
+  G.f1Esperando = true;
+  document.querySelectorAll('#f1-cubos .cubo').forEach(c=>c.style.pointerEvents='none');
+  const correct = cat === G.f1CurrentWord.categoria;
+  flashCubo('f1-cubos', cat, correct);
+  if (correct) {
+    G.puntos[G.turnoActual] += 2;
+    G.aciertos[G.turnoActual]++;
+    const wordEl = document.getElementById('f1-word');
+    const cuboEl = document.getElementById(`cubo-f1-cubos-${cat}`);
+    if (wordEl && cuboEl) flyWord(G.f1CurrentWord.palabra, wordEl, cuboEl);
+    showFeedback('f1-feedback','f1-fb-icon','f1-fb-text', true,
+      `+2 puntos — <span class="fb-cat">${G.f1CurrentWord.palabra}</span> es un <span class="fb-cat">${cat}</span>`);
+  } else {
+    G.fallos[G.turnoActual]++;
+    showFeedback('f1-feedback','f1-fb-icon','f1-fb-text', false,
+      `Era <span class="fb-cat">${G.f1CurrentWord.categoria}</span>, no ${cat}`);
+  }
+  G.f1Contadores[G.turnoActual]++;
+  renderScoreboard('sb-fase1');
+  setTimeout(()=>{
+    const otroEquipo = 1 - G.turnoActual;
+    if (G.f1Contadores[otroEquipo] < 8 && !G.f1Done[otroEquipo]) {
+      G.turnoActual = otroEquipo;
+    }
+    cargarF1Turno();
+  }, 1600);
+}
+
+// =====================================================
+// BONUS ROBO (entre fases)
+// =====================================================
+function mostrarBonus(siguienteFase) {
+  // Elegir equipo perdedor (o el que va perdiendo) como primer intento
+  G.bonusPrimerEquipo = G.puntos[0] <= G.puntos[1] ? 0 : 1;
+  G.bonusEnIntento = 0;
+
+  // Elegir ambigua no usada
+  const disponibles = ambiguas.filter((_,i)=>!G.bonusUsadas.includes(i));
+  if (!disponibles.length || !G.cats.includes(ambiguas[0].categoria)) {
+    // Sin bonus disponibles, ir directo a siguiente fase
+    if (siguienteFase === 2) mostrarIntroFase(2);
+    else mostrarResultados();
+    return;
+  }
+  const idxOriginal = ambiguas.indexOf(disponibles[Math.floor(Math.random()*disponibles.length)]);
+  G.bonusAmbiguaIdx = idxOriginal;
+  G.bonusUsadas.push(idxOriginal);
+  G._bonusSiguienteFase = siguienteFase;
+
+  const item = ambiguas[idxOriginal];
+  renderScoreboard('sb-bonus');
+  document.getElementById('bonus-word').textContent = item.palabra;
+  document.getElementById('bonus-frase').innerHTML = fraseHtml(item.frase);
+  actualizarBonusTurn();
+  hideFeedback('bonus-feedback');
+  renderCubos('bonus-cubos', G.cats, 'clasificarBonus');
+  document.querySelectorAll('#bonus-cubos .cubo').forEach(c=>c.style.pointerEvents='');
+  showScreen('screen-bonus');
+}
+
+function actualizarBonusTurn() {
+  const equipo = G.bonusEnIntento === 0 ? G.bonusPrimerEquipo : 1 - G.bonusPrimerEquipo;
+  const nombre = G.nombres[equipo];
+  document.getElementById('bonus-team-turn').innerHTML =
+    `Turno de <strong>${nombre}</strong>${G.bonusEnIntento===1?' (segundo intento)':''}`;
+  renderScoreboard('sb-bonus');
+}
+
+function clasificarBonus(cat) {
+  const item = ambiguas[G.bonusAmbiguaIdx];
+  const correct = cat === item.categoria;
+  const equipoActual = G.bonusEnIntento === 0 ? G.bonusPrimerEquipo : 1 - G.bonusPrimerEquipo;
+  document.querySelectorAll('#bonus-cubos .cubo').forEach(c=>c.style.pointerEvents='none');
+  flashCubo('bonus-cubos', cat, correct);
+
+  if (correct) {
+    G.puntos[equipoActual] += 3;
+    G.aciertos[equipoActual]++;
+    renderScoreboard('sb-bonus');
+    showFeedback('bonus-feedback','bonus-fb-icon','bonus-fb-text', true,
+      `+3 puntos para ${G.nombres[equipoActual]}. ${item.explicacion}`);
+    setTimeout(()=>avanzarDespuesBonus(), 2200);
+  } else {
+    if (G.bonusEnIntento === 0) {
+      // Primer intento fallido → rival intenta
+      showFeedback('bonus-feedback','bonus-fb-icon','bonus-fb-text', false,
+        `Incorrecto. ¡Oportunidad para ${G.nombres[1-G.bonusPrimerEquipo]}!`);
+      setTimeout(()=>{
+        hideFeedback('bonus-feedback');
+        G.bonusEnIntento = 1;
+        actualizarBonusTurn();
+        document.querySelectorAll('#bonus-cubos .cubo').forEach(c=>c.style.pointerEvents='');
+      }, 1600);
+    } else {
+      // Segundo intento fallido → nadie puntúa
+      showFeedback('bonus-feedback','bonus-fb-icon','bonus-fb-text', false,
+        `Nadie acertó. La respuesta correcta era <span class="fb-cat">${item.categoria}</span>. ${item.explicacion}`);
+      setTimeout(()=>avanzarDespuesBonus(), 2400);
+    }
+  }
+}
+
+function avanzarDespuesBonus() {
+  if (G._bonusSiguienteFase === 2) mostrarIntroFase(2);
+  else mostrarResultados();
+}
+
+// =====================================================
+// FASE 2 — CONTEXTO
+// =====================================================
+function iniciarFase2() {
+  G.f2Contadores = [0,0];
+  G.f2Done = [false,false];
+  // Filtrar frases según cats disponibles
+  G.f2FrasesDisp = shuffle(frases.filter(f=>G.cats.includes(f.categoria)));
+  G.f2UsedFrases = [];
+  G.turnoActual = 0;
+  renderCubos('f2-cubos', G.cats, 'clasificarF2');
+  showScreen('screen-fase2');
+  cargarF2Turno();
+}
+
+function cargarF2Turno() {
+  renderScoreboard('sb-fase2');
+  renderTurno('turno-fase2');
+  hideFeedback('f2-feedback');
+  if (G.f2Contadores[G.turnoActual] >= 5 || !G.f2FrasesDisp.length) {
+    G.f2Done[G.turnoActual] = true;
+    if (G.f2Done[0] && G.f2Done[1]) {
+      setTimeout(()=>mostrarBonus('resultados'), 400);
+      return;
+    }
+    G.turnoActual = 1 - G.turnoActual;
+    cargarF2Turno();
+    return;
+  }
+  const frase = G.f2FrasesDisp.pop();
+  G.f2CurrentFrase = frase;
+  document.getElementById('f2-frase').innerHTML = fraseHtml(frase.frase);
+  document.getElementById('f2-counter').textContent = `${G.f2Contadores[G.turnoActual]+1}/5`;
+  G.f2Esperando = false;
+  document.querySelectorAll('#f2-cubos .cubo').forEach(c=>c.style.pointerEvents='');
+  iniciarTimerF2();
+}
+
+function iniciarTimerF2() {
+  clearInterval(G.f2Timer);
+  G.f2Seconds = 10;
+  const bar = document.getElementById('timer-fase2');
+  bar.style.width = '100%';
+  bar.style.background = 'var(--accent-1)';
+  G.f2Timer = setInterval(()=>{
+    G.f2Seconds -= 0.1;
+    const pct = (G.f2Seconds/10)*100;
+    bar.style.width = Math.max(0,pct)+'%';
+    if (pct < 40) bar.style.background = 'var(--warning)';
+    if (pct < 20) bar.style.background = 'var(--danger)';
+    if (G.f2Seconds <= 0) { clearInterval(G.f2Timer); tiempoAgotadoF2(); }
+  }, 100);
+}
+
+function tiempoAgotadoF2() {
+  if (G.f2Esperando) return;
+  G.f2Esperando = true;
+  document.querySelectorAll('#f2-cubos .cubo').forEach(c=>c.style.pointerEvents='none');
+  G.fallos[G.turnoActual]++;
+  showFeedback('f2-feedback','f2-fb-icon','f2-fb-text', false,
+    `¡Tiempo! Era <span class="fb-cat">${G.f2CurrentFrase.categoria}</span>`);
+  G.f2Contadores[G.turnoActual]++;
+  setTimeout(()=>{
+    const otro = 1 - G.turnoActual;
+    if (G.f2Contadores[otro] < 5 && !G.f2Done[otro]) G.turnoActual = otro;
+    cargarF2Turno();
+  }, 1800);
+}
+
+function clasificarF2(cat) {
+  if (G.f2Esperando) return;
+  clearInterval(G.f2Timer);
+  G.f2Esperando = true;
+  document.querySelectorAll('#f2-cubos .cubo').forEach(c=>c.style.pointerEvents='none');
+  const correct = cat === G.f2CurrentFrase.categoria;
+  flashCubo('f2-cubos', cat, correct);
+  if (correct) {
+    G.puntos[G.turnoActual] += 3;
+    G.aciertos[G.turnoActual]++;
+    showFeedback('f2-feedback','f2-fb-icon','f2-fb-text', true,
+      `+3 puntos — <span class="fb-cat">${G.f2CurrentFrase.palabra}</span> es un <span class="fb-cat">${cat}</span>`);
+  } else {
+    G.fallos[G.turnoActual]++;
+    showFeedback('f2-feedback','f2-fb-icon','f2-fb-text', false,
+      `Era <span class="fb-cat">${G.f2CurrentFrase.categoria}</span>, no ${cat}`);
+  }
+  G.f2Contadores[G.turnoActual]++;
+  renderScoreboard('sb-fase2');
+  setTimeout(()=>{
+    const otro = 1 - G.turnoActual;
+    if (G.f2Contadores[otro] < 5 && !G.f2Done[otro]) G.turnoActual = otro;
+    cargarF2Turno();
+  }, 1600);
+}
+
+// =====================================================
+// FASE 3 — AVALANCHA
+// =====================================================
+function iniciarFase3() {
+  G.f3Clasificaciones = [0,0];
+  G.f3Done = [false,false];
+  G.turnoActual = 0;
+  renderCubos('f3-cubos', G.cats, 'clasificarF3');
+  document.getElementById('aval-cubos-label').style.display='none';
+  document.getElementById('f3-cubos').style.display='none';
+  showScreen('screen-fase3');
+  cargarF3Turno();
+}
+
+function cargarF3Turno() {
+  renderScoreboard('sb-fase3');
+  renderTurno('turno-fase3');
+  hideFeedback('f3-feedback');
+  G.f3SelectedWordIdx = null;
+  G.f3Esperando = false;
+  document.getElementById('aval-cubos-label').style.display='none';
+  document.getElementById('f3-cubos').style.display='none';
+
+  if (G.f3Done[G.turnoActual]) {
+    G.turnoActual = 1 - G.turnoActual;
+    if (G.f3Done[0] && G.f3Done[1]) { mostrarResultados(); return; }
+  }
+
+  // Generar 3 palabras nuevas
+  G.f3CurrentWords = [];
+  const usadas = [];
+  for (let i=0;i<3;i++) {
+    const item = randomFromCats(G.cats, usadas);
+    G.f3CurrentWords.push(item);
+    usadas.push(item.palabra);
+  }
+  renderAvalWords();
+  iniciarTimerF3Global();
+}
+
+function renderAvalWords() {
+  const cont = document.getElementById('aval-words');
+  cont.innerHTML = G.f3CurrentWords.map((item,i)=>`
+    <div class="aval-card" id="aval-card-${i}" onclick="selectAvalWord(${i})">
+      <div class="aval-word">${item.palabra}</div>
+    </div>`).join('');
+}
+
+function selectAvalWord(idx) {
+  if (G.f3Esperando) return;
+  const card = G.f3CurrentWords[idx];
+  if (!card || document.getElementById(`aval-card-${idx}`).classList.contains('done')) return;
+
+  G.f3SelectedWordIdx = idx;
+  document.querySelectorAll('.aval-card').forEach((c,i)=>{
+    c.classList.toggle('selected', i===idx);
+  });
+  document.getElementById('aval-cubos-label').style.display='block';
+  document.getElementById('f3-cubos').style.display='flex';
+  document.querySelectorAll('#f3-cubos .cubo').forEach(c=>c.style.pointerEvents='');
+}
+
+function clasificarF3(cat) {
+  if (G.f3Esperando || G.f3SelectedWordIdx === null) return;
+  const idx = G.f3SelectedWordIdx;
+  const item = G.f3CurrentWords[idx];
+  if (!item) return;
+  G.f3Esperando = true;
+  document.querySelectorAll('#f3-cubos .cubo').forEach(c=>c.style.pointerEvents='none');
+
+  const correct = cat === item.categoria;
+  flashCubo('f3-cubos', cat, correct);
+
+  const card = document.getElementById(`aval-card-${idx}`);
+  if (correct) {
+    card.classList.add('correct','done');
+    G.puntos[G.turnoActual] += 2;
+    G.aciertos[G.turnoActual]++;
+    G.f3Clasificaciones[G.turnoActual]++;
+    showFeedback('f3-feedback','f3-fb-icon','f3-fb-text', true,
+      `+2 puntos — <span class="fb-cat">${item.palabra}</span> es un <span class="fb-cat">${cat}</span>`);
+  } else {
+    card.classList.add('wrong','done');
+    G.fallos[G.turnoActual]++;
+    showFeedback('f3-feedback','f3-fb-icon','f3-fb-text', false,
+      `Era <span class="fb-cat">${item.categoria}</span> — ${item.palabra}`);
+  }
+  renderScoreboard('sb-fase3');
+  G.f3SelectedWordIdx = null;
+  document.getElementById('aval-cubos-label').style.display='none';
+  document.getElementById('f3-cubos').style.display='none';
+
+  // Comprobar si quedan palabras sin clasificar
+  const pending = G.f3CurrentWords.filter((_,i)=>!document.getElementById(`aval-card-${i}`).classList.contains('done'));
+
+  setTimeout(()=>{
+    G.f3Esperando = false;
+    if (pending.length === 0) {
+      // Recargar 3 nuevas palabras si aún hay tiempo y no llegamos al máx
+      if (G.f3Clasificaciones[G.turnoActual] < 5) {
+        regenerarAvalWords();
+      } else {
+        finalizarTurnoF3();
+      }
+    }
+    // Si quedan palabras, el jugador elige la siguiente
+  }, 1400);
+}
+
+function regenerarAvalWords() {
+  hideFeedback('f3-feedback');
+  G.f3CurrentWords = [];
+  const usadas = [];
+  for (let i=0;i<3;i++) {
+    const item = randomFromCats(G.cats, usadas);
+    G.f3CurrentWords.push(item);
+    usadas.push(item.palabra);
+  }
+  renderAvalWords();
+}
+
+function finalizarTurnoF3() {
+  clearInterval(G.f3GlobalTimer);
+  G.f3Done[G.turnoActual] = true;
+  const otro = 1 - G.turnoActual;
+  if (!G.f3Done[otro]) {
+    G.turnoActual = otro;
+    setTimeout(()=>cargarF3Turno(), 600);
+  } else {
+    mostrarResultados();
+  }
+}
+
+function iniciarTimerF3Global() {
+  clearInterval(G.f3GlobalTimer);
+  G.f3GlobalSecs = 60;
+  const bar = document.getElementById('timer-fase3');
+  bar.style.width = '100%';
+  bar.style.background = 'var(--accent-1)';
+  G.f3GlobalTimer = setInterval(()=>{
+    G.f3GlobalSecs -= 0.1;
+    const pct = (G.f3GlobalSecs/60)*100;
+    bar.style.width = Math.max(0,pct)+'%';
+    document.getElementById('aval-timer-global').textContent =
+      `${G.nombres[G.turnoActual]} — Tiempo: ${Math.ceil(G.f3GlobalSecs)}s`;
+    if (pct < 40) bar.style.background = 'var(--warning)';
+    if (pct < 20) bar.style.background = 'var(--danger)';
+    if (G.f3GlobalSecs <= 0) {
+      clearInterval(G.f3GlobalTimer);
+      finalizarTurnoF3();
+    }
+  }, 100);
+}
+
+// =====================================================
+// RESULTADOS
+// =====================================================
+function mostrarResultados() {
+  clearInterval(G.f1Timer);
+  clearInterval(G.f2Timer);
+  clearInterval(G.f3GlobalTimer);
+
+  const ganador = G.puntos[0] > G.puntos[1] ? 0 : G.puntos[1] > G.puntos[0] ? 1 : -1;
+
+  let subtitulo = ganador === -1
+    ? '¡Empate! Los dos equipos lo han hecho genial.'
+    : `¡Victoria para ${G.nombres[ganador]}!`;
+  document.getElementById('results-subtitle').textContent = subtitulo;
+  document.getElementById('results-title').textContent = '¡Fin del juego!';
+
+  const cards = document.getElementById('results-cards');
+  cards.innerHTML = [0,1].map(i=>`
+    <div class="results-card team${i+1} ${ganador===i?'winner':''}">
+      ${ganador===i?'<div class="winner-badge">GANADOR</div>':''}
+      <div class="results-team-name">${G.nombres[i]}</div>
+      <div class="results-pts">${G.puntos[i]}</div>
+      <div class="results-detail">${G.aciertos[i]} aciertos · ${G.fallos[i]} fallos</div>
+    </div>`).join('');
+
+  showScreen('screen-resultados');
+}
+
+function reiniciar() {
+  resetState();
+  // Restaurar inputs
+  document.getElementById('nombre-team1').value = 'Equipo 1';
+  document.getElementById('nombre-team2').value = 'Equipo 2';
+  document.querySelectorAll('.dif-btn').forEach(b=>b.classList.remove('selected'));
+  document.querySelector('.dif-btn.facil').classList.add('selected');
+  showScreen('screen-setup');
+}
+
+// =====================================================
+// INIT
+// =====================================================
+resetState();
+</script>
+</body>
+</html>

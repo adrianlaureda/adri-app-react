@@ -88,6 +88,44 @@ const IconSearch = () => (
   </svg>
 );
 
+const IconChain = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+    <line x1="8" y1="12" x2="16" y2="12"/>
+  </svg>
+);
+
+const IconMap = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/>
+    <line x1="9" y1="3" x2="9" y2="18"/>
+    <line x1="15" y1="6" x2="15" y2="21"/>
+  </svg>
+);
+
+const IconSort = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <line x1="3" y1="6" x2="21" y2="6"/>
+    <line x1="3" y1="12" x2="15" y2="12"/>
+    <line x1="3" y1="18" x2="9" y2="18"/>
+    <polyline points="17 15 21 19 17 19"/>
+    <line x1="21" y1="19" x2="21" y2="15"/>
+  </svg>
+);
+
+const IconFalling = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <rect x="3" y="3" width="4" height="4" rx="1"/>
+    <rect x="10" y="3" width="4" height="4" rx="1"/>
+    <rect x="17" y="3" width="4" height="4" rx="1"/>
+    <line x1="5" y1="7" x2="5" y2="14"/>
+    <polyline points="3 12 5 14 7 12"/>
+    <line x1="19" y1="7" x2="19" y2="17"/>
+    <polyline points="17 15 19 17 21 15"/>
+  </svg>
+);
+
 // Datos del carrusel
 const RECURSOS = [
   { id: 'pictos', title: 'Pictos', icon: IconPictos, href: '/pictos', available: true },
@@ -100,6 +138,10 @@ const RECURSOS = [
   { id: 'improvisacion', title: 'Improvisación', icon: IconTheater, href: '/improvisacion', available: true },
   { id: 'ruleta', title: 'Ruleta', icon: IconWheel, href: '/ruleta', available: true },
   { id: 'csi-retorico', title: 'CSI Retórico', icon: IconSearch, href: '/csi-retorico', available: true },
+  { id: 'cadena-palabras', title: 'Cadena de Palabras', icon: IconChain, href: '/cadena-palabras', available: true },
+  { id: 'batalla-territorios', title: 'Batalla de Territorios', icon: IconMap, href: '/batalla-territorios', available: true },
+  { id: 'estacion-clasificacion', title: 'Estación Clasificación', icon: IconSort, href: '/estacion-clasificacion', available: true },
+  { id: 'tetris-gramatical', title: 'Tetris Gramatical', icon: IconFalling, href: '/tetris-gramatical', available: true },
 ];
 
 export function Home() {

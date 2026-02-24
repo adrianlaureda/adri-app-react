@@ -1,0 +1,1789 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Batalla de Territorios — Lengua 2º ESO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-primary: #050505;
+    --bg-secondary: #0a0a0a;
+    --bg-card: #111111;
+    --bg-card-hover: #1a1a1a;
+    --text-primary: #ffffff;
+    --text-secondary: #888888;
+    --text-muted: #444444;
+    --border: rgba(255,255,255,0.08);
+    --accent-1: #00d4aa;
+    --accent-2: #00d4ff;
+    --accent-3: #f5a623;
+    --accent-4: #ff6b6b;
+    --accent-5: #a78bfa;
+    --accent-6: #4ade80;
+    --success: #22c55e;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --team1: var(--accent-2);
+    --team2: var(--accent-3);
+  }
+
+  body.light-mode {
+    --bg-primary: #f5f5f5;
+    --bg-secondary: #e8e8e8;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f0f0f0;
+    --text-primary: #111111;
+    --text-secondary: #666666;
+    --text-muted: #999999;
+    --border: rgba(0,0,0,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  /* ===================== BOTONES GLOBALES ===================== */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-primary {
+    background: var(--accent-1);
+    color: #000;
+  }
+  .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+  }
+  .btn-ghost:hover { background: var(--bg-card-hover); color: var(--text-primary); }
+
+  /* ===================== NAV ===================== */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 56px;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 100;
+  }
+  .nav-left { display: flex; align-items: center; gap: 12px; }
+  .nav-title { font-size: 15px; font-weight: 700; letter-spacing: -0.3px; }
+  .nav-subtitle { font-size: 12px; color: var(--text-secondary); }
+  .nav-right { display: flex; align-items: center; gap: 8px; }
+
+  .icon-btn {
+    width: 38px; height: 38px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .icon-btn:hover { background: var(--bg-card-hover); color: var(--text-primary); }
+
+  /* ===================== SCREENS ===================== */
+  .screen {
+    display: none;
+    min-height: 100vh;
+    padding-top: 56px;
+  }
+  .screen.active { display: flex; }
+
+  /* ===================== SETUP SCREEN ===================== */
+  #screen-setup {
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px 40px;
+  }
+  .setup-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 48px;
+    width: 100%;
+    max-width: 520px;
+    text-align: center;
+  }
+  .setup-icon {
+    width: 72px; height: 72px;
+    border-radius: 18px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 24px;
+    background: rgba(0,212,255,0.1);
+    border: 1px solid rgba(0,212,255,0.2);
+  }
+  .setup-card h1 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+  .setup-card .desc {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-bottom: 36px;
+    line-height: 1.5;
+  }
+  .teams-input {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .team-field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .team-field.t1 label { color: var(--accent-2); }
+  .team-field.t2 label { color: var(--accent-3); }
+  .team-field input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 2px solid var(--border);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .team-field.t1 input:focus { border-color: var(--accent-2); }
+  .team-field.t2 input:focus { border-color: var(--accent-3); }
+  .setup-rules {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: left;
+    margin-bottom: 28px;
+  }
+  .setup-rules h3 {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+  }
+  .setup-rules ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .setup-rules li {
+    font-size: 13px;
+    color: var(--text-secondary);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.4;
+  }
+  .setup-rules li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--text-muted);
+  }
+  .btn-start {
+    width: 100%;
+    justify-content: center;
+    padding: 16px;
+    font-size: 16px;
+    border-radius: 12px;
+  }
+
+  /* ===================== GAME SCREEN ===================== */
+  #screen-game {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .game-layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 20px;
+    padding: 20px;
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  /* Tablero */
+  .board-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .board-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    width: 100%;
+    max-width: 560px;
+  }
+  .cell {
+    aspect-ratio: 1;
+    border-radius: 14px;
+    border: 2px solid var(--border);
+    background: var(--bg-card);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text-muted);
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+  }
+  .cell:hover:not(.disabled) {
+    background: var(--bg-card-hover);
+    border-color: rgba(255,255,255,0.2);
+    transform: scale(1.04);
+  }
+  .cell.team1 {
+    background: rgba(0,212,255,0.15);
+    border-color: var(--accent-2);
+    color: var(--accent-2);
+  }
+  .cell.team2 {
+    background: rgba(245,166,35,0.15);
+    border-color: var(--accent-3);
+    color: var(--accent-3);
+  }
+  .cell.attackable {
+    animation: pulseAttack 1.5s infinite;
+    cursor: pointer;
+  }
+  .cell.attackable::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    background: rgba(255,107,107,0.1);
+  }
+  .cell.disabled { cursor: default; opacity: 0.5; }
+  .cell.conquered {
+    animation: conquestAnim 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards;
+  }
+  @keyframes conquestAnim {
+    0% { transform: scale(0.8); }
+    100% { transform: scale(1); }
+  }
+  @keyframes pulseAttack {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,107,107,0.4); }
+    50% { box-shadow: 0 0 0 6px rgba(255,107,107,0); }
+  }
+  .cell .cell-num {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+  .cell .sword-icon {
+    position: absolute;
+    top: 4px; right: 4px;
+    opacity: 0.7;
+  }
+  .cell.team1 .cell-num { color: var(--accent-2); }
+  .cell.team2 .cell-num { color: var(--accent-3); }
+
+  /* Panel lateral */
+  .side-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  /* Turno actual */
+  .turn-indicator {
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+    transition: border-color 0.3s;
+  }
+  .turn-indicator.team1-turn { border-color: var(--accent-2); }
+  .turn-indicator.team2-turn { border-color: var(--accent-3); }
+  .turn-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+  }
+  .turn-name {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+  .turn-indicator.team1-turn .turn-name { color: var(--accent-2); }
+  .turn-indicator.team2-turn .turn-name { color: var(--accent-3); }
+  .turn-action {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  /* Marcador */
+  .scoreboard {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .score-header {
+    padding: 12px 16px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border);
+  }
+  .score-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .score-row:last-child { border-bottom: none; }
+  .score-team {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .score-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+  }
+  .score-dot.t1 { background: var(--accent-2); }
+  .score-dot.t2 { background: var(--accent-3); }
+  .score-team-name {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .score-count {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -1px;
+  }
+  .score-count.t1 { color: var(--accent-2); }
+  .score-count.t2 { color: var(--accent-3); }
+
+  /* Historial */
+  .history-panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .history-header {
+    padding: 12px 16px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .history-list {
+    padding: 8px;
+    overflow-y: auto;
+    flex: 1;
+    max-height: 240px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .history-item {
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 1.4;
+    background: var(--bg-secondary);
+  }
+  .history-item.correct { border-left: 3px solid var(--success); }
+  .history-item.wrong { border-left: 3px solid var(--danger); }
+  .history-item .hi-team { font-weight: 700; }
+  .history-item.t1 .hi-team { color: var(--accent-2); }
+  .history-item.t2 .hi-team { color: var(--accent-3); }
+
+  /* Botón abandonar */
+  .btn-abandon {
+    width: 100%;
+    justify-content: center;
+    padding: 11px;
+    font-size: 13px;
+    color: var(--danger);
+    border-color: rgba(239,68,68,0.2);
+  }
+  .btn-abandon:hover { background: rgba(239,68,68,0.08); color: var(--danger); border-color: var(--danger); }
+
+  /* ===================== MODAL DE PREGUNTA ===================== */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    backdrop-filter: blur(4px);
+  }
+  .modal-overlay.open { display: flex; }
+
+  .modal-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 580px;
+    overflow: hidden;
+    animation: modalIn 0.25s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  @keyframes modalIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  .modal-header {
+    padding: 20px 24px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .modal-type-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .badge-sinonimo { background: rgba(0,212,170,0.15); color: var(--accent-1); }
+  .badge-antonimo { background: rgba(165,139,250,0.15); color: var(--accent-5); }
+  .badge-intruso { background: rgba(255,107,107,0.15); color: var(--accent-4); }
+  .badge-campo { background: rgba(74,222,128,0.15); color: var(--accent-6); }
+
+  .modal-timer-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .timer-count {
+    font-size: 18px;
+    font-weight: 800;
+    min-width: 28px;
+    text-align: right;
+  }
+  .timer-count.urgent { color: var(--danger); }
+
+  .modal-body { padding: 20px 24px; }
+  .modal-question {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .modal-word {
+    font-size: 36px;
+    font-weight: 900;
+    letter-spacing: -1px;
+    margin-bottom: 28px;
+    line-height: 1;
+  }
+
+  /* Timer bar */
+  .timer-bar-wrap {
+    height: 4px;
+    background: var(--bg-secondary);
+    border-radius: 2px;
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+  .timer-bar {
+    height: 100%;
+    background: var(--accent-1);
+    border-radius: 2px;
+    transition: width 1s linear, background 0.5s;
+  }
+  .timer-bar.urgent { background: var(--danger); }
+
+  /* Opciones de respuesta */
+  .options-grid {
+    display: grid;
+    gap: 10px;
+  }
+  .options-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+  .options-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  .option-btn {
+    padding: 16px 20px;
+    border-radius: 12px;
+    border: 2px solid var(--border);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .option-btn:hover:not(:disabled) {
+    background: var(--bg-card-hover);
+    border-color: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+  }
+  .option-btn.correct-ans {
+    background: rgba(34,197,94,0.15);
+    border-color: var(--success);
+    color: var(--success);
+  }
+  .option-btn.wrong-ans {
+    background: rgba(239,68,68,0.15);
+    border-color: var(--danger);
+    color: var(--danger);
+  }
+  .option-btn:disabled { cursor: default; transform: none; }
+
+  /* Intruso: grid de 5 palabras */
+  .intruso-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-top: 8px;
+  }
+  .intruso-btn {
+    padding: 18px 10px;
+    border-radius: 12px;
+    border: 2px solid var(--border);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    word-break: break-word;
+  }
+  .intruso-btn:hover:not(:disabled) {
+    background: var(--bg-card-hover);
+    border-color: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+  }
+  .intruso-btn.correct-ans {
+    background: rgba(34,197,94,0.15);
+    border-color: var(--success);
+    color: var(--success);
+  }
+  .intruso-btn.wrong-ans {
+    background: rgba(239,68,68,0.15);
+    border-color: var(--danger);
+    color: var(--danger);
+  }
+  .intruso-btn:disabled { cursor: default; transform: none; }
+
+  /* Feedback del modal */
+  .modal-feedback {
+    margin-top: 18px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    display: none;
+    line-height: 1.4;
+  }
+  .modal-feedback.show { display: block; }
+  .modal-feedback.fb-correct {
+    background: rgba(34,197,94,0.1);
+    border: 1px solid rgba(34,197,94,0.3);
+    color: var(--success);
+  }
+  .modal-feedback.fb-wrong {
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.3);
+    color: var(--accent-4);
+  }
+  .modal-feedback.fb-time {
+    background: rgba(245,158,11,0.1);
+    border: 1px solid rgba(245,158,11,0.3);
+    color: var(--warning);
+  }
+
+  .modal-footer {
+    padding: 0 24px 24px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /* ===================== RESULTS SCREEN ===================== */
+  #screen-results {
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px 40px;
+  }
+  .results-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 48px;
+    width: 100%;
+    max-width: 560px;
+    text-align: center;
+  }
+  .winner-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 20px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+  }
+  .winner-badge.t1 { background: rgba(0,212,255,0.15); color: var(--accent-2); border: 1px solid rgba(0,212,255,0.3); }
+  .winner-badge.t2 { background: rgba(245,166,35,0.15); color: var(--accent-3); border: 1px solid rgba(245,166,35,0.3); }
+  .winner-badge.draw { background: rgba(255,255,255,0.08); color: var(--text-secondary); border: 1px solid var(--border); }
+  .results-title {
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: -1px;
+    margin-bottom: 6px;
+  }
+  .results-subtitle {
+    color: var(--text-secondary);
+    font-size: 15px;
+    margin-bottom: 36px;
+  }
+  .results-scores {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+  .result-score-box {
+    background: var(--bg-secondary);
+    border-radius: 14px;
+    padding: 24px 16px;
+    border: 2px solid transparent;
+  }
+  .result-score-box.winner-box { border-color: currentColor; }
+  .result-score-box.t1 { color: var(--accent-2); }
+  .result-score-box.t2 { color: var(--accent-3); }
+  .rsb-name {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    opacity: 0.8;
+  }
+  .rsb-num {
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .rsb-label {
+    font-size: 12px;
+    opacity: 0.6;
+    font-weight: 500;
+  }
+  .results-board-mini {
+    margin-bottom: 32px;
+  }
+  .results-board-mini h3 {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+  }
+  .mini-grid {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 6px;
+    max-width: 220px;
+    margin: 0 auto;
+  }
+  .mini-cell {
+    aspect-ratio: 1;
+    border-radius: 8px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+  }
+  .mini-cell.t1 { background: rgba(0,212,255,0.25); border-color: var(--accent-2); }
+  .mini-cell.t2 { background: rgba(245,166,35,0.25); border-color: var(--accent-3); }
+  .results-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  /* ===================== RESPONSIVE ===================== */
+  @media (max-width: 768px) {
+    .game-layout {
+      grid-template-columns: 1fr;
+      padding: 12px;
+      gap: 12px;
+    }
+    .side-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .history-panel { display: none; }
+    .btn-abandon { grid-column: 1/-1; }
+    .modal-word { font-size: 28px; }
+    .intruso-grid { grid-template-columns: repeat(3, 1fr); }
+    .setup-card { padding: 28px 20px; }
+    .teams-input { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ====== NAV ====== -->
+<nav class="nav">
+  <div class="nav-left">
+    <!-- Icono home -->
+    <a href="/" style="color:inherit; text-decoration:none;" title="Volver a adri-app">
+      <button class="icon-btn" aria-label="Inicio">
+        <svg viewBox="0 0 100 100" width="28" height="28">
+          <polygon points="50,5 95,82 5,82" fill="currentColor"/>
+          <line x1="50" y1="56" x2="50" y2="5" stroke="var(--bg-primary)" stroke-width="4"/>
+          <line x1="50" y1="56" x2="95" y2="82" stroke="var(--bg-primary)" stroke-width="4"/>
+          <line x1="50" y1="56" x2="5" y2="82" stroke="var(--bg-primary)" stroke-width="4"/>
+        </svg>
+      </button>
+    </a>
+    <div>
+      <div class="nav-title">Batalla de Territorios</div>
+      <div class="nav-subtitle">Lengua 2º ESO</div>
+    </div>
+  </div>
+  <div class="nav-right">
+    <!-- Toggle tema -->
+    <button class="icon-btn" id="theme-toggle" title="Cambiar tema" aria-label="Cambiar tema">
+      <!-- Luna (tema oscuro activo) -->
+      <svg id="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+      <!-- Sol (tema claro activo) -->
+      <svg id="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+        <circle cx="12" cy="12" r="5"/>
+        <line x1="12" y1="1" x2="12" y2="3"/>
+        <line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/>
+        <line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ====== SETUP SCREEN ====== -->
+<div class="screen active" id="screen-setup">
+  <div class="setup-card">
+    <div class="setup-icon">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+        <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+      </svg>
+    </div>
+    <h1>Batalla de Territorios</h1>
+    <p class="desc">2 equipos. 16 casillas. Responde preguntas de vocabulario y conquista el tablero. Gana quien forme una línea de 4 o controle más casillas.</p>
+
+    <div class="teams-input">
+      <div class="team-field t1">
+        <label>Equipo 1 (Cyan)</label>
+        <input type="text" id="input-team1" placeholder="Equipo 1" value="Equipo 1" maxlength="20">
+      </div>
+      <div class="team-field t2">
+        <label>Equipo 2 (Naranja)</label>
+        <input type="text" id="input-team2" placeholder="Equipo 2" value="Equipo 2" maxlength="20">
+      </div>
+    </div>
+
+    <div class="setup-rules">
+      <h3>Reglas</h3>
+      <ul>
+        <li>Cada equipo elige una casilla libre en su turno</li>
+        <li>Aparece una pregunta aleatoria — tienes 15 segundos</li>
+        <li>Acierto: la casilla es tuya. Fallo: queda libre</li>
+        <li>Puedes atacar casillas del rival (iconito ⚔) para robárselas</li>
+        <li>Victoria: línea de 4 (horizontal / vertical / diagonal) o más casillas al final</li>
+      </ul>
+    </div>
+
+    <button class="btn btn-primary btn-start" id="btn-start">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="5 3 19 12 5 21 5 3"/>
+      </svg>
+      Comenzar partida
+    </button>
+  </div>
+</div>
+
+<!-- ====== GAME SCREEN ====== -->
+<div class="screen" id="screen-game">
+  <div class="game-layout">
+
+    <!-- Tablero -->
+    <div class="board-area">
+      <div class="board-grid" id="board-grid">
+        <!-- Las 16 casillas se generan por JS -->
+      </div>
+    </div>
+
+    <!-- Panel lateral -->
+    <div class="side-panel">
+
+      <!-- Turno actual -->
+      <div class="turn-indicator team1-turn" id="turn-indicator">
+        <div class="turn-label">Turno</div>
+        <div class="turn-name" id="turn-name">Equipo 1</div>
+        <div class="turn-action" id="turn-action">Elige una casilla</div>
+      </div>
+
+      <!-- Marcador -->
+      <div class="scoreboard">
+        <div class="score-header">Marcador</div>
+        <div class="score-row">
+          <div class="score-team">
+            <div class="score-dot t1"></div>
+            <div class="score-team-name" id="score-name-1">Equipo 1</div>
+          </div>
+          <div class="score-count t1" id="score-count-1">0</div>
+        </div>
+        <div class="score-row">
+          <div class="score-team">
+            <div class="score-dot t2"></div>
+            <div class="score-team-name" id="score-name-2">Equipo 2</div>
+          </div>
+          <div class="score-count t2" id="score-count-2">0</div>
+        </div>
+      </div>
+
+      <!-- Historial -->
+      <div class="history-panel">
+        <div class="history-header">Historial</div>
+        <div class="history-list" id="history-list">
+          <!-- items generados por JS -->
+        </div>
+      </div>
+
+      <!-- Botón abandonar -->
+      <button class="btn btn-ghost btn-abandon" id="btn-abandon">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+        Terminar partida
+      </button>
+
+    </div>
+  </div>
+</div>
+
+<!-- ====== RESULTS SCREEN ====== -->
+<div class="screen" id="screen-results">
+  <div class="results-card">
+    <div class="winner-badge t1" id="winner-badge">Ganador</div>
+    <div class="results-title" id="results-title">Equipo 1</div>
+    <div class="results-subtitle" id="results-subtitle">¡Ha conquistado el tablero!</div>
+
+    <div class="results-scores">
+      <div class="result-score-box t1 winner-box" id="rsb-1">
+        <div class="rsb-name" id="rsb-name-1">Equipo 1</div>
+        <div class="rsb-num" id="rsb-num-1">0</div>
+        <div class="rsb-label">casillas</div>
+      </div>
+      <div class="result-score-box t2" id="rsb-2">
+        <div class="rsb-name" id="rsb-name-2">Equipo 2</div>
+        <div class="rsb-num" id="rsb-num-2">0</div>
+        <div class="rsb-label">casillas</div>
+      </div>
+    </div>
+
+    <div class="results-board-mini">
+      <h3>Tablero final</h3>
+      <div class="mini-grid" id="mini-grid">
+        <!-- celdas generadas por JS -->
+      </div>
+    </div>
+
+    <div class="results-actions">
+      <button class="btn btn-ghost" id="btn-home-results">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        Inicio
+      </button>
+      <button class="btn btn-primary" id="btn-new-game">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/>
+          <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+        </svg>
+        Nueva partida
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ====== MODAL DE PREGUNTA ====== -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-box">
+
+    <div class="modal-header">
+      <span class="modal-type-badge" id="modal-badge">Sinónimo</span>
+      <div class="modal-timer-wrap">
+        <div class="timer-count" id="timer-count">15</div>
+      </div>
+    </div>
+
+    <div class="modal-body">
+      <div class="timer-bar-wrap">
+        <div class="timer-bar" id="timer-bar"></div>
+      </div>
+      <div class="modal-question" id="modal-question">¿Cuál es el sinónimo de...?</div>
+      <div class="modal-word" id="modal-word">veloz</div>
+
+      <!-- Opciones para sinónimo / antónimo / campo semántico -->
+      <div id="options-container"></div>
+
+      <!-- Feedback -->
+      <div class="modal-feedback" id="modal-feedback"></div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-ghost" id="modal-next-btn" style="display:none">
+        Continuar
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ========================================================
+//  BANCO DE DATOS
+// ========================================================
+
+const sinonimos = [
+  { palabra: "veloz", correcta: "rápido", opciones: ["lento", "grande", "fuerte"] },
+  { palabra: "audaz", correcta: "valiente", opciones: ["cobarde", "listo", "gracioso"] },
+  { palabra: "melancólico", correcta: "triste", opciones: ["alegre", "enfadado", "cansado"] },
+  { palabra: "perspicaz", correcta: "astuto", opciones: ["torpe", "amable", "nervioso"] },
+  { palabra: "ágil", correcta: "veloz", opciones: ["pesado", "tranquilo", "aburrido"] },
+  { palabra: "hostil", correcta: "agresivo", opciones: ["amigable", "tranquilo", "feliz"] },
+  { palabra: "frugal", correcta: "austero", opciones: ["derrochador", "alegre", "ruidoso"] },
+  { palabra: "furtivo", correcta: "sigiloso", opciones: ["ruidoso", "evidente", "lento"] },
+  { palabra: "lúgubre", correcta: "sombrío", opciones: ["luminoso", "alegre", "colorido"] },
+  { palabra: "nítido", correcta: "claro", opciones: ["oscuro", "borroso", "sucio"] },
+  { palabra: "osado", correcta: "atrevido", opciones: ["miedoso", "tranquilo", "aburrido"] },
+  { palabra: "parco", correcta: "escaso", opciones: ["abundante", "grande", "brillante"] },
+  { palabra: "prolijo", correcta: "detallado", opciones: ["breve", "simple", "rápido"] },
+  { palabra: "rancio", correcta: "añejo", opciones: ["fresco", "nuevo", "dulce"] },
+  { palabra: "sagaz", correcta: "inteligente", opciones: ["torpe", "lento", "distraído"] },
+  { palabra: "tenaz", correcta: "persistente", opciones: ["débil", "rendido", "tranquilo"] },
+  { palabra: "ubicuo", correcta: "omnipresente", opciones: ["ausente", "escaso", "raro"] },
+  { palabra: "vehemente", correcta: "apasionado", opciones: ["frío", "indiferente", "aburrido"] },
+  { palabra: "verídico", correcta: "cierto", opciones: ["falso", "dudoso", "confuso"] },
+  { palabra: "zenith", correcta: "cúspide", opciones: ["base", "fondo", "inicio"] },
+  { palabra: "ameno", correcta: "entretenido", opciones: ["aburrido", "difícil", "largo"] },
+  { palabra: "benigno", correcta: "bondadoso", opciones: ["cruel", "severo", "distante"] },
+  { palabra: "cauto", correcta: "prudente", opciones: ["temerario", "impulsivo", "rápido"] },
+  { palabra: "dichoso", correcta: "feliz", opciones: ["triste", "enfadado", "nervioso"] },
+  { palabra: "efímero", correcta: "fugaz", opciones: ["eterno", "largo", "permanente"] },
+  { palabra: "fiel", correcta: "leal", opciones: ["traidor", "distante", "frío"] },
+  { palabra: "grácil", correcta: "elegante", opciones: ["torpe", "brusco", "pesado"] },
+  { palabra: "hábil", correcta: "diestro", opciones: ["torpe", "lento", "inútil"] },
+  { palabra: "ínfimo", correcta: "mínimo", opciones: ["máximo", "enorme", "gigante"] },
+  { palabra: "jovial", correcta: "alegre", opciones: ["serio", "triste", "aburrido"] },
+  { palabra: "lacónico", correcta: "breve", opciones: ["extenso", "detallado", "largo"] },
+  { palabra: "magnánimo", correcta: "generoso", opciones: ["tacaño", "egoísta", "avaro"] },
+  { palabra: "nefasto", correcta: "terrible", opciones: ["estupendo", "perfecto", "bueno"] },
+  { palabra: "opulento", correcta: "rico", opciones: ["pobre", "humilde", "escaso"] },
+  { palabra: "pérfido", correcta: "traicionero", opciones: ["leal", "noble", "honesto"] },
+  { palabra: "quimérico", correcta: "ilusorio", opciones: ["real", "cierto", "verdadero"] },
+  { palabra: "renuente", correcta: "reticente", opciones: ["entusiasta", "dispuesto", "alegre"] },
+  { palabra: "sereno", correcta: "tranquilo", opciones: ["agitado", "nervioso", "ansioso"] },
+  { palabra: "tácito", correcta: "implícito", opciones: ["explícito", "claro", "evidente"] },
+  { palabra: "ufano", correcta: "orgulloso", opciones: ["humilde", "avergonzado", "triste"] },
+];
+
+const antonimos = [
+  { palabra: "alto", correcta: "bajo", opciones: ["gordo", "lento", "feo"] },
+  { palabra: "generoso", correcta: "tacaño", opciones: ["rápido", "alegre", "fuerte"] },
+  { palabra: "valiente", correcta: "cobarde", opciones: ["tranquilo", "listo", "amable"] },
+  { palabra: "luminoso", correcta: "oscuro", opciones: ["pequeño", "frío", "seco"] },
+  { palabra: "activo", correcta: "pasivo", opciones: ["aburrido", "triste", "solo"] },
+  { palabra: "antiguo", correcta: "moderno", opciones: ["raro", "útil", "bonito"] },
+  { palabra: "áspero", correcta: "suave", opciones: ["duro", "seco", "frío"] },
+  { palabra: "brillante", correcta: "opaco", opciones: ["raro", "inútil", "feo"] },
+  { palabra: "claro", correcta: "oscuro", opciones: ["caliente", "grande", "rápido"] },
+  { palabra: "dulce", correcta: "amargo", opciones: ["seco", "frío", "duro"] },
+  { palabra: "eficiente", correcta: "ineficiente", opciones: ["lento", "aburrido", "pesado"] },
+  { palabra: "flexible", correcta: "rígido", opciones: ["frío", "oscuro", "lento"] },
+  { palabra: "gracioso", correcta: "serio", opciones: ["grande", "fuerte", "raro"] },
+  { palabra: "honesto", correcta: "deshonesto", opciones: ["aburrido", "tranquilo", "lento"] },
+  { palabra: "inteligente", correcta: "torpe", opciones: ["alto", "gordo", "feo"] },
+  { palabra: "joven", correcta: "viejo", opciones: ["delgado", "alegre", "listo"] },
+  { palabra: "largo", correcta: "corto", opciones: ["oscuro", "suave", "frío"] },
+  { palabra: "mágico", correcta: "mundano", opciones: ["aburrido", "lento", "pequeño"] },
+  { palabra: "nervioso", correcta: "tranquilo", opciones: ["grande", "raro", "oscuro"] },
+  { palabra: "ordenado", correcta: "desordenado", opciones: ["lento", "frío", "pequeño"] },
+  { palabra: "paciente", correcta: "impaciente", opciones: ["alto", "fuerte", "rápido"] },
+  { palabra: "real", correcta: "ficticio", opciones: ["lento", "pequeño", "viejo"] },
+  { palabra: "ruido", correcta: "silencio", opciones: ["calma", "sombra", "frío"] },
+  { palabra: "sabio", correcta: "ignorante", opciones: ["tranquilo", "lento", "pequeño"] },
+  { palabra: "transparente", correcta: "opaco", opciones: ["sólido", "pesado", "raro"] },
+  { palabra: "útil", correcta: "inútil", opciones: ["lento", "aburrido", "pequeño"] },
+  { palabra: "valioso", correcta: "insignificante", opciones: ["pequeño", "viejo", "lento"] },
+  { palabra: "alegre", correcta: "triste", opciones: ["cansado", "aburrido", "nervioso"] },
+  { palabra: "bello", correcta: "feo", opciones: ["lento", "pequeño", "raro"] },
+  { palabra: "construir", correcta: "destruir", opciones: ["mover", "cambiar", "unir"] },
+  { palabra: "comenzar", correcta: "terminar", opciones: ["pausar", "esperar", "cambiar"] },
+  { palabra: "comprar", correcta: "vender", opciones: ["guardar", "pedir", "usar"] },
+  { palabra: "día", correcta: "noche", opciones: ["tarde", "sombra", "frío"] },
+  { palabra: "entrar", correcta: "salir", opciones: ["correr", "caminar", "mirar"] },
+  { palabra: "frío", correcta: "caliente", opciones: ["seco", "oscuro", "duro"] },
+  { palabra: "ganar", correcta: "perder", opciones: ["jugar", "correr", "empatar"] },
+  { palabra: "hablar", correcta: "callar", opciones: ["pensar", "mirar", "escuchar"] },
+  { palabra: "interior", correcta: "exterior", opciones: ["central", "lateral", "frontal"] },
+  { palabra: "juntar", correcta: "separar", opciones: ["mover", "girar", "cambiar"] },
+  { palabra: "lleno", correcta: "vacío", opciones: ["cerrado", "cubierto", "sellado"] },
+];
+
+const intrusos = [
+  { categoria: "Transportes", palabras: ["coche", "avión", "barco", "tren", "mesa"], intrusa: "mesa", explicacion: "Mesa es un mueble, no un transporte" },
+  { categoria: "Frutas", palabras: ["manzana", "pera", "zanahoria", "naranja", "fresa"], intrusa: "zanahoria", explicacion: "Zanahoria es una verdura, no una fruta" },
+  { categoria: "Animales acuáticos", palabras: ["delfín", "tiburón", "pulpo", "pato", "ballena"], intrusa: "pato", explicacion: "El pato es un ave que puede nadar pero no es acuático" },
+  { categoria: "Instrumentos musicales", palabras: ["guitarra", "violín", "piano", "tambor", "lápiz"], intrusa: "lápiz", explicacion: "Lápiz es un utensilio de escritura" },
+  { categoria: "Estaciones del año", palabras: ["primavera", "verano", "otoño", "invierno", "lunes"], intrusa: "lunes", explicacion: "Lunes es un día de la semana" },
+  { categoria: "Redes sociales", palabras: ["Instagram", "TikTok", "YouTube", "WhatsApp", "Excel"], intrusa: "Excel", explicacion: "Excel es un programa de hojas de cálculo" },
+  { categoria: "Deportes de equipo", palabras: ["fútbol", "baloncesto", "voleibol", "tenis", "rugby"], intrusa: "tenis", explicacion: "Tenis se juega individualmente o en parejas" },
+  { categoria: "Partes del cuerpo", palabras: ["cabeza", "brazo", "pierna", "corazón", "silla"], intrusa: "silla", explicacion: "Silla es un mueble, no parte del cuerpo" },
+  { categoria: "Colores", palabras: ["rojo", "azul", "amarillo", "verde", "madera"], intrusa: "madera", explicacion: "Madera es un material, no un color" },
+  { categoria: "Planetas del sistema solar", palabras: ["Marte", "Saturno", "Luna", "Júpiter", "Venus"], intrusa: "Luna", explicacion: "La Luna es el satélite natural de la Tierra, no un planeta" },
+  { categoria: "Verbos de movimiento", palabras: ["correr", "saltar", "nadar", "pensar", "caminar"], intrusa: "pensar", explicacion: "Pensar es un verbo mental, no de movimiento" },
+  { categoria: "Géneros literarios", palabras: ["novela", "poema", "cuento", "obra de teatro", "receta"], intrusa: "receta", explicacion: "Receta es un texto instructivo, no literario" },
+  { categoria: "Países europeos", palabras: ["Francia", "Alemania", "Brasil", "Italia", "Portugal"], intrusa: "Brasil", explicacion: "Brasil está en América del Sur" },
+  { categoria: "Metales", palabras: ["hierro", "plata", "oro", "plástico", "cobre"], intrusa: "plástico", explicacion: "El plástico es un polímero sintético, no un metal" },
+  { categoria: "Partes de una flor", palabras: ["pétalo", "tallo", "hoja", "raíz", "tuerca"], intrusa: "tuerca", explicacion: "Tuerca es una pieza mecánica, no parte de una flor" },
+  { categoria: "Adjetivos de tamaño", palabras: ["grande", "pequeño", "enorme", "diminuto", "rápido"], intrusa: "rápido", explicacion: "Rápido indica velocidad, no tamaño" },
+  { categoria: "Palabras agudas", palabras: ["café", "mamá", "árbol", "sofá", "balón"], intrusa: "árbol", explicacion: "Árbol es una palabra llana, no aguda" },
+  { categoria: "Sinónimos de triste", palabras: ["melancólico", "apesadumbrado", "afligido", "eufórico", "abatido"], intrusa: "eufórico", explicacion: "Eufórico significa muy alegre, lo contrario de triste" },
+  { categoria: "Tipos de narrador", palabras: ["omnisciente", "protagonista", "testigo", "externo", "metáfora"], intrusa: "metáfora", explicacion: "Metáfora es una figura retórica, no un tipo de narrador" },
+  { categoria: "Figuras retóricas", palabras: ["metáfora", "símil", "hipérbole", "ironía", "sustantivo"], intrusa: "sustantivo", explicacion: "Sustantivo es una categoría gramatical, no una figura retórica" },
+  { categoria: "Tipos de oración", palabras: ["enunciativa", "exclamativa", "interrogativa", "desiderativa", "sintagma"], intrusa: "sintagma", explicacion: "Sintagma es una unidad sintáctica, no un tipo de oración" },
+  { categoria: "Elementos de un poema", palabras: ["verso", "estrofa", "rima", "ritmo", "párrafo"], intrusa: "párrafo", explicacion: "Párrafo es una unidad de la prosa, no de la poesía" },
+  { categoria: "Vocabulario de internet", palabras: ["viral", "trending", "like", "follow", "diccionario"], intrusa: "diccionario", explicacion: "Diccionario no es vocabulario propio de internet" },
+  { categoria: "Palabras esdrújulas", palabras: ["médico", "música", "árbol", "película", "teléfono"], intrusa: "árbol", explicacion: "Árbol es una palabra llana, no esdrújula" },
+];
+
+const campos = [
+  { palabra: "guitarra", campo: "Música", opciones: ["Música", "Deporte", "Cocina"] },
+  { palabra: "semáforo", campo: "Tráfico y ciudad", opciones: ["Tráfico y ciudad", "Naturaleza", "Tecnología"] },
+  { palabra: "fotosíntesis", campo: "Biología", opciones: ["Biología", "Historia", "Literatura"] },
+  { palabra: "metáfora", campo: "Literatura", opciones: ["Literatura", "Matemáticas", "Deporte"] },
+  { palabra: "wifi", campo: "Tecnología", opciones: ["Tecnología", "Cocina", "Arte"] },
+  { palabra: "artillería", campo: "Guerra y ejército", opciones: ["Guerra y ejército", "Música", "Deporte"] },
+  { palabra: "coreografía", campo: "Danza", opciones: ["Danza", "Medicina", "Historia"] },
+  { palabra: "filibustero", campo: "Piratas y mar", opciones: ["Piratas y mar", "Gastronomía", "Ciencia"] },
+  { palabra: "teorema", campo: "Matemáticas", opciones: ["Matemáticas", "Deporte", "Arte"] },
+  { palabra: "mitología", campo: "Historia antigua", opciones: ["Historia antigua", "Deporte", "Tecnología"] },
+  { palabra: "apocalipsis", campo: "Religión", opciones: ["Religión", "Gastronomía", "Deportes"] },
+  { palabra: "quirófano", campo: "Medicina", opciones: ["Medicina", "Construcción", "Arte"] },
+  { palabra: "armonía", campo: "Música", opciones: ["Música", "Deporte", "Geografía"] },
+  { palabra: "criptomoneda", campo: "Economía digital", opciones: ["Economía digital", "Naturaleza", "Literatura"] },
+  { palabra: "gol", campo: "Deporte", opciones: ["Deporte", "Música", "Ciencia"] },
+  { palabra: "aldea", campo: "Geografía humana", opciones: ["Geografía humana", "Tecnología", "Medicina"] },
+  { palabra: "bacterias", campo: "Biología", opciones: ["Biología", "Historia", "Arte"] },
+  { palabra: "diálogo", campo: "Literatura", opciones: ["Literatura", "Matemáticas", "Deporte"] },
+  { palabra: "selfie", campo: "Tecnología y redes", opciones: ["Tecnología y redes", "Gastronomía", "Historia"] },
+  { palabra: "avalancha", campo: "Fenómenos naturales", opciones: ["Fenómenos naturales", "Cocina", "Arte"] },
+  { palabra: "acueducto", campo: "Historia y arquitectura", opciones: ["Historia y arquitectura", "Música", "Tecnología"] },
+  { palabra: "ecosistema", campo: "Ecología", opciones: ["Ecología", "Literatura", "Matemáticas"] },
+  { palabra: "streaming", campo: "Tecnología y entretenimiento", opciones: ["Tecnología y entretenimiento", "Deportes", "Historia"] },
+  { palabra: "sinfonía", campo: "Música clásica", opciones: ["Música clásica", "Gastronomía", "Deportes"] },
+  { palabra: "podio", campo: "Deportes y competición", opciones: ["Deportes y competición", "Cocina", "Literatura"] },
+  { palabra: "inflación", campo: "Economía", opciones: ["Economía", "Biología", "Arte"] },
+  { palabra: "haiku", campo: "Literatura", opciones: ["Literatura", "Medicina", "Historia"] },
+  { palabra: "drone", campo: "Tecnología", opciones: ["Tecnología", "Gastronomía", "Literatura"] },
+  { palabra: "mitocondria", campo: "Biología celular", opciones: ["Biología celular", "Historia", "Arte"] },
+  { palabra: "epidemia", campo: "Medicina", opciones: ["Medicina", "Literatura", "Deporte"] },
+];
+
+// ========================================================
+//  ESTADO DEL JUEGO
+// ========================================================
+
+const state = {
+  teamNames: ["Equipo 1", "Equipo 2"],
+  currentTeam: 0,           // 0 = equipo 1, 1 = equipo 2
+  board: Array(16).fill(null), // null | 0 | 1 (índice del equipo propietario)
+  scores: [0, 0],
+  selectedCell: null,
+  currentQuestion: null,
+  timerInterval: null,
+  timerValue: 15,
+  answered: false,
+  gameOver: false,
+  history: []
+};
+
+// ========================================================
+//  UTILIDADES
+// ========================================================
+
+/** Baraja un array y devuelve una copia */
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+/** Selecciona un elemento aleatorio de un array */
+function pick(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+/** Comprueba si hay una línea de 4 en el tablero para un equipo dado */
+function checkLineWin(board, team) {
+  // Líneas horizontales
+  for (let r = 0; r < 4; r++) {
+    if ([0,1,2,3].every(c => board[r * 4 + c] === team)) return true;
+  }
+  // Líneas verticales
+  for (let c = 0; c < 4; c++) {
+    if ([0,1,2,3].every(r => board[r * 4 + c] === team)) return true;
+  }
+  // Diagonal principal
+  if ([0,5,10,15].every(i => board[i] === team)) return true;
+  // Diagonal secundaria
+  if ([3,6,9,12].every(i => board[i] === team)) return true;
+  return false;
+}
+
+/** Comprueba si el tablero está lleno */
+function isBoardFull(board) {
+  return board.every(c => c !== null);
+}
+
+// ========================================================
+//  GENERADOR DE PREGUNTAS
+// ========================================================
+
+function generateQuestion() {
+  const tipos = ['sinonimo', 'antonimo', 'intruso', 'campo'];
+  const tipo = pick(tipos);
+
+  if (tipo === 'sinonimo') {
+    const item = pick(sinonimos);
+    // Mezclar correcta + distractores
+    const allOps = shuffle([item.correcta, ...item.opciones]);
+    return { tipo, item, allOps };
+  }
+
+  if (tipo === 'antonimo') {
+    const item = pick(antonimos);
+    const allOps = shuffle([item.correcta, ...item.opciones]);
+    return { tipo, item, allOps };
+  }
+
+  if (tipo === 'intruso') {
+    const item = pick(intrusos);
+    // Las palabras ya vienen en orden; las mezclamos para variedad
+    const shuffledPalabras = shuffle(item.palabras);
+    return { tipo, item, shuffledPalabras };
+  }
+
+  if (tipo === 'campo') {
+    const item = pick(campos);
+    const shuffledOps = shuffle(item.opciones);
+    return { tipo, item, shuffledOps };
+  }
+}
+
+// ========================================================
+//  RENDER DEL TABLERO
+// ========================================================
+
+function renderBoard() {
+  const grid = document.getElementById('board-grid');
+  grid.innerHTML = '';
+  const currentTeam = state.currentTeam;
+
+  for (let i = 0; i < 16; i++) {
+    const cell = document.createElement('div');
+    cell.className = 'cell';
+    cell.dataset.index = i;
+
+    const owner = state.board[i];
+
+    if (owner === null) {
+      // Casilla libre
+      cell.innerHTML = `<span class="cell-num">${i + 1}</span>`;
+      cell.addEventListener('click', () => handleCellClick(i));
+    } else if (owner === currentTeam) {
+      // Casilla propia — no se puede volver a elegir
+      cell.classList.add(owner === 0 ? 'team1' : 'team2');
+      cell.classList.add('disabled');
+      cell.innerHTML = getTeamIcon(owner);
+    } else {
+      // Casilla rival — se puede atacar
+      cell.classList.add(owner === 0 ? 'team1' : 'team2');
+      cell.classList.add('attackable');
+      cell.innerHTML = `${getTeamIcon(owner)}${getSwordIcon()}`;
+      cell.addEventListener('click', () => handleCellClick(i));
+    }
+
+    grid.appendChild(cell);
+  }
+}
+
+function getTeamIcon(team) {
+  // Icono de escudo pequeño para el equipo
+  const color = team === 0 ? 'var(--accent-2)' : 'var(--accent-3)';
+  return `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+  </svg>`;
+}
+
+function getSwordIcon() {
+  return `<span class="sword-icon">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5"/>
+      <line x1="13" y1="19" x2="19" y2="13"/>
+      <line x1="16" y1="16" x2="20" y2="20"/>
+      <line x1="19" y1="21" x2="21" y2="19"/>
+    </svg>
+  </span>`;
+}
+
+// ========================================================
+//  LÓGICA DE TURNO
+// ========================================================
+
+function handleCellClick(cellIndex) {
+  if (state.gameOver) return;
+  state.selectedCell = cellIndex;
+  const q = generateQuestion();
+  state.currentQuestion = q;
+  openModal(q);
+}
+
+function updateTurnIndicator() {
+  const ti = document.getElementById('turn-indicator');
+  const tn = document.getElementById('turn-name');
+  const ta = document.getElementById('turn-action');
+
+  ti.className = `turn-indicator ${state.currentTeam === 0 ? 'team1-turn' : 'team2-turn'}`;
+  tn.textContent = state.teamNames[state.currentTeam];
+
+  // Indicar si hay casillas rivales atacables
+  const hasRivalCells = state.board.some(c => c !== null && c !== state.currentTeam);
+  if (hasRivalCells) {
+    ta.textContent = 'Elige casilla libre o ataca una rival (⚔)';
+  } else {
+    ta.textContent = 'Elige una casilla';
+  }
+}
+
+function nextTurn() {
+  state.currentTeam = state.currentTeam === 0 ? 1 : 0;
+  state.selectedCell = null;
+  updateTurnIndicator();
+  renderBoard();
+}
+
+// ========================================================
+//  MODAL DE PREGUNTA
+// ========================================================
+
+function openModal(q) {
+  const overlay = document.getElementById('modal-overlay');
+  const badge = document.getElementById('modal-badge');
+  const question = document.getElementById('modal-question');
+  const word = document.getElementById('modal-word');
+  const container = document.getElementById('options-container');
+  const feedback = document.getElementById('modal-feedback');
+  const nextBtn = document.getElementById('modal-next-btn');
+
+  // Resetear estado visual
+  feedback.className = 'modal-feedback';
+  feedback.textContent = '';
+  nextBtn.style.display = 'none';
+  state.answered = false;
+
+  // Badge y pregunta según tipo
+  if (q.tipo === 'sinonimo') {
+    badge.className = 'modal-type-badge badge-sinonimo';
+    badge.textContent = 'Sinónimo';
+    question.textContent = '¿Cuál es el sinónimo de...?';
+    word.textContent = q.item.palabra;
+    renderOpciones(container, q.allOps, q.item.correcta, 'cols-2');
+  } else if (q.tipo === 'antonimo') {
+    badge.className = 'modal-type-badge badge-antonimo';
+    badge.textContent = 'Antónimo';
+    question.textContent = '¿Cuál es el antónimo de...?';
+    word.textContent = q.item.palabra;
+    renderOpciones(container, q.allOps, q.item.correcta, 'cols-2');
+  } else if (q.tipo === 'intruso') {
+    badge.className = 'modal-type-badge badge-intruso';
+    badge.textContent = 'El intruso';
+    question.textContent = `Categoría: ${q.item.categoria} — ¿cuál NO pertenece?`;
+    word.textContent = '';
+    renderIntrusoGrid(container, q.shuffledPalabras, q.item.intrusa);
+  } else if (q.tipo === 'campo') {
+    badge.className = 'modal-type-badge badge-campo';
+    badge.textContent = 'Campo semántico';
+    question.textContent = '¿A qué campo semántico pertenece...?';
+    word.textContent = q.item.palabra;
+    renderOpciones(container, q.shuffledOps, q.item.campo, 'cols-3');
+  }
+
+  overlay.classList.add('open');
+  startTimer();
+}
+
+function renderOpciones(container, opciones, correcta, colsClass) {
+  container.innerHTML = `<div class="options-grid ${colsClass}"></div>`;
+  const grid = container.querySelector('.options-grid');
+  opciones.forEach(op => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.textContent = op;
+    btn.addEventListener('click', () => handleAnswer(op === correcta, btn, correcta));
+    grid.appendChild(btn);
+  });
+}
+
+function renderIntrusoGrid(container, palabras, intrusa) {
+  container.innerHTML = `<div class="intruso-grid"></div>`;
+  const grid = container.querySelector('.intruso-grid');
+  palabras.forEach(p => {
+    const btn = document.createElement('button');
+    btn.className = 'intruso-btn';
+    btn.textContent = p;
+    btn.addEventListener('click', () => handleIntrusoAnswer(p === intrusa, btn, intrusa, grid));
+    grid.appendChild(btn);
+  });
+}
+
+// ========================================================
+//  RESPUESTA Y FEEDBACK
+// ========================================================
+
+function handleAnswer(isCorrect, clickedBtn, correcta) {
+  if (state.answered) return;
+  state.answered = true;
+  stopTimer();
+
+  // Marcar botón correcto
+  const allBtns = clickedBtn.closest('.options-grid').querySelectorAll('.option-btn');
+  allBtns.forEach(b => {
+    b.disabled = true;
+    if (b.textContent === correcta) b.classList.add('correct-ans');
+  });
+  if (!isCorrect) clickedBtn.classList.add('wrong-ans');
+
+  showFeedback(isCorrect, correcta);
+  processResult(isCorrect);
+}
+
+function handleIntrusoAnswer(isCorrect, clickedBtn, intrusa, grid) {
+  if (state.answered) return;
+  state.answered = true;
+  stopTimer();
+
+  const allBtns = grid.querySelectorAll('.intruso-btn');
+  allBtns.forEach(b => {
+    b.disabled = true;
+    if (b.textContent === intrusa) b.classList.add('correct-ans');
+  });
+  if (!isCorrect) clickedBtn.classList.add('wrong-ans');
+
+  const item = state.currentQuestion.item;
+  showFeedback(isCorrect, intrusa, item.explicacion);
+  processResult(isCorrect);
+}
+
+function showFeedback(isCorrect, correcta, extra) {
+  const fb = document.getElementById('modal-feedback');
+  const nextBtn = document.getElementById('modal-next-btn');
+
+  if (isCorrect) {
+    fb.className = 'modal-feedback show fb-correct';
+    fb.textContent = `Correcto. La respuesta es "${correcta}".`;
+  } else {
+    fb.className = 'modal-feedback show fb-wrong';
+    fb.textContent = `Incorrecto. La respuesta correcta era "${correcta}".${extra ? ' ' + extra : ''}`;
+  }
+
+  nextBtn.style.display = 'inline-flex';
+}
+
+function showTimeoutFeedback(correcta) {
+  const fb = document.getElementById('modal-feedback');
+  const nextBtn = document.getElementById('modal-next-btn');
+
+  fb.className = 'modal-feedback show fb-time';
+  fb.textContent = `Tiempo agotado. La respuesta correcta era "${correcta}".`;
+  nextBtn.style.display = 'inline-flex';
+
+  // Deshabilitar todos los botones
+  document.querySelectorAll('.option-btn, .intruso-btn').forEach(b => b.disabled = true);
+}
+
+/** Actualiza el tablero según si se acertó o no */
+function processResult(isCorrect) {
+  const idx = state.selectedCell;
+  const prevOwner = state.board[idx];
+  const teamIdx = state.currentTeam;
+
+  if (isCorrect) {
+    // Quitar un punto al equipo anterior si era rival
+    if (prevOwner !== null && prevOwner !== teamIdx) {
+      state.scores[prevOwner] = Math.max(0, state.scores[prevOwner] - 1);
+    }
+    state.board[idx] = teamIdx;
+    state.scores[teamIdx]++;
+  }
+  // Si falla: la casilla queda libre (si era libre sigue libre; si era del rival, el rival la conserva)
+
+  // Registrar en historial
+  addHistoryItem(isCorrect, idx);
+
+  // Actualizar marcador
+  updateScoreboard();
+}
+
+function addHistoryItem(isCorrect, cellIndex) {
+  const q = state.currentQuestion;
+  const teamName = state.teamNames[state.currentTeam];
+  const teamClass = state.currentTeam === 0 ? 't1' : 't2';
+
+  let texto = '';
+  if (q.tipo === 'sinonimo' || q.tipo === 'antonimo') {
+    texto = `"${q.item.palabra}"`;
+  } else if (q.tipo === 'intruso') {
+    texto = `Intruso en ${q.item.categoria}`;
+  } else {
+    texto = `Campo: "${q.item.palabra}"`;
+  }
+
+  const item = document.createElement('div');
+  item.className = `history-item ${isCorrect ? 'correct' : 'wrong'} ${teamClass}`;
+  item.innerHTML = `<span class="hi-team">${teamName}</span> — Casilla ${cellIndex + 1}: ${texto} ${isCorrect ? '✓' : '✗'}`;
+
+  const list = document.getElementById('history-list');
+  list.prepend(item);
+  state.history.push({ team: state.currentTeam, cell: cellIndex, correct: isCorrect });
+}
+
+function updateScoreboard() {
+  document.getElementById('score-count-1').textContent = state.scores[0];
+  document.getElementById('score-count-2').textContent = state.scores[1];
+}
+
+// ========================================================
+//  TIMER
+// ========================================================
+
+function startTimer() {
+  state.timerValue = 15;
+  const bar = document.getElementById('timer-bar');
+  const count = document.getElementById('timer-count');
+
+  bar.style.width = '100%';
+  bar.className = 'timer-bar';
+  count.className = 'timer-count';
+  count.textContent = '15';
+
+  state.timerInterval = setInterval(() => {
+    state.timerValue--;
+    count.textContent = state.timerValue;
+    bar.style.width = (state.timerValue / 15 * 100) + '%';
+
+    if (state.timerValue <= 5) {
+      bar.className = 'timer-bar urgent';
+      count.className = 'timer-count urgent';
+    }
+
+    if (state.timerValue <= 0) {
+      stopTimer();
+      if (!state.answered) {
+        state.answered = true;
+        // Determinar la respuesta correcta según el tipo
+        let correcta = '';
+        const q = state.currentQuestion;
+        if (q.tipo === 'sinonimo' || q.tipo === 'antonimo') correcta = q.item.correcta;
+        else if (q.tipo === 'intruso') correcta = q.item.intrusa;
+        else if (q.tipo === 'campo') correcta = q.item.campo;
+
+        showTimeoutFeedback(correcta);
+        processResult(false); // tiempo = fallo
+      }
+    }
+  }, 1000);
+}
+
+function stopTimer() {
+  if (state.timerInterval) {
+    clearInterval(state.timerInterval);
+    state.timerInterval = null;
+  }
+}
+
+// ========================================================
+//  CIERRE DEL MODAL Y FIN DE TURNO
+// ========================================================
+
+document.getElementById('modal-next-btn').addEventListener('click', () => {
+  closeModal();
+});
+
+function closeModal() {
+  stopTimer();
+  document.getElementById('modal-overlay').classList.remove('open');
+
+  // Comprobar condiciones de victoria tras actualizar el tablero
+  const winTeam0 = checkLineWin(state.board, 0);
+  const winTeam1 = checkLineWin(state.board, 1);
+  const full = isBoardFull(state.board);
+
+  if (winTeam0 || winTeam1) {
+    const winner = winTeam0 ? 0 : 1;
+    setTimeout(() => showResults(winner, 'line'), 300);
+    return;
+  }
+
+  if (full) {
+    const winner = state.scores[0] > state.scores[1] ? 0
+                 : state.scores[1] > state.scores[0] ? 1
+                 : -1; // empate
+    setTimeout(() => showResults(winner, 'count'), 300);
+    return;
+  }
+
+  // Continuar con siguiente turno
+  nextTurn();
+}
+
+// ========================================================
+//  PANTALLA DE RESULTADOS
+// ========================================================
+
+function showResults(winner, reason) {
+  state.gameOver = true;
+
+  // Badge ganador
+  const badge = document.getElementById('winner-badge');
+  const title = document.getElementById('results-title');
+  const subtitle = document.getElementById('results-subtitle');
+
+  if (winner === -1) {
+    badge.className = 'winner-badge draw';
+    badge.textContent = 'Empate';
+    title.textContent = 'Nadie gana';
+    subtitle.textContent = 'Mismas casillas conquistadas. ¡Revancha!';
+  } else {
+    badge.className = `winner-badge t${winner + 1}`;
+    badge.textContent = 'Ganador';
+    title.textContent = state.teamNames[winner];
+    if (reason === 'line') {
+      subtitle.textContent = '¡Ha completado una línea de 4 casillas!';
+    } else {
+      subtitle.textContent = `¡Ha controlado más casillas! (${state.scores[winner]} vs ${state.scores[winner === 0 ? 1 : 0]})`;
+    }
+  }
+
+  // Puntuaciones finales
+  document.getElementById('rsb-name-1').textContent = state.teamNames[0];
+  document.getElementById('rsb-name-2').textContent = state.teamNames[1];
+  document.getElementById('rsb-num-1').textContent = state.scores[0];
+  document.getElementById('rsb-num-2').textContent = state.scores[1];
+
+  // Marcar ganador en las cajas
+  const box1 = document.getElementById('rsb-1');
+  const box2 = document.getElementById('rsb-2');
+  box1.classList.remove('winner-box');
+  box2.classList.remove('winner-box');
+  if (winner === 0) box1.classList.add('winner-box');
+  if (winner === 1) box2.classList.add('winner-box');
+
+  // Mini tablero final
+  const miniGrid = document.getElementById('mini-grid');
+  miniGrid.innerHTML = '';
+  state.board.forEach(owner => {
+    const cell = document.createElement('div');
+    cell.className = 'mini-cell';
+    if (owner === 0) cell.classList.add('t1');
+    if (owner === 1) cell.classList.add('t2');
+    miniGrid.appendChild(cell);
+  });
+
+  showScreen('results');
+}
+
+// ========================================================
+//  GESTIÓN DE PANTALLAS
+// ========================================================
+
+function showScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(`screen-${name}`).classList.add('active');
+}
+
+// ========================================================
+//  INICIO DE PARTIDA
+// ========================================================
+
+document.getElementById('btn-start').addEventListener('click', () => {
+  const name1 = document.getElementById('input-team1').value.trim() || 'Equipo 1';
+  const name2 = document.getElementById('input-team2').value.trim() || 'Equipo 2';
+  startGame(name1, name2);
+});
+
+function startGame(name1, name2) {
+  // Resetear estado
+  state.teamNames = [name1, name2];
+  state.currentTeam = 0;
+  state.board = Array(16).fill(null);
+  state.scores = [0, 0];
+  state.selectedCell = null;
+  state.currentQuestion = null;
+  state.answered = false;
+  state.gameOver = false;
+  state.history = [];
+
+  // Actualizar nombres en el panel lateral
+  document.getElementById('score-name-1').textContent = name1;
+  document.getElementById('score-name-2').textContent = name2;
+  document.getElementById('history-list').innerHTML = '';
+
+  updateScoreboard();
+  updateTurnIndicator();
+  renderBoard();
+  showScreen('game');
+}
+
+// ========================================================
+//  BOTONES DE RESULTADOS
+// ========================================================
+
+document.getElementById('btn-new-game').addEventListener('click', () => {
+  showScreen('setup');
+});
+
+document.getElementById('btn-home-results').addEventListener('click', () => {
+  window.location.href = '/';
+});
+
+document.getElementById('btn-abandon').addEventListener('click', () => {
+  if (!confirm('¿Terminar la partida ahora?')) return;
+  stopTimer();
+  document.getElementById('modal-overlay').classList.remove('open');
+  // Calcular resultado por casillas actuales
+  const winner = state.scores[0] > state.scores[1] ? 0
+               : state.scores[1] > state.scores[0] ? 1
+               : -1;
+  showResults(winner, 'count');
+});
+
+// ========================================================
+//  TOGGLE TEMA
+// ========================================================
+
+const themeToggle = document.getElementById('theme-toggle');
+const iconMoon = document.getElementById('icon-moon');
+const iconSun = document.getElementById('icon-sun');
+
+themeToggle.addEventListener('click', () => {
+  document.body.classList.toggle('light-mode');
+  const isLight = document.body.classList.contains('light-mode');
+  iconMoon.style.display = isLight ? 'none' : 'block';
+  iconSun.style.display = isLight ? 'block' : 'none';
+});
+
+// ========================================================
+//  TECLA ENTER en setup
+// ========================================================
+
+document.getElementById('input-team1').addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('input-team2').focus();
+});
+document.getElementById('input-team2').addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('btn-start').click();
+});
+</script>
+</body>
+</html>

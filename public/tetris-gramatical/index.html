@@ -1,0 +1,1802 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tetris Gramatical — 2º ESO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg-primary: #050505;
+    --bg-secondary: #0a0a0a;
+    --bg-card: #111111;
+    --bg-card-hover: #1a1a1a;
+    --text-primary: #ffffff;
+    --text-secondary: #888888;
+    --text-muted: #444444;
+    --border: rgba(255,255,255,0.08);
+    --accent-1: #00d4aa;
+    --accent-2: #00d4ff;
+    --accent-3: #f5a623;
+    --accent-4: #ff6b6b;
+    --accent-5: #a78bfa;
+    --accent-6: #4ade80;
+    --success: #22c55e;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+}
+body.light-mode {
+    --bg-primary: #f5f5f5;
+    --bg-secondary: #e8e8e8;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f0f0f0;
+    --text-primary: #111111;
+    --text-secondary: #666666;
+    --text-muted: #999999;
+    --border: rgba(0,0,0,0.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s, color 0.3s;
+    overflow: hidden;
+}
+
+/* ── NAV BAR ── */
+.nav-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+}
+.nav-home {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+.nav-home:hover { color: var(--text-primary); }
+.nav-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+.btn-theme {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: border-color 0.2s, color 0.2s;
+}
+.btn-theme:hover { border-color: var(--accent-1); color: var(--accent-1); }
+
+/* ── SCREENS ── */
+.screen {
+    display: none;
+    width: 100%;
+    max-width: 860px;
+    padding: 72px 24px 24px;
+    min-height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+}
+.screen.active { display: flex; }
+
+/* ── SETUP SCREEN ── */
+.setup-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 520px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+.setup-title {
+    font-size: 32px;
+    font-weight: 900;
+    text-align: center;
+    background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.setup-subtitle {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 6px;
+}
+.field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.field-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+}
+/* ── LISTA DE PARTICIPANTES ── */
+.field-label-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.btn-add-player {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 4px 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent-1);
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+}
+.btn-add-player:hover { border-color: var(--accent-1); background: rgba(0,212,170,0.08); }
+.participants-list { display: flex; flex-direction: column; gap: 8px; }
+.participant-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.participant-row .p-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+.participant-row input { flex: 1; }
+.btn-remove-player {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    flex-shrink: 0;
+}
+.btn-remove-player:hover { border-color: var(--danger); color: var(--danger); }
+input[type="text"] {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+}
+input[type="text"]:focus { border-color: var(--accent-1); }
+.difficulty-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+.diff-btn {
+    background: var(--bg-secondary);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 8px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    transition: border-color 0.2s, background 0.2s;
+    color: var(--text-primary);
+}
+.diff-btn .diff-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+.diff-btn .diff-cats {
+    font-size: 11px;
+    color: var(--text-secondary);
+    text-align: center;
+    line-height: 1.4;
+}
+.diff-btn.selected {
+    border-color: var(--accent-1);
+    background: rgba(0,212,170,0.08);
+}
+.diff-btn:hover:not(.selected) { border-color: rgba(255,255,255,0.2); }
+.btn-start {
+    background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+    border: none;
+    border-radius: 14px;
+    padding: 16px;
+    color: #000;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    letter-spacing: 0.03em;
+}
+.btn-start:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn-start:active { transform: translateY(0); }
+
+/* ── PRE-NIVEL SCREEN ── */
+.prenivel-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 52px 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 480px;
+    width: 100%;
+}
+.prenivel-nivel {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-secondary);
+}
+.prenivel-big {
+    font-size: 56px;
+    font-weight: 900;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.prenivel-info {
+    display: flex;
+    gap: 20px;
+}
+.prenivel-badge {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-align: center;
+}
+.prenivel-badge span {
+    display: block;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-top: 2px;
+}
+.btn-listo {
+    background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+    border: none;
+    border-radius: 14px;
+    padding: 14px 40px;
+    color: #000;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    margin-top: 8px;
+}
+.btn-listo:hover { opacity: 0.9; }
+
+/* ── GAME SCREEN ── */
+#screen-game {
+    padding: 56px 16px 16px;
+    justify-content: flex-start;
+    gap: 12px;
+    max-width: 100%;
+}
+
+.game-scoreboard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+    max-width: 700px;
+}
+.score-team {
+    flex: 1;
+    min-width: 120px;
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: border-color 0.3s;
+}
+.score-team.active-team { border-color: var(--current-color); }
+.score-team .team-indicator {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--current-color);
+    flex-shrink: 0;
+}
+.score-team .team-info { flex: 1; }
+.score-team .team-name {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+}
+.score-team .team-score {
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--text-primary);
+}
+.score-team .powerup-flag {
+    font-size: 18px;
+    display: none;
+}
+.score-team.has-x2 .powerup-flag { display: block; }
+
+.game-progress-bar {
+    width: 100%;
+    max-width: 700px;
+    height: 6px;
+    background: var(--bg-card);
+    border-radius: 3px;
+    overflow: hidden;
+}
+.game-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+    border-radius: 3px;
+    transition: width 0.1s linear;
+    width: 100%;
+}
+
+.game-status-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 700px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+.status-nivel { }
+.status-turno { color: var(--text-secondary); }
+.status-palabra-num { }
+
+/* ── ZONA DE CAÍDA ── */
+.fall-zone {
+    width: 100%;
+    max-width: 700px;
+    flex: 1;
+    min-height: 300px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.fall-zone-grid {
+    position: absolute;
+    inset: 0;
+    display: flex;
+}
+.fall-lane {
+    flex: 1;
+    border-right: 1px solid var(--border);
+    opacity: 0.3;
+}
+.fall-lane:last-child { border-right: none; }
+
+.falling-word {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-card-hover);
+    border: 2px solid var(--word-color, var(--accent-1));
+    border-radius: 12px;
+    padding: 10px 22px;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text-primary);
+    white-space: nowrap;
+    z-index: 10;
+    box-shadow: 0 0 20px var(--word-glow, rgba(0,212,170,0.3));
+    user-select: none;
+}
+
+@keyframes caer {
+    from { top: -70px; }
+    to   { top: calc(100% - 10px); }
+}
+
+.falling-word.cayendo {
+    animation: caer linear forwards;
+}
+
+/* Animación acierto: deslizar hacia abajo y desaparecer */
+@keyframes acierto-anim {
+    0%   { transform: translateX(-50%) scale(1); opacity: 1; }
+    40%  { transform: translateX(-50%) scale(1.15); opacity: 1; }
+    100% { transform: translateX(-50%) scale(0.7) translateY(60px); opacity: 0; }
+}
+.falling-word.acierto {
+    animation: acierto-anim 0.5s ease forwards !important;
+    border-color: var(--success) !important;
+    box-shadow: 0 0 30px rgba(34,197,94,0.6) !important;
+}
+
+/* Animación fallo: romper */
+@keyframes fallo-anim {
+    0%   { transform: translateX(-50%) scale(1) rotate(0deg); opacity: 1; }
+    30%  { transform: translateX(-50%) scale(1.1) rotate(-8deg); opacity: 0.8; }
+    100% { transform: translateX(-50%) scale(0) rotate(35deg); opacity: 0; }
+}
+.falling-word.fallo {
+    animation: fallo-anim 0.5s ease forwards !important;
+    border-color: var(--danger) !important;
+    box-shadow: 0 0 30px rgba(239,68,68,0.6) !important;
+}
+
+/* Flash en zona */
+@keyframes flash-verde {
+    0%, 100% { background: var(--bg-card); }
+    50% { background: rgba(34,197,94,0.12); }
+}
+@keyframes flash-rojo {
+    0%, 100% { background: var(--bg-card); }
+    50% { background: rgba(239,68,68,0.12); }
+}
+.fall-zone.flash-acierto { animation: flash-verde 0.4s ease; }
+.fall-zone.flash-fallo   { animation: flash-rojo 0.4s ease; }
+
+/* Power-up flotante en zona */
+.powerup-notice {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg-secondary);
+    border: 2px solid var(--accent-3);
+    border-radius: 14px;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--accent-3);
+    z-index: 20;
+    pointer-events: none;
+    opacity: 0;
+}
+@keyframes powerup-show {
+    0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.7); }
+    20%  { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
+    80%  { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+}
+.powerup-notice.show {
+    animation: powerup-show 2.5s ease forwards;
+}
+.powerup-notice svg { width: 22px; height: 22px; }
+
+/* Power-up activo badge */
+.powerup-active-badge {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: rgba(245,166,35,0.15);
+    border: 1px solid var(--accent-3);
+    border-radius: 8px;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent-3);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    z-index: 15;
+}
+
+/* ── COLUMNAS ── */
+.columns-area {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    gap: 8px;
+}
+
+.col-btn {
+    flex: 1;
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 8px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    transition: border-color 0.15s, background 0.15s, transform 0.1s;
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    overflow: hidden;
+    min-width: 0;
+}
+.col-btn:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: var(--col-color);
+    transform: translateY(-2px);
+}
+.col-btn:active {
+    transform: translateY(0) scale(0.97);
+}
+.col-btn .col-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--col-color);
+    flex-shrink: 0;
+    box-shadow: 0 0 8px var(--col-color);
+}
+.col-btn .col-name {
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.2;
+    color: var(--col-color);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+
+/* Flash de columna */
+@keyframes col-flash-ok {
+    0%, 100% { background: var(--bg-card); }
+    50% { background: rgba(34,197,94,0.2); border-color: var(--success); }
+}
+@keyframes col-flash-err {
+    0%, 100% { background: var(--bg-card); }
+    50% { background: rgba(239,68,68,0.2); border-color: var(--danger); }
+}
+@keyframes col-glow-hint {
+    0%, 100% { box-shadow: none; }
+    50% { box-shadow: 0 0 24px var(--col-color); border-color: var(--col-color); }
+}
+.col-btn.flash-ok  { animation: col-flash-ok 0.4s ease; }
+.col-btn.flash-err { animation: col-flash-err 0.4s ease; }
+.col-btn.hint-glow { animation: col-glow-hint 1s ease; }
+
+/* Feedback float */
+.feedback-float {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    font-weight: 900;
+    pointer-events: none;
+    z-index: 200;
+    opacity: 0;
+}
+@keyframes feedback-rise {
+    0%   { opacity: 1; transform: translate(-50%, -50%) scale(0.8); }
+    50%  { opacity: 1; transform: translate(-50%, calc(-50% - 30px)) scale(1.1); }
+    100% { opacity: 0; transform: translate(-50%, calc(-50% - 70px)) scale(1); }
+}
+.feedback-float.show {
+    animation: feedback-rise 0.8s ease forwards;
+}
+
+/* Puntos float */
+.points-float {
+    position: absolute;
+    font-size: 18px;
+    font-weight: 900;
+    pointer-events: none;
+    z-index: 201;
+    opacity: 0;
+    left: 50%;
+}
+@keyframes points-rise {
+    0%   { opacity: 1; transform: translateX(-50%) translateY(0); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(-50px); }
+}
+.points-float.show {
+    animation: points-rise 0.9s ease forwards;
+}
+
+/* ── ENTRE TURNOS ── */
+.entreturnos-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 44px;
+    text-align: center;
+    max-width: 440px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.et-title {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+}
+.et-scores {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+}
+.et-score-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+.et-score-block .et-team-name {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+.et-score-block .et-team-score {
+    font-size: 44px;
+    font-weight: 900;
+    line-height: 1;
+}
+.et-vs { font-size: 16px; font-weight: 700; color: var(--text-muted); align-self: center; }
+.et-next-info {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+.btn-siguiente {
+    background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+    border: none;
+    border-radius: 12px;
+    padding: 13px 32px;
+    color: #000;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+.btn-siguiente:hover { opacity: 0.9; }
+
+/* ── RESULTADOS ── */
+.resultado-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 52px 40px;
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+.resultado-trophy {
+    font-size: 64px;
+    line-height: 1;
+}
+.resultado-ganador-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+}
+.resultado-ganador-name {
+    font-size: 40px;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--accent-3), var(--accent-1));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+}
+.resultado-ganador-name.empate {
+    background: linear-gradient(135deg, var(--accent-2), var(--accent-5));
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+.resultado-scores {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+}
+.res-score-block {
+    flex: 1;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.res-score-block.ganador-block { border-color: var(--accent-3); }
+.res-team-name {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+}
+.res-team-score {
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 1;
+}
+.btn-nueva {
+    background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+    border: none;
+    border-radius: 14px;
+    padding: 15px 40px;
+    color: #000;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    margin-top: 8px;
+}
+.btn-nueva:hover { opacity: 0.9; }
+
+/* ── Animación ganador ── */
+@keyframes ganador-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+}
+.resultado-ganador-name { animation: ganador-pulse 1.5s ease infinite; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 540px) {
+    .col-btn .col-name { font-size: 9px; }
+    .falling-word { font-size: 18px; padding: 8px 16px; }
+    .columns-area { gap: 5px; }
+    .col-btn { padding: 10px 4px; }
+    .setup-card { padding: 28px 20px; }
+    .difficulty-grid { gap: 6px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV BAR -->
+<nav class="nav-bar">
+    <a href="/" class="nav-home">
+        <svg viewBox="0 0 100 100" width="28" height="28">
+            <polygon points="50,5 95,82 5,82" fill="currentColor"/>
+            <line x1="50" y1="56" x2="50" y2="5" stroke="var(--bg-primary)" stroke-width="4"/>
+            <line x1="50" y1="56" x2="95" y2="82" stroke="var(--bg-primary)" stroke-width="4"/>
+            <line x1="50" y1="56" x2="5" y2="82" stroke="var(--bg-primary)" stroke-width="4"/>
+        </svg>
+    </a>
+    <span class="nav-title">Tetris Gramatical</span>
+    <button class="btn-theme" id="btnTheme" title="Cambiar tema">
+        <!-- moon icon -->
+        <svg id="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        <!-- sun icon -->
+        <svg id="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+    </button>
+</nav>
+
+<!-- SCREEN: SETUP -->
+<div class="screen active" id="screen-setup">
+    <div class="setup-card">
+        <div>
+            <div class="setup-title">Tetris Gramatical</div>
+            <div class="setup-subtitle">Clasifica las palabras antes de que lleguen abajo</div>
+        </div>
+
+        <div class="field-group">
+            <div class="field-label-row">
+                <span class="field-label">Participantes</span>
+                <button class="btn-add-player" id="btnAddPlayer">+ Añadir</button>
+            </div>
+            <div class="participants-list" id="participantsList"></div>
+        </div>
+
+        <div class="field-group">
+            <div class="field-label">Dificultad</div>
+            <div class="difficulty-grid">
+                <button class="diff-btn selected" data-diff="facil">
+                    <div class="diff-name">Facil</div>
+                    <div class="diff-cats">Sustantivo<br>Adjetivo · Verbo</div>
+                </button>
+                <button class="diff-btn" data-diff="medio">
+                    <div class="diff-name">Medio</div>
+                    <div class="diff-cats">+ Adverbio<br>Determinante</div>
+                </button>
+                <button class="diff-btn" data-diff="dificil">
+                    <div class="diff-name">Dificil</div>
+                    <div class="diff-cats">+ Pronombre<br>(6 categorias)</div>
+                </button>
+            </div>
+        </div>
+
+        <button class="btn-start" id="btnStart">Comenzar partida</button>
+    </div>
+</div>
+
+<!-- SCREEN: PRE-NIVEL -->
+<div class="screen" id="screen-prenivel">
+    <div class="prenivel-card">
+        <div class="prenivel-nivel" id="pn-nivel-label">NIVEL 1</div>
+        <div class="prenivel-big" id="pn-big">Nivel 1</div>
+        <div class="prenivel-info">
+            <div class="prenivel-badge">
+                Velocidad
+                <span id="pn-velocidad">7 segundos</span>
+            </div>
+            <div class="prenivel-badge">
+                Palabras
+                <span>10 por nivel</span>
+            </div>
+            <div class="prenivel-badge" id="pn-turno-badge">
+                Turno
+                <span id="pn-turno-equipo" style="color: var(--accent-1)">—</span>
+            </div>
+        </div>
+        <button class="btn-listo" id="btnListo">¡Listo!</button>
+    </div>
+</div>
+
+<!-- SCREEN: JUEGO -->
+<div class="screen" id="screen-game">
+
+    <!-- Marcador dinámico (generado por JS) -->
+    <div class="game-scoreboard" id="game-scoreboard"></div>
+
+    <!-- Barra de progreso tiempo -->
+    <div class="game-progress-bar">
+        <div class="game-progress-fill" id="progressFill"></div>
+    </div>
+
+    <!-- Info nivel/turno/palabra -->
+    <div class="game-status-bar">
+        <span class="status-nivel" id="status-nivel">Nivel 1</span>
+        <span class="status-turno" id="status-turno">Turno: Equipo 1</span>
+        <span class="status-palabra-num" id="status-palabra">Palabra 1/10</span>
+    </div>
+
+    <!-- Zona de caída -->
+    <div class="fall-zone" id="fallZone">
+        <div class="fall-zone-grid" id="fallGrid"></div>
+        <div class="falling-word" id="fallingWord" style="display:none">palabra</div>
+        <div class="powerup-notice" id="powerupNotice">
+            <span id="powerupNoticeIcon"></span>
+            <span id="powerupNoticeText"></span>
+        </div>
+        <div class="powerup-active-badge" id="powerupActiveBadge" style="display:none">
+            <span id="powerupBadgeIcon"></span>
+            <span id="powerupBadgeText"></span>
+        </div>
+    </div>
+
+    <!-- Columnas -->
+    <div class="columns-area" id="columnsArea"></div>
+
+</div>
+
+<!-- FEEDBACK FLOTANTE -->
+<div class="feedback-float" id="feedbackFloat"></div>
+
+<!-- SCREEN: ENTRE TURNOS -->
+<div class="screen" id="screen-entreturnos">
+    <div class="entreturnos-card">
+        <div class="et-title" id="et-titulo">Fin del turno</div>
+        <div class="et-scores" id="et-scores"></div>
+        <div class="et-next-info" id="et-next-info">Siguiente turno...</div>
+        <button class="btn-siguiente" id="btnSiguiente">Continuar</button>
+    </div>
+</div>
+
+<!-- SCREEN: RESULTADOS -->
+<div class="screen" id="screen-resultado">
+    <div class="resultado-card">
+        <div class="resultado-trophy" id="res-trophy">🏆</div>
+        <div>
+            <div class="resultado-ganador-label" id="res-ganador-label">¡Ganador!</div>
+            <div class="resultado-ganador-name" id="res-ganador-name">Equipo 1</div>
+        </div>
+        <div class="resultado-scores" id="resultado-scores"></div>
+        <button class="btn-nueva" id="btnNueva">Nueva partida</button>
+    </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// BANCO DE PALABRAS
+// ═══════════════════════════════════════════════════════
+const palabrasPorCategoria = {
+    sustantivo: [
+        "perro","casa","libro","agua","sol","ciudad","amigo","mesa","nube","río",
+        "libertad","silencio","tristeza","aventura","tecnología","música","historia","problema","solución","resultado",
+        "correr","bailar","canto","vuelo","sueño","juego","llanto","amor","odio","miedo",
+        "pantalla","corazón","árbol","estrella","montaña","playa","jardín","ventana","espejo","camino"
+    ],
+    adjetivo: [
+        "rojo","alto","triste","feliz","grande","pequeño","bonito","feo","rápido","lento",
+        "brillante","oscuro","tranquilo","nervioso","inteligente","valiente","generoso","curioso","amable","elegante",
+        "principal","siguiente","último","primero","próximo","libre","sano","claro","medio","mismo",
+        "divertido","aburrido","emocionante","misterioso","antiguo","moderno","frío","caliente","suave","áspero"
+    ],
+    verbo: [
+        "correr","saltar","reír","llorar","comer","dormir","hablar","escuchar","jugar","cantar",
+        "aprender","recordar","olvidar","construir","destruir","imaginar","descubrir","explorar","comprender","analizar",
+        "corrían","saltamos","ríen","lloraba","comió","durmieron","hablaré","escucharás","jugamos","cantará",
+        "bailar","nadar","volar","escribir","leer","pensar","soñar","crear","viajar","descubrir"
+    ],
+    adverbio: [
+        "aquí","hoy","siempre","nunca","muy","poco","bien","mal","allí","ya",
+        "rápidamente","lentamente","claramente","probablemente","seguramente","constantemente","frecuentemente","raramente","fácilmente","difícilmente",
+        "también","tampoco","todavía","además","mientras","entonces","luego","finalmente","primero","después",
+        "bastante","demasiado","apenas","casi","exactamente","aproximadamente","definitivamente","obviamente","básicamente","literalmente"
+    ],
+    determinante: [
+        "el","la","los","las","un","una","este","esta","mi","tu",
+        "aquel","aquella","nuestro","vuestra","algún","ningún","todo","toda","mucho","poco",
+        "cada","ambos","varios","cualquier","otro","mismo","semejante","tal","cierto","diferente",
+        "sus","unos","unas","ese","esa","esos","esas","estos","aquellos","bastante"
+    ],
+    pronombre: [
+        "yo","tú","él","ella","nosotros","vosotros","ellos","ellas","me","te",
+        "algo","alguien","nada","nadie","se","nos","le","lo","les","la",
+        "quien","cual","cuanto","uno","una","esto","eso","aquello","mismo","sí",
+        "mí","ti","conmigo","contigo","consigo","os","les","todo","todos","cualquiera"
+    ]
+};
+
+// Colores por categoría
+const COLORES = {
+    sustantivo:   { color: '#00d4aa', glow: 'rgba(0,212,170,0.3)' },
+    adjetivo:     { color: '#a78bfa', glow: 'rgba(167,139,250,0.3)' },
+    verbo:        { color: '#f5a623', glow: 'rgba(245,166,35,0.3)' },
+    adverbio:     { color: '#00d4ff', glow: 'rgba(0,212,255,0.3)' },
+    determinante: { color: '#f59e0b', glow: 'rgba(245,158,11,0.3)' },
+    pronombre:    { color: '#ff6b6b', glow: 'rgba(255,107,107,0.3)' }
+};
+
+// Columnas por dificultad
+const COLUMNAS = {
+    facil:   ['sustantivo', 'adjetivo', 'verbo'],
+    medio:   ['sustantivo', 'adjetivo', 'verbo', 'adverbio', 'determinante'],
+    dificil: ['sustantivo', 'adjetivo', 'verbo', 'adverbio', 'determinante', 'pronombre']
+};
+
+// Velocidades por nivel (ms) — generosas para dar margen de reacción
+const VELOCIDADES = { 1: 7000, 2: 5000, 3: 3000 };
+
+// Power-ups
+const POWERUPS = ['congelar', 'pista', 'x2'];
+const POWERUP_INFO = {
+    congelar: {
+        icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/><path d="M8 2l4 4 4-4"/><path d="M8 22l4-4 4 4"/></svg>`,
+        texto: 'Congelado: +3s extra',
+        badge: 'Congelando...'
+    },
+    pista: {
+        icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>`,
+        texto: 'Pista: columna destacada',
+        badge: 'Pista activa'
+    },
+    x2: {
+        icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+        texto: 'x2: doble puntos',
+        badge: 'x2 activo'
+    }
+};
+
+// Paleta de colores para hasta 8 participantes
+const PALETA = ['#00d4aa','#a78bfa','#f5a623','#00d4ff','#ff6b6b','#4ade80','#f472b6','#facc15'];
+
+// ═══════════════════════════════════════════════════════
+// GESTIÓN DE PARTICIPANTES EN SETUP
+// ═══════════════════════════════════════════════════════
+let numParticipantes = 2;
+const MAX_PARTICIPANTES = 8;
+
+function renderParticipantes() {
+    const lista = document.getElementById('participantsList');
+    lista.innerHTML = '';
+    for (let i = 0; i < numParticipantes; i++) {
+        const row = document.createElement('div');
+        row.className = 'participant-row';
+        row.dataset.idx = i;
+
+        const dot = document.createElement('span');
+        dot.className = 'p-dot';
+        dot.style.background = PALETA[i];
+
+        const inp = document.createElement('input');
+        inp.type = 'text';
+        inp.maxLength = 20;
+        inp.placeholder = numParticipantes === 1 ? 'Jugador' : `Participante ${i + 1}`;
+        inp.id = `pName_${i}`;
+
+        const btnRem = document.createElement('button');
+        btnRem.className = 'btn-remove-player';
+        btnRem.textContent = '×';
+        btnRem.title = 'Eliminar';
+        btnRem.style.display = numParticipantes <= 1 ? 'none' : '';
+        btnRem.addEventListener('click', () => {
+            numParticipantes = Math.max(1, numParticipantes - 1);
+            renderParticipantes();
+        });
+
+        row.appendChild(dot);
+        row.appendChild(inp);
+        row.appendChild(btnRem);
+        lista.appendChild(row);
+    }
+    // Ocultar botón añadir si se llega al máximo
+    document.getElementById('btnAddPlayer').style.display =
+        numParticipantes >= MAX_PARTICIPANTES ? 'none' : '';
+}
+
+document.getElementById('btnAddPlayer').addEventListener('click', () => {
+    if (numParticipantes < MAX_PARTICIPANTES) {
+        numParticipantes++;
+        renderParticipantes();
+    }
+});
+
+// Render inicial con 2 participantes
+renderParticipantes();
+
+// ═══════════════════════════════════════════════════════
+// ESTADO DEL JUEGO
+// ═══════════════════════════════════════════════════════
+let estado = {
+    // Setup — arrays de N jugadores
+    equipos: ['Participante 1', 'Participante 2'],
+    colores: ['#00d4aa', '#a78bfa'],
+    dificultad: 'facil',
+    columnas: [],
+
+    // Puntuación
+    puntos: [0, 0],
+
+    // Partida
+    nivel: 1,
+    turnoActual: 0,      // 0 o 1
+    palabraEnNivel: 0,   // 0-9 (10 por nivel)
+    palabrasTotales: 0,  // conteo global
+
+    // Palabra actual
+    palabraActual: null,
+    categoriaActual: null,
+    palabrasUsadas: new Set(),
+
+    // Power-ups
+    powerupDisponible: null,  // el que toca coger
+    powerupActivo: null,      // el que está en uso
+    x2Pendiente: [false, false],  // por equipo
+
+    // Timers / animación
+    animTimer: null,
+    progressTimer: null,
+    juegoActivo: false
+};
+
+// ═══════════════════════════════════════════════════════
+// UTILIDADES
+// ═══════════════════════════════════════════════════════
+function aleatorio(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+function shuffled(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+}
+
+// ═══════════════════════════════════════════════════════
+// TEMA
+// ═══════════════════════════════════════════════════════
+let lightMode = false;
+document.getElementById('btnTheme').addEventListener('click', () => {
+    lightMode = !lightMode;
+    document.body.classList.toggle('light-mode', lightMode);
+    document.getElementById('icon-moon').style.display = lightMode ? 'none' : '';
+    document.getElementById('icon-sun').style.display  = lightMode ? '' : 'none';
+});
+
+// ═══════════════════════════════════════════════════════
+// SETUP
+// ═══════════════════════════════════════════════════════
+document.querySelectorAll('.diff-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        estado.dificultad = btn.dataset.diff;
+    });
+});
+
+document.getElementById('btnStart').addEventListener('click', () => {
+    // Leer nombres de todos los participantes
+    const nombres = [];
+    for (let i = 0; i < numParticipantes; i++) {
+        const val = (document.getElementById(`pName_${i}`)?.value || '').trim();
+        nombres.push(val || (numParticipantes === 1 ? 'Jugador' : `P${i + 1}`));
+    }
+    estado.equipos  = nombres;
+    estado.colores  = nombres.map((_, i) => PALETA[i % PALETA.length]);
+    estado.puntos   = nombres.map(() => 0);
+    estado.nivel = 1;
+    estado.turnoActual = 0;
+    estado.palabraEnNivel = 0;
+    estado.palabrasTotales = 0;
+    estado.palabrasUsadas = new Set();
+    estado.x2Pendiente = nombres.map(() => false);
+    estado.powerupActivo = null;
+    estado.columnas = COLUMNAS[estado.dificultad];
+
+    construirMarcadorDOM();
+    actualizarMarcador();
+    mostrarPreNivel();
+});
+
+// ═══════════════════════════════════════════════════════
+// PRE-NIVEL
+// ═══════════════════════════════════════════════════════
+function mostrarPreNivel() {
+    const vel = VELOCIDADES[estado.nivel];
+    document.getElementById('pn-nivel-label').textContent = `NIVEL ${estado.nivel}`;
+    document.getElementById('pn-big').textContent = `Nivel ${estado.nivel}`;
+    document.getElementById('pn-velocidad').textContent = `${(vel/1000).toFixed(1)}s`;
+
+    const turnoBadge = document.getElementById('pn-turno-badge');
+    if (estado.equipos.length <= 1) {
+        turnoBadge.style.display = 'none';
+    } else {
+        turnoBadge.style.display = '';
+        const pnTurno = document.getElementById('pn-turno-equipo');
+        pnTurno.textContent = estado.equipos[estado.turnoActual];
+        pnTurno.style.color = estado.colores[estado.turnoActual];
+    }
+    showScreen('screen-prenivel');
+}
+
+document.getElementById('btnListo').addEventListener('click', () => {
+    construirColumnas();
+    actualizarMarcador();
+    showScreen('screen-game');
+    setTimeout(lanzarPalabra, 400);
+});
+
+// ═══════════════════════════════════════════════════════
+// CONSTRUIR MARCADOR DOM (N jugadores)
+// ═══════════════════════════════════════════════════════
+function construirMarcadorDOM() {
+    const sb = document.getElementById('game-scoreboard');
+    sb.innerHTML = '';
+    estado.equipos.forEach((nombre, i) => {
+        const block = document.createElement('div');
+        block.className = 'score-team';
+        block.dataset.idx = i;
+        block.style.setProperty('--current-color', estado.colores[i]);
+
+        const indicator = document.createElement('div');
+        indicator.className = 'team-indicator';
+
+        const info = document.createElement('div');
+        info.className = 'team-info';
+
+        const nameEl = document.createElement('div');
+        nameEl.className = 'team-name';
+        nameEl.textContent = nombre;
+
+        const scoreEl = document.createElement('div');
+        scoreEl.className = 'team-score';
+        scoreEl.textContent = '0';
+        scoreEl.dataset.scoreIdx = i;
+
+        const flag = document.createElement('div');
+        flag.className = 'powerup-flag';
+        flag.textContent = '⭐';
+
+        info.appendChild(nameEl);
+        info.appendChild(scoreEl);
+        block.appendChild(indicator);
+        block.appendChild(info);
+        block.appendChild(flag);
+        sb.appendChild(block);
+    });
+}
+
+// ═══════════════════════════════════════════════════════
+// CONSTRUIR COLUMNAS EN EL DOM
+// ═══════════════════════════════════════════════════════
+function construirColumnas() {
+    const area = document.getElementById('columnsArea');
+    area.innerHTML = '';
+    const grid = document.getElementById('fallGrid');
+    grid.innerHTML = '';
+
+    estado.columnas.forEach(cat => {
+        const info = COLORES[cat];
+        const btn = document.createElement('button');
+        btn.className = 'col-btn';
+        btn.dataset.cat = cat;
+        btn.style.setProperty('--col-color', info.color);
+        btn.innerHTML = `
+            <div class="col-dot"></div>
+            <div class="col-name">${cat}</div>
+        `;
+        btn.addEventListener('click', () => evaluarRespuesta(cat));
+        area.appendChild(btn);
+
+        // líneas de guía en zona caída
+        const lane = document.createElement('div');
+        lane.className = 'fall-lane';
+        grid.appendChild(lane);
+    });
+}
+
+// ═══════════════════════════════════════════════════════
+// MARCADOR
+// ═══════════════════════════════════════════════════════
+function actualizarMarcador() {
+    // Actualizar puntos y resaltado en marcador dinámico
+    document.querySelectorAll('.score-team').forEach(block => {
+        const i = parseInt(block.dataset.idx);
+        const scoreEl = block.querySelector('[data-score-idx]');
+        if (scoreEl) scoreEl.textContent = estado.puntos[i];
+        block.classList.toggle('active-team', i === estado.turnoActual);
+        block.classList.toggle('has-x2', estado.x2Pendiente[i]);
+    });
+
+    // Status bar
+    document.getElementById('status-nivel').textContent = `Nivel ${estado.nivel}`;
+    const turnoLabel = estado.equipos.length > 1
+        ? `Turno: ${estado.equipos[estado.turnoActual]}`
+        : estado.equipos[0];
+    document.getElementById('status-turno').textContent = turnoLabel;
+    document.getElementById('status-palabra').textContent = `Palabra ${estado.palabraEnNivel + 1}/10`;
+}
+
+// ═══════════════════════════════════════════════════════
+// SELECCIONAR PALABRA
+// ═══════════════════════════════════════════════════════
+function elegirPalabra() {
+    const cats = estado.columnas;
+    // mezclar categorías para evitar siempre la misma
+    const catsMezcladas = shuffled(cats);
+
+    for (const cat of catsMezcladas) {
+        const pool = palabrasPorCategoria[cat];
+        const disponibles = pool.filter(p => !estado.palabrasUsadas.has(p));
+        if (disponibles.length > 0) {
+            const palabra = aleatorio(disponibles);
+            estado.palabrasUsadas.add(palabra);
+            return { palabra, cat };
+        }
+    }
+    // Si se agotaron, limpiar y reintentar con todas
+    estado.palabrasUsadas.clear();
+    const cat = aleatorio(cats);
+    const palabra = aleatorio(palabrasPorCategoria[cat]);
+    estado.palabrasUsadas.add(palabra);
+    return { palabra, cat };
+}
+
+// ═══════════════════════════════════════════════════════
+// POWER-UP
+// ═══════════════════════════════════════════════════════
+function debeAparecerPowerup() {
+    // Cada ~8 palabras, con cierta aleatoriedad
+    return estado.palabrasTotales > 0 && (estado.palabrasTotales % 8 === 0) && Math.random() < 0.75;
+}
+
+function mostrarPowerupDisponible(tipo) {
+    estado.powerupDisponible = tipo;
+    const info = POWERUP_INFO[tipo];
+    const notice = document.getElementById('powerupNotice');
+    document.getElementById('powerupNoticeIcon').innerHTML = info.icon;
+    document.getElementById('powerupNoticeText').textContent = info.texto;
+    notice.classList.remove('show');
+    // forzar reflow
+    void notice.offsetWidth;
+    notice.classList.add('show');
+    // recoger el powerup automáticamente al siguiente acierto
+}
+
+function activarPowerup(tipo) {
+    estado.powerupActivo = tipo;
+    estado.powerupDisponible = null;
+    const info = POWERUP_INFO[tipo];
+    const badge = document.getElementById('powerupActiveBadge');
+    document.getElementById('powerupBadgeIcon').innerHTML = info.icon;
+    document.getElementById('powerupBadgeText').textContent = info.badge;
+    badge.style.display = 'flex';
+
+    if (tipo === 'congelar') {
+        // Pausar la animación
+        const fw = document.getElementById('fallingWord');
+        fw.style.animationPlayState = 'paused';
+        // Pausar el timer de progreso y palabra
+        clearInterval(estado.progressTimer);
+        // Reanudar tras 3 segundos
+        setTimeout(() => {
+            fw.style.animationPlayState = 'running';
+            iniciarProgressBar();
+            badge.style.display = 'none';
+            estado.powerupActivo = null;
+        }, 3000);
+
+    } else if (tipo === 'pista') {
+        // Resaltar la columna correcta 1 segundo
+        const colBtns = document.querySelectorAll('.col-btn');
+        colBtns.forEach(btn => {
+            if (btn.dataset.cat === estado.categoriaActual) {
+                btn.classList.add('hint-glow');
+                setTimeout(() => {
+                    btn.classList.remove('hint-glow');
+                    badge.style.display = 'none';
+                    estado.powerupActivo = null;
+                }, 1200);
+            }
+        });
+
+    } else if (tipo === 'x2') {
+        // Marcar x2 para el equipo actual
+        estado.x2Pendiente[estado.turnoActual] = true;
+        actualizarMarcador();
+        setTimeout(() => {
+            badge.style.display = 'none';
+            estado.powerupActivo = null;
+        }, 1500);
+    }
+}
+
+// ═══════════════════════════════════════════════════════
+// LANZAR PALABRA
+// ═══════════════════════════════════════════════════════
+function lanzarPalabra() {
+    if (!estado.juegoActivo) estado.juegoActivo = true;
+    actualizarMarcador();
+
+    // Comprobar power-up
+    if (debeAparecerPowerup()) {
+        const tipo = aleatorio(POWERUPS);
+        mostrarPowerupDisponible(tipo);
+    }
+
+    const { palabra, cat } = elegirPalabra();
+    estado.palabraActual = palabra;
+    estado.categoriaActual = cat;
+    estado.palabrasTotales++;
+
+    const fw = document.getElementById('fallingWord');
+    const colInfo = COLORES[cat];
+
+    // Preparar elemento
+    fw.textContent = palabra;
+    fw.style.setProperty('--word-color', colInfo.color);
+    fw.style.setProperty('--word-glow', colInfo.glow);
+    fw.style.cssText = `
+        --word-color: ${colInfo.color};
+        --word-glow: ${colInfo.glow};
+        display: block;
+        top: -70px;
+        animation: none;
+        opacity: 1;
+        transform: translateX(-50%) scale(1) rotate(0deg);
+    `;
+
+    // Forzar reflow antes de iniciar animación
+    void fw.offsetWidth;
+
+    const vel = VELOCIDADES[estado.nivel];
+    fw.style.animation = `caer ${vel}ms linear forwards`;
+    fw.classList.remove('acierto', 'fallo', 'cayendo');
+
+    // Timer: cuando termina la animación = tiempo agotado
+    clearTimeout(estado.animTimer);
+    estado.animTimer = setTimeout(() => {
+        procesarFallo(false); // tiempo agotado, no respuesta incorrecta
+    }, vel);
+
+    // Barra de progreso
+    iniciarProgressBar();
+}
+
+// ═══════════════════════════════════════════════════════
+// BARRA DE PROGRESO
+// ═══════════════════════════════════════════════════════
+function iniciarProgressBar() {
+    clearInterval(estado.progressTimer);
+    const vel = VELOCIDADES[estado.nivel];
+    const fill = document.getElementById('progressFill');
+    const startTime = Date.now();
+
+    fill.style.width = '100%';
+
+    estado.progressTimer = setInterval(() => {
+        const elapsed = Date.now() - startTime;
+        const pct = Math.max(0, 100 - (elapsed / vel) * 100);
+        fill.style.width = pct + '%';
+        if (pct <= 0) clearInterval(estado.progressTimer);
+    }, 50);
+}
+
+// ═══════════════════════════════════════════════════════
+// EVALUAR RESPUESTA
+// ═══════════════════════════════════════════════════════
+function evaluarRespuesta(catElegida) {
+    if (!estado.juegoActivo) return;
+    estado.juegoActivo = false;
+
+    // Cancelar timers
+    clearTimeout(estado.animTimer);
+    clearInterval(estado.progressTimer);
+
+    const esCorrecta = catElegida === estado.categoriaActual;
+
+    if (esCorrecta) {
+        procesarAcierto(catElegida);
+    } else {
+        procesarFallo(true, catElegida);
+    }
+}
+
+function procesarAcierto(cat) {
+    const fw = document.getElementById('fallingWord');
+    const fz = document.getElementById('fallZone');
+
+    // Animación acierto
+    fw.style.animation = 'none';
+    void fw.offsetWidth;
+    fw.classList.add('acierto');
+    fz.classList.remove('flash-fallo');
+    fz.classList.add('flash-acierto');
+    setTimeout(() => fz.classList.remove('flash-acierto'), 400);
+
+    // Flash columna correcta
+    flashColumna(cat, true);
+
+    // Puntos
+    let pts = 2;
+    if (estado.x2Pendiente[estado.turnoActual]) {
+        pts = 4;
+        estado.x2Pendiente[estado.turnoActual] = false;
+    }
+    estado.puntos[estado.turnoActual] += pts;
+
+    // Activar power-up si había disponible
+    if (estado.powerupDisponible) {
+        activarPowerup(estado.powerupDisponible);
+    }
+
+    // Feedback visual
+    mostrarFeedback('✓', '#22c55e');
+    mostrarPuntos(`+${pts}`, '#22c55e');
+
+    setTimeout(siguientePaso, 600);
+}
+
+function procesarFallo(respuestaIncorrecta = false, catElegida = null) {
+    const fw = document.getElementById('fallingWord');
+    const fz = document.getElementById('fallZone');
+
+    // Animación fallo
+    fw.style.animation = 'none';
+    void fw.offsetWidth;
+    fw.classList.add('fallo');
+    fz.classList.remove('flash-acierto');
+    fz.classList.add('flash-fallo');
+    setTimeout(() => fz.classList.remove('flash-fallo'), 400);
+
+    // Flash columna incorrecta si la hubo
+    if (respuestaIncorrecta && catElegida) {
+        flashColumna(catElegida, false);
+    }
+
+    // Puntos: -1
+    estado.puntos[estado.turnoActual] = Math.max(0, estado.puntos[estado.turnoActual] - 1);
+
+    // Feedback visual
+    mostrarFeedback('✗', '#ef4444');
+    mostrarPuntos('-1', '#ef4444');
+
+    estado.juegoActivo = false;
+    setTimeout(siguientePaso, 600);
+}
+
+// ═══════════════════════════════════════════════════════
+// FLASH COLUMNA
+// ═══════════════════════════════════════════════════════
+function flashColumna(cat, ok) {
+    const colBtns = document.querySelectorAll('.col-btn');
+    colBtns.forEach(btn => {
+        if (btn.dataset.cat === cat) {
+            btn.classList.remove('flash-ok', 'flash-err');
+            void btn.offsetWidth;
+            btn.classList.add(ok ? 'flash-ok' : 'flash-err');
+            setTimeout(() => btn.classList.remove('flash-ok', 'flash-err'), 450);
+        }
+    });
+}
+
+// ═══════════════════════════════════════════════════════
+// FEEDBACK FLOTANTE
+// ═══════════════════════════════════════════════════════
+function mostrarFeedback(simbolo, color) {
+    const el = document.getElementById('feedbackFloat');
+    el.textContent = simbolo;
+    el.style.color = color;
+    el.classList.remove('show');
+    void el.offsetWidth;
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), 800);
+}
+
+function mostrarPuntos(texto, color) {
+    const fz = document.getElementById('fallZone');
+    const el = document.createElement('div');
+    el.className = 'points-float';
+    el.textContent = texto;
+    el.style.color = color;
+    el.style.top = '50%';
+    fz.appendChild(el);
+    void el.offsetWidth;
+    el.classList.add('show');
+    setTimeout(() => el.remove(), 900);
+}
+
+// ═══════════════════════════════════════════════════════
+// SIGUIENTE PASO LÓGICO
+// ═══════════════════════════════════════════════════════
+function siguientePaso() {
+    estado.palabraEnNivel++;
+    actualizarMarcador();
+
+    const totalNivel = 10;
+
+    if (estado.palabraEnNivel >= totalNivel) {
+        finDeTurno();
+    } else {
+        // Ciclar entre N participantes (si hay 1, siempre turno 0)
+        if (estado.equipos.length > 1) {
+            estado.turnoActual = (estado.turnoActual + 1) % estado.equipos.length;
+        }
+        estado.juegoActivo = true;
+        lanzarPalabra();
+    }
+}
+
+function finDeTurno() {
+    if (estado.nivel >= 3) {
+        mostrarResultados();
+        return;
+    }
+
+    estado.nivel++;
+    estado.palabraEnNivel = 0;
+
+    // Un solo jugador: sin pantalla intermedia
+    if (estado.equipos.length === 1) {
+        actualizarMarcador();
+        mostrarPreNivel();
+        return;
+    }
+
+    // N > 1: mostrar entre-turnos con marcador completo
+    estado.turnoActual = (estado.turnoActual + 1) % estado.equipos.length;
+    actualizarMarcador();
+    document.getElementById('et-titulo').textContent = `Fin del Nivel ${estado.nivel - 1}`;
+
+    // Construir marcador dinámico en et-scores
+    const etScores = document.getElementById('et-scores');
+    etScores.innerHTML = '';
+    estado.equipos.forEach((nombre, i) => {
+        const block = document.createElement('div');
+        block.className = 'et-score-block';
+        const nameEl = document.createElement('div');
+        nameEl.className = 'et-team-name';
+        nameEl.textContent = nombre;
+        const scoreEl = document.createElement('div');
+        scoreEl.className = 'et-team-score';
+        scoreEl.style.color = estado.colores[i];
+        scoreEl.textContent = estado.puntos[i];
+        block.appendChild(nameEl);
+        block.appendChild(scoreEl);
+        etScores.appendChild(block);
+    });
+
+    const infoEl = document.getElementById('et-next-info');
+    infoEl.textContent = '';
+    infoEl.appendChild(document.createTextNode(
+        `Nivel ${estado.nivel} — ${(VELOCIDADES[estado.nivel]/1000).toFixed(1)}s  |  Turno: `
+    ));
+    const sp = document.createElement('strong');
+    sp.style.color = estado.colores[estado.turnoActual];
+    sp.textContent = estado.equipos[estado.turnoActual];
+    infoEl.appendChild(sp);
+
+    showScreen('screen-entreturnos');
+}
+
+document.getElementById('btnSiguiente').addEventListener('click', () => {
+    construirColumnas();
+    actualizarMarcador();
+    showScreen('screen-game');
+    estado.juegoActivo = true;
+    mostrarPreNivel();
+});
+
+// Sobrescribir btnListo para el caso de nivel 2/3
+document.getElementById('btnListo').addEventListener('click', function handler() {
+    // ya lo gestiona el handler previo, aquí es suficiente
+}, { once: false });
+
+// ═══════════════════════════════════════════════════════
+// RESULTADOS
+// ═══════════════════════════════════════════════════════
+function mostrarResultados() {
+    const ganadorName  = document.getElementById('res-ganador-name');
+    const ganadorLabel = document.getElementById('res-ganador-label');
+    const trophy = document.getElementById('res-trophy');
+    ganadorName.classList.remove('empate');
+
+    // Ordenar por puntos para el ranking
+    const ranking = estado.equipos
+        .map((nombre, i) => ({ nombre, pts: estado.puntos[i], color: estado.colores[i] }))
+        .sort((a, b) => b.pts - a.pts);
+
+    // Construir tabla de resultados dinámica
+    const resScores = document.getElementById('resultado-scores');
+    resScores.innerHTML = '';
+    ranking.forEach((jugador, pos) => {
+        const block = document.createElement('div');
+        block.className = 'res-score-block' + (pos === 0 ? ' ganador-block' : '');
+        const nameEl = document.createElement('div');
+        nameEl.className = 'res-team-name';
+        nameEl.textContent = (ranking.length > 1 ? `${pos + 1}. ` : '') + jugador.nombre;
+        const scoreEl = document.createElement('div');
+        scoreEl.className = 'res-team-score';
+        scoreEl.style.color = jugador.color;
+        scoreEl.textContent = jugador.pts;
+        block.appendChild(nameEl);
+        block.appendChild(scoreEl);
+        resScores.appendChild(block);
+    });
+
+    // Cabecera de resultado
+    if (estado.equipos.length === 1) {
+        const pts = estado.puntos[0];
+        ganadorName.textContent = estado.equipos[0];
+        ganadorLabel.textContent = `${pts} puntos`;
+        trophy.textContent = pts >= 20 ? '🏆' : pts >= 10 ? '⭐' : '💪';
+    } else if (ranking[0].pts === ranking[1].pts) {
+        ganadorName.textContent = '¡Empate!';
+        ganadorName.classList.add('empate');
+        ganadorLabel.textContent = 'Resultado';
+        trophy.textContent = '🤝';
+    } else {
+        ganadorName.textContent = ranking[0].nombre;
+        ganadorLabel.textContent = '¡Ganador!';
+        trophy.textContent = '🏆';
+    }
+
+    showScreen('screen-resultado');
+}
+
+document.getElementById('btnNueva').addEventListener('click', () => {
+    estado.puntos = estado.puntos.map(() => 0);
+    estado.nivel = 1;
+    estado.turnoActual = 0;
+    estado.palabraEnNivel = 0;
+    estado.palabrasTotales = 0;
+    estado.palabrasUsadas = new Set();
+    estado.x2Pendiente = [false, false];
+    estado.powerupActivo = null;
+    estado.powerupDisponible = null;
+    document.getElementById('powerupActiveBadge').style.display = 'none';
+    clearTimeout(estado.animTimer);
+    clearInterval(estado.progressTimer);
+    showScreen('screen-setup');
+});
+
+// ═══════════════════════════════════════════════════════
+// REESCRIBIR btnListo para nivel correcto
+// ═══════════════════════════════════════════════════════
+// Eliminar el listener inicial y usar uno solo
+(function() {
+    const btn = document.getElementById('btnListo');
+    // Clonar para eliminar listeners anteriores
+    const newBtn = btn.cloneNode(true);
+    btn.parentNode.replaceChild(newBtn, btn);
+    newBtn.addEventListener('click', () => {
+        construirColumnas();
+        actualizarMarcador();
+        showScreen('screen-game');
+        estado.juegoActivo = true;
+        setTimeout(lanzarPalabra, 400);
+    });
+})();
+
+// ═══════════════════════════════════════════════════════
+// TECLADO: columnas con teclas numéricas (accesibilidad de clase)
+// ═══════════════════════════════════════════════════════
+document.addEventListener('keydown', (e) => {
+    const num = parseInt(e.key);
+    if (!isNaN(num) && num >= 1 && num <= 6) {
+        const idx = num - 1;
+        if (idx < estado.columnas.length && estado.juegoActivo) {
+            evaluarRespuesta(estado.columnas[idx]);
+        }
+    }
+});
+</script>
+</body>
+</html>
