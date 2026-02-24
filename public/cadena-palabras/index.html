@@ -572,6 +572,47 @@
     .word-display { padding: 24px 20px; }
     .answer-wrap { flex-direction: column; }
   }
+
+  /* Controles de partida */
+  .game-controls-bar {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 0.75rem;
+  }
+  .btn-game-ctrl {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.9rem;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 6px;
+      background: rgba(255,255,255,0.05);
+      color: var(--text-secondary);
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+  }
+  .btn-game-ctrl:hover { background: rgba(255,255,255,0.1); color: var(--text-primary); }
+  .btn-game-ctrl svg { width: 14px; height: 14px; }
+  .btn-game-ctrl.danger { border-color: rgba(239,68,68,0.3); }
+  .btn-game-ctrl.danger:hover { background: rgba(239,68,68,0.15); color: var(--danger); }
+
+  /* Overlay de pausa */
+  .pause-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 100;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+  }
+  .pause-overlay.visible { display: flex; }
+  .pause-title { font-size: 1.5rem; font-weight: 700; color: var(--text-primary); }
+  .pause-actions { display: flex; gap: 1rem; }
 </style>
 </head>
 <body>
@@ -643,6 +684,17 @@
 
   <!-- ────── PANTALLA 3: TURNO ────── -->
   <section class="screen" id="screenTurn">
+    <div class="game-controls-bar">
+        <button class="btn-game-ctrl" id="btnPauseCadena" onclick="togglePausaCadena()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+            Pausa
+        </button>
+        <button class="btn-game-ctrl danger" onclick="confirmarStopCadena()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+            Reiniciar
+        </button>
+    </div>
+
     <div class="live-scores">
       <div class="live-score-item">
         <span class="live-score-label" id="liveLabel1">E1</span>
@@ -719,6 +771,15 @@
   </section>
 
 </div><!-- .main -->
+
+<!-- Overlay de pausa -->
+<div class="pause-overlay" id="pauseOverlayCadena">
+    <div class="pause-title">Partida en pausa</div>
+    <div class="pause-actions">
+        <button class="btn-primary" onclick="togglePausaCadena()">Continuar</button>
+        <button class="btn-secondary" onclick="stopCadena()">Reiniciar</button>
+    </div>
+</div>
 
 <script>
 // ════════════════════════════════════════════
@@ -827,7 +888,7 @@ const ROUNDS_CONFIG = [
   {
     id: 1,
     nombre: "Sinónimos",
-    tiempo: 10,
+    tiempo: 15,
     tipo: "single",
     datos: sinonimos,
     wordLabel: "Escribe un sinónimo de",
@@ -837,7 +898,7 @@ const ROUNDS_CONFIG = [
   {
     id: 2,
     nombre: "Antónimos",
-    tiempo: 10,
+    tiempo: 15,
     tipo: "single",
     datos: antonimos,
     wordLabel: "Escribe un antónimo de",
@@ -847,7 +908,7 @@ const ROUNDS_CONFIG = [
   {
     id: 3,
     nombre: "Familia Léxica",
-    tiempo: 20,
+    tiempo: 30,
     tipo: "multi",
     datos: familias,
     wordLabel: "Raíz:",
@@ -857,7 +918,7 @@ const ROUNDS_CONFIG = [
   {
     id: 4,
     nombre: "Campo Semántico",
-    tiempo: 20,
+    tiempo: 30,
     tipo: "multi",
     datos: camposSem,
     wordLabel: "Campo:",
@@ -883,6 +944,7 @@ let state = {
   timerLeft: 10,
   timerTotal: 10,
   locked: false,
+  pausado: false,
 };
 
 // ════════════════════════════════════════════
@@ -1289,6 +1351,86 @@ function showResult() {
   });
 
   showScreen('screenResult');
+}
+
+// ════════════════════════════════════════════
+//  PAUSA / STOP
+// ════════════════════════════════════════════
+
+// SVG estáticos para el botón de pausa (construidos con DOM para evitar innerHTML)
+function svgPausa() {
+  const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  s.setAttribute('viewBox', '0 0 24 24');
+  s.setAttribute('fill', 'none');
+  s.setAttribute('stroke', 'currentColor');
+  s.setAttribute('stroke-width', '2');
+  const r1 = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  r1.setAttribute('x', '6'); r1.setAttribute('y', '4');
+  r1.setAttribute('width', '4'); r1.setAttribute('height', '16');
+  const r2 = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  r2.setAttribute('x', '14'); r2.setAttribute('y', '4');
+  r2.setAttribute('width', '4'); r2.setAttribute('height', '16');
+  s.appendChild(r1); s.appendChild(r2);
+  return s;
+}
+
+function svgPlay() {
+  const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  s.setAttribute('viewBox', '0 0 24 24');
+  s.setAttribute('fill', 'none');
+  s.setAttribute('stroke', 'currentColor');
+  s.setAttribute('stroke-width', '2');
+  const p = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+  p.setAttribute('points', '5 3 19 12 5 21 5 3');
+  s.appendChild(p);
+  return s;
+}
+
+function setBtnPausaUI(pausado) {
+  const btn = document.getElementById('btnPauseCadena');
+  if (!btn) return;
+  btn.textContent = '';
+  btn.appendChild(pausado ? svgPlay() : svgPausa());
+  btn.appendChild(document.createTextNode(pausado ? ' Continuar' : ' Pausa'));
+}
+
+function togglePausaCadena() {
+  if (state.pausado) {
+    reanudarCadena();
+  } else {
+    pausarCadena();
+  }
+}
+
+function pausarCadena() {
+  if (state.pausado) return;
+  state.pausado = true;
+  stopTimer();
+  setBtnPausaUI(true);
+  document.getElementById('pauseOverlayCadena').classList.add('visible');
+}
+
+function reanudarCadena() {
+  if (!state.pausado) return;
+  state.pausado = false;
+  document.getElementById('pauseOverlayCadena').classList.remove('visible');
+  setBtnPausaUI(false);
+  // Reanudar con el tiempo que quedaba
+  startTimer(state.timerLeft);
+}
+
+function confirmarStopCadena() {
+  if (confirm('¿Reiniciar la partida?')) {
+    stopCadena();
+  }
+}
+
+function stopCadena() {
+  stopTimer();
+  state.pausado = false;
+  document.getElementById('pauseOverlayCadena').classList.remove('visible');
+  setBtnPausaUI(false);
+  showScreen('screenSetup');
 }
 
 // ════════════════════════════════════════════

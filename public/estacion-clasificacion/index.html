@@ -706,6 +706,46 @@ body {
 }
 .btn-next-turn:hover { background: var(--bg-card-hover); }
 
+/* Controles de partida */
+.game-controls-bar {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+}
+.btn-game-ctrl {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.9rem;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 6px;
+    background: rgba(255,255,255,0.05);
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+.btn-game-ctrl:hover { background: rgba(255,255,255,0.1); color: var(--text-primary); }
+.btn-game-ctrl svg { width: 14px; height: 14px; }
+.btn-game-ctrl.danger { border-color: rgba(239,68,68,0.3); }
+.btn-game-ctrl.danger:hover { background: rgba(239,68,68,0.15); color: var(--danger); }
+
+.pause-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 200;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+.pause-overlay.visible { display: flex; }
+.pause-title { font-size: 1.5rem; font-weight: 700; color: var(--text-primary); }
+.pause-actions { display: flex; gap: 1rem; }
+
 /* Responsive */
 @media (max-width: 600px) {
   .setup-grid { grid-template-columns: 1fr; }
@@ -817,6 +857,16 @@ body {
 
   <!-- ===== PANTALLA: JUEGO FASE 1 ===== -->
   <div class="screen" id="screen-fase1">
+    <div class="game-controls-bar">
+      <button class="btn-game-ctrl" id="btnPauseEstacion1" onclick="togglePausaEstacion()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        Pausa
+      </button>
+      <button class="btn-game-ctrl danger" onclick="confirmarStopEstacion()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+        Reiniciar
+      </button>
+    </div>
     <div class="scoreboard" id="sb-fase1"></div>
     <div class="turno-indicator" id="turno-fase1"></div>
 
@@ -838,6 +888,16 @@ body {
 
   <!-- ===== PANTALLA: JUEGO FASE 2 ===== -->
   <div class="screen" id="screen-fase2">
+    <div class="game-controls-bar">
+      <button class="btn-game-ctrl" id="btnPauseEstacion2" onclick="togglePausaEstacion()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        Pausa
+      </button>
+      <button class="btn-game-ctrl danger" onclick="confirmarStopEstacion()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+        Reiniciar
+      </button>
+    </div>
     <div class="scoreboard" id="sb-fase2"></div>
     <div class="turno-indicator" id="turno-fase2"></div>
 
@@ -859,6 +919,16 @@ body {
 
   <!-- ===== PANTALLA: JUEGO FASE 3 AVALANCHA ===== -->
   <div class="screen" id="screen-fase3">
+    <div class="game-controls-bar">
+      <button class="btn-game-ctrl" id="btnPauseEstacion3" onclick="togglePausaEstacion()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        Pausa
+      </button>
+      <button class="btn-game-ctrl danger" onclick="confirmarStopEstacion()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+        Reiniciar
+      </button>
+    </div>
     <div class="scoreboard" id="sb-fase3"></div>
     <div class="turno-indicator" id="turno-fase3"></div>
 
@@ -908,6 +978,15 @@ body {
   </div>
 
 </div><!-- /main -->
+
+<!-- OVERLAY PAUSA -->
+<div class="pause-overlay" id="pauseOverlayEstacion">
+  <div class="pause-title">Partida en pausa</div>
+  <div class="pause-actions">
+    <button class="btn-primary" onclick="togglePausaEstacion()">Continuar</button>
+    <button class="results-btn" onclick="stopEstacion()">Reiniciar</button>
+  </div>
+</div>
 
 <script>
 // =====================================================
@@ -1022,7 +1101,12 @@ function resetState() {
     // Fase completadas
     f1Done: [false,false],
     f2Done: [false,false],
-    f3Done: [false,false]
+    f3Done: [false,false],
+    // Pausa / Stop
+    pausado: false,
+    f1SecondsLeft: 0,
+    f2SecondsLeft: 0,
+    f3SecondsLeft: 0
   };
 }
 resetState();
@@ -1294,11 +1378,12 @@ function cargarF1Turno() {
   iniciarTimerF1();
 }
 
-function iniciarTimerF1() {
+function iniciarTimerF1(secondsInicio = 5) {
   clearInterval(G.f1Timer);
-  G.f1Seconds = 5;
+  G.faseActual = 1;
+  G.f1Seconds = secondsInicio;
   const bar = document.getElementById('timer-fase1');
-  bar.style.width = '100%';
+  bar.style.width = ((secondsInicio/5)*100)+'%';
   bar.style.background = 'var(--accent-1)';
   G.f1Timer = setInterval(()=>{
     G.f1Seconds -= 0.1;
@@ -1479,11 +1564,12 @@ function cargarF2Turno() {
   iniciarTimerF2();
 }
 
-function iniciarTimerF2() {
+function iniciarTimerF2(secondsInicio = 10) {
   clearInterval(G.f2Timer);
-  G.f2Seconds = 10;
+  G.faseActual = 2;
+  G.f2Seconds = secondsInicio;
   const bar = document.getElementById('timer-fase2');
-  bar.style.width = '100%';
+  bar.style.width = ((secondsInicio/10)*100)+'%';
   bar.style.background = 'var(--accent-1)';
   G.f2Timer = setInterval(()=>{
     G.f2Seconds -= 0.1;
@@ -1669,11 +1755,12 @@ function finalizarTurnoF3() {
   }
 }
 
-function iniciarTimerF3Global() {
+function iniciarTimerF3Global(secondsInicio = 60) {
   clearInterval(G.f3GlobalTimer);
-  G.f3GlobalSecs = 60;
+  G.faseActual = 3;
+  G.f3GlobalSecs = secondsInicio;
   const bar = document.getElementById('timer-fase3');
-  bar.style.width = '100%';
+  bar.style.width = ((secondsInicio/60)*100)+'%';
   bar.style.background = 'var(--accent-1)';
   G.f3GlobalTimer = setInterval(()=>{
     G.f3GlobalSecs -= 0.1;
@@ -1688,6 +1775,80 @@ function iniciarTimerF3Global() {
       finalizarTurnoF3();
     }
   }, 100);
+}
+
+// =====================================================
+// PAUSA / STOP
+// =====================================================
+const SVG_PAUSE    = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> Pausa';
+const SVG_CONTINUAR = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg> Continuar';
+
+function togglePausaEstacion() {
+  if (G.pausado) {
+    reanudarEstacion();
+  } else {
+    pausarEstacion();
+  }
+}
+
+function pausarEstacion() {
+  if (G.pausado) return;
+  G.pausado = true;
+
+  // Parar todos los timers activos
+  clearInterval(G.f1Timer);
+  clearInterval(G.f2Timer);
+  clearInterval(G.f3GlobalTimer);
+
+  // Guardar tiempo restante según fase
+  G.f1SecondsLeft = G.f1Seconds || 0;
+  G.f2SecondsLeft = G.f2Seconds || 0;
+  G.f3SecondsLeft = G.f3GlobalSecs || 0;
+
+  // Actualizar todos los botones de pausa (contenido estático, no datos de usuario)
+  ['btnPauseEstacion1','btnPauseEstacion2','btnPauseEstacion3'].forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) btn.innerHTML = SVG_CONTINUAR; // eslint-disable-line — HTML estático
+  });
+
+  document.getElementById('pauseOverlayEstacion').classList.add('visible');
+}
+
+function reanudarEstacion() {
+  if (!G.pausado) return;
+  G.pausado = false;
+
+  document.getElementById('pauseOverlayEstacion').classList.remove('visible');
+
+  // Restaurar botones
+  ['btnPauseEstacion1','btnPauseEstacion2','btnPauseEstacion3'].forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) btn.innerHTML = SVG_PAUSE; // eslint-disable-line — HTML estático
+  });
+
+  // Reanudar timer según fase activa
+  if (G.faseActual === 1 && G.f1SecondsLeft > 0) {
+    iniciarTimerF1(G.f1SecondsLeft);
+  } else if (G.faseActual === 2 && G.f2SecondsLeft > 0) {
+    iniciarTimerF2(G.f2SecondsLeft);
+  } else if (G.faseActual === 3 && G.f3SecondsLeft > 0) {
+    iniciarTimerF3Global(G.f3SecondsLeft);
+  }
+}
+
+function confirmarStopEstacion() {
+  if (confirm('¿Reiniciar la partida?')) {
+    stopEstacion();
+  }
+}
+
+function stopEstacion() {
+  clearInterval(G.f1Timer);
+  clearInterval(G.f2Timer);
+  clearInterval(G.f3GlobalTimer);
+  G.pausado = false;
+  document.getElementById('pauseOverlayEstacion').classList.remove('visible');
+  reiniciar();
 }
 
 // =====================================================
