@@ -1439,13 +1439,10 @@ function lanzarPalabra() {
     const fw = document.getElementById('fallingWord');
     const colInfo = COLORES[cat];
 
-    // Preparar elemento
+    // Preparar elemento (sin color de categoría para no dar pistas)
     fw.textContent = palabra;
-    fw.style.setProperty('--word-color', colInfo.color);
-    fw.style.setProperty('--word-glow', colInfo.glow);
     fw.style.cssText = `
-        --word-color: ${colInfo.color};
-        --word-glow: ${colInfo.glow};
+        --word-color: var(--text-secondary);
         display: block;
         top: -70px;
         animation: none;
