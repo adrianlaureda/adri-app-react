@@ -688,6 +688,7 @@
             <button class="tab-button" onclick="openTab(event, 'comic')"><svg class="icon" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/></svg> Cómic</button>
             <button class="tab-button" onclick="openTab(event, 'prompts')"><svg class="icon" viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></svg> Gemas</button>
             <button class="tab-button" onclick="openTab(event, 'aistudio')"><svg class="icon" viewBox="0 0 24 24"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg> AI Studio</button>
+            <button class="tab-button" onclick="openTab(event, 'gemini-live')"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg> Gemini Live</button>
             <button class="tab-button" onclick="openTab(event, 'suno')"><svg class="icon" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg> Suno</button>
             <button class="tab-button" onclick="openTab(event, 'pictogramas')"><svg class="icon" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg> Pictogramas IA</button>
             <button class="tab-button" onclick="openTab(event, 'ayuda')"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg> Ayuda</button>
@@ -1565,6 +1566,7 @@ URL vídeo: [enlace a tu vídeo de NotebookLM] o "Sin vídeo"</div>
                 <div class="sub-tabs">
                     <button class="sub-tab-button active" onclick="openSubTab(event, 'aistudio', 'aistudio-audio-sub')"><svg class="icon" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg> Generación de Audio</button>
                     <button class="sub-tab-button" onclick="openSubTab(event, 'aistudio', 'aistudio-apps-sub')"><svg class="icon" viewBox="0 0 24 24" style="width:16px;height:16px"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> Generación de Apps</button>
+                    <button class="sub-tab-button" onclick="openSubTab(event, 'aistudio', 'aistudio-live-sub')"><svg class="icon" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg> Gemini Live</button>
                 </div>
 
                 <!-- SUB-TAB: AUDIO -->
@@ -1741,6 +1743,115 @@ Debe tener:
                     <p><strong><svg class="icon" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Gratuito:</strong> La generación de aplicaciones en AI Studio es completamente gratuita con tu cuenta de Google.</p>
                 </div>
 
+                </div>
+
+                <!-- SUB-TAB: GEMINI LIVE -->
+                <div id="aistudio-live-sub" class="sub-tab-content">
+
+                <p>Desde AI Studio puedes probar <strong>Gemini Live</strong> directamente en el navegador: conversación de voz en tiempo real, sin necesidad de descargar la app. Ideal para demos en clase o cuando no tienes el móvil a mano.</p>
+
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+                    <a href="https://aistudio.google.com/live" target="_blank" class="btn"><svg class="icon" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Abrir Gemini Live en AI Studio</a>
+                </div>
+
+                <div class="info-box success-box">
+                    <p><strong><svg class="icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Ventaja:</strong> En AI Studio puedes elegir el modelo (Gemini 2.0 Flash), ajustar la voz de respuesta y ver la transcripción en tiempo real. Perfecto para demostraciones proyectadas.</p>
+                </div>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>Cómo usarlo</h3>
+                <ol>
+                    <li><strong>Accede a AI Studio:</strong> Ve a <a href="https://aistudio.google.com/live" target="_blank">aistudio.google.com/live</a></li>
+                    <li><strong>Pulsa el micrófono:</strong> Autoriza el acceso al micrófono del ordenador</li>
+                    <li><strong>Habla con naturalidad:</strong> Gemini responde con voz en tiempo real</li>
+                    <li><strong>Interrumpe cuando quieras:</strong> Puedes cortar la respuesta en cualquier momento</li>
+                </ol>
+
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">Para la versión móvil completa, consulta la pestaña <strong>Gemini Live</strong> en el menú principal.</p>
+
+                </div>
+
+            </section>
+        </div>
+
+<!-- TAB GEMINI LIVE -->
+        <div id="gemini-live" class="tab-content">
+            <section class="section">
+                <h2 class="section-title"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>GEMINI LIVE: TU ASISTENTE POR VOZ</h2>
+
+                <p>Gemini Live es el modo de <strong>conversación de voz en tiempo real</strong> de la app Gemini. Puedes hablarle de forma natural —interrumpirlo, cambiar de tema, pedir que reformule— como si fuera un compañero al otro lado del teléfono. Completamente gratuito.</p>
+
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+                    <a href="https://gemini.google.com" target="_blank" class="btn"><svg class="icon" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Abrir Gemini</a>
+                    <a href="https://aistudio.google.com/live" target="_blank" class="btn" style="background: var(--bg-elevated); border: 1px solid var(--border);"><svg class="icon" viewBox="0 0 24 24"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg>Gemini Live en AI Studio</a>
+                </div>
+
+                <div class="info-box success-box">
+                    <p><strong><svg class="icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Mensaje clave:</strong> A partir de hoy tenéis un compañero disponible 24/7. Si os atascáis con cualquier herramienta de la formación, preguntadle a Gemini Live.</p>
+                </div>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>Cómo activarlo en el móvil</h3>
+
+                <ol>
+                    <li><strong>Descarga la app Gemini</strong> en tu iPhone o Android (gratis)</li>
+                    <li><strong>Inicia sesión</strong> con tu cuenta de Google (@edu.xunta.gal o personal)</li>
+                    <li><strong>Pulsa el icono de onda</strong> (micrófono animado) en la pantalla principal</li>
+                    <li><strong>Empieza a hablar</strong> — Gemini responde con voz en tiempo real</li>
+                    <li><strong>Interrumpe cuando quieras:</strong> no hace falta esperar a que termine</li>
+                </ol>
+
+                <div class="info-box">
+                    <p><strong>Nota:</strong> La primera vez pedirá permiso para acceder al micrófono. Acéptalo para que funcione el modo Live.</p>
+                </div>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Ideas de uso docente</h3>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>Resolver dudas</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">"¿Cómo funcionan las fracciones?" — una explicación oral al instante, adaptada al nivel que pidas.</p>
+                    </div>
+                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>Preparar clases</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">"Dame 5 ideas para trabajar la lectoescritura con niños de 5 años usando cuentos" — mientras vas en el coche.</p>
+                    </div>
+                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Adaptaciones NEAE</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">"Adapta esta actividad para un alumno con dificultades lectoras de 2º Primaria" — respuesta inmediata.</p>
+                    </div>
+                    <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>Practicar con alumnado</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Conversar en inglés con Gemini, practicar expresión oral, simular situaciones comunicativas.</p>
+                    </div>
+                </div>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Prompts de ejemplo</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-title">Para preparar la próxima clase</span>
+                        <button class="btn btn-copy" onclick="copyCode(this)"><svg class="icon" viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>Copiar</button>
+                    </div>
+                    <div class="code-block">Soy profesora de Infantil con alumnado de 5 años. Necesito ideas para trabajar los colores de forma lúdica esta semana. Dame 3 actividades concretas, de menos a más dificultad.</div>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-title">Para adaptar una actividad</span>
+                        <button class="btn btn-copy" onclick="copyCode(this)"><svg class="icon" viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>Copiar</button>
+                    </div>
+                    <div class="code-block">Tengo un alumno de 3º Primaria con dificultades de comprensión lectora. Cómo puedo adaptar una ficha de matemáticas de fracciones para que entienda el enunciado sin ayuda del profesor.</div>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-title">Para ayuda técnica con las herramientas de la formación</span>
+                        <button class="btn btn-copy" onclick="copyCode(this)"><svg class="icon" viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>Copiar</button>
+                    </div>
+                    <div class="code-block">No consigo descargar el archivo de audio de AI Studio. Estoy en el botón de exportar pero no me aparece la opción. ¿Qué pasos tengo que seguir?</div>
+                </div>
+
+                <div class="info-box">
+                    <p><strong><svg class="icon" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Gratuito:</strong> Gemini Live está disponible de forma gratuita en la app Gemini con tu cuenta de Google. No requiere suscripción.</p>
                 </div>
 
             </section>
@@ -2961,6 +3072,66 @@ Añadir CUALQUIER texto fuera del bloque de código</div>
         <div id="ayuda" class="tab-content">
             <section class="section">
                 <h2 class="section-title"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>¿NECESITAS AYUDA?</h2>
+
+                <h3 class="section-subtitle"><svg class="icon" viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>CHULETA: HERRAMIENTAS POR NECESIDAD</h3>
+
+                <div style="overflow-x: auto; margin: 1rem 0 2rem 0;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid var(--border);">
+                                <th style="text-align: left; padding: 0.75rem 1rem; color: var(--text-secondary); font-weight: 600;">Necesidad</th>
+                                <th style="text-align: left; padding: 0.75rem 1rem; color: var(--text-secondary); font-weight: 600;">Herramienta</th>
+                                <th style="text-align: left; padding: 0.75rem 1rem; color: var(--text-secondary); font-weight: 600;">Enlace</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 0.75rem 1rem;">Dudas en tiempo real (voz)</td>
+                                <td style="padding: 0.75rem 1rem;"><strong>Gemini Live</strong></td>
+                                <td style="padding: 0.75rem 1rem;"><a href="https://gemini.google.com" target="_blank">App Gemini (móvil)</a></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border); background: var(--bg-elevated);">
+                                <td style="padding: 0.75rem 1rem;">Generar audios y narraciones</td>
+                                <td style="padding: 0.75rem 1rem;"><strong>AI Studio TTS</strong></td>
+                                <td style="padding: 0.75rem 1rem;"><a href="https://aistudio.google.com/generate-speech" target="_blank">aistudio.google.com/generate-speech</a></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 0.75rem 1rem;">Actividades con rúbrica</td>
+                                <td style="padding: 0.75rem 1rem;"><strong>Gema 4: Diseñador</strong></td>
+                                <td style="padding: 0.75rem 1rem;">Ver pestaña Gemas</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border); background: var(--bg-elevated);">
+                                <td style="padding: 0.75rem 1rem;">HTML interactivo (guiado)</td>
+                                <td style="padding: 0.75rem 1rem;"><strong>Gema 5: Paquetes HTML</strong></td>
+                                <td style="padding: 0.75rem 1rem;">Ver pestaña Gemas</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 0.75rem 1rem;">HTML interactivo avanzado</td>
+                                <td style="padding: 0.75rem 1rem;"><strong>AI Studio Build</strong></td>
+                                <td style="padding: 0.75rem 1rem;"><a href="https://aistudio.google.com" target="_blank">aistudio.google.com</a></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border); background: var(--bg-elevated);">
+                                <td style="padding: 0.75rem 1rem;">Segundo cerebro docente</td>
+                                <td style="padding: 0.75rem 1rem;"><strong>NotebookLM</strong></td>
+                                <td style="padding: 0.75rem 1rem;"><a href="https://notebooklm.google.com" target="_blank">notebooklm.google.com</a></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 0.75rem 1rem;">Música educativa</td>
+                                <td style="padding: 0.75rem 1rem;"><strong>Suno</strong></td>
+                                <td style="padding: 0.75rem 1rem;"><a href="https://suno.com" target="_blank">suno.com</a></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.75rem 1rem;">Dictado por voz</td>
+                                <td style="padding: 0.75rem 1rem;"><strong>Wispr Flow</strong></td>
+                                <td style="padding: 0.75rem 1rem;">Ver pestaña Dictado</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="info-box">
+                    <p>Toda la documentación de la formación en: <strong><a href="https://adri-app.com/figueroa" target="_blank">adri-app.com/figueroa</a></strong></p>
+                </div>
 
                 <h3 class="section-subtitle">Durante la formación:</h3>
                 <ul>
