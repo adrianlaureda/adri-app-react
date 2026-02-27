@@ -63,8 +63,8 @@ const CURSOS = [
   },
   {
     id: 'figueroa',
-    name: 'PFPP A Figueiroa',
-    description: 'Plan de Formación Permanente del Profesorado en el IES A Figueiroa.',
+    name: 'PFPP Figueiroa',
+    description: 'Plan de Formación Permanente del Profesorado en el CEIP Figueiroa.',
     status: 'activo',
     href: '/figueroa',
   },
