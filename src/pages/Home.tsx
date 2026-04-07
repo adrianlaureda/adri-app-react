@@ -126,6 +126,14 @@ const IconFalling = () => (
   </svg>
 );
 
+const IconDiamond = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <path d="M6 3h12l4 6-10 13L2 9z"/>
+    <path d="M2 9h20"/>
+    <path d="M6 3l4 6m8-6l-4 6"/>
+  </svg>
+);
+
 // Datos del carrusel
 const RECURSOS = [
   { id: 'pictos', title: 'Pictos', icon: IconPictos, href: '/pictos', available: true },
@@ -142,6 +150,7 @@ const RECURSOS = [
   { id: 'batalla-territorios', title: 'Batalla de Territorios', icon: IconMap, href: '/batalla-territorios', available: true },
   { id: 'estacion-clasificacion', title: 'Estación Clasificación', icon: IconSort, href: '/estacion-clasificacion', available: true },
   { id: 'tetris-gramatical', title: 'Tetris Gramatical', icon: IconFalling, href: '/tetris-gramatical', available: true },
+  { id: 'millonario', title: '¿Quieres ser millonario?', icon: IconDiamond, href: '/millonario', available: true },
 ];
 
 export function Home() {

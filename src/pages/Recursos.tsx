@@ -102,6 +102,14 @@ const IconMap = () => (
   </svg>
 );
 
+const IconDiamond = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <path d="M6 3h12l4 6-10 13L2 9z"/>
+    <path d="M2 9h20"/>
+    <path d="M6 3l4 6m8-6l-4 6"/>
+  </svg>
+);
+
 const IconSort = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
     <line x1="3" y1="6" x2="21" y2="6"/>
@@ -236,6 +244,14 @@ const RECURSOS = [
     description: 'Palabras que caen: clasifícalas en su categoría gramatical antes de que lleguen abajo',
     icon: IconFalling,
     href: '/tetris-gramatical',
+    available: true
+  },
+  {
+    id: 'millonario',
+    title: '¿Quieres ser millonario?',
+    description: 'Juego de preguntas tipo concurso televisivo con comodines, música y escalera de premios para repasar lengua',
+    icon: IconDiamond,
+    href: '/millonario',
     available: true
   }
 ];

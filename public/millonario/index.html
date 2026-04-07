@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Quién Quiere Ser Millonario? — Lengua 2º ESO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-primary: #050505;
+    --bg-secondary: #0a0a0a;
+    --bg-card: #111111;
+    --bg-card-hover: #1a1a1a;
+    --text-primary: #ffffff;
+    --text-secondary: #888888;
+    --text-muted: #444444;
+    --border: rgba(255,255,255,0.08);
+    --accent-1: #00d4aa;
+    --accent-2: #00d4ff;
+    --accent-3: #f5a623;
+    --accent-4: #ff6b6b;
+    --accent-5: #a78bfa;
+    --accent-6: #4ade80;
+    --success: #22c55e;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    /* Colores específicos del millonario */
+    --mill-blue: #0d1b3e;
+    --mill-blue-light: #162d5a;
+    --mill-gold: #d4a017;
+    --mill-gold-light: #f0c040;
+    --mill-diamond: #1a2a5e;
+    --mill-diamond-active: #2a4a8e;
+    --mill-diamond-done: #0a1a3e;
+    --mill-safe: #d4a017;
+  }
+
+  body.light-mode {
+    --bg-primary: #f5f5f5;
+    --bg-secondary: #e8e8e8;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f0f0f0;
+    --text-primary: #111111;
+    --text-secondary: #666666;
+    --text-muted: #999999;
+    --border: rgba(0,0,0,0.08);
+    --mill-blue: #dde4f0;
+    --mill-blue-light: #c5d0e8;
+    --mill-diamond: #e0e6f2;
+    --mill-diamond-active: #c0cce5;
+    --mill-diamond-done: #eef1f8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  /* ===================== BOTONES GLOBALES ===================== */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-primary {
+    background: var(--mill-gold);
+    color: #000;
+  }
+  .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+  }
+  .btn-ghost:hover { background: var(--bg-card-hover); color: var(--text-primary); }
+  .btn-danger {
+    background: var(--danger);
+    color: #fff;
+  }
+  .btn-danger:hover { opacity: 0.85; }
+
+  /* ===================== NAV ===================== */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 56px;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 100;
+  }
+  .nav-left { display: flex; align-items: center; gap: 12px; }
+  .nav-title { font-size: 15px; font-weight: 700; letter-spacing: -0.3px; }
+  .nav-subtitle { font-size: 12px; color: var(--text-secondary); }
+  .nav-right { display: flex; align-items: center; gap: 8px; }
+
+  .icon-btn {
+    width: 38px; height: 38px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .icon-btn:hover { background: var(--bg-card-hover); color: var(--text-primary); }
+
+  /* ===================== SCREENS ===================== */
+  .screen {
+    display: none;
+    min-height: 100vh;
+    padding-top: 56px;
+  }
+  .screen.active { display: flex; }
+
+  /* ===================== SETUP SCREEN ===================== */
+  #screen-setup {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    padding: 80px 20px;
+  }
+
+  .setup-logo {
+    text-align: center;
+  }
+  .setup-logo h1 {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--mill-gold-light), var(--mill-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+  }
+  .setup-logo p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 8px;
+  }
+
+  .setup-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    width: 100%;
+    max-width: 480px;
+  }
+
+  .setup-card label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .team-count-selector {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .team-count-btn {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid var(--border);
+    background: transparent;
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .team-count-btn:hover { border-color: var(--mill-gold); }
+  .team-count-btn.active {
+    border-color: var(--mill-gold);
+    background: rgba(212, 160, 23, 0.15);
+    color: var(--mill-gold-light);
+  }
+
+  .team-names {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .team-names input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    transition: border-color 0.2s;
+  }
+  .team-names input:focus {
+    outline: none;
+    border-color: var(--mill-gold);
+  }
+  .team-names input::placeholder { color: var(--text-muted); }
+
+  /* ===================== GAME SCREEN ===================== */
+  #screen-game {
+    flex-direction: column;
+    padding: 70px 20px 20px;
+    gap: 16px;
+    min-height: 100vh;
+  }
+
+  /* Barra de equipo actual */
+  .team-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 20px;
+    flex-shrink: 0;
+  }
+  .team-bar-name {
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .team-bar-prize {
+    font-weight: 700;
+    color: var(--mill-gold-light);
+    font-size: 16px;
+  }
+
+  /* Layout principal del juego */
+  .game-layout {
+    display: flex;
+    gap: 16px;
+    flex: 1;
+    min-height: 0;
+  }
+
+  /* Panel de pregunta */
+  .question-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 0;
+  }
+
+  /* Comodines */
+  .lifelines {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .lifeline-btn {
+    flex: 1;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 2px solid var(--mill-blue-light);
+    background: var(--mill-blue);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .lifeline-btn:hover:not(.used) {
+    background: var(--mill-blue-light);
+    transform: translateY(-1px);
+  }
+  .lifeline-btn.used {
+    opacity: 0.3;
+    cursor: not-allowed;
+    text-decoration: line-through;
+  }
+
+  /* Pregunta */
+  .question-box {
+    background: var(--mill-blue);
+    border: 2px solid var(--mill-gold);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .question-number {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--mill-gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .question-text {
+    font-size: clamp(16px, 2.5vw, 20px);
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  /* Opciones */
+  .options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .option-btn {
+    position: relative;
+    padding: 16px 20px;
+    border-radius: 12px;
+    border: 2px solid var(--mill-blue-light);
+    background: var(--mill-blue);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .option-btn:hover:not(.disabled):not(.eliminated) {
+    background: var(--mill-blue-light);
+    border-color: var(--mill-gold);
+    transform: translateY(-1px);
+  }
+  .option-letter {
+    font-weight: 800;
+    color: var(--mill-gold);
+    min-width: 20px;
+  }
+  .option-btn.correct {
+    background: rgba(34, 197, 94, 0.3);
+    border-color: var(--success);
+    animation: pulse-correct 0.5s ease;
+  }
+  .option-btn.wrong {
+    background: rgba(239, 68, 68, 0.3);
+    border-color: var(--danger);
+    animation: shake 0.5s ease;
+  }
+  .option-btn.eliminated {
+    opacity: 0.15;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  .option-btn.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  @keyframes pulse-correct {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+  }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+  }
+
+  /* Botón plantarse */
+  .plant-row {
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .btn-plant {
+    padding: 10px 28px;
+    border-radius: 10px;
+    border: 2px solid var(--warning);
+    background: transparent;
+    color: var(--warning);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-plant:hover {
+    background: rgba(245, 158, 11, 0.15);
+  }
+
+  /* Panel de comodín (llamada/público) */
+  .lifeline-result {
+    background: var(--bg-card);
+    border: 1px solid var(--mill-gold);
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-size: 14px;
+    color: var(--text-primary);
+    flex-shrink: 0;
+    display: none;
+  }
+  .lifeline-result.visible { display: block; }
+  .lifeline-result-title {
+    font-weight: 700;
+    color: var(--mill-gold);
+    margin-bottom: 6px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Barras del público */
+  .audience-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    height: 100px;
+    margin-top: 8px;
+  }
+  .audience-bar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .audience-bar-fill {
+    width: 100%;
+    background: var(--mill-gold);
+    border-radius: 4px 4px 0 0;
+    transition: height 0.5s ease;
+    min-height: 4px;
+  }
+  .audience-bar-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-secondary);
+  }
+  .audience-bar-pct {
+    font-size: 11px;
+    color: var(--mill-gold-light);
+    font-weight: 600;
+  }
+
+  /* ===================== ESCALERA DE PREMIOS ===================== */
+  .prize-ladder {
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex-shrink: 0;
+    align-self: center;
+  }
+  .prize-step {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 6px;
+    background: var(--mill-diamond);
+    color: var(--text-muted);
+    transition: all 0.3s;
+    position: relative;
+  }
+  .prize-step.safe {
+    color: var(--mill-gold);
+    font-weight: 700;
+  }
+  .prize-step.safe::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    width: 6px; height: 6px;
+    background: var(--mill-gold);
+    border-radius: 50%;
+  }
+  .prize-step.current {
+    background: var(--mill-diamond-active);
+    color: var(--text-primary);
+    border: 1px solid var(--mill-gold);
+    transform: scale(1.05);
+  }
+  .prize-step.done {
+    background: var(--mill-diamond-done);
+    color: var(--text-muted);
+  }
+
+  /* ===================== RESULT OVERLAY ===================== */
+  .result-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    padding: 20px;
+  }
+  .result-overlay.visible { display: flex; }
+  .result-card {
+    background: var(--bg-card);
+    border: 2px solid var(--mill-gold);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    max-width: 480px;
+    width: 100%;
+    animation: fadeIn 0.4s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .result-card h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+  .result-card .result-prize {
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--mill-gold-light);
+    margin: 16px 0;
+  }
+  .result-card .result-reason {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  /* ===================== RANKING SCREEN ===================== */
+  #screen-ranking {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    padding: 80px 20px;
+  }
+  .ranking-title {
+    text-align: center;
+  }
+  .ranking-title h1 {
+    font-size: 32px;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--mill-gold-light), var(--mill-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .ranking-title p {
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  .ranking-list {
+    width: 100%;
+    max-width: 520px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .ranking-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 24px;
+    transition: all 0.2s;
+  }
+  .ranking-item:first-child {
+    border-color: var(--mill-gold);
+    background: rgba(212, 160, 23, 0.08);
+  }
+  .ranking-position {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--mill-gold);
+    min-width: 40px;
+  }
+  .ranking-item:nth-child(2) .ranking-position { color: var(--text-secondary); }
+  .ranking-item:nth-child(3) .ranking-position { color: #cd7f32; }
+  .ranking-info { flex: 1; }
+  .ranking-name { font-weight: 700; font-size: 16px; }
+  .ranking-detail { font-size: 13px; color: var(--text-secondary); }
+  .ranking-prize {
+    font-weight: 800;
+    font-size: 20px;
+    color: var(--mill-gold-light);
+  }
+
+  /* ===================== RESPONSIVE ===================== */
+  @media (max-width: 768px) {
+    .game-layout {
+      flex-direction: column-reverse;
+    }
+    .prize-ladder {
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
+      gap: 4px;
+      justify-content: center;
+    }
+    .prize-step {
+      font-size: 11px;
+      padding: 4px 8px;
+    }
+    .options-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav class="nav">
+  <div class="nav-left">
+    <a href="../index.html" class="icon-btn" title="Inicio">
+      <!-- Lucide: home -->
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </a>
+    <div>
+      <div class="nav-title">Quien Quiere Ser Millonario</div>
+      <div class="nav-subtitle">Lengua 2.o ESO — Refuerzo</div>
+    </div>
+  </div>
+  <div class="nav-right">
+    <button class="icon-btn" id="btn-theme" title="Cambiar tema">
+      <!-- Lucide: moon (se cambia dinamicamente) -->
+      <svg id="icon-theme" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ===================== PANTALLA SETUP ===================== -->
+<div class="screen active" id="screen-setup">
+  <div class="setup-logo">
+    <h1>Quien Quiere Ser<br>Millonario?</h1>
+    <p>Lengua Castellana y Literatura — 2.o ESO</p>
+  </div>
+
+  <div class="setup-card">
+    <label>Numero de equipos</label>
+    <div class="team-count-selector">
+      <button class="team-count-btn active" data-count="2">2</button>
+      <button class="team-count-btn" data-count="3">3</button>
+      <button class="team-count-btn" data-count="4">4</button>
+    </div>
+
+    <label>Nombres de los equipos</label>
+    <div class="team-names" id="team-names">
+      <input type="text" placeholder="Equipo 1" data-team="0">
+      <input type="text" placeholder="Equipo 2" data-team="1">
+    </div>
+
+    <button class="btn btn-primary" style="width:100%; justify-content:center; margin-top: 8px;" id="btn-start">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Comenzar
+    </button>
+  </div>
+</div>
+
+<!-- ===================== PANTALLA JUEGO ===================== -->
+<div class="screen" id="screen-game">
+  <!-- Barra superior con equipo actual -->
+  <div class="team-bar">
+    <div>
+      <span class="team-bar-name" id="current-team-name">Equipo 1</span>
+      <span style="color: var(--text-muted); font-size: 13px;" id="current-team-turn"></span>
+    </div>
+    <div class="team-bar-prize" id="current-prize">0 EUR</div>
+  </div>
+
+  <div class="game-layout">
+    <!-- Panel de pregunta (izquierda / principal) -->
+    <div class="question-panel">
+      <!-- Comodines -->
+      <div class="lifelines">
+        <button class="lifeline-btn" id="ll-5050" onclick="useLifeline('5050')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4" y1="12" x2="20" y2="12"/></svg>
+          50:50
+        </button>
+        <button class="lifeline-btn" id="ll-phone" onclick="useLifeline('phone')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Llamada
+        </button>
+        <button class="lifeline-btn" id="ll-audience" onclick="useLifeline('audience')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Publico
+        </button>
+      </div>
+
+      <!-- Resultado comodin -->
+      <div class="lifeline-result" id="lifeline-result">
+        <div class="lifeline-result-title" id="lifeline-result-title"></div>
+        <div id="lifeline-result-content"></div>
+      </div>
+
+      <!-- Pregunta -->
+      <div class="question-box">
+        <div class="question-number" id="question-number">Pregunta 1 — 100 EUR</div>
+        <div class="question-text" id="question-text">Cargando...</div>
+      </div>
+
+      <!-- Opciones -->
+      <div class="options-grid" id="options-grid">
+        <button class="option-btn" data-idx="0"><span class="option-letter">A</span><span class="option-text"></span></button>
+        <button class="option-btn" data-idx="1"><span class="option-letter">B</span><span class="option-text"></span></button>
+        <button class="option-btn" data-idx="2"><span class="option-letter">C</span><span class="option-text"></span></button>
+        <button class="option-btn" data-idx="3"><span class="option-letter">D</span><span class="option-text"></span></button>
+      </div>
+
+      <!-- Plantarse -->
+      <div class="plant-row">
+        <button class="btn-plant" id="btn-plant" onclick="plantarse()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:4px;"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          Plantarse
+        </button>
+      </div>
+    </div>
+
+    <!-- Escalera de premios (derecha) -->
+    <div class="prize-ladder" id="prize-ladder"></div>
+  </div>
+</div>
+
+<!-- ===================== OVERLAY RESULTADO ===================== -->
+<div class="result-overlay" id="result-overlay">
+  <div class="result-card">
+    <h2 id="result-title">Resultado</h2>
+    <div class="result-prize" id="result-prize-amount">0 EUR</div>
+    <div class="result-reason" id="result-reason"></div>
+    <button class="btn btn-primary" id="btn-next-team" onclick="nextTeam()">Siguiente equipo</button>
+  </div>
+</div>
+
+<!-- ===================== PANTALLA RANKING ===================== -->
+<div class="screen" id="screen-ranking">
+  <div class="ranking-title">
+    <h1>Clasificacion Final</h1>
+    <p>Quien se lleva el millon?</p>
+  </div>
+  <div class="ranking-list" id="ranking-list"></div>
+  <button class="btn btn-primary" onclick="resetGame()">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+    Volver a jugar
+  </button>
+</div>
+
+<script>
+// =====================================================================
+// BANCO DE PREGUNTAS — Lengua Castellana 2.o ESO
+// 5 niveles x 16+ preguntas cada uno = 80+ preguntas
+// =====================================================================
+
+var QUESTIONS = {
+  // =====================================================================
+  // NIVEL 1: Faciles pero no obvias (preguntas 1-3, 100-500 EUR)
+  // Tipos de palabras basicos, ortografia sencilla, sinonimos/antonimos.
+  // =====================================================================
+  1: [
+    { question: "Que tipo de palabra es 'rapidamente'?", options: ["Adjetivo", "Sustantivo", "Adverbio", "Verbo"], correct: 2, hint: "Mi amigo dice que piensa que es la C... las palabras acabadas en '-mente' suelen indicar como se hace algo." },
+    { question: "Cual de estas palabras es esdrujula?", options: ["Cancion", "Platano", "Reloj", "Jardin"], correct: 1, hint: "Mi amigo dice que es la B... la silaba fuerte es 'pla', la antepenultima." },
+    { question: "Cual es un sinonimo de 'contento'?", options: ["Triste", "Feliz", "Enfadado", "Cansado"], correct: 1, hint: "Un amigo dice que cree que es la B... significan practicamente lo mismo." },
+    { question: "Que tipo de palabra es 'pero'?", options: ["Adverbio", "Preposicion", "Conjuncion", "Pronombre"], correct: 2, hint: "Mi amigo dice que piensa que es la C... une ideas indicando oposicion." },
+    { question: "Cual de estas palabras se escribe con 'b'?", options: ["Escri_ir", "Atre_erse", "Ser_ir", "Vi_ir"], correct: 0, hint: "Un amigo dice que es la A... los verbos acabados en -bir se escriben con b, excepto hervir, servir y vivir." },
+    { question: "Cual de estas palabras lleva tilde?", options: ["Examen", "Joven", "Lapiz", "Martes"], correct: 2, hint: "Mi amigo dice que cree que es la C... es llana acabada en z, que no es -n, -s ni vocal." },
+    { question: "Que tipo de palabra es 'hermoso'?", options: ["Sustantivo", "Adjetivo", "Verbo", "Adverbio"], correct: 1, hint: "Un amigo dice que piensa que es la B... describe una cualidad." },
+    { question: "Cual es el antonimo de 'valiente'?", options: ["Fuerte", "Cobarde", "Rapido", "Amable"], correct: 1, hint: "Mi amigo dice que es la B... significa lo contrario." },
+    { question: "Que tipo de palabra es 'en'?", options: ["Conjuncion", "Adverbio", "Preposicion", "Determinante"], correct: 2, hint: "Un amigo dice que cree que es la C... es una de las preposiciones del castellano (a, ante, bajo, con...)." },
+    { question: "Cual de estas palabras es llana?", options: ["Cafe", "Arbol", "Maquina", "Compas"], correct: 1, hint: "Mi amigo dice que piensa que es la B... la silaba fuerte es 'ar', la penultima." },
+    { question: "Que tipo de texto da instrucciones paso a paso?", options: ["Narrativo", "Descriptivo", "Instructivo", "Argumentativo"], correct: 2, hint: "Un amigo dice que es la C... como una receta de cocina o un manual." },
+    { question: "Cual de estas palabras es un sustantivo?", options: ["Correr", "Bonito", "Libertad", "Despacio"], correct: 2, hint: "Mi amigo dice que cree que es la C... nombra algo, aunque sea abstracto." },
+    { question: "Que tipo de determinante es 'tres' en 'tres libros'?", options: ["Articulo", "Demostrativo", "Posesivo", "Numeral"], correct: 3, hint: "Un amigo dice que piensa que es la D... indica cantidad exacta." },
+    { question: "Cual de estas palabras NO es aguda?", options: ["Reloj", "Pared", "Facil", "Cantar"], correct: 2, hint: "Mi amigo dice que es la C... 'facil' tiene la fuerza en 'fa', la penultima: es llana." },
+    { question: "Que tienen en comun 'gato', 'perro' y 'canario'?", options: ["Son palabras agudas", "Pertenecen al mismo campo semantico", "Son de la misma familia lexica", "Son sinonimos"], correct: 1, hint: "Un amigo dice que cree que es la B... todas son animales, comparten un rasgo de significado." },
+    { question: "Cual de estas oraciones tiene un error ortografico?", options: ["Voy a hacer la tarea", "Ayer hize un examen", "He hecho la cama", "Vamos a ver la pelicula"], correct: 1, hint: "Mi amigo dice que piensa que es la B... el preterito de 'hacer' es 'hice', con c." },
+    { question: "Que tipo de palabra es 'nosotros'?", options: ["Sustantivo", "Determinante", "Pronombre", "Adverbio"], correct: 2, hint: "Un amigo dice que es la C... sustituye al nombre de las personas que hablan." },
+    { question: "Cual de estas palabras es un verbo?", options: ["Belleza", "Caminaban", "Enorme", "Siempre"], correct: 1, hint: "Mi amigo dice que cree que es la B... expresa una accion en pasado." },
+    { question: "Que figura retorica hay en 'Eres fuerte como un toro'?", options: ["Metafora", "Comparacion o simil", "Hiperbole", "Personificacion"], correct: 1, hint: "Un amigo dice que piensa que es la B... usa 'como' para comparar dos cosas." },
+    { question: "Cual de estas palabras tiene prefijo?", options: ["Panadero", "Deshacer", "Libreria", "Gatito"], correct: 1, hint: "Mi amigo dice que es la B... 'des-' se anade delante de la raiz." },
+    { question: "Que tipo de palabra es 'muy' en 'Es muy alto'?", options: ["Adjetivo", "Determinante", "Adverbio", "Pronombre"], correct: 2, hint: "Un amigo dice que cree que es la C... modifica al adjetivo 'alto' indicando intensidad." },
+    { question: "Cual de estas palabras es un adverbio?", options: ["Mesa", "Azul", "Aqui", "Saltar"], correct: 2, hint: "Mi amigo dice que piensa que es la C... indica lugar." },
+  ],
+
+  // =====================================================================
+  // NIVEL 2: Intermedias (preguntas 4-6, 1.000-5.000 EUR)
+  // Determinante vs pronombre, tildes diacriticas, tipos de texto, hiatos.
+  // =====================================================================
+  2: [
+    { question: "Que tipo de palabra es 'este' en 'este libro es mio'?", options: ["Pronombre demostrativo", "Adjetivo", "Determinante demostrativo", "Adverbio"], correct: 2, hint: "Un amigo dice que piensa que es la C... acompana al sustantivo 'libro', asi que es determinante." },
+    { question: "Y que tipo de palabra es 'este' en 'Este es mi libro'?", options: ["Determinante demostrativo", "Pronombre demostrativo", "Adjetivo", "Conjuncion"], correct: 1, hint: "Mi amigo dice que cree que es la B... aqui no acompana a ningun sustantivo, lo sustituye." },
+    { question: "Cual de estas palabras tiene hiato?", options: ["Cielo", "Peine", "Raiz", "Fuego"], correct: 2, hint: "Un amigo dice que es la C... ra-iz: la vocal cerrada tonica rompe el posible diptongo." },
+    { question: "Que tilde diacritica lleva 'el' cuando es pronombre?", options: ["Nunca lleva tilde", "Siempre lleva tilde", "Lleva tilde para diferenciarlo del articulo: el (articulo) / el (pronombre)", "Solo lleva tilde en preguntas"], correct: 2, hint: "Mi amigo dice que piensa que es la C... 'El vino' (articulo) vs 'El vino tarde' (pronombre = esa persona)." },
+    { question: "Que tipo de texto cuenta una historia con personajes y hechos?", options: ["Descriptivo", "Narrativo", "Argumentativo", "Expositivo"], correct: 1, hint: "Un amigo dice que cree que es la B... tiene narrador, personajes, tiempo y espacio." },
+    { question: "Que figura retorica hay en 'Las perlas de tu boca' referido a los dientes?", options: ["Simil", "Metafora", "Hiperbole", "Personificacion"], correct: 1, hint: "Mi amigo dice que es la B... identifica dientes con perlas sin usar 'como'." },
+    { question: "Cual de estas palabras se escribe con 'g'?", options: ["Lejia", "Tejido", "Crujir", "Recoger"], correct: 3, hint: "Un amigo dice que piensa que es la D... los verbos acabados en -ger se escriben con g." },
+    { question: "Cual de estas palabras tiene un diptongo?", options: ["Poeta", "Caida", "Huevo", "Lio"], correct: 2, hint: "Mi amigo dice que cree que es la C... 'ue' en 'huevo': vocal cerrada + vocal abierta en la misma silaba." },
+    { question: "Que diferencia hay entre 'halla', 'haya' y 'aya'?", options: ["Son sinonimos", "'Halla' = encuentra, 'haya' = verbo haber o arbol, 'aya' = ninera", "'Halla' y 'haya' son iguales, 'aya' no existe", "Las tres significan lo mismo"], correct: 1, hint: "Mi amigo dice que piensa que es la B... cada una viene de un origen distinto." },
+    { question: "Que tipo de texto intenta convencer al lector de una opinion?", options: ["Narrativo", "Descriptivo", "Expositivo", "Argumentativo"], correct: 3, hint: "Un amigo dice que es la D... presenta razones para defender una postura." },
+    { question: "Cual de estas palabras contiene un sufijo apreciativo despectivo?", options: ["Casita", "Librazo", "Gentuza", "Perrito"], correct: 2, hint: "Mi amigo dice que cree que es la C... '-uza' tiene connotacion negativa." },
+    { question: "'Nadie vino a la fiesta'. Que tipo de pronombre es 'nadie'?", options: ["Personal", "Indefinido", "Demostrativo", "Posesivo"], correct: 1, hint: "Un amigo dice que piensa que es la B... indica cantidad indeterminada (ninguna persona)." },
+    { question: "Que tipo de determinante es 'varios' en 'varios alumnos aprobaron'?", options: ["Numeral cardinal", "Numeral ordinal", "Indefinido", "Interrogativo"], correct: 2, hint: "Mi amigo dice que es la C... indica cantidad imprecisa." },
+    { question: "Cual es la forma correcta: 'a ver' o 'haber'?", options: ["Son lo mismo, se usan igual", "'A ver' = vamos a ver; 'haber' = verbo haber o infinitivo", "'Haber' se usa siempre para mirar", "'A ver' es incorrecta, solo existe 'haber'"], correct: 1, hint: "Un amigo dice que cree que es la B... 'A ver que pasa' vs 'Tiene que haber una solucion'." },
+    { question: "Que tipo de palabra es 'ay' en 'Ay, que susto!'?", options: ["Adverbio", "Conjuncion", "Interjeccion", "Pronombre"], correct: 2, hint: "Mi amigo dice que piensa que es la C... expresa una emocion de forma espontanea." },
+    { question: "Que tipo de texto explica un tema de forma objetiva?", options: ["Narrativo", "Argumentativo", "Expositivo", "Dialogado"], correct: 2, hint: "Un amigo dice que es la C... informa sin dar opiniones personales, como un articulo de enciclopedia." },
+    { question: "Cual de estas oraciones usa correctamente la tilde diacritica?", options: ["Dame tu libro", "Tu tienes razon", "Mi casa es grande", "Se bueno conmigo"], correct: 1, hint: "Mi amigo dice que cree que es la B... 'tu' con tilde es pronombre personal (tu = la persona), sin tilde es posesivo." },
+    { question: "Que figura retorica hay en 'He leido ese libro mil veces'?", options: ["Metafora", "Comparacion", "Hiperbole", "Personificacion"], correct: 2, hint: "Un amigo dice que piensa que es la C... es una exageracion, nadie lo lee mil veces literalmente." },
+    { question: "Cual de estas palabras pertenece a la familia lexica de 'pan'?", options: ["Empanada", "Pandemia", "Panorama", "Pantalla"], correct: 0, hint: "Mi amigo dice que es la A... comparte la raiz 'pan-' con significado de alimento." },
+    { question: "Que tipo de palabra es 'suyo' en 'El libro es suyo'?", options: ["Determinante posesivo", "Pronombre posesivo", "Adjetivo", "Sustantivo"], correct: 1, hint: "Un amigo dice que cree que es la B... no acompana a un sustantivo, lo sustituye: 'suyo' = de el/ella." },
+  ],
+
+  // =====================================================================
+  // NIVEL 3: Tramposas dentro del curriculum (preguntas 7-9, 10.000-50.000 EUR)
+  // Casos ambiguos, polisemia vs homonimia, figuras que se confunden.
+  // =====================================================================
+  3: [
+    { question: "Que tipo de palabra es 'bajo' en 'El gato esta bajo la mesa'?", options: ["Adjetivo", "Sustantivo", "Verbo", "Preposicion"], correct: 3, hint: "Un amigo dice que piensa que es la D... aqui equivale a 'debajo de', indica posicion." },
+    { question: "Y que tipo de palabra es 'bajo' en 'Pedro es muy bajo'?", options: ["Preposicion", "Verbo", "Adjetivo", "Adverbio"], correct: 2, hint: "Mi amigo dice que cree que es la C... describe una cualidad de Pedro (estatura)." },
+    { question: "Cual de estas palabras lleva tilde por ser hiato?", options: ["Peine", "Reir", "Causa", "Aceite"], correct: 1, hint: "Un amigo dice que es la B... re-ir: la vocal cerrada tonica (i) lleva tilde para marcar el hiato." },
+    { question: "Que diferencia hay entre polisemia y homonimia?", options: ["Son lo mismo", "Polisemia: una palabra con varios significados relacionados; homonimia: palabras distintas que suenan igual", "Homonimia: varios significados de una palabra; polisemia: palabras que suenan igual", "No existe la polisemia"], correct: 1, hint: "Mi amigo dice que piensa que es la B... 'gato' (animal / herramienta) es polisemia; 'vino' (verbo) y 'vino' (bebida) es homonimia." },
+    { question: "En 'El viento susurraba entre los arboles', que figura retorica hay?", options: ["Metafora", "Hiperbole", "Personificacion", "Comparacion"], correct: 2, hint: "Un amigo dice que cree que es la C... se atribuye al viento una accion humana (susurrar)." },
+    { question: "Que tipo de palabra es 'cerca' en 'Mi casa esta cerca'?", options: ["Adjetivo", "Sustantivo", "Preposicion", "Adverbio de lugar"], correct: 3, hint: "Mi amigo dice que es la D... indica donde esta la casa, sin acompanar a ningun sustantivo." },
+    { question: "Cual de estas palabras se escribe correctamente?", options: ["Preveer", "Prever", "Preveer (como proveer)", "Prebeer"], correct: 1, hint: "Un amigo dice que piensa que es la B... es pre- + ver, no *preveer. Error muy comun." },
+    { question: "Que tipo de texto es un dialogo entre dos personajes en una novela?", options: ["Narrativo", "Dialogado", "Expositivo", "Argumentativo"], correct: 1, hint: "Mi amigo dice que cree que es la B... aunque esta dentro de una narracion, el fragmento en si es dialogado." },
+    { question: "Que diferencia hay entre 'sino' y 'si no'?", options: ["Son lo mismo", "'Sino' es conjuncion adversativa; 'si no' es condicional negativa", "'Si no' es la forma correcta siempre", "'Sino' solo significa destino"], correct: 1, hint: "Un amigo dice que es la B... 'No quiero cafe, sino te' vs 'Si no vienes, me voy'." },
+    { question: "Que tipo de palabra es 'aquello' en 'Aquello fue increible'?", options: ["Determinante demostrativo", "Pronombre demostrativo", "Adjetivo", "Adverbio"], correct: 1, hint: "Mi amigo dice que piensa que es la B... no acompana a ningun sustantivo, funciona solo." },
+    { question: "Cual de estas figuras aparece en 'Tenia un hambre que me comia'?", options: ["Metafora", "Personificacion", "Hiperbole", "Anafora"], correct: 2, hint: "Un amigo dice que cree que es la C... es una exageracion expresiva, nadie se come a si mismo de hambre." },
+    { question: "Que es un hiperionimo?", options: ["Una palabra que engloba a otras mas especificas", "Un sinonimo mas formal", "Una palabra con varios significados", "Una palabra inventada"], correct: 0, hint: "Mi amigo dice que es la A... por ejemplo, 'fruta' es hiperonimo de 'manzana', 'pera', 'platano'..." },
+    { question: "Que tipo de palabra es 'que' en 'Que quieres?'?", options: ["Conjuncion", "Pronombre interrogativo", "Determinante", "Adverbio"], correct: 1, hint: "Un amigo dice que piensa que es la B... esta preguntando por algo, sustituye a la cosa que se quiere." },
+    { question: "Cual de estas oraciones tiene bien puesta la coma?", options: ["Mi hermano, come mucho", "Madrid, la capital de Espana, es muy grande", "Ayer por la tarde, fui, al cine", "Pedro, y Maria son amigos"], correct: 1, hint: "Mi amigo dice que cree que es la B... la coma encierra un inciso explicativo." },
+    { question: "Que tipo de palabra es 'mucho' en 'Tengo mucho sueno'?", options: ["Adverbio", "Pronombre", "Determinante indefinido", "Adjetivo"], correct: 2, hint: "Un amigo dice que es la C... acompana al sustantivo 'sueno' indicando cantidad imprecisa." },
+    { question: "Y que tipo de palabra es 'mucho' en 'Corre mucho'?", options: ["Determinante", "Pronombre", "Adverbio de cantidad", "Adjetivo"], correct: 2, hint: "Mi amigo dice que piensa que es la C... aqui modifica al verbo 'corre', no a un sustantivo." },
+    { question: "Que figura retorica aparece en 'La Aurora de rosados dedos' (Homero)?", options: ["Hiperbole", "Personificacion", "Comparacion", "Anafora"], correct: 1, hint: "Un amigo dice que cree que es la B... se atribuyen dedos (caracteristica humana) a la Aurora (fenomeno natural)." },
+    { question: "Cual de estas palabras tiene sufijo?", options: ["Desorden", "Increible", "Panadero", "Antesala"], correct: 2, hint: "Mi amigo dice que es la C... '-ero' es un sufijo que indica oficio, anadido a la raiz 'pan-'." },
+    { question: "Que tipo de texto es una noticia de periodico?", options: ["Argumentativo", "Narrativo", "Expositivo", "Instructivo"], correct: 2, hint: "Un amigo dice que piensa que es la C... informa sobre hechos de manera objetiva, sin opinar." },
+    { question: "Que tipo de palabra es 'le' en 'Le di un regalo'?", options: ["Determinante", "Adverbio", "Pronombre personal", "Conjuncion"], correct: 2, hint: "Mi amigo dice que cree que es la C... sustituye a la persona que recibe el regalo." },
+  ],
+
+  // =====================================================================
+  // NIVEL 4: Muy tramposas (preguntas 10-12, 75.000-150.000 EUR)
+  // Hiato/diptongo limite, cadenas de hiperonimos, cambio de categoria.
+  // =====================================================================
+  4: [
+    { question: "La palabra 'guion' lleva tilde?", options: ["Si, porque tiene hiato (gu-i-on)", "No, la RAE dice que es monosilaba desde 2010", "Si, siempre lleva tilde", "Depende del contexto"], correct: 1, hint: "Un amigo dice que piensa que es la B... desde la Ortografia de 2010, 'guion' se considera monosilaba y no lleva tilde." },
+    { question: "En 'animal > mamifero > perro', cual es el hiperonimo de 'mamifero'?", options: ["Perro", "Animal", "Mamifero no tiene hiperonimo", "Vertebrado"], correct: 1, hint: "Mi amigo dice que cree que es la B... 'animal' es mas general que 'mamifero', lo engloba." },
+    { question: "Que tipo de palabra es 'sobre' en 'Deje el libro sobre la mesa'?", options: ["Sustantivo", "Verbo", "Preposicion", "Adjetivo"], correct: 2, hint: "Un amigo dice que es la C... indica posicion (encima de)." },
+    { question: "Y que tipo de palabra es 'sobre' en 'Meti la carta en el sobre'?", options: ["Preposicion", "Sustantivo", "Verbo", "Adverbio"], correct: 1, hint: "Mi amigo dice que piensa que es la B... aqui es una cosa, un objeto que contiene la carta." },
+    { question: "Cual de estas oraciones usa bien 'echo' / 'hecho'?", options: ["He echo la cama esta manana", "Ya lo he hecho todo", "Echo de menos a mi hecho", "El echo es que no vino"], correct: 1, hint: "Un amigo dice que cree que es la B... 'hecho' es participio de 'hacer'; 'echo' es del verbo 'echar'." },
+    { question: "Un texto que empieza con 'Erase una vez...' y cuenta aventuras de un personaje es...", options: ["Expositivo", "Argumentativo", "Narrativo", "Instructivo"], correct: 2, hint: "Mi amigo dice que es la C... cuenta hechos con personajes, tiempo y espacio." },
+    { question: "Que tipo de palabra es 'claro' en 'Claro que si'?", options: ["Adjetivo", "Adverbio", "Sustantivo", "Interjeccion"], correct: 1, hint: "Un amigo dice que piensa que es la B... aqui funciona como afirmacion/modificador, no describe un sustantivo." },
+    { question: "Que es un eufemismo?", options: ["Una palabra malsonante", "Una expresion suave que sustituye a otra mas directa o desagradable", "Un tipo de metafora", "Una palabra sin significado"], correct: 1, hint: "Mi amigo dice que cree que es la B... como decir 'tercera edad' en lugar de 'vejez' o 'pasar a mejor vida' en lugar de 'morir'." },
+    { question: "Que tipo de palabra es 'canto' en 'Yo canto una cancion'?", options: ["Sustantivo", "Verbo", "Adjetivo", "Ambas: verbo y sustantivo"], correct: 1, hint: "Un amigo dice que es la B... aqui es la accion que realizo: 'yo canto'. Como sustantivo seria 'el canto del pajaro'." },
+    { question: "Cual de estas palabras tiene tilde diacritica correcta?", options: ["Se lo que quieres (se = saber)", "Se bueno (se = saber)", "No se nada (se = ser)", "Se acabo (se = pronombre, no lleva tilde)"], correct: 0, hint: "Mi amigo dice que piensa que es la A... 'se' lleva tilde cuando es del verbo 'saber' o 'ser': 'Se (= yo se) lo que quieres'." },
+    { question: "Que figura retorica hay en 'Tus ojos son dos luceros'?", options: ["Comparacion", "Hiperbole", "Metafora", "Personificacion"], correct: 2, hint: "Un amigo dice que cree que es la C... identifica ojos con luceros directamente, sin usar 'como'." },
+    { question: "Que tipo de palabra es 'poco' en 'Quedan pocos dias'?", options: ["Adverbio", "Pronombre", "Determinante indefinido", "Adjetivo"], correct: 2, hint: "Mi amigo dice que es la C... acompana al sustantivo 'dias' e indica cantidad imprecisa." },
+    { question: "Y que tipo de palabra es 'poco' en 'Duerme poco'?", options: ["Determinante", "Pronombre", "Adverbio de cantidad", "Sustantivo"], correct: 2, hint: "Un amigo dice que piensa que es la C... modifica al verbo 'duerme', indica cantidad." },
+    { question: "Cual de estas oraciones tiene un error de mayusculas?", options: ["Fui al medico el Lunes", "Madrid es la capital de Espana", "Me gusta la musica clasica", "Mi profesora se llama Ana"], correct: 0, hint: "Mi amigo dice que cree que es la A... los dias de la semana se escriben en minuscula en espanol." },
+    { question: "Que es una palabra tabu?", options: ["Una palabra que ya no se usa", "Una palabra que se evita por resultar ofensiva, desagradable o inapropiada", "Un tipo de insulto", "Una palabra extranjera"], correct: 1, hint: "Un amigo dice que es la B... son palabras relacionadas con temas como la muerte, enfermedades o funciones corporales que se suelen evitar." },
+    { question: "Que tipo de palabra es 'nada' en 'No quiero nada'?", options: ["Adverbio", "Pronombre indefinido", "Determinante", "Sustantivo"], correct: 1, hint: "Mi amigo dice que piensa que es la B... sustituye a 'ninguna cosa'." },
+    { question: "Que onomatopeya representa el sonido de un reloj?", options: ["Miau", "Tic-tac", "Pum", "Zzz"], correct: 1, hint: "Un amigo dice que cree que es la B... imita el sonido ritmico de las agujas." },
+    { question: "Cual de estas es una palabra con prefijo que cambia el significado a su opuesto?", options: ["Releer", "Imposible", "Submarine", "Anteayer"], correct: 1, hint: "Mi amigo dice que es la B... 'in-/im-' niega: posible > imposible." },
+    { question: "Que tipo de palabra es 'todo' en 'Todo esta bien'?", options: ["Determinante", "Pronombre indefinido", "Adverbio", "Adjetivo"], correct: 1, hint: "Un amigo dice que piensa que es la B... aqui no acompana a un sustantivo, funciona solo: 'todo' = todas las cosas." },
+    { question: "En un texto que dice 'Para preparar una tortilla: primero, bate los huevos...', que tipo de texto es?", options: ["Narrativo", "Argumentativo", "Instructivo", "Descriptivo"], correct: 2, hint: "Mi amigo dice que cree que es la C... da pasos ordenados para hacer algo." },
+  ],
+
+  // =====================================================================
+  // NIVEL 5: Maxima dificultad DENTRO del curriculum (preguntas 13-15, 300.000-1.000.000 EUR)
+  // porque/por que, prefijos que cambian categoria, eufemismos, textos ambiguos.
+  // =====================================================================
+  5: [
+    { question: "Cual es la forma correcta: 'No se por que no vino'?", options: ["No se porque no vino", "No se por que no vino", "No se porQue no vino", "No se por que no vino"], correct: 1, hint: "Un amigo no esta muy seguro... dice que 'por que' separado y con tilde se usa en preguntas, incluso indirectas." },
+    { question: "En 'Dime el porque de tu decision', que tipo de palabra es 'porque'?", options: ["Conjuncion causal", "Preposicion + pronombre", "Sustantivo (= motivo, razon)", "Adverbio interrogativo"], correct: 2, hint: "Mi amigo dice que piensa que es la C... lleva articulo delante ('el porque'), asi que es sustantivo." },
+    { question: "Que tipo de palabra es 'bajo' en 'El bajo tocaba bajo la lluvia'?", options: ["Adjetivo y preposicion", "Sustantivo y preposicion", "Verbo y adverbio", "Sustantivo y adverbio"], correct: 1, hint: "Un amigo dice que cree que es la B... 'el bajo' = sustantivo (el cantante / el instrumento); 'bajo la lluvia' = preposicion." },
+    { question: "El sufijo '-mente' convierte un adjetivo en...", options: ["Otro adjetivo", "Un sustantivo", "Un adverbio", "Un verbo"], correct: 2, hint: "Mi amigo dice que es la C... 'rapido' (adjetivo) + '-mente' = 'rapidamente' (adverbio)." },
+    { question: "Decir 'persona de la tercera edad' en lugar de 'viejo' es un ejemplo de...", options: ["Sinonimo", "Antonimo", "Eufemismo", "Hiponimo"], correct: 2, hint: "Un amigo dice que piensa que es la C... se usa una expresion mas suave para evitar la palabra directa." },
+    { question: "Cual de estas es correcta: 'Si no vienes, me enfado' o 'Sino vienes, me enfado'?", options: ["La primera: 'si no' (condicional negativa)", "La segunda: 'sino' (adversativa)", "Ambas son correctas", "Ninguna es correcta"], correct: 0, hint: "Mi amigo dice que cree que es la A... 'sino' necesita una negacion previa: 'No quiero esto, sino aquello'. Aqui hay condicion." },
+    { question: "Que figura retorica hay en 'Verde que te quiero verde. / Verde viento. / Verdes ramas.' (Lorca)?", options: ["Metafora", "Hiperbole", "Anafora", "Personificacion"], correct: 2, hint: "Un amigo dice que piensa que es la C... se repite 'verde' al inicio de cada frase." },
+    { question: "Un texto que describe las caracteristicas de la celula animal, sin dar opiniones, es...", options: ["Argumentativo", "Narrativo", "Expositivo", "Dialogado"], correct: 2, hint: "Mi amigo dice que es la C... informa de un tema de manera objetiva." },
+    { question: "Que tipo de palabra es 'la' en 'La vi ayer en la calle'? (primera 'la')", options: ["Articulo", "Pronombre personal", "Determinante", "Conjuncion"], correct: 1, hint: "Un amigo dice que cree que es la B... sustituye a una persona femenina: 'la vi' = 'vi a ella'." },
+    { question: "Cual de estas oraciones usa bien las cuatro formas de 'porque'?", options: ["Porque llueve, me quedo. / No se por que. / El porque es claro. / La razon por que no fui.", "Porque llueve, me quedo. / No se porque. / El por que es claro. / Por que no fui.", "Por que llueve, me quedo. / No se porque. / El porque es claro. / La razon por que no fui.", "Porque llueve, me quedo. / No se por que. / El porque es claro. / La razon por que no fui."], correct: 3, hint: "Un amigo no esta seguro del todo... dice que 'porque' (causa), 'por que' (pregunta), 'el porque' (sustantivo), 'por que' (preposicion + relativo) suenan parecido pero se escriben distinto." },
+    { question: "Que tipo de palabra es 'mas' en 'Quiero mas agua' y en 'Quiero ir, mas no puedo'?", options: ["Adverbio en ambos casos", "Determinante y conjuncion", "Adverbio y conjuncion adversativa", "Pronombre y preposicion"], correct: 2, hint: "Mi amigo dice que piensa que es la C... 'mas' sin tilde = pero (conjuncion); 'mas' con tilde = cantidad (adverbio)." },
+    { question: "Que es un hiponimo?", options: ["Una palabra mas general que engloba a otras", "Una palabra mas especifica dentro de una categoria", "Un sinonimo formal", "Un tipo de prefijo"], correct: 1, hint: "Un amigo dice que cree que es la B... 'rosa' es hiponimo de 'flor'; 'flor' es el hiperonimo." },
+    { question: "Que figura retorica hay en 'Tanto dolor se agrupa en mi costado que, por doler, me duele hasta el aliento' (Miguel Hernandez)?", options: ["Comparacion", "Hiperbole", "Personificacion", "Anafora"], correct: 1, hint: "Mi amigo dice que es la B... exagera el dolor hasta un punto imposible (doler el aliento)." },
+    { question: "Un texto de opinion de un periodico que dice 'Creo firmemente que esta ley es injusta porque...' es...", options: ["Expositivo", "Narrativo", "Argumentativo", "Descriptivo"], correct: 2, hint: "Un amigo dice que piensa que es la C... el autor da su opinion y la justifica con razones." },
+    { question: "Que tipo de palabra es 'medio' en 'Esta medio dormida'?", options: ["Adjetivo", "Sustantivo", "Adverbio", "Determinante"], correct: 2, hint: "Mi amigo dice que cree que es la C... modifica al adjetivo 'dormida', indica grado. No dice 'media dormida'." },
+    { question: "Que es un campo semantico?", options: ["Palabras de la misma familia (misma raiz)", "Palabras relacionadas por su significado, aunque tengan raices distintas", "Palabras que suenan igual", "Palabras con el mismo prefijo"], correct: 1, hint: "Un amigo dice que es la B... 'silla', 'mesa', 'armario' comparten el tema 'muebles' aunque no comparten raiz." },
+    { question: "En 'No es mala idea', la expresion 'no es mala' para decir que es buena es un ejemplo de...", options: ["Hiperbole", "Metafora", "Negar lo contrario para afirmar (afirmar negando)", "Eufemismo"], correct: 2, hint: "Mi amigo dice que piensa que es la C... se niega lo negativo en vez de afirmar directamente. Es un recurso expresivo comun." },
+    { question: "Que tipo de palabra es 'se' en 'Ya se que tienes razon'?", options: ["Pronombre reflexivo", "Pronombre personal", "Verbo saber (1a persona)", "Conjuncion"], correct: 2, hint: "Un amigo dice que cree que es la C... 'se' con tilde es del verbo saber: 'yo se'." },
+    { question: "Un texto que mezcla 'Habia una vez un cientifico que descubrio...' con datos reales sobre un descubrimiento, es fundamentalmente...", options: ["Solo narrativo", "Solo expositivo", "Narrativo con elementos expositivos", "Argumentativo"], correct: 2, hint: "Mi amigo dice que es la C... cuenta una historia (narrativo) pero incluye informacion objetiva (expositivo). Predomina la narracion." },
+    { question: "Que prefijo convierte 'hacer' en su antonimo?", options: ["Re-", "Des-", "Pre-", "Anti-"], correct: 1, hint: "Un amigo dice que piensa que es la B... 'deshacer' significa lo contrario de 'hacer'." },
+  ]
+};
+
+// =====================================================================
+// CONFIGURACION DEL JUEGO
+// =====================================================================
+
+var PRIZE_LADDER = [
+  100, 200, 500, 1000, 2000,
+  5000, 10000, 20000, 50000, 75000,
+  100000, 150000, 300000, 500000, 1000000
+];
+
+// Hitos seguros: pregunta 4 (1.000 EUR, indice 3) y pregunta 10 (75.000 EUR, indice 9)
+var SAFE_HAVENS = [3, 9];
+
+// Mapeo: pregunta i a nivel de dificultad
+function getDifficultyLevel(questionIndex) {
+  if (questionIndex < 3) return 1;
+  if (questionIndex < 6) return 2;
+  if (questionIndex < 9) return 3;
+  if (questionIndex < 12) return 4;
+  return 5;
+}
+
+// =====================================================================
+// ESTADO DEL JUEGO
+// =====================================================================
+
+var teams = [];
+var currentTeamIndex = 0;
+var currentQuestionIndex = 0;
+var currentQuestions = []; // Las 15 preguntas seleccionadas para el equipo actual
+var lifelines = { '5050': false, 'phone': false, 'audience': false };
+var answered = false;
+var gameFinished = false;
+
+// =====================================================================
+// FUNCIONES DE SETUP
+// =====================================================================
+
+// Selector de numero de equipos
+document.querySelectorAll('.team-count-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.team-count-btn').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    var count = parseInt(btn.dataset.count);
+    renderTeamInputs(count);
+  });
+});
+
+function renderTeamInputs(count) {
+  var container = document.getElementById('team-names');
+  container.textContent = '';
+  for (var i = 0; i < count; i++) {
+    var input = document.createElement('input');
+    input.type = 'text';
+    input.placeholder = 'Equipo ' + (i + 1);
+    input.dataset.team = i;
+    container.appendChild(input);
+  }
+}
+
+// Boton comenzar
+document.getElementById('btn-start').addEventListener('click', function() {
+  var inputs = document.querySelectorAll('#team-names input');
+  teams = [];
+  inputs.forEach(function(input, i) {
+    teams.push({
+      name: input.value.trim() || ('Equipo ' + (i + 1)),
+      prize: 0,
+      finalPrize: 0,
+      finished: false,
+      questionsAnswered: 0
+    });
+  });
+  currentTeamIndex = 0;
+  gameFinished = false;
+  startTeamTurn();
+  showScreen('screen-game');
+});
+
+// =====================================================================
+// LOGICA DEL JUEGO
+// =====================================================================
+
+// Seleccionar preguntas aleatorias para una partida completa
+function selectQuestions() {
+  var selected = [];
+  for (var level = 1; level <= 5; level++) {
+    var pool = QUESTIONS[level].slice();
+    // Barajar el pool (Fisher-Yates)
+    for (var i = pool.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = pool[i];
+      pool[i] = pool[j];
+      pool[j] = temp;
+    }
+    // Tomar 3 preguntas de cada nivel
+    selected = selected.concat(pool.slice(0, 3));
+  }
+  return selected;
+}
+
+function startTeamTurn() {
+  currentQuestionIndex = 0;
+  currentQuestions = selectQuestions();
+  lifelines = { '5050': false, 'phone': false, 'audience': false };
+
+  // Resetear UI de comodines
+  document.getElementById('ll-5050').classList.remove('used');
+  document.getElementById('ll-phone').classList.remove('used');
+  document.getElementById('ll-audience').classList.remove('used');
+
+  // Ocultar resultado de comodin
+  document.getElementById('lifeline-result').classList.remove('visible');
+
+  updateTeamBar();
+  buildPrizeLadder();
+  showQuestion();
+}
+
+function updateTeamBar() {
+  var team = teams[currentTeamIndex];
+  document.getElementById('current-team-name').textContent = team.name;
+  document.getElementById('current-team-turn').textContent =
+    '(' + (currentTeamIndex + 1) + ' de ' + teams.length + ')';
+
+  var currentPrizeValue = currentQuestionIndex > 0
+    ? PRIZE_LADDER[currentQuestionIndex - 1]
+    : 0;
+  document.getElementById('current-prize').textContent =
+    formatPrize(currentPrizeValue);
+}
+
+function buildPrizeLadder() {
+  var ladder = document.getElementById('prize-ladder');
+  ladder.textContent = '';
+  // De arriba (1M) a abajo (100)
+  for (var i = PRIZE_LADDER.length - 1; i >= 0; i--) {
+    var step = document.createElement('div');
+    step.className = 'prize-step';
+    step.dataset.index = i;
+
+    if (SAFE_HAVENS.indexOf(i) !== -1) step.classList.add('safe');
+    if (i === currentQuestionIndex) step.classList.add('current');
+    if (i < currentQuestionIndex) step.classList.add('done');
+
+    step.textContent = formatPrize(PRIZE_LADDER[i]);
+    ladder.appendChild(step);
+  }
+}
+
+function showQuestion() {
+  answered = false;
+  var q = currentQuestions[currentQuestionIndex];
+
+  document.getElementById('question-number').textContent =
+    'Pregunta ' + (currentQuestionIndex + 1) + ' \u2014 ' + formatPrize(PRIZE_LADDER[currentQuestionIndex]);
+  document.getElementById('question-text').textContent = q.question;
+
+  var buttons = document.querySelectorAll('.option-btn');
+  buttons.forEach(function(btn, i) {
+    btn.className = 'option-btn';
+    btn.querySelector('.option-text').textContent = q.options[i];
+    btn.onclick = function() { selectAnswer(i); };
+  });
+
+  // Ocultar resultado de comodin anterior
+  document.getElementById('lifeline-result').classList.remove('visible');
+
+  // Actualizar escalera
+  buildPrizeLadder();
+  updateTeamBar();
+}
+
+function selectAnswer(idx) {
+  if (answered) return;
+  answered = true;
+
+  var q = currentQuestions[currentQuestionIndex];
+  var buttons = document.querySelectorAll('.option-btn');
+
+  // Deshabilitar todos los botones
+  buttons.forEach(function(b) { b.classList.add('disabled'); });
+
+  if (idx === q.correct) {
+    // Correcto
+    buttons[idx].classList.add('correct');
+    setTimeout(function() {
+      currentQuestionIndex++;
+      if (currentQuestionIndex >= 15) {
+        // Ha ganado el millon
+        endTeamTurn(PRIZE_LADDER[14], 'Ha respondido las 15 preguntas correctamente!');
+      } else {
+        showQuestion();
+      }
+    }, 1500);
+  } else {
+    // Incorrecto
+    buttons[idx].classList.add('wrong');
+    buttons[q.correct].classList.add('correct');
+
+    // Calcular premio (cae al ultimo hito seguro)
+    var safePrize = 0;
+    for (var s = 0; s < SAFE_HAVENS.length; s++) {
+      if (currentQuestionIndex > SAFE_HAVENS[s]) {
+        safePrize = PRIZE_LADDER[SAFE_HAVENS[s]];
+      }
+    }
+
+    setTimeout(function() {
+      endTeamTurn(safePrize, 'Respuesta incorrecta. La correcta era: ' + q.options[q.correct]);
+    }, 2000);
+  }
+}
+
+function plantarse() {
+  if (answered) return;
+  var prize = currentQuestionIndex > 0 ? PRIZE_LADDER[currentQuestionIndex - 1] : 0;
+  endTeamTurn(prize, 'Se ha plantado voluntariamente.');
+}
+
+function endTeamTurn(prize, reason) {
+  teams[currentTeamIndex].finalPrize = prize;
+  teams[currentTeamIndex].finished = true;
+  teams[currentTeamIndex].questionsAnswered = currentQuestionIndex;
+
+  document.getElementById('result-title').textContent = teams[currentTeamIndex].name;
+  document.getElementById('result-prize-amount').textContent = formatPrize(prize);
+  document.getElementById('result-reason').textContent = reason;
+
+  // Comprobar si quedan equipos
+  var nextIdx = currentTeamIndex + 1;
+  if (nextIdx >= teams.length) {
+    document.getElementById('btn-next-team').textContent = 'Ver clasificacion';
+  } else {
+    document.getElementById('btn-next-team').textContent =
+      'Turno de: ' + teams[nextIdx].name;
+  }
+
+  document.getElementById('result-overlay').classList.add('visible');
+}
+
+function nextTeam() {
+  document.getElementById('result-overlay').classList.remove('visible');
+  currentTeamIndex++;
+
+  if (currentTeamIndex >= teams.length) {
+    showRanking();
+  } else {
+    startTeamTurn();
+  }
+}
+
+// =====================================================================
+// COMODINES
+// =====================================================================
+
+function useLifeline(type) {
+  if (lifelines[type] || answered) return;
+  lifelines[type] = true;
+
+  var q = currentQuestions[currentQuestionIndex];
+  var resultEl = document.getElementById('lifeline-result');
+  var titleEl = document.getElementById('lifeline-result-title');
+  var contentEl = document.getElementById('lifeline-result-content');
+
+  if (type === '5050') {
+    document.getElementById('ll-5050').classList.add('used');
+    // Elegir 2 respuestas incorrectas para eliminar
+    var incorrectIndices = [0, 1, 2, 3].filter(function(i) { return i !== q.correct; });
+    // Barajar y tomar 2
+    for (var i = incorrectIndices.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = incorrectIndices[i];
+      incorrectIndices[i] = incorrectIndices[j];
+      incorrectIndices[j] = temp;
+    }
+    var toRemove = incorrectIndices.slice(0, 2);
+    var buttons = document.querySelectorAll('.option-btn');
+    toRemove.forEach(function(idx) { buttons[idx].classList.add('eliminated'); });
+
+  } else if (type === 'phone') {
+    document.getElementById('ll-phone').classList.add('used');
+    titleEl.textContent = 'Llamada a un amigo';
+    contentEl.textContent = q.hint;
+    resultEl.classList.add('visible');
+
+  } else if (type === 'audience') {
+    document.getElementById('ll-audience').classList.add('used');
+    // Generar porcentajes donde la correcta tiene mas
+    var pcts = generateAudiencePercentages(q.correct);
+    var letters = ['A', 'B', 'C', 'D'];
+
+    // Comprobar si hay opciones eliminadas por 50:50
+    var optButtons = document.querySelectorAll('.option-btn');
+    var eliminated = [];
+    optButtons.forEach(function(btn, i) {
+      if (btn.classList.contains('eliminated')) eliminated.push(i);
+    });
+
+    // Recalcular porcentajes si hay eliminadas
+    if (eliminated.length > 0) {
+      var adjustedPcts = [0, 0, 0, 0];
+      var remaining = 100;
+      var activeIndices = [0, 1, 2, 3].filter(function(i) { return eliminated.indexOf(i) === -1; });
+      // La correcta obtiene entre 50% y 75%
+      var correctPct = Math.floor(Math.random() * 26) + 50;
+      adjustedPcts[q.correct] = correctPct;
+      remaining -= correctPct;
+      var otherActive = activeIndices.filter(function(i) { return i !== q.correct; });
+      if (otherActive.length > 0) {
+        adjustedPcts[otherActive[0]] = remaining;
+      }
+      pcts = adjustedPcts;
+    }
+
+    titleEl.textContent = 'Pregunta al publico';
+
+    // Construir barras con DOM seguro
+    contentEl.textContent = '';
+    var barsContainer = document.createElement('div');
+    barsContainer.className = 'audience-bars';
+
+    for (var bi = 0; bi < 4; bi++) {
+      var pct = eliminated.indexOf(bi) !== -1 ? 0 : pcts[bi];
+      var height = Math.max(pct * 0.9, 2);
+
+      var barDiv = document.createElement('div');
+      barDiv.className = 'audience-bar';
+
+      var pctLabel = document.createElement('div');
+      pctLabel.className = 'audience-bar-pct';
+      pctLabel.textContent = pct + '%';
+
+      var fillDiv = document.createElement('div');
+      fillDiv.className = 'audience-bar-fill';
+      fillDiv.style.height = height + 'px';
+
+      var letterLabel = document.createElement('div');
+      letterLabel.className = 'audience-bar-label';
+      letterLabel.textContent = letters[bi];
+
+      barDiv.appendChild(pctLabel);
+      barDiv.appendChild(fillDiv);
+      barDiv.appendChild(letterLabel);
+      barsContainer.appendChild(barDiv);
+    }
+
+    contentEl.appendChild(barsContainer);
+    resultEl.classList.add('visible');
+  }
+}
+
+function generateAudiencePercentages(correctIdx) {
+  // La correcta obtiene entre 40% y 70%
+  var correctPct = Math.floor(Math.random() * 31) + 40;
+  var remaining = 100 - correctPct;
+
+  var pcts = [0, 0, 0, 0];
+  pcts[correctIdx] = correctPct;
+
+  // Repartir el resto entre las incorrectas
+  var wrongIndices = [0, 1, 2, 3].filter(function(i) { return i !== correctIdx; });
+  for (var i = 0; i < wrongIndices.length - 1; i++) {
+    var maxForThis = remaining - (wrongIndices.length - 1 - i);
+    var val = Math.floor(Math.random() * Math.max(maxForThis, 1));
+    pcts[wrongIndices[i]] = val;
+    remaining -= val;
+  }
+  pcts[wrongIndices[wrongIndices.length - 1]] = remaining;
+
+  return pcts;
+}
+
+// =====================================================================
+// RANKING FINAL
+// =====================================================================
+
+function showRanking() {
+  // Ordenar por premio final (descendente)
+  var sorted = teams.slice().sort(function(a, b) { return b.finalPrize - a.finalPrize; });
+
+  var list = document.getElementById('ranking-list');
+  list.textContent = '';
+
+  sorted.forEach(function(team, i) {
+    var item = document.createElement('div');
+    item.className = 'ranking-item';
+
+    var posDiv = document.createElement('div');
+    posDiv.className = 'ranking-position';
+    posDiv.textContent = (i + 1);
+
+    var infoDiv = document.createElement('div');
+    infoDiv.className = 'ranking-info';
+
+    var nameDiv = document.createElement('div');
+    nameDiv.className = 'ranking-name';
+    nameDiv.textContent = team.name;
+
+    var detailDiv = document.createElement('div');
+    detailDiv.className = 'ranking-detail';
+    detailDiv.textContent = team.questionsAnswered + ' preguntas respondidas';
+
+    infoDiv.appendChild(nameDiv);
+    infoDiv.appendChild(detailDiv);
+
+    var prizeDiv = document.createElement('div');
+    prizeDiv.className = 'ranking-prize';
+    prizeDiv.textContent = formatPrize(team.finalPrize);
+
+    item.appendChild(posDiv);
+    item.appendChild(infoDiv);
+    item.appendChild(prizeDiv);
+    list.appendChild(item);
+  });
+
+  showScreen('screen-ranking');
+}
+
+function resetGame() {
+  teams = [];
+  currentTeamIndex = 0;
+  showScreen('screen-setup');
+}
+
+// =====================================================================
+// UTILIDADES
+// =====================================================================
+
+function formatPrize(amount) {
+  return amount.toLocaleString('es-ES') + ' \u20AC';
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+}
+
+// Toggle tema claro/oscuro
+document.getElementById('btn-theme').addEventListener('click', function() {
+  document.body.classList.toggle('light-mode');
+  var icon = document.getElementById('icon-theme');
+  if (document.body.classList.contains('light-mode')) {
+    // Lucide: sun
+    icon.textContent = '';
+    var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    circle.setAttribute('cx', '12'); circle.setAttribute('cy', '12'); circle.setAttribute('r', '5');
+    icon.appendChild(circle);
+    var sunLines = [
+      ['12','1','12','3'], ['12','21','12','23'],
+      ['4.22','4.22','5.64','5.64'], ['18.36','18.36','19.78','19.78'],
+      ['1','12','3','12'], ['21','12','23','12'],
+      ['4.22','19.78','5.64','18.36'], ['18.36','5.64','19.78','4.22']
+    ];
+    sunLines.forEach(function(coords) {
+      var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', coords[0]); line.setAttribute('y1', coords[1]);
+      line.setAttribute('x2', coords[2]); line.setAttribute('y2', coords[3]);
+      icon.appendChild(line);
+    });
+  } else {
+    // Lucide: moon
+    icon.textContent = '';
+    var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', 'M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z');
+    icon.appendChild(path);
+  }
+});
+</script>
+</body>
+</html>
