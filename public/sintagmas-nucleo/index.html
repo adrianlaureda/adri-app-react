@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Refuerzo 2º ESO — Sustantivos, adjetivos y sintagmas</title>
+<style>
+  :root {
+    --bg: #fafaf7;
+    --surface: #ffffff;
+    --ink: #111;
+    --ink-soft: #555;
+    --ink-mute: #888;
+    --line: #e5e5e0;
+
+    /* Paleta por categoría (consistente con lámina 1) */
+    --sust: #0a7a5c;       /* verde */
+    --sust-bg: #d4f4ea;
+    --adj:  #b06a00;       /* ámbar */
+    --adj-bg: #fdeacb;
+    --verb: #6b2ca3;       /* morado */
+    --verb-bg: #ead9f7;
+
+    /* Paleta por sintagma */
+    --sn:   #1e40af;       /* azul */
+    --sn-bg: #dbeafe;
+    --sadj: #7c3aed;       /* violeta */
+    --sadj-bg: #ede9fe;
+    --sprep: #0e7490;      /* teal */
+    --sprep-bg: #cffafe;
+
+    --good: #059669;
+    --bad:  #dc2626;
+    --highlight: #fde68a;
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .app {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 20px 24px 60px;
+  }
+
+  /* Header */
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 10px;
+    margin-bottom: 18px;
+  }
+  .top h1 {
+    font-size: 20px;
+    margin: 0;
+    font-weight: 800;
+    letter-spacing: -0.2px;
+  }
+  .top .meta {
+    font-size: 12px;
+    color: var(--ink-mute);
+    font-style: italic;
+  }
+
+  /* Tabs */
+  .tabs {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+    border-bottom: 1px solid var(--line);
+  }
+  .tab {
+    background: none;
+    border: none;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+    font-family: inherit;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tab:hover { color: var(--ink); }
+  .tab.active {
+    color: var(--ink);
+    border-bottom-color: var(--ink);
+  }
+  .tab svg { width: 16px; height: 16px; }
+
+  .panel { display: none; }
+  .panel.active { display: block; animation: fade 0.3s ease; }
+  @keyframes fade {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Bloques comunes */
+  .card {
+    background: var(--surface);
+    border: 1.5px solid var(--line);
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+  }
+  .card h2 {
+    margin: 0 0 10px 0;
+    font-size: 17px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card h3 {
+    margin: 12px 0 6px 0;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--ink-soft);
+  }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  .card ul, .card ol { margin: 6px 0 6px 22px; padding: 0; font-size: 14.5px; }
+  .card li { margin: 4px 0; }
+
+  .callout {
+    padding: 12px 16px;
+    border-left: 4px solid var(--ink);
+    background: #f3f3ef;
+    border-radius: 4px;
+    margin: 10px 0;
+    font-size: 14px;
+  }
+  .callout.good { border-left-color: var(--good); background: #ecfdf5; }
+  .callout.bad  { border-left-color: var(--bad); background: #fef2f2; }
+
+  /* Grid reglas */
+  .rules-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 720px) { .rules-grid { grid-template-columns: 1fr; } }
+
+  .rule-card {
+    border-radius: 10px;
+    padding: 16px 18px;
+    border: 2px solid;
+  }
+  .rule-card.sust-card { background: var(--sust-bg); border-color: var(--sust); }
+  .rule-card.adj-card  { background: var(--adj-bg);  border-color: var(--adj); }
+
+  .rule-card h2 {
+    margin: 0 0 12px 0;
+    font-size: 18px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .rule-card.sust-card h2 { color: var(--sust); }
+  .rule-card.adj-card  h2 { color: var(--adj); }
+  .rule-card h2 svg { width: 22px; height: 22px; }
+
+  .rule {
+    background: white;
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+  .rule b { font-size: 14px; }
+  .rule .ex {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+    font-style: italic;
+  }
+  .rule .num {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: white;
+    text-align: center;
+    font-weight: 700;
+    font-size: 12px;
+    margin-right: 6px;
+  }
+  .rule-card.sust-card .rule .num { background: var(--sust); }
+  .rule-card.adj-card  .rule .num { background: var(--adj); }
+
+  /* Etiquetas palabra */
+  .w-sust  { color: var(--sust); font-weight: 700; background: var(--sust-bg); padding: 1px 6px; border-radius: 3px; }
+  .w-adj   { color: var(--adj);  font-weight: 700; background: var(--adj-bg);  padding: 1px 6px; border-radius: 3px; }
+  .w-verb  { color: var(--verb); font-weight: 700; background: var(--verb-bg); padding: 1px 6px; border-radius: 3px; }
+  .w-det   { color: var(--ink-mute); font-weight: 500; }
+  .w-prep  { color: var(--sprep); font-weight: 700; }
+
+  /* Sintagma visualization */
+  .phrase-display {
+    background: white;
+    padding: 24px;
+    border-radius: 8px;
+    border: 1.5px solid var(--line);
+    text-align: center;
+    margin: 16px 0;
+    font-size: 22px;
+    letter-spacing: 0.3px;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    transition: all 0.3s;
+  }
+  .phrase-display.broken {
+    border-color: var(--bad);
+    background: #fef2f2;
+    animation: shake 0.5s;
+  }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-4px); }
+    40% { transform: translateX(4px); }
+    60% { transform: translateX(-3px); }
+    80% { transform: translateX(3px); }
+  }
+
+  .brick {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: all 0.4s;
+    position: relative;
+  }
+  .brick.core {
+    font-weight: 900;
+    font-size: 26px;
+    background: var(--sn-bg);
+    color: var(--sn);
+    border: 2px solid var(--sn);
+    box-shadow: 0 3px 0 var(--sn);
+  }
+  .brick.adjunct {
+    color: var(--ink-soft);
+    font-weight: 500;
+    background: #f3f3ef;
+    border: 1.5px dashed #ccc;
+    font-size: 18px;
+  }
+  .brick.hidden {
+    opacity: 0.15;
+    text-decoration: line-through;
+    transform: scale(0.85);
+  }
+  .brick.gone {
+    display: none;
+  }
+  .brick.pulse {
+    animation: pulse 0.8s ease;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); box-shadow: 0 6px 0 var(--sn); }
+  }
+
+  .bracket-l, .bracket-r {
+    color: var(--sn);
+    font-weight: 900;
+    font-size: 32px;
+    align-self: center;
+    transition: color 0.3s;
+  }
+  .phrase-display.broken .bracket-l,
+  .phrase-display.broken .bracket-r { color: var(--bad); }
+
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin: 16px 0;
+  }
+  .btn {
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: 1.5px solid var(--ink);
+    background: white;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .btn:hover { background: var(--ink); color: white; }
+  .btn.primary { background: var(--ink); color: white; }
+  .btn.primary:hover { background: #333; }
+  .btn.reset { border-color: var(--ink-soft); color: var(--ink-soft); }
+  .btn.danger { border-color: var(--bad); color: var(--bad); }
+  .btn.danger:hover { background: var(--bad); color: white; }
+
+  .verdict {
+    min-height: 42px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 10px;
+    border-radius: 6px;
+    transition: all 0.3s;
+  }
+  .verdict.good { background: #ecfdf5; color: var(--good); border: 1.5px solid var(--good); }
+  .verdict.bad  { background: #fef2f2; color: var(--bad);  border: 1.5px solid var(--bad); }
+  .verdict.idle { color: var(--ink-mute); background: #f3f3ef; }
+
+  /* Pronombre box */
+  .pronoun-box {
+    background: var(--sn);
+    color: white;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    display: inline-block;
+    animation: slamIn 0.4s ease;
+  }
+  @keyframes slamIn {
+    0% { opacity: 0; transform: scale(2); }
+    60% { transform: scale(0.9); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  /* Leyenda sintagmas */
+  .syntagma-legend {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+    font-size: 13px;
+  }
+  .syntagma-legend div {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .chip {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    display: inline-block;
+  }
+  .chip.sn   { background: var(--sn-bg); border: 1.5px solid var(--sn); }
+  .chip.sadj { background: var(--sadj-bg); border: 1.5px solid var(--sadj); }
+  .chip.sprep{ background: var(--sprep-bg); border: 1.5px solid var(--sprep); }
+
+  /* Ejemplos de sintagmas */
+  .sintagma-ex {
+    font-size: 20px;
+    padding: 14px 18px;
+    background: white;
+    border-radius: 8px;
+    margin: 10px 0;
+    border: 1.5px solid var(--line);
+    letter-spacing: 0.3px;
+  }
+  .sint-sn  { background: var(--sn-bg); color: var(--sn); padding: 2px 6px; border-radius: 4px; border-bottom: 3px solid var(--sn); font-weight: 600; }
+  .sint-sadj{ background: var(--sadj-bg); color: var(--sadj); padding: 2px 6px; border-radius: 4px; border-bottom: 3px solid var(--sadj); font-weight: 600; }
+  .sint-sprep{ background: var(--sprep-bg); color: var(--sprep); padding: 2px 6px; border-radius: 4px; border-bottom: 3px solid var(--sprep); font-weight: 600; }
+  .sint-nucleo {
+    font-weight: 900;
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 3px;
+  }
+  .sint-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: super;
+    letter-spacing: 0.5px;
+  }
+  .sint-label.l-sn    { background: var(--sn);    color: white; }
+  .sint-label.l-sadj  { background: var(--sadj);  color: white; }
+  .sint-label.l-sprep { background: var(--sprep); color: white; }
+
+  /* Práctica */
+  .exercise {
+    background: white;
+    border: 1.5px solid var(--line);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+  }
+  .exercise .phrase {
+    font-size: 22px;
+    margin-bottom: 14px;
+    line-height: 1.8;
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px dashed var(--line);
+  }
+  .exercise .task {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+  .tok {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1.5px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s;
+    margin: 2px;
+    font-size: 20px;
+  }
+  .tok:hover { background: #f3f3ef; }
+  .tok.selected {
+    background: var(--highlight);
+    border-color: #e0a100;
+  }
+  .tok.correct {
+    background: #d1fae5;
+    border-color: var(--good);
+    color: var(--good);
+    font-weight: 700;
+  }
+  .tok.wrong {
+    background: #fee2e2;
+    border-color: var(--bad);
+    color: var(--bad);
+    text-decoration: line-through;
+  }
+  .tok.revealed {
+    background: var(--sn-bg);
+    border-color: var(--sn);
+    color: var(--sn);
+    font-weight: 900;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+  }
+
+  .exercise-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .feedback {
+    flex: 1;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .feedback.ok { color: var(--good); }
+  .feedback.ko { color: var(--bad); }
+
+  .progress {
+    background: #f3f3ef;
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .progress b { font-size: 16px; color: var(--ink); }
+
+  /* Utilidades */
+  .row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .row > * { flex: 1; min-width: 280px; }
+
+  .highlight-text {
+    background: var(--highlight);
+    padding: 0 4px;
+    border-radius: 2px;
+    font-weight: 600;
+  }
+
+  /* Tabla reglas-tests */
+  table.test-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 14px;
+  }
+  table.test-table th, table.test-table td {
+    border: 1px solid var(--line);
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+  table.test-table th {
+    background: #f3f3ef;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--ink-soft);
+  }
+  table.test-table td.ok { color: var(--good); font-weight: 600; }
+  table.test-table td.no { color: var(--bad); font-weight: 600; }
+
+  .core-flag {
+    display: inline-block;
+    background: var(--sn);
+    color: white;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+    vertical-align: middle;
+    margin-left: 4px;
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <div class="top">
+    <h1>Refuerzo 2º ESO — Categorías gramaticales y sintagmas</h1>
+    <div class="meta">Sesión 2 · Repaso sust/adj + introducción al sintagma</div>
+  </div>
+
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-tab="reglas">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      1. Sust · Adj
+    </button>
+    <button class="tab" data-tab="sn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="10"/></svg>
+      2. S. Nominal (núcleo)
+    </button>
+    <button class="tab" data-tab="sadj">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.35 4.76 5.26.76-3.8 3.7.9 5.24L12 14l-4.7 2.46.9-5.24-3.8-3.7 5.26-.76L12 2z"/></svg>
+      3. S. Adjetival
+    </button>
+    <button class="tab" data-tab="sprep">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.71"/></svg>
+      4. S. Preposicional
+    </button>
+    <button class="tab" data-tab="practica">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+      5. Práctica
+    </button>
+  </div>
+
+  <!-- ============ PESTAÑA 1: REGLAS SUST/ADJ ============ -->
+  <div class="panel active" id="panel-reglas">
+
+    <div class="card">
+      <h2>La llave doble: 3 + 3 reglas</h2>
+      <p>Para decidir si una palabra es <b>sustantivo</b> o <b>adjetivo</b>, aplica las <b>tres reglas</b> de cada lado. Si las <b>tres</b> dan el mismo resultado, la respuesta es <b>inequívoca</b>. Si solo coinciden dos, el contexto de la frase decide.</p>
+    </div>
+
+    <div class="rules-grid">
+
+      <!-- Sustantivo -->
+      <div class="rule-card sust-card">
+        <h2>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          Sustantivo
+        </h2>
+
+        <div class="rule">
+          <b><span class="num">1</span>¿Qué es? / ¿Quién es?</b>
+          <div class="ex"><span class="w-sust">libro</span> → ¿qué es? un libro. <span class="w-sust">hermana</span> → ¿quién es? mi hermana.</div>
+        </div>
+
+        <div class="rule">
+          <b><span class="num">2</span>Tiene UN solo género fijo.</b>
+          <div class="ex">Prueba: cambia <i>un → una</i> (o <i>el → la</i>). Si no se puede, es sust.<br>
+          <span class="w-sust">libro</span>: <i>un libro</i> ✓ · <i>una libro</i> ✗ → masculino fijo.</div>
+        </div>
+
+        <div class="rule">
+          <b><span class="num">3</span>Admite un adjetivo detrás que cambia por ella.</b>
+          <div class="ex">La palabra manda, el adjetivo obedece.<br>
+          <span class="w-sust">libro</span> <span class="w-adj">nuevo</span> · <span class="w-sust">libros</span> <span class="w-adj">nuevos</span> · <span class="w-sust">mesa</span> <span class="w-adj">nueva</span>.</div>
+        </div>
+      </div>
+
+      <!-- Adjetivo -->
+      <div class="rule-card adj-card">
+        <h2>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.35 4.76 5.26.76-3.8 3.7.9 5.24L12 14l-4.7 2.46.9-5.24-3.8-3.7 5.26-.76L12 2z"/></svg>
+          Adjetivo
+        </h2>
+
+        <div class="rule">
+          <b><span class="num">1</span>¿Cómo es?</b>
+          <div class="ex"><span class="w-adj">alto</span>, <span class="w-adj">azul</span>, <span class="w-adj">feliz</span>, <span class="w-adj">nuevo</span> → describen cómo es algo o alguien.</div>
+        </div>
+
+        <div class="rule">
+          <b><span class="num">2</span>Cambia cuando cambia la palabra a la que acompaña.</b>
+          <div class="ex">Prueba doble: masc. sing. vs fem. plur.<br>
+          libro <span class="w-adj">alto</span> / mesas <span class="w-adj">altas</span> (cambia en género y número).<br>
+          cielo <span class="w-adj">azul</span> / mesas <span class="w-adj">azules</span> (cambia en número).</div>
+        </div>
+
+        <div class="rule">
+          <b><span class="num">3</span>Admite MUY delante.</b>
+          <div class="ex"><i>muy alto, muy azul, muy feliz, muy nuevo.</i></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card">
+      <h3>Ejemplo de duda: <span class="highlight-text">frío</span></h3>
+      <table class="test-table">
+        <thead>
+          <tr><th>Frase</th><th>Regla 1</th><th>Regla 2</th><th>Regla 3</th><th>Resultado</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><i>"Hace un día <b>frío</b>"</i></td>
+            <td class="ok">¿cómo es el día? frío ✓</td>
+            <td class="ok">día frí<b>o</b> / noche frí<b>a</b> ✓</td>
+            <td class="ok">muy frío ✓</td>
+            <td class="ok">Adjetivo</td>
+          </tr>
+          <tr>
+            <td><i>"Tengo <b>frío</b>"</i></td>
+            <td class="ok">¿qué tengo? frío ✓</td>
+            <td class="ok">un frío ✓ / una frío ✗ ✓</td>
+            <td class="ok">un frío intenso ✓</td>
+            <td class="ok">Sustantivo</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout">Mismo aspecto, distinta función. El <b>contexto</b> activa una u otra. Por eso hace falta aplicar <b>las tres reglas</b>, no solo una.</div>
+    </div>
+
+    <div class="card">
+      <h2>Puente al siguiente paso</h2>
+      <p>Ahora que sabemos distinguirlos, vamos a ver cómo se <b>agrupan</b>. Las palabras no aparecen sueltas en una frase: se juntan en <b>bloques</b> con sentido. A esos bloques los llamamos <b>sintagmas</b>. Y cada sintagma tiene una palabra <b>imprescindible</b>: el <b>núcleo</b>.</p>
+      <p style="text-align:center; margin-top: 12px;"><button class="btn primary" onclick="switchTab('sn')">Ir al Sintagma Nominal →</button></p>
+    </div>
+
+  </div>
+
+  <!-- ============ PESTAÑA 2: SINTAGMA NOMINAL ============ -->
+  <div class="panel" id="panel-sn">
+
+    <div class="card">
+      <h2>¿Qué es el NÚCLEO de un sintagma?</h2>
+      <p>El <b>núcleo</b> es la <b>palabra imprescindible</b> del sintagma. La que da el sentido. Si la quitas, el sintagma se rompe. Las demás palabras dependen de ella.</p>
+      <div class="callout">En el <b>Sintagma Nominal (SN)</b>, el núcleo es <b>siempre un sustantivo</b> (o una palabra sustantivada: un pronombre, un adjetivo haciendo de sust...).</div>
+    </div>
+
+    <div class="card">
+      <h2>Prueba de supresión</h2>
+      <p>Quita cada pieza y mira qué pasa. La única que <b>no</b> se puede quitar es el <b>núcleo</b>.</p>
+
+      <div class="phrase-display" id="sn-demo">
+        <span class="bracket-l">[</span>
+        <span class="brick adjunct" data-piece="det">El</span>
+        <span class="brick core" data-piece="core">libro</span>
+        <span class="brick adjunct" data-piece="adj">nuevo</span>
+        <span class="brick adjunct" data-piece="sprep">de mi hermana</span>
+        <span class="bracket-r">]</span>
+      </div>
+
+      <div class="controls">
+        <button class="btn" onclick="hidePiece('det')">Quitar "El"</button>
+        <button class="btn" onclick="hidePiece('adj')">Quitar "nuevo"</button>
+        <button class="btn" onclick="hidePiece('sprep')">Quitar "de mi hermana"</button>
+        <button class="btn danger" onclick="hidePiece('core')">Quitar "libro"</button>
+        <button class="btn reset" onclick="resetSN()">↺ Restaurar</button>
+      </div>
+
+      <div class="verdict idle" id="sn-verdict">Haz click en los botones para ver qué pieza es irrenunciable.</div>
+
+      <div class="callout good" style="margin-top: 16px;">
+        <b>Conclusión:</b> si se pueden quitar todas las demás piezas y el sintagma sigue teniendo sentido, pero al quitar <b>una</b> se rompe... <b>esa es el núcleo</b>. En este ejemplo: <b>libro</b>.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Prueba del pronombre</h2>
+      <p>Un sintagma nominal <b>entero</b> se puede sustituir por un <b>pronombre</b> (<i>esto, eso, él, ella, lo, la, le</i>). Si cabe entero → ese grupo de palabras es UN sintagma.</p>
+
+      <div class="phrase-display" id="pron-demo" style="font-size: 22px;">
+        <span class="bracket-l">[</span>
+        <span id="pron-original">
+          <span class="w-det">El</span>
+          <span class="w-sust">libro</span>
+          <span class="w-adj">nuevo</span>
+          <span class="w-prep">de</span>
+          <span class="w-det">mi</span>
+          <span class="w-sust">hermana</span>
+        </span>
+        <span id="pron-replaced" style="display:none;">
+          <span class="pronoun-box">ESO</span>
+        </span>
+        <span class="bracket-r">]</span>
+      </div>
+
+      <div class="controls">
+        <button class="btn primary" onclick="togglePronoun()">↔ Sustituir por pronombre</button>
+      </div>
+
+      <div class="callout">
+        Frases enteras con este SN:<br>
+        · <i>"<span class="w-det">El</span> <span class="w-sust">libro</span> <span class="w-adj">nuevo</span> <span class="w-prep">de</span> <span class="w-det">mi</span> <span class="w-sust">hermana</span> está en la mesa."</i><br>
+        · <i>"<span class="pronoun-box" style="font-size:15px; padding:2px 10px;">ESO</span> está en la mesa."</i> ← cabe entero → es un SN.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Error típico a evitar</h2>
+      <div class="callout bad">
+        <b>Mal:</b> marcar solo el determinante como sintagma.<br>
+        ✗ <span class="sint-sn">[<span class="sint-nucleo">El</span>]</span> libro nuevo.<br>
+        <span style="font-size:12px; color:var(--ink-soft);">El determinante no es núcleo. Nunca lo es.</span>
+      </div>
+      <div class="callout good">
+        <b>Bien:</b> el SN llega hasta el núcleo y sus complementos.<br>
+        ✓ <span class="sint-sn">[El <span class="sint-nucleo">libro</span> nuevo]</span><span class="sint-label l-sn">SN</span>.<br>
+        ✓ <span class="sint-sn">[El <span class="sint-nucleo">libro</span> nuevo de mi hermana]</span><span class="sint-label l-sn">SN</span>.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Estructura típica del SN</h2>
+      <p style="font-family: 'SF Mono', Menlo, monospace; font-size: 14px; background: #f3f3ef; padding: 10px; border-radius: 4px; text-align: center;">
+        [ (Det) &nbsp; (Adj) &nbsp; <b style="color: var(--sn);">SUST</b> &nbsp; (Adj) &nbsp; (SPrep) ]
+      </p>
+      <p style="font-size: 13px; color: var(--ink-soft);">Los paréntesis significan "opcional". Solo el <b>sustantivo núcleo</b> es obligatorio.</p>
+
+      <h3>Ejemplos</h3>
+      <div class="sintagma-ex"><span class="sint-sn"><span class="sint-nucleo">Libros</span></span><span class="sint-label l-sn">SN</span> &nbsp; (solo núcleo)</div>
+      <div class="sintagma-ex"><span class="sint-sn">El <span class="sint-nucleo">libro</span></span><span class="sint-label l-sn">SN</span> &nbsp; (det + núcleo)</div>
+      <div class="sintagma-ex"><span class="sint-sn">El <span class="sint-nucleo">libro</span> nuevo</span><span class="sint-label l-sn">SN</span> &nbsp; (det + núcleo + adj)</div>
+      <div class="sintagma-ex"><span class="sint-sn">Mi <span class="sint-nucleo">hermana</span> pequeña <span class="sint-sprep">de Vigo</span></span><span class="sint-label l-sn">SN</span></div>
+    </div>
+
+  </div>
+
+  <!-- ============ PESTAÑA 3: SINTAGMA ADJETIVAL ============ -->
+  <div class="panel" id="panel-sadj">
+
+    <div class="card">
+      <h2>Sintagma Adjetival (SAdj)</h2>
+      <p>El <b>núcleo</b> es un <b>adjetivo</b>. Alrededor pueden ir:</p>
+      <ul>
+        <li>Un <b>adverbio</b> delante que gradúa: <i>muy, bastante, demasiado, poco, tan...</i></li>
+        <li>Un <b>sintagma preposicional</b> detrás que completa: <i>lleno <b>de agua</b>, contento <b>con el regalo</b></i>.</li>
+      </ul>
+      <div class="callout">Estructura: <b style="font-family:monospace;">[ (Adv) &nbsp; <span style="color:var(--sadj);">ADJ</span> &nbsp; (SPrep) ]</b></div>
+    </div>
+
+    <div class="card">
+      <h2>Ejemplos</h2>
+      <div class="sintagma-ex"><span class="sint-sadj"><span class="sint-nucleo">alto</span></span><span class="sint-label l-sadj">SAdj</span> &nbsp; (solo núcleo)</div>
+      <div class="sintagma-ex"><span class="sint-sadj">muy <span class="sint-nucleo">alto</span></span><span class="sint-label l-sadj">SAdj</span> &nbsp; (adv + núcleo)</div>
+      <div class="sintagma-ex"><span class="sint-sadj">bastante <span class="sint-nucleo">feliz</span></span><span class="sint-label l-sadj">SAdj</span></div>
+      <div class="sintagma-ex"><span class="sint-sadj">demasiado <span class="sint-nucleo">pequeño</span> <span class="sint-sprep">para él</span></span><span class="sint-label l-sadj">SAdj</span></div>
+      <div class="sintagma-ex"><span class="sint-sadj"><span class="sint-nucleo">lleno</span> <span class="sint-sprep">de agua</span></span><span class="sint-label l-sadj">SAdj</span></div>
+    </div>
+
+    <div class="card">
+      <h2>La misma prueba: quita el núcleo</h2>
+      <p style="text-align:center; font-size: 19px; margin: 16px 0;">muy <s style="color:var(--bad);">alto</s> → <span style="color:var(--bad);">"muy ____"</span> no significa nada.</p>
+      <p style="text-align:center; font-size: 19px;">muy <s style="color:var(--ink-mute);">__</s> alto → "alto" sigue teniendo sentido.</p>
+      <div class="callout good"><b>Confirma:</b> el núcleo del SAdj es el adjetivo.</div>
+    </div>
+
+  </div>
+
+  <!-- ============ PESTAÑA 4: SINTAGMA PREPOSICIONAL ============ -->
+  <div class="panel" id="panel-sprep">
+
+    <div class="card">
+      <h2>Sintagma Preposicional (SPrep)</h2>
+      <p>Estructura especial: <b>preposición</b> (enlace) + <b>sintagma nominal</b> (término).</p>
+      <div class="callout">Estructura: <b style="font-family:monospace;">[ <span style="color:var(--sprep);">PREP</span> &nbsp; + &nbsp; <span style="color:var(--sn);">SN</span> ]</b></div>
+      <p><b>Preposiciones habituales:</b> <i>a, ante, bajo, con, contra, de, desde, en, entre, hacia, hasta, para, por, según, sin, sobre, tras.</i></p>
+    </div>
+
+    <div class="card">
+      <h2>Ejemplos</h2>
+      <div class="sintagma-ex"><span class="sint-sprep"><span class="w-prep">de</span> <span class="sint-sn">mi <span class="sint-nucleo">hermana</span></span></span><span class="sint-label l-sprep">SPrep</span></div>
+      <div class="sintagma-ex"><span class="sint-sprep"><span class="w-prep">con</span> <span class="sint-sn">el <span class="sint-nucleo">profesor</span></span></span><span class="sint-label l-sprep">SPrep</span></div>
+      <div class="sintagma-ex"><span class="sint-sprep"><span class="w-prep">en</span> <span class="sint-sn">la <span class="sint-nucleo">mesa</span></span></span><span class="sint-label l-sprep">SPrep</span></div>
+      <div class="sintagma-ex"><span class="sint-sprep"><span class="w-prep">para</span> <span class="sint-sn">mi <span class="sint-nucleo">abuela</span></span></span><span class="sint-label l-sprep">SPrep</span></div>
+    </div>
+
+    <div class="card">
+      <h2>Regla clave</h2>
+      <div class="callout">
+        El SPrep <b>nunca va solo</b> en la frase. Siempre <b>depende</b> de otro sintagma (completa un SN, un SV, un SAdj...).
+      </div>
+      <div class="sintagma-ex">
+        <span class="sint-sn">El <span class="sint-nucleo">libro</span> <span class="sint-sprep"><span class="w-prep">de</span> mi <span class="sint-nucleo">hermana</span></span></span><span class="sint-label l-sn">SN</span>
+        <br><span style="font-size:13px; color:var(--ink-soft); font-style:italic;">El SPrep "de mi hermana" está <b>dentro</b> del SN "el libro de mi hermana" — lo completa.</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ============ PESTAÑA 5: PRÁCTICA ============ -->
+  <div class="panel" id="panel-practica">
+
+    <div class="progress">
+      <span>Progreso: <b id="prog-done">0</b> / <b id="prog-total">6</b> completados</span>
+      <button class="btn reset" onclick="resetPractica()">↺ Reiniciar ejercicios</button>
+    </div>
+
+    <div class="card">
+      <h2>Práctica guiada</h2>
+      <p><b>Instrucciones:</b> en cada frase, haz click en la palabra que creas que es el <b>núcleo del SN</b>. Puedes ver la respuesta cuando quieras.</p>
+      <div class="syntagma-legend">
+        <div><span class="chip sn"></span> SN</div>
+        <div><span class="chip sadj"></span> SAdj</div>
+        <div><span class="chip sprep"></span> SPrep</div>
+      </div>
+    </div>
+
+    <div id="exercises"></div>
+
+  </div>
+
+</div>
+
+<script>
+/* ============ TABS ============ */
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelector(`.tab[data-tab="${name}"]`).classList.add('active');
+  document.getElementById(`panel-${name}`).classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+document.querySelectorAll('.tab').forEach(t => {
+  t.addEventListener('click', () => switchTab(t.dataset.tab));
+});
+
+/* ============ ANIMACIÓN SN: prueba de supresión ============ */
+function hidePiece(piece) {
+  const el = document.querySelector(`#sn-demo .brick[data-piece="${piece}"]`);
+  const demo = document.getElementById('sn-demo');
+  const verdict = document.getElementById('sn-verdict');
+
+  // Quitar clases previas
+  document.querySelectorAll('#sn-demo .brick').forEach(b => b.classList.remove('pulse'));
+  demo.classList.remove('broken');
+
+  if (piece === 'core') {
+    el.classList.add('hidden');
+    demo.classList.add('broken');
+    verdict.className = 'verdict bad';
+    verdict.innerHTML = '✗ <b>Sin núcleo, el sintagma se rompe.</b> «El ___ nuevo de mi hermana» no significa nada. <b>"libro" es el núcleo</b>: la única pieza irrenunciable.';
+    // El núcleo pulsa para llamar la atención
+    const core = document.querySelector('#sn-demo .brick[data-piece="core"]');
+    setTimeout(() => core.classList.add('pulse'), 400);
+  } else {
+    el.classList.add('hidden');
+    // Resaltar que el núcleo sigue ahí
+    const core = document.querySelector('#sn-demo .brick[data-piece="core"]');
+    core.classList.add('pulse');
+    verdict.className = 'verdict good';
+    const labels = { det: '"El"', adj: '"nuevo"', sprep: '"de mi hermana"' };
+    verdict.innerHTML = `✓ Hemos quitado ${labels[piece]} y el sintagma <b>sigue teniendo sentido</b>. Por tanto, ${labels[piece]} <b>no es el núcleo</b>.`;
+  }
+}
+function resetSN() {
+  document.querySelectorAll('#sn-demo .brick').forEach(b => {
+    b.classList.remove('hidden', 'pulse');
+  });
+  document.getElementById('sn-demo').classList.remove('broken');
+  const v = document.getElementById('sn-verdict');
+  v.className = 'verdict idle';
+  v.textContent = 'Haz click en los botones para ver qué pieza es irrenunciable.';
+}
+
+/* ============ PRONOMBRE ============ */
+function togglePronoun() {
+  const orig = document.getElementById('pron-original');
+  const repl = document.getElementById('pron-replaced');
+  if (orig.style.display === 'none') {
+    orig.style.display = '';
+    repl.style.display = 'none';
+  } else {
+    orig.style.display = 'none';
+    repl.style.display = '';
+    // Re-trigger animation
+    repl.querySelector('.pronoun-box').style.animation = 'none';
+    repl.offsetHeight;
+    repl.querySelector('.pronoun-box').style.animation = 'slamIn 0.4s ease';
+  }
+}
+
+/* ============ PRÁCTICA ============ */
+const exercises = [
+  {
+    frase: ['El', 'perro', 'negro', 'de', 'Marta'],
+    nucleoIdx: 1,
+    explicacion: 'El núcleo es <b>perro</b>. "El" es determinante, "negro" es adjetivo, "de Marta" es un SPrep que complementa al núcleo.',
+    sintagma: [0, 4]
+  },
+  {
+    frase: ['Una', 'mesa', 'bastante', 'grande'],
+    nucleoIdx: 1,
+    explicacion: 'El núcleo del SN es <b>mesa</b>. "Una" es determinante, "bastante grande" es un SAdj que modifica a mesa.',
+    sintagma: [0, 3]
+  },
+  {
+    frase: ['Los', 'libros', 'nuevos'],
+    nucleoIdx: 1,
+    explicacion: 'El núcleo es <b>libros</b> (sust. plural). "Los" determinante, "nuevos" adjetivo que concuerda con él en masc. plural.',
+    sintagma: [0, 2]
+  },
+  {
+    frase: ['Mi', 'hermana', 'pequeña', 'de', 'Vigo'],
+    nucleoIdx: 1,
+    explicacion: 'El núcleo es <b>hermana</b>. "Mi" determinante, "pequeña" adjetivo, "de Vigo" SPrep que completa el SN.',
+    sintagma: [0, 4]
+  },
+  {
+    frase: ['La', 'casa', 'amarilla', 'del', 'pueblo'],
+    nucleoIdx: 1,
+    explicacion: 'El núcleo es <b>casa</b>. "La" det, "amarilla" adj, "del pueblo" (de + el pueblo) SPrep.',
+    sintagma: [0, 4]
+  },
+  {
+    frase: ['Un', 'profesor', 'muy', 'amable'],
+    nucleoIdx: 1,
+    explicacion: 'El núcleo es <b>profesor</b>. "Un" det, "muy amable" SAdj dentro del SN.',
+    sintagma: [0, 3]
+  }
+];
+
+function renderExercises() {
+  const cont = document.getElementById('exercises');
+  cont.innerHTML = '';
+  exercises.forEach((ex, i) => {
+    const div = document.createElement('div');
+    div.className = 'exercise';
+    div.dataset.idx = i;
+    div.innerHTML = `
+      <div class="task">Ejercicio ${i + 1} · Haz click en el núcleo del SN</div>
+      <div class="phrase" id="phrase-${i}">
+        ${ex.frase.map((w, j) => `<span class="tok" data-i="${i}" data-j="${j}">${w}</span>`).join(' ')}
+      </div>
+      <div class="exercise-actions">
+        <span class="feedback" id="fb-${i}">&nbsp;</span>
+        <button class="btn reset" onclick="resetEx(${i})">Limpiar</button>
+        <button class="btn" onclick="revealEx(${i})">Ver respuesta</button>
+        <button class="btn primary" onclick="checkEx(${i})">Comprobar</button>
+      </div>
+    `;
+    cont.appendChild(div);
+  });
+  // Click en token
+  document.querySelectorAll('.tok').forEach(tok => {
+    tok.addEventListener('click', () => {
+      const i = tok.dataset.i;
+      // Quita selección previa dentro de este ejercicio (solo 1 seleccionado)
+      document.querySelectorAll(`.tok[data-i="${i}"]`).forEach(t => {
+        if (!t.classList.contains('correct') && !t.classList.contains('wrong') && !t.classList.contains('revealed')) {
+          t.classList.remove('selected');
+        }
+      });
+      if (!tok.classList.contains('correct') && !tok.classList.contains('wrong') && !tok.classList.contains('revealed')) {
+        tok.classList.add('selected');
+      }
+    });
+  });
+  document.getElementById('prog-total').textContent = exercises.length;
+}
+
+function checkEx(i) {
+  const selected = document.querySelector(`.tok[data-i="${i}"].selected`);
+  const fb = document.getElementById(`fb-${i}`);
+  const ex = exercises[i];
+  if (!selected) {
+    fb.className = 'feedback ko';
+    fb.innerHTML = '⚠ Selecciona una palabra primero.';
+    return;
+  }
+  const j = parseInt(selected.dataset.j);
+  if (j === ex.nucleoIdx) {
+    selected.classList.remove('selected');
+    selected.classList.add('correct');
+    fb.className = 'feedback ok';
+    fb.innerHTML = `✓ ¡Correcto! ${ex.explicacion}`;
+    markDone(i);
+  } else {
+    selected.classList.remove('selected');
+    selected.classList.add('wrong');
+    fb.className = 'feedback ko';
+    fb.innerHTML = `✗ No. Esa palabra no es el núcleo. Piensa: ¿cuál no se puede quitar sin romper la frase?`;
+  }
+}
+
+function revealEx(i) {
+  const ex = exercises[i];
+  const tokens = document.querySelectorAll(`.tok[data-i="${i}"]`);
+  tokens.forEach(t => t.classList.remove('selected', 'correct', 'wrong', 'revealed'));
+  tokens[ex.nucleoIdx].classList.add('revealed');
+  const fb = document.getElementById(`fb-${i}`);
+  fb.className = 'feedback ok';
+  fb.innerHTML = `Núcleo marcado: <b>${ex.frase[ex.nucleoIdx]}</b>. ${ex.explicacion}`;
+  markDone(i);
+}
+
+function resetEx(i) {
+  const tokens = document.querySelectorAll(`.tok[data-i="${i}"]`);
+  tokens.forEach(t => t.classList.remove('selected', 'correct', 'wrong', 'revealed'));
+  const fb = document.getElementById(`fb-${i}`);
+  fb.className = 'feedback';
+  fb.innerHTML = '&nbsp;';
+  unmarkDone(i);
+}
+
+const doneSet = new Set();
+function markDone(i) {
+  doneSet.add(i);
+  document.getElementById('prog-done').textContent = doneSet.size;
+}
+function unmarkDone(i) {
+  doneSet.delete(i);
+  document.getElementById('prog-done').textContent = doneSet.size;
+}
+function resetPractica() {
+  doneSet.clear();
+  document.getElementById('prog-done').textContent = 0;
+  renderExercises();
+}
+
+renderExercises();
+</script>
+
+</body>
+</html>
