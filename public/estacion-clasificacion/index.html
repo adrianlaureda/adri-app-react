@@ -21,6 +21,12 @@
   --accent-4: #ff6b6b;
   --accent-5: #a78bfa;
   --accent-6: #4ade80;
+  /* Colores por equipo (1..5) */
+  --team-1: #00d4ff;
+  --team-2: #f5a623;
+  --team-3: #a78bfa;
+  --team-4: #4ade80;
+  --team-5: #ff6b6b;
   --success: #22c55e;
   --danger: #ef4444;
   --warning: #f59e0b;
@@ -130,10 +136,37 @@ body {
   margin-bottom: 36px;
 }
 
+/* Selector nº equipos */
+.num-teams-row {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.num-teams-btn {
+  flex: 1;
+  padding: 10px 0;
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.num-teams-btn:hover { background: var(--bg-card-hover); color: var(--text-primary); }
+.num-teams-btn.selected {
+  border-color: var(--accent-1);
+  color: var(--accent-1);
+  background: rgba(0,212,170,0.08);
+}
+
 .setup-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
   width: 100%;
   margin-bottom: 28px;
 }
@@ -142,36 +175,45 @@ body {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 14px;
-  padding: 20px;
+  padding: 16px;
 }
-.team-input-block.team1 { border-top: 3px solid var(--accent-2); }
-.team-input-block.team2 { border-top: 3px solid var(--accent-3); }
+.team-input-block.team1 { border-top: 3px solid var(--team-1); }
+.team-input-block.team2 { border-top: 3px solid var(--team-2); }
+.team-input-block.team3 { border-top: 3px solid var(--team-3); }
+.team-input-block.team4 { border-top: 3px solid var(--team-4); }
+.team-input-block.team5 { border-top: 3px solid var(--team-5); }
 
 .team-label {
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
-.team1 .team-label { color: var(--accent-2); }
-.team2 .team-label { color: var(--accent-3); }
+.team1 .team-label { color: var(--team-1); }
+.team2 .team-label { color: var(--team-2); }
+.team3 .team-label { color: var(--team-3); }
+.team4 .team-label { color: var(--team-4); }
+.team5 .team-label { color: var(--team-5); }
 
 .team-input {
   width: 100%;
   background: var(--bg-secondary);
   border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 10px 14px;
+  padding: 9px 12px;
   font-family: 'Inter', sans-serif;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: var(--text-primary);
   outline: none;
   transition: border-color 0.2s;
 }
-.team-input:focus { border-color: var(--accent-2); }
-.team2 .team-input:focus { border-color: var(--accent-3); }
+.team1 .team-input:focus { border-color: var(--team-1); }
+.team2 .team-input:focus { border-color: var(--team-2); }
+.team3 .team-input:focus { border-color: var(--team-3); }
+.team4 .team-input:focus { border-color: var(--team-4); }
+.team5 .team-input:focus { border-color: var(--team-5); }
 
 .section-label {
   font-size: 0.72rem;
@@ -315,8 +357,11 @@ body {
   border-color: currentColor;
   box-shadow: 0 0 0 1px currentColor, 0 0 24px rgba(0,0,0,0.4);
 }
-.score-card.team1 { color: var(--accent-2); }
-.score-card.team2 { color: var(--accent-3); }
+.score-card.team1 { color: var(--team-1); }
+.score-card.team2 { color: var(--team-2); }
+.score-card.team3 { color: var(--team-3); }
+.score-card.team4 { color: var(--team-4); }
+.score-card.team5 { color: var(--team-5); }
 
 .score-team-name {
   font-size: 0.85rem;
@@ -340,8 +385,11 @@ body {
   border-radius: 100px;
   border: 1px solid currentColor;
 }
-.turno-team1 { color: var(--accent-2); border-color: var(--accent-2); background: rgba(0,212,255,0.08); }
-.turno-team2 { color: var(--accent-3); border-color: var(--accent-3); background: rgba(245,166,35,0.08); }
+.turno-team1 { color: var(--team-1); border-color: var(--team-1); background: rgba(0,212,255,0.08); }
+.turno-team2 { color: var(--team-2); border-color: var(--team-2); background: rgba(245,166,35,0.08); }
+.turno-team3 { color: var(--team-3); border-color: var(--team-3); background: rgba(167,139,250,0.08); }
+.turno-team4 { color: var(--team-4); border-color: var(--team-4); background: rgba(74,222,128,0.08); }
+.turno-team5 { color: var(--team-5); border-color: var(--team-5); background: rgba(255,107,107,0.08); }
 
 /* ===== WORD CARD ===== */
 .word-card {
@@ -602,25 +650,28 @@ body {
   margin-bottom: 32px;
 }
 .results-cards {
-  display: flex;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 14px;
   width: 100%;
   margin-bottom: 28px;
 }
 .results-card {
-  flex: 1;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 18px;
-  padding: 28px 24px;
+  padding: 24px 20px;
   text-align: center;
   position: relative;
 }
 .results-card.winner {
   border-width: 2px;
 }
-.results-card.team1.winner { border-color: var(--accent-2); box-shadow: 0 0 40px rgba(0,212,255,0.15); }
-.results-card.team2.winner { border-color: var(--accent-3); box-shadow: 0 0 40px rgba(245,166,35,0.15); }
+.results-card.team1.winner { border-color: var(--team-1); box-shadow: 0 0 40px rgba(0,212,255,0.15); }
+.results-card.team2.winner { border-color: var(--team-2); box-shadow: 0 0 40px rgba(245,166,35,0.15); }
+.results-card.team3.winner { border-color: var(--team-3); box-shadow: 0 0 40px rgba(167,139,250,0.15); }
+.results-card.team4.winner { border-color: var(--team-4); box-shadow: 0 0 40px rgba(74,222,128,0.15); }
+.results-card.team5.winner { border-color: var(--team-5); box-shadow: 0 0 40px rgba(255,107,107,0.15); }
 .winner-badge {
   position: absolute;
   top: -12px;
@@ -643,17 +694,23 @@ body {
   letter-spacing: 0.08em;
   margin-bottom: 8px;
 }
-.results-card.team1 .results-team-name { color: var(--accent-2); }
-.results-card.team2 .results-team-name { color: var(--accent-3); }
+.results-card.team1 .results-team-name { color: var(--team-1); }
+.results-card.team2 .results-team-name { color: var(--team-2); }
+.results-card.team3 .results-team-name { color: var(--team-3); }
+.results-card.team4 .results-team-name { color: var(--team-4); }
+.results-card.team5 .results-team-name { color: var(--team-5); }
 .results-pts {
-  font-size: 3.5rem;
+  font-size: 3.2rem;
   font-weight: 900;
   letter-spacing: -0.03em;
   line-height: 1;
   margin-bottom: 4px;
 }
-.results-card.team1 .results-pts { color: var(--accent-2); }
-.results-card.team2 .results-pts { color: var(--accent-3); }
+.results-card.team1 .results-pts { color: var(--team-1); }
+.results-card.team2 .results-pts { color: var(--team-2); }
+.results-card.team3 .results-pts { color: var(--team-3); }
+.results-card.team4 .results-pts { color: var(--team-4); }
+.results-card.team5 .results-pts { color: var(--team-5); }
 .results-detail {
   font-size: 0.75rem;
   color: var(--text-muted);
@@ -790,18 +847,17 @@ body {
   <!-- ===== PANTALLA: SETUP ===== -->
   <div class="screen active" id="screen-setup">
     <div class="setup-title">Estación de Clasificación</div>
-    <div class="setup-subtitle">Clasifica palabras por categoría gramatical — 2 equipos</div>
+    <div class="setup-subtitle">Clasifica palabras por categoría gramatical</div>
 
-    <div class="setup-grid">
-      <div class="team-input-block team1">
-        <div class="team-label">Equipo 1</div>
-        <input class="team-input" id="nombre-team1" type="text" placeholder="Nombre del equipo..." value="Equipo 1" maxlength="20">
-      </div>
-      <div class="team-input-block team2">
-        <div class="team-label">Equipo 2</div>
-        <input class="team-input" id="nombre-team2" type="text" placeholder="Nombre del equipo..." value="Equipo 2" maxlength="20">
-      </div>
+    <div class="section-label">Número de equipos</div>
+    <div class="num-teams-row" id="num-teams-row">
+      <button class="num-teams-btn selected" data-n="2" onclick="selectNumEquipos(2)">2</button>
+      <button class="num-teams-btn" data-n="3" onclick="selectNumEquipos(3)">3</button>
+      <button class="num-teams-btn" data-n="4" onclick="selectNumEquipos(4)">4</button>
+      <button class="num-teams-btn" data-n="5" onclick="selectNumEquipos(5)">5</button>
     </div>
+
+    <div class="setup-grid" id="setup-grid"></div>
 
     <div class="section-label">Dificultad</div>
     <div class="dif-btns">
@@ -993,12 +1049,12 @@ body {
 // DATOS
 // =====================================================
 const palabras = {
-  sustantivo: ["perro","mesa","ciudad","amor","libro","canción","película","amigo","clase","pantalla","río","montaña","viaje","problema","solución","música","risa","silencio","nube","bosque","ordenador","móvil","partido","árbitro","novela","personaje","escena","miedo","ilusión","verdad","verano","tarde","noche","mañana","semana","precio","tienda","barrio","país","idioma","recuerdo","sueño","viento","playa","estrella","luna","sol","agua","fuego","tierra"],
-  adjetivo:   ["rápido","enorme","triste","brillante","pequeño","oscuro","alegre","lento","difícil","bonito","gracioso","inteligente","valiente","curioso","antiguo","moderno","tranquilo","nervioso","fuerte","débil","frío","caliente","dulce","amargo","suave","áspero","limpio","sucio","lleno","vacío","nuevo","viejo","joven","alto","bajo","gordo","delgado","rico","pobre","famoso","divertido","aburrido","emocionante","peligroso","seguro","raro","normal","especial","simple","complejo"],
-  verbo:      ["correr","saltar","reír","llorar","cantar","bailar","estudiar","jugar","comer","dormir","hablar","escuchar","mirar","pensar","recordar","olvidar","soñar","volar","nadar","escribir","leer","dibujar","pintar","gritar","susurrar","caminar","trotar","descansar","trabajar","crear","destruir","construir","aprender","enseñar","preguntar","responder","ganar","perder","empezar","terminar","vivir","morir","amar","odiar","esperar","llegar","irse","quedarse","volver","seguir"],
-  adverbio:   ["rápidamente","aquí","hoy","siempre","nunca","muy","poco","bastante","quizás","así","bien","mal","allí","ahora","antes","después","arriba","abajo","cerca","lejos","pronto","tarde","temprano","ya","todavía","también","tampoco","sí","no","quizá","demasiado","apenas","exactamente","probablemente","seguramente","claramente","fácilmente","lentamente","suavemente","juntos","solo","constantemente","frecuentemente","raramente","literalmente","básicamente","obviamente","definitivamente","absolutamente"],
-  determinante:["el","la","los","las","un","una","unos","unas","este","esta","estos","estas","ese","esa","esos","esas","aquel","aquella","mi","tu","su","nuestro","nuestra","vuestro","vuestra","sus","mis","tus","algún","alguna","ningún","ninguna","todo","toda","todos","todas","mucho","mucha","poco","poca","cada","ambos","varios","cualquier","otro","otra","mismo","misma","tal","semejante"],
-  pronombre:  ["yo","tú","él","ella","nosotros","vosotros","ellos","ellas","me","te","se","nos","os","le","la","lo","les","las","los","mí","ti","sí","algo","alguien","nada","nadie","todo","todos","uno","una","quien","que","cual","cuanto","esto","eso","aquello","este","ese","aquel"]
+  sustantivo: ["perro","mesa","ciudad","amor","libro","canción","película","amigo","clase","pantalla","río","montaña","viaje","problema","solución","música","risa","silencio","nube","bosque","ordenador","móvil","partido","árbitro","novela","personaje","escena","miedo","ilusión","verdad","verano","tarde","noche","mañana","semana","precio","tienda","barrio","país","idioma","recuerdo","sueño","viento","playa","estrella","luna","sol","agua","fuego","tierra","profesor","alumno","examen","mochila","bolígrafo","cuaderno","pizarra","ventana","puerta","balón","equipo","deporte","gimnasio","parque","avenida","coche","bicicleta","autobús","tren","avión","cocina","receta","pan","queso","café","té","naranja","plátano","manzana","tomate","guerra","paz","libertad","justicia","tristeza","alegría","cariño","pasión","familia","hermano","abuela","vecino","médico","hospital","enfermedad","medicina","ciencia","teorema","experimento","planeta","galaxia","universo","instituto","biblioteca","teatro","cine","concierto","festival","ruido","silencio","aroma","color","paisaje"],
+  adjetivo:   ["rápido","enorme","triste","brillante","pequeño","oscuro","alegre","lento","difícil","bonito","gracioso","inteligente","valiente","curioso","antiguo","moderno","tranquilo","nervioso","fuerte","débil","frío","caliente","dulce","amargo","suave","áspero","limpio","sucio","lleno","vacío","nuevo","viejo","joven","alto","bajo","gordo","delgado","rico","pobre","famoso","divertido","aburrido","emocionante","peligroso","seguro","raro","normal","especial","simple","complejo","amable","amistoso","generoso","egoísta","honesto","tímido","hablador","ruidoso","silencioso","puntual","responsable","trabajador","perezoso","creativo","práctico","realista","soñador","paciente","impaciente","sincero","educado","cortés","respetuoso","torpe","hábil","elegante","sencillo","lujoso","barato","caro","útil","inútil","necesario","posible","imposible","verde","rojo","amarillo","azul","blanco","negro","gris","rosado","redondo","cuadrado","liso","rugoso","profundo","superficial","largo","corto","ancho","estrecho"],
+  verbo:      ["correr","saltar","reír","llorar","cantar","bailar","estudiar","jugar","comer","dormir","hablar","escuchar","mirar","pensar","recordar","olvidar","soñar","volar","nadar","escribir","leer","dibujar","pintar","gritar","susurrar","caminar","trotar","descansar","trabajar","crear","destruir","construir","aprender","enseñar","preguntar","responder","ganar","perder","empezar","terminar","vivir","morir","amar","odiar","esperar","llegar","irse","quedarse","volver","seguir","subir","bajar","entrar","salir","abrir","cerrar","encender","apagar","comprar","vender","pagar","cobrar","ayudar","molestar","visitar","invitar","celebrar","felicitar","saludar","despedirse","empujar","tirar","coger","soltar","lanzar","atrapar","guardar","perder","encontrar","buscar","investigar","descubrir","explicar","contar","mentir","prometer","cumplir","regalar","prestar","devolver","compartir","elegir","decidir","dudar","creer","confiar","rechazar","aceptar","negar","afirmar","limpiar","lavar","cocinar","freír","hervir","mezclar"],
+  adverbio:   ["rápidamente","aquí","hoy","siempre","nunca","muy","poco","bastante","quizás","así","bien","mal","allí","ahora","antes","después","arriba","abajo","cerca","lejos","pronto","tarde","temprano","ya","todavía","también","tampoco","sí","no","quizá","demasiado","apenas","exactamente","probablemente","seguramente","claramente","fácilmente","lentamente","suavemente","juntos","solo","constantemente","frecuentemente","raramente","literalmente","básicamente","obviamente","definitivamente","absolutamente","ayer","mañana","entonces","luego","mientras","jamás","actualmente","anteriormente","posteriormente","quizá","acaso","efectivamente","realmente","verdaderamente","dentro","fuera","encima","debajo","delante","detrás","enfrente","afuera","adentro","igualmente","además","solamente","únicamente","precisamente","perfectamente","difícilmente","silenciosamente","alegremente","tristemente","felizmente","cuidadosamente","tranquilamente","ciertamente","posiblemente"],
+  determinante:["el","la","los","las","un","una","unos","unas","este","esta","estos","estas","ese","esa","esos","esas","aquel","aquella","aquellos","aquellas","mi","tu","su","nuestro","nuestra","vuestro","vuestra","sus","mis","tus","algún","alguna","algunos","algunas","ningún","ninguna","ningunos","ningunas","todo","toda","todos","todas","mucho","mucha","muchos","muchas","poco","poca","pocos","pocas","cada","ambos","varios","varias","cualquier","otro","otra","otros","otras","mismo","misma","tal","semejante","tanto","tanta","demasiado","demasiada","bastante","bastantes","cierto","cierta","ciertos","ciertas","primero","segundo","tercero","cuarto","quinto","mío","tuyo","suyo","nuestros","vuestros","suyos"],
+  pronombre:  ["yo","tú","él","ella","nosotros","vosotros","ellos","ellas","me","te","se","nos","os","le","la","lo","les","las","los","mí","ti","sí","algo","alguien","nada","nadie","todo","todos","uno","una","quien","que","cual","cuanto","esto","eso","aquello","este","ese","aquel","conmigo","contigo","consigo","quién","cuál","quiénes","cuáles","cuántos","cuántas","algunas","otros","otras","cualquiera","ninguno","ninguna","varios"]
 };
 
 const frases = [
@@ -1021,7 +1077,32 @@ const frases = [
   {frase:"[Mi] madre trabaja en un hospital.",palabra:"Mi",categoria:"determinante"},
   {frase:"¿[Quién] llamó por teléfono esta mañana?",palabra:"Quién",categoria:"pronombre"},
   {frase:"La [amistad] es el mejor tesoro del mundo.",palabra:"amistad",categoria:"sustantivo"},
-  {frase:"Busco un trabajo [estable] y bien pagado.",palabra:"estable",categoria:"adjetivo"}
+  {frase:"Busco un trabajo [estable] y bien pagado.",palabra:"estable",categoria:"adjetivo"},
+  {frase:"Los jugadores [entrenaron] durante toda la semana.",palabra:"entrenaron",categoria:"verbo"},
+  {frase:"Habló [rápidamente] para no perder el turno.",palabra:"rápidamente",categoria:"adverbio"},
+  {frase:"[Algunas] personas prefieren el café sin azúcar.",palabra:"Algunas",categoria:"determinante"},
+  {frase:"[Nadie] supo responder a esa pregunta difícil.",palabra:"Nadie",categoria:"pronombre"},
+  {frase:"La [tormenta] destruyó parte del tejado.",palabra:"tormenta",categoria:"sustantivo"},
+  {frase:"Es un problema [complicado] de resolver.",palabra:"complicado",categoria:"adjetivo"},
+  {frase:"El gato [saltó] desde el armario sin miedo.",palabra:"saltó",categoria:"verbo"},
+  {frase:"Vive [cerca] de la estación de tren.",palabra:"cerca",categoria:"adverbio"},
+  {frase:"[Todos] los alumnos aprobaron el examen.",palabra:"Todos",categoria:"determinante"},
+  {frase:"Lo hice yo [mismo] sin ayuda de nadie.",palabra:"mismo",categoria:"pronombre"},
+  {frase:"El [profesor] explicó la lección con paciencia.",palabra:"profesor",categoria:"sustantivo"},
+  {frase:"La comida estaba [deliciosa] y muy bien presentada.",palabra:"deliciosa",categoria:"adjetivo"},
+  {frase:"Los niños [jugaban] en el patio del recreo.",palabra:"jugaban",categoria:"verbo"},
+  {frase:"[Ayer] terminamos el trabajo antes de tiempo.",palabra:"Ayer",categoria:"adverbio"},
+  {frase:"Necesito [cualquier] libro sobre historia moderna.",palabra:"cualquier",categoria:"determinante"},
+  {frase:"[Esto] es exactamente lo que buscaba.",palabra:"Esto",categoria:"pronombre"},
+  {frase:"El [viento] despeinaba los árboles del parque.",palabra:"viento",categoria:"sustantivo"},
+  {frase:"Una respuesta [inteligente] resolvió el debate.",palabra:"inteligente",categoria:"adjetivo"},
+  {frase:"Los exploradores [descubrieron] una cueva secreta.",palabra:"descubrieron",categoria:"verbo"},
+  {frase:"[Probablemente] lleguemos tarde por el tráfico.",palabra:"Probablemente",categoria:"adverbio"},
+  {frase:"Conozco [aquellos] lugares desde mi infancia.",palabra:"aquellos",categoria:"determinante"},
+  {frase:"[Alguien] dejó la puerta abierta esta mañana.",palabra:"Alguien",categoria:"pronombre"},
+  {frase:"La [risa] de los niños llenaba el jardín.",palabra:"risa",categoria:"sustantivo"},
+  {frase:"Fue un viaje [inolvidable] para toda la familia.",palabra:"inolvidable",categoria:"adjetivo"},
+  {frase:"Siempre [recuerdo] el olor del pan recién hecho.",palabra:"recuerdo",categoria:"verbo"}
 ];
 
 const ambiguas = [
@@ -1032,7 +1113,15 @@ const ambiguas = [
   {palabra:"medio",frase:"Bebió [medio] vaso de agua.",categoria:"determinante",explicacion:"Aquí 'medio' es un determinante indefinido"},
   {palabra:"principal",frase:"Es el [principal] problema del equipo.",categoria:"adjetivo",explicacion:"Aquí 'principal' es un adjetivo calificativo"},
   {palabra:"siguiente",frase:"El [siguiente] capítulo es mejor.",categoria:"determinante",explicacion:"Aquí 'siguiente' funciona como determinante ordinal"},
-  {palabra:"bien",frase:"Habla [bien] el inglés.",categoria:"adverbio",explicacion:"Aquí 'bien' es un adverbio de modo"}
+  {palabra:"bien",frase:"Habla [bien] el inglés.",categoria:"adverbio",explicacion:"Aquí 'bien' es un adverbio de modo"},
+  {palabra:"nada",frase:"No he entendido [nada] del examen.",categoria:"pronombre",explicacion:"Aquí 'nada' es un pronombre indefinido (objeto)"},
+  {palabra:"nada",frase:"Mi hermano [nada] todos los días en la piscina.",categoria:"verbo",explicacion:"Aquí 'nada' es el verbo nadar conjugado"},
+  {palabra:"mañana",frase:"La [mañana] amaneció fría y nublada.",categoria:"sustantivo",explicacion:"Aquí 'mañana' es un sustantivo que nombra una parte del día"},
+  {palabra:"mañana",frase:"[Mañana] tenemos examen de lengua.",categoria:"adverbio",explicacion:"Aquí 'mañana' es un adverbio de tiempo"},
+  {palabra:"poco",frase:"Tiene [poco] dinero para comprar el libro.",categoria:"determinante",explicacion:"Aquí 'poco' acompaña al sustantivo 'dinero': determinante indefinido"},
+  {palabra:"poco",frase:"Habla [poco] en las reuniones.",categoria:"adverbio",explicacion:"Aquí 'poco' modifica al verbo 'habla': adverbio de cantidad"},
+  {palabra:"cerca",frase:"Vive [cerca] de la playa desde niño.",categoria:"adverbio",explicacion:"Aquí 'cerca' indica lugar: adverbio"},
+  {palabra:"luego",frase:"[Luego] vamos al cine juntos.",categoria:"adverbio",explicacion:"'Luego' es adverbio de tiempo (= más tarde)"}
 ];
 
 // =====================================================
@@ -1058,30 +1147,37 @@ const CATS_POR_DIF = {
 // =====================================================
 let G = {};
 
-function resetState() {
+function arrN(n, v) { return Array.from({length:n}, () => (typeof v === 'function' ? v() : v)); }
+
+function resetState(numEq = 2) {
   G = {
+    numEquipos: numEq,
     dificultad: "facil",
     cats: [],
-    nombres: ["Equipo 1","Equipo 2"],
-    puntos: [0, 0],
-    aciertos: [0, 0],
-    fallos: [0, 0],
-    turnoActual: 0, // 0 o 1
+    nombres: arrN(numEq, (_=>'')).map((_,i)=>`Equipo ${i+1}`),
+    puntos: arrN(numEq, 0),
+    aciertos: arrN(numEq, 0),
+    fallos: arrN(numEq, 0),
+    turnoActual: 0,
     faseActual: 0,  // 0=tutorial,1,2,3,bonus,resultados
+    // Máximos por fase (dinámicos según N)
+    f1MaxPorEquipo: 8,
+    f2MaxPorEquipo: 5,
+    f3MaxPorEquipo: 5,
     // Tutorial
     tutorialPalabras: [],
     tutorialIdx: 0,
     tutorialEsperando: false,
     // Fase 1
-    f1UsedPalabras: {0:[], 1:[]},
-    f1Contadores: [0, 0],
+    f1UsedPalabras: Object.fromEntries(Array.from({length:numEq}, (_,i)=>[i,[]])),
+    f1Contadores: arrN(numEq, 0),
     f1Timer: null,
     f1Seconds: 5,
     f1CurrentWord: null,
     f1Esperando: false,
     // Fase 2
     f2UsedFrases: [],
-    f2Contadores: [0, 0],
+    f2Contadores: arrN(numEq, 0),
     f2Timer: null,
     f2Seconds: 10,
     f2CurrentFrase: null,
@@ -1089,7 +1185,7 @@ function resetState() {
     // Fase 3 avalancha
     f3GlobalTimer: null,
     f3GlobalSecs: 60,
-    f3Clasificaciones: [0,0],
+    f3Clasificaciones: arrN(numEq, 0),
     f3CurrentWords: [],
     f3SelectedWordIdx: null,
     f3Esperando: false,
@@ -1098,10 +1194,11 @@ function resetState() {
     bonusUsadas: [],
     bonusEnIntento: 0, // 0=primer equipo (perdedor), 1=rival
     bonusPrimerEquipo: 0,
+    bonusSegundoEquipo: 0,
     // Fase completadas
-    f1Done: [false,false],
-    f2Done: [false,false],
-    f3Done: [false,false],
+    f1Done: arrN(numEq, false),
+    f2Done: arrN(numEq, false),
+    f3Done: arrN(numEq, false),
     // Pausa / Stop
     pausado: false,
     f1SecondsLeft: 0,
@@ -1109,6 +1206,26 @@ function resetState() {
     f3SecondsLeft: 0
   };
 }
+
+// Máximos por fase según número de equipos
+function calcularMaximos(n) {
+  return {
+    f1: Math.max(4, Math.ceil(16 / n)), // 8/6/4/4 → total 16/18/16/20
+    f2: Math.max(3, Math.ceil(10 / n)), // 5/4/3/3 → total 10/12/12/15
+    f3: 5
+  };
+}
+
+// Siguiente equipo activo (no marcado como done en el array proporcionado)
+function siguienteEquipoActivo(doneArr, desde = G.turnoActual) {
+  const n = G.numEquipos;
+  for (let i = 1; i <= n; i++) {
+    const cand = (desde + i) % n;
+    if (!doneArr[cand]) return cand;
+  }
+  return desde; // ninguno activo (todos done)
+}
+
 resetState();
 
 // =====================================================
@@ -1130,13 +1247,53 @@ function selectDificultad(d) {
   document.querySelector('.dif-btn.' + d).classList.add('selected');
 }
 
+function selectNumEquipos(n) {
+  // Preservar nombres ya escritos (si existen) antes de regenerar
+  const prevNombres = [];
+  document.querySelectorAll('#setup-grid .team-input').forEach((inp,i) => prevNombres[i] = inp.value);
+
+  G.numEquipos = n;
+  document.querySelectorAll('.num-teams-btn').forEach(b => b.classList.toggle('selected', Number(b.dataset.n) === n));
+  renderTeamInputs(prevNombres);
+}
+
+function renderTeamInputs(prevNombres = []) {
+  const grid = document.getElementById('setup-grid');
+  let html = '';
+  for (let i = 1; i <= G.numEquipos; i++) {
+    const val = (prevNombres[i-1] && prevNombres[i-1].trim()) ? prevNombres[i-1] : `Equipo ${i}`;
+    html += `
+      <div class="team-input-block team${i}">
+        <div class="team-label">Equipo ${i}</div>
+        <input class="team-input" id="nombre-team${i}" type="text" placeholder="Nombre del equipo..." value="${val}" maxlength="20">
+      </div>`;
+  }
+  grid.innerHTML = html;
+}
+
 function iniciarJuego() {
-  G.nombres[0] = document.getElementById('nombre-team1').value.trim() || "Equipo 1";
-  G.nombres[1] = document.getElementById('nombre-team2').value.trim() || "Equipo 2";
+  const n = G.numEquipos;
+  resetState(n); // limpia contadores, puntos, arrays…
+  G.numEquipos = n;
+
+  // Leer nombres de los N inputs
+  for (let i = 0; i < n; i++) {
+    const inp = document.getElementById(`nombre-team${i+1}`);
+    G.nombres[i] = (inp && inp.value.trim()) ? inp.value.trim() : `Equipo ${i+1}`;
+  }
+
+  // Aplicar dificultad seleccionada visualmente
+  const selDif = document.querySelector('.dif-btn.selected');
+  G.dificultad = selDif ? (selDif.classList.contains('facil') ? 'facil' :
+                            selDif.classList.contains('medio') ? 'medio' : 'dificil') : 'facil';
   G.cats = CATS_POR_DIF[G.dificultad];
-  G.puntos = [0,0];
-  G.aciertos = [0,0];
-  G.fallos = [0,0];
+
+  // Escalar máximos de palabras por fase
+  const maxs = calcularMaximos(n);
+  G.f1MaxPorEquipo = maxs.f1;
+  G.f2MaxPorEquipo = maxs.f2;
+  G.f3MaxPorEquipo = maxs.f3;
+
   G.turnoActual = 0;
   mostrarTutorial();
 }
@@ -1342,9 +1499,9 @@ function empezarFase() {
 // FASE 1 — BÁSICO
 // =====================================================
 function iniciarFase1() {
-  G.f1Contadores = [0,0];
-  G.f1UsedPalabras = {0:[],1:[]};
-  G.f1Done = [false,false];
+  G.f1Contadores = arrN(G.numEquipos, 0);
+  G.f1UsedPalabras = Object.fromEntries(Array.from({length:G.numEquipos}, (_,i)=>[i,[]]));
+  G.f1Done = arrN(G.numEquipos, false);
   G.turnoActual = 0;
   renderCubos('f1-cubos', G.cats, 'clasificarF1');
   showScreen('screen-fase1');
@@ -1355,24 +1512,24 @@ function cargarF1Turno() {
   renderScoreboard('sb-fase1');
   renderTurno('turno-fase1');
   hideFeedback('f1-feedback');
-  // Si el equipo actual ya terminó sus 8 palabras, pasar al otro
-  if (G.f1Contadores[G.turnoActual] >= 8) {
+  // Si el equipo actual ya terminó su cupo, marcarlo done y pasar al siguiente
+  if (G.f1Contadores[G.turnoActual] >= G.f1MaxPorEquipo) {
     G.f1Done[G.turnoActual] = true;
-    if (G.f1Done[0] && G.f1Done[1]) {
-      // Bonus antes de fase 2
+    if (G.f1Done.every(Boolean)) {
       setTimeout(()=>mostrarBonus(2), 400);
       return;
     }
-    G.turnoActual = 1 - G.turnoActual;
+    G.turnoActual = siguienteEquipoActivo(G.f1Done);
     cargarF1Turno();
     return;
   }
-  const usado = [...G.f1UsedPalabras[0],...G.f1UsedPalabras[1]];
+  // Pool de palabras usadas global
+  const usado = Object.values(G.f1UsedPalabras).flat();
   const item = randomFromCats(G.cats, usado);
   G.f1CurrentWord = item;
   G.f1UsedPalabras[G.turnoActual].push(item.palabra);
   document.getElementById('f1-word').textContent = item.palabra;
-  document.getElementById('f1-counter').textContent = `${G.f1Contadores[G.turnoActual]+1}/8`;
+  document.getElementById('f1-counter').textContent = `${G.f1Contadores[G.turnoActual]+1}/${G.f1MaxPorEquipo}`;
   G.f1Esperando = false;
   document.querySelectorAll('#f1-cubos .cubo').forEach(c=>c.style.pointerEvents='');
   iniciarTimerF1();
@@ -1406,12 +1563,10 @@ function tiempoAgotadoF1() {
   showFeedback('f1-feedback','f1-fb-icon','f1-fb-text', false,
     `¡Tiempo! Era <span class="fb-cat">${G.f1CurrentWord.categoria}</span>`);
   G.f1Contadores[G.turnoActual]++;
+  // Si este equipo acaba de completar el cupo, marcar done
+  if (G.f1Contadores[G.turnoActual] >= G.f1MaxPorEquipo) G.f1Done[G.turnoActual] = true;
   setTimeout(()=>{
-    // Pasar al otro equipo si los dos tienen palabras pendientes
-    const otroEquipo = 1 - G.turnoActual;
-    if (G.f1Contadores[otroEquipo] < 8 && !G.f1Done[otroEquipo]) {
-      G.turnoActual = otroEquipo;
-    }
+    G.turnoActual = siguienteEquipoActivo(G.f1Done);
     cargarF1Turno();
   }, 1800);
 }
@@ -1437,12 +1592,10 @@ function clasificarF1(cat) {
       `Era <span class="fb-cat">${G.f1CurrentWord.categoria}</span>, no ${cat}`);
   }
   G.f1Contadores[G.turnoActual]++;
+  if (G.f1Contadores[G.turnoActual] >= G.f1MaxPorEquipo) G.f1Done[G.turnoActual] = true;
   renderScoreboard('sb-fase1');
   setTimeout(()=>{
-    const otroEquipo = 1 - G.turnoActual;
-    if (G.f1Contadores[otroEquipo] < 8 && !G.f1Done[otroEquipo]) {
-      G.turnoActual = otroEquipo;
-    }
+    G.turnoActual = siguienteEquipoActivo(G.f1Done);
     cargarF1Turno();
   }, 1600);
 }
@@ -1451,21 +1604,33 @@ function clasificarF1(cat) {
 // BONUS ROBO (entre fases)
 // =====================================================
 function mostrarBonus(siguienteFase) {
-  // Elegir equipo perdedor (o el que va perdiendo) como primer intento
-  G.bonusPrimerEquipo = G.puntos[0] <= G.puntos[1] ? 0 : 1;
+  // Primer intento: equipo con menos puntos (si empate, el primero por índice)
+  let minPts = Infinity, idxMin = 0;
+  for (let i=0;i<G.numEquipos;i++) {
+    if (G.puntos[i] < minPts) { minPts = G.puntos[i]; idxMin = i; }
+  }
+  // Segundo intento: equipo con más puntos distinto del primero (si empate, el primer idx distinto)
+  let maxPts = -Infinity, idxMax = (idxMin + 1) % G.numEquipos;
+  for (let i=0;i<G.numEquipos;i++) {
+    if (i === idxMin) continue;
+    if (G.puntos[i] > maxPts) { maxPts = G.puntos[i]; idxMax = i; }
+  }
+  G.bonusPrimerEquipo  = idxMin;
+  G.bonusSegundoEquipo = idxMax;
   G.bonusEnIntento = 0;
 
-  // Elegir ambigua no usada
-  const disponibles = ambiguas.filter((_,i)=>!G.bonusUsadas.includes(i));
-  if (!disponibles.length || !G.cats.includes(ambiguas[0].categoria)) {
-    // Sin bonus disponibles, ir directo a siguiente fase
+  // Filtrar ambiguas con categoría compatible y no usadas aún
+  const disponibles = ambiguas
+    .map((a,i)=>({a,i}))
+    .filter(({a,i})=>!G.bonusUsadas.includes(i) && G.cats.includes(a.categoria));
+  if (!disponibles.length) {
     if (siguienteFase === 2) mostrarIntroFase(2);
     else mostrarResultados();
     return;
   }
-  const idxOriginal = ambiguas.indexOf(disponibles[Math.floor(Math.random()*disponibles.length)]);
-  G.bonusAmbiguaIdx = idxOriginal;
-  G.bonusUsadas.push(idxOriginal);
+  const pick = disponibles[Math.floor(Math.random()*disponibles.length)];
+  G.bonusAmbiguaIdx = pick.i;
+  G.bonusUsadas.push(pick.i);
   G._bonusSiguienteFase = siguienteFase;
 
   const item = ambiguas[idxOriginal];
@@ -1480,7 +1645,7 @@ function mostrarBonus(siguienteFase) {
 }
 
 function actualizarBonusTurn() {
-  const equipo = G.bonusEnIntento === 0 ? G.bonusPrimerEquipo : 1 - G.bonusPrimerEquipo;
+  const equipo = G.bonusEnIntento === 0 ? G.bonusPrimerEquipo : G.bonusSegundoEquipo;
   const nombre = G.nombres[equipo];
   document.getElementById('bonus-team-turn').innerHTML =
     `Turno de <strong>${nombre}</strong>${G.bonusEnIntento===1?' (segundo intento)':''}`;
@@ -1490,7 +1655,7 @@ function actualizarBonusTurn() {
 function clasificarBonus(cat) {
   const item = ambiguas[G.bonusAmbiguaIdx];
   const correct = cat === item.categoria;
-  const equipoActual = G.bonusEnIntento === 0 ? G.bonusPrimerEquipo : 1 - G.bonusPrimerEquipo;
+  const equipoActual = G.bonusEnIntento === 0 ? G.bonusPrimerEquipo : G.bonusSegundoEquipo;
   document.querySelectorAll('#bonus-cubos .cubo').forEach(c=>c.style.pointerEvents='none');
   flashCubo('bonus-cubos', cat, correct);
 
@@ -1505,7 +1670,7 @@ function clasificarBonus(cat) {
     if (G.bonusEnIntento === 0) {
       // Primer intento fallido → rival intenta
       showFeedback('bonus-feedback','bonus-fb-icon','bonus-fb-text', false,
-        `Incorrecto. ¡Oportunidad para ${G.nombres[1-G.bonusPrimerEquipo]}!`);
+        `Incorrecto. ¡Oportunidad para ${G.nombres[G.bonusSegundoEquipo]}!`);
       setTimeout(()=>{
         hideFeedback('bonus-feedback');
         G.bonusEnIntento = 1;
@@ -1530,9 +1695,8 @@ function avanzarDespuesBonus() {
 // FASE 2 — CONTEXTO
 // =====================================================
 function iniciarFase2() {
-  G.f2Contadores = [0,0];
-  G.f2Done = [false,false];
-  // Filtrar frases según cats disponibles
+  G.f2Contadores = arrN(G.numEquipos, 0);
+  G.f2Done = arrN(G.numEquipos, false);
   G.f2FrasesDisp = shuffle(frases.filter(f=>G.cats.includes(f.categoria)));
   G.f2UsedFrases = [];
   G.turnoActual = 0;
@@ -1545,20 +1709,22 @@ function cargarF2Turno() {
   renderScoreboard('sb-fase2');
   renderTurno('turno-fase2');
   hideFeedback('f2-feedback');
-  if (G.f2Contadores[G.turnoActual] >= 5 || !G.f2FrasesDisp.length) {
+  if (G.f2Contadores[G.turnoActual] >= G.f2MaxPorEquipo || !G.f2FrasesDisp.length) {
     G.f2Done[G.turnoActual] = true;
-    if (G.f2Done[0] && G.f2Done[1]) {
+    if (G.f2Done.every(Boolean) || !G.f2FrasesDisp.length) {
+      // Marcar todos como done si nos quedamos sin frases
+      G.f2Done = G.f2Done.map(()=>true);
       setTimeout(()=>mostrarBonus('resultados'), 400);
       return;
     }
-    G.turnoActual = 1 - G.turnoActual;
+    G.turnoActual = siguienteEquipoActivo(G.f2Done);
     cargarF2Turno();
     return;
   }
   const frase = G.f2FrasesDisp.pop();
   G.f2CurrentFrase = frase;
   document.getElementById('f2-frase').innerHTML = fraseHtml(frase.frase);
-  document.getElementById('f2-counter').textContent = `${G.f2Contadores[G.turnoActual]+1}/5`;
+  document.getElementById('f2-counter').textContent = `${G.f2Contadores[G.turnoActual]+1}/${G.f2MaxPorEquipo}`;
   G.f2Esperando = false;
   document.querySelectorAll('#f2-cubos .cubo').forEach(c=>c.style.pointerEvents='');
   iniciarTimerF2();
@@ -1589,9 +1755,9 @@ function tiempoAgotadoF2() {
   showFeedback('f2-feedback','f2-fb-icon','f2-fb-text', false,
     `¡Tiempo! Era <span class="fb-cat">${G.f2CurrentFrase.categoria}</span>`);
   G.f2Contadores[G.turnoActual]++;
+  if (G.f2Contadores[G.turnoActual] >= G.f2MaxPorEquipo) G.f2Done[G.turnoActual] = true;
   setTimeout(()=>{
-    const otro = 1 - G.turnoActual;
-    if (G.f2Contadores[otro] < 5 && !G.f2Done[otro]) G.turnoActual = otro;
+    G.turnoActual = siguienteEquipoActivo(G.f2Done);
     cargarF2Turno();
   }, 1800);
 }
@@ -1614,10 +1780,10 @@ function clasificarF2(cat) {
       `Era <span class="fb-cat">${G.f2CurrentFrase.categoria}</span>, no ${cat}`);
   }
   G.f2Contadores[G.turnoActual]++;
+  if (G.f2Contadores[G.turnoActual] >= G.f2MaxPorEquipo) G.f2Done[G.turnoActual] = true;
   renderScoreboard('sb-fase2');
   setTimeout(()=>{
-    const otro = 1 - G.turnoActual;
-    if (G.f2Contadores[otro] < 5 && !G.f2Done[otro]) G.turnoActual = otro;
+    G.turnoActual = siguienteEquipoActivo(G.f2Done);
     cargarF2Turno();
   }, 1600);
 }
@@ -1626,8 +1792,8 @@ function clasificarF2(cat) {
 // FASE 3 — AVALANCHA
 // =====================================================
 function iniciarFase3() {
-  G.f3Clasificaciones = [0,0];
-  G.f3Done = [false,false];
+  G.f3Clasificaciones = arrN(G.numEquipos, 0);
+  G.f3Done = arrN(G.numEquipos, false);
   G.turnoActual = 0;
   renderCubos('f3-cubos', G.cats, 'clasificarF3');
   document.getElementById('aval-cubos-label').style.display='none';
@@ -1646,8 +1812,8 @@ function cargarF3Turno() {
   document.getElementById('f3-cubos').style.display='none';
 
   if (G.f3Done[G.turnoActual]) {
-    G.turnoActual = 1 - G.turnoActual;
-    if (G.f3Done[0] && G.f3Done[1]) { mostrarResultados(); return; }
+    if (G.f3Done.every(Boolean)) { mostrarResultados(); return; }
+    G.turnoActual = siguienteEquipoActivo(G.f3Done);
   }
 
   // Generar 3 palabras nuevas
@@ -1721,7 +1887,7 @@ function clasificarF3(cat) {
     G.f3Esperando = false;
     if (pending.length === 0) {
       // Recargar 3 nuevas palabras si aún hay tiempo y no llegamos al máx
-      if (G.f3Clasificaciones[G.turnoActual] < 5) {
+      if (G.f3Clasificaciones[G.turnoActual] < G.f3MaxPorEquipo) {
         regenerarAvalWords();
       } else {
         finalizarTurnoF3();
@@ -1746,12 +1912,11 @@ function regenerarAvalWords() {
 function finalizarTurnoF3() {
   clearInterval(G.f3GlobalTimer);
   G.f3Done[G.turnoActual] = true;
-  const otro = 1 - G.turnoActual;
-  if (!G.f3Done[otro]) {
-    G.turnoActual = otro;
-    setTimeout(()=>cargarF3Turno(), 600);
-  } else {
+  if (G.f3Done.every(Boolean)) {
     mostrarResultados();
+  } else {
+    G.turnoActual = siguienteEquipoActivo(G.f3Done);
+    setTimeout(()=>cargarF3Turno(), 600);
   }
 }
 
@@ -1859,31 +2024,45 @@ function mostrarResultados() {
   clearInterval(G.f2Timer);
   clearInterval(G.f3GlobalTimer);
 
-  const ganador = G.puntos[0] > G.puntos[1] ? 0 : G.puntos[1] > G.puntos[0] ? 1 : -1;
+  // Ganadores: índices de todos los equipos con la puntuación máxima (puede haber empate)
+  const maxPts = Math.max(...G.puntos);
+  const ganadoresIdx = G.puntos.map((p,i)=>p===maxPts?i:-1).filter(i=>i>=0);
+  const esEmpate = ganadoresIdx.length > 1;
 
-  let subtitulo = ganador === -1
-    ? '¡Empate! Los dos equipos lo han hecho genial.'
-    : `¡Victoria para ${G.nombres[ganador]}!`;
+  let subtitulo;
+  if (esEmpate) {
+    const nombresEmp = ganadoresIdx.map(i=>G.nombres[i]).join(' y ');
+    subtitulo = `¡Empate entre ${nombresEmp}!`;
+  } else {
+    subtitulo = `¡Victoria para ${G.nombres[ganadoresIdx[0]]}!`;
+  }
   document.getElementById('results-subtitle').textContent = subtitulo;
   document.getElementById('results-title').textContent = '¡Fin del juego!';
 
+  // Ordenar por puntos descendente para mostrar ranking
+  const orden = G.puntos.map((p,i)=>({p,i})).sort((a,b)=>b.p-a.p).map(o=>o.i);
+
   const cards = document.getElementById('results-cards');
-  cards.innerHTML = [0,1].map(i=>`
-    <div class="results-card team${i+1} ${ganador===i?'winner':''}">
-      ${ganador===i?'<div class="winner-badge">GANADOR</div>':''}
+  cards.innerHTML = orden.map(i=>{
+    const esGanador = ganadoresIdx.includes(i);
+    return `
+    <div class="results-card team${i+1} ${esGanador?'winner':''}">
+      ${esGanador?'<div class="winner-badge">GANADOR</div>':''}
       <div class="results-team-name">${G.nombres[i]}</div>
       <div class="results-pts">${G.puntos[i]}</div>
       <div class="results-detail">${G.aciertos[i]} aciertos · ${G.fallos[i]} fallos</div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 
   showScreen('screen-resultados');
 }
 
 function reiniciar() {
-  resetState();
-  // Restaurar inputs
-  document.getElementById('nombre-team1').value = 'Equipo 1';
-  document.getElementById('nombre-team2').value = 'Equipo 2';
+  const nPrev = G.numEquipos || 2;
+  resetState(nPrev);
+  // Restaurar UI del setup
+  document.querySelectorAll('.num-teams-btn').forEach(b => b.classList.toggle('selected', Number(b.dataset.n) === nPrev));
+  renderTeamInputs();
   document.querySelectorAll('.dif-btn').forEach(b=>b.classList.remove('selected'));
   document.querySelector('.dif-btn.facil').classList.add('selected');
   showScreen('screen-setup');
@@ -1892,7 +2071,8 @@ function reiniciar() {
 // =====================================================
 // INIT
 // =====================================================
-resetState();
+resetState(2);
+renderTeamInputs();
 </script>
 </body>
 </html>
