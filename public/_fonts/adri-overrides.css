@@ -1,0 +1,317 @@
+/* ============================================================
+   adri-overrides.css — Capa adri-style v5.7 sobre minijuegos legacy
+   ============================================================
+   Aplica:
+   - Tipografía Bold Signal real: Satoshi 900 display + General Sans 200 body.
+   - Anti-cajas (regla EAR §15 components.md v5.7).
+   - Sin Inter pura como single-font.
+   Carga DESPUÉS de _fonts/fonts.css y del <style> interno del minijuego:
+
+     <link rel="stylesheet" href="../_fonts/fonts.css">
+     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,900&f[]=general-sans@200,300,400,500&display=swap" rel="stylesheet">
+     <style>...estilos del juego...</style>
+     <link rel="stylesheet" href="../_fonts/adri-overrides.css">
+
+   La capa override prevalece por orden y selectividad. No toca lógica JS.
+   ============================================================ */
+
+/* --- Tipografía: body 200 (extra-light), display Satoshi --- */
+body, body * { font-family: 'General Sans', system-ui, sans-serif; }
+body {
+  font-weight: 200;
+  letter-spacing: 0.005em;
+  line-height: 1.55;
+}
+
+.topbar-title, .panel-title, .modal-title, .setup-title,
+h1, h2, h3, h4, h5, h6,
+.scoreboard-team-name, .team-score, .point-value, .timer-value,
+.game-question, .question-text,
+[class*="title"], [class*="header-title"] {
+  font-family: 'Satoshi', system-ui, sans-serif;
+  letter-spacing: 0.04em;
+}
+.setup-title {
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+.btn, button, input, textarea, select {
+  font-family: 'General Sans', system-ui, sans-serif;
+}
+input[type="text"], input.team-input {
+  font-weight: 200 !important;
+  letter-spacing: 0.01em;
+}
+p, li, span:not([class*="title"]):not([class*="score"]):not([class*="value"]),
+.body, .text, .description, .meta, .help, .label, .caption {
+  font-weight: 200;
+  letter-spacing: 0.005em;
+}
+
+/* --- Estructura: bordes invisibles por defecto, cajas eliminadas --- */
+:root {
+  --border: rgba(255, 255, 255, 0.04);
+  --accent-1: #14b8a6;
+  --accent-2: #38bdf8;
+  --accent-3: #d97706;
+  --accent-4: #e11d48;
+  --accent-5: #8b5cf6;
+  --accent-6: #22c55e;
+  --team-1: #38bdf8;
+  --team-2: #d97706;
+  --team-3: #8b5cf6;
+  --team-4: #22c55e;
+  --team-5: #e11d48;
+}
+body.light-mode {
+  --border: rgba(0, 0, 0, 0.04);
+}
+
+/* Cards y paneles → sin caja */
+.bg-card, [class*="-card"], .card, .panel, .modal-content {
+  background: transparent !important;
+}
+.bg-card-hover, [class*="-card"]:hover {
+  background: rgba(255, 255, 255, 0.02) !important;
+}
+.card, .panel, [class*="-card"], .modal-content {
+  border: none !important;
+  box-shadow: none !important;
+}
+.topbar, hr, .divider {
+  border-color: var(--border) !important;
+}
+
+/* Topbar más estrecho */
+.topbar { padding: 10px 32px !important; min-height: auto !important; }
+.topbar-title { font-size: 0.78rem !important; }
+section, .section, main > * { padding-block: clamp(24px, 4vw, 48px); }
+
+/* SELECTORES tipo radio: sin caja, underline en seleccionado */
+.num-teams-btn, .dif-btn,
+[class*="-option"], [class*="-radio"],
+[class*="dif-btn"], [class*="opt-btn"] {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 10px 6px !important;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  font-weight: 300;
+  color: var(--text-secondary) !important;
+  transition: color 0.15s;
+  position: relative;
+}
+.num-teams-btn:hover, .dif-btn:hover { color: var(--text-primary) !important; }
+.num-teams-btn.selected, .dif-btn.selected { color: var(--text-primary) !important; }
+.num-teams-btn.selected::after, .dif-btn.selected::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 1px;
+  background: var(--text-primary);
+}
+.dif-btn { line-height: 1.5; }
+
+/* btn-primary: caja sobria, única acción explícita */
+button.btn-primary, .btn-primary {
+  background: transparent !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 4px !important;
+  padding: 12px 28px !important;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  font-weight: 400;
+  transition: border-color 0.18s;
+}
+button.btn-primary:hover, .btn-primary:hover {
+  border-color: var(--text-primary) !important;
+}
+
+/* Botones secundarios: sin caja */
+button, .btn {
+  background: transparent !important;
+  border: none !important;
+  color: var(--text-primary) !important;
+  padding: 8px 14px !important;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  font-weight: 400;
+  transition: color 0.15s;
+}
+.results-btn { color: var(--text-primary) !important; }
+
+/* Cards de equipo: solo línea superior de color del equipo */
+.team-input-block, [class*="team-card"], .team-card, .equipo-card {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 18px 4px 14px !important;
+  border-top: 2px solid var(--border) !important;
+}
+.team-input-block.team1 { border-top-color: var(--team-1) !important; }
+.team-input-block.team2 { border-top-color: var(--team-2) !important; }
+.team-input-block.team3 { border-top-color: var(--team-3) !important; }
+.team-input-block.team4 { border-top-color: var(--team-4) !important; }
+.team-input-block.team5 { border-top-color: var(--team-5) !important; }
+
+/* Inputs: solo subrayado (cubre text/number/email/tel/search) */
+input[type="text"], input[type="number"], input[type="email"],
+input[type="tel"], input[type="search"], input:not([type]),
+.team-input-block input, textarea {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid var(--border) !important;
+  border-radius: 0 !important;
+  padding: 8px 0 !important;
+  font-weight: 300;
+  color: var(--text-primary);
+}
+input[type="text"]:focus, input[type="number"]:focus, input[type="email"]:focus,
+input[type="tel"]:focus, input[type="search"]:focus, input:not([type]):focus,
+.team-input-block input:focus, textarea:focus {
+  outline: none !important;
+  border-bottom-color: var(--text-primary) !important;
+}
+
+/* ============================================================
+   PANTALLAS DE JUEGO — sin cajas, jerarquía por tipografía
+   ============================================================ */
+
+/* Palabra protagonista: sin caja, dominante por tamaño */
+.word-card, [class*="word-card"], .question-card, [class*="hero-content"] {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 24px 0 !important;
+  margin-bottom: 32px !important;
+  min-height: auto !important;
+}
+.word-main, .question-text, [class*="hero-text"] {
+  font-family: 'Satoshi', system-ui, sans-serif !important;
+  font-size: clamp(2.4rem, 6vw, 4rem) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.01em !important;
+  line-height: 1.05 !important;
+}
+.word-count, [class*="counter"] {
+  background: transparent !important;
+  font-family: 'General Sans', system-ui, sans-serif !important;
+  font-weight: 300 !important;
+  font-size: 0.7rem !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+  color: var(--text-muted) !important;
+}
+.word-frase {
+  font-weight: 200 !important;
+}
+.word-frase .highlight {
+  font-weight: 700 !important;
+  background: transparent !important;
+  border-bottom: 1px solid var(--text-primary) !important;
+  border-radius: 0 !important;
+  padding: 0 2px !important;
+  color: var(--text-primary) !important;
+}
+
+/* Botones de respuesta (cubo, opt, choice, answer): sin caja */
+.cubo, .opt, [class*="choice"], [class*="answer-btn"], [class*="opt-card"] {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 14px 18px !important;
+  min-width: 80px !important;
+  max-width: 200px !important;
+  position: relative;
+  flex-direction: column !important;
+  gap: 6px !important;
+}
+.cubo:hover, [class*="choice"]:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+.cubo:hover .cubo-name { color: var(--text-primary); }
+.cubo:active { transform: scale(0.96) !important; }
+.cubo-name, [class*="-name"], [class*="-label-text"] {
+  font-family: 'Satoshi', system-ui, sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 0.78rem !important;
+  letter-spacing: 0.14em !important;
+  color: var(--text-secondary);
+  transition: color 0.15s;
+}
+.cubo-icon, [class*="-icon"]:not([class*="topbar"]):not([class*="btn-icon"]) {
+  width: 22px !important;
+  height: 22px !important;
+  opacity: 0.7;
+}
+.cubo:hover .cubo-icon { opacity: 1; }
+
+.cubos-label, [class*="section-label"]:not(.score-label) {
+  font-family: 'General Sans', system-ui, sans-serif !important;
+  font-weight: 300 !important;
+  font-size: 0.7rem !important;
+  letter-spacing: 0.22em !important;
+  text-transform: uppercase !important;
+  color: var(--text-muted) !important;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+/* Feedback contextual: sin caja, color del texto */
+.feedback-bubble, [class*="feedback"] {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 12px 0 !important;
+}
+.feedback-bubble.correct, [class*="feedback"].correct { background: transparent !important; border: none !important; color: var(--success); }
+.feedback-bubble.wrong, [class*="feedback"].wrong { background: transparent !important; border: none !important; color: var(--danger); }
+.feedback-bubble .fb-icon { font-size: 1.2rem !important; opacity: 0.85; }
+.feedback-bubble .fb-text {
+  font-family: 'General Sans', system-ui, sans-serif !important;
+  font-weight: 300 !important;
+}
+
+/* Avalancha / múltiples palabras: solo línea inferior */
+.aval-card, [class*="multi-card"] {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid var(--border) !important;
+  border-radius: 0 !important;
+  padding: 18px 12px !important;
+}
+.aval-card.selected { border-bottom-color: var(--text-primary) !important; box-shadow: none !important; background: transparent !important; }
+.aval-card.correct { background: transparent !important; border-bottom-color: var(--success) !important; }
+.aval-card.wrong { background: transparent !important; border-bottom-color: var(--danger) !important; }
+
+/* Timer bar: color sobrio */
+.timer-bar { background: var(--text-secondary) !important; }
+
+/* Scoreboard: línea fina superior por equipo */
+.scoreboard-team, [class*="sb-team"] {
+  background: transparent !important;
+  border: none !important;
+  border-top: 2px solid var(--border) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 12px 8px !important;
+}
+
+/* Bonus banner: sin gradient */
+.bonus-banner {
+  background: transparent !important;
+  border: none !important;
+  border-top: 1px solid var(--border) !important;
+  border-bottom: 1px solid var(--border) !important;
+  border-radius: 0 !important;
+  padding: 18px 0 !important;
+}
