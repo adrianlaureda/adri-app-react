@@ -48,6 +48,23 @@ p, li, span:not([class*="title"]):not([class*="score"]):not([class*="value"]),
   letter-spacing: 0.005em;
 }
 
+/* Refuerzo: textos largos introductorios / explicativos siempre body, no display */
+.title-intro, .intro, .lead, .lead-text, .help-text, .body-text,
+.subtitle, .subhead, p.intro, p.title-intro,
+[class*="-intro"]:not(button):not(a),
+[class*="-description"]:not(button):not(a),
+[class*="-sub"]:not(button):not(a):not([class*="-submit"]) {
+  font-family: 'General Sans', system-ui, sans-serif !important;
+  font-weight: 200 !important;
+  letter-spacing: 0.005em;
+}
+/* Strong/em dentro de párrafos: sube solo a 500 (no 700 default), suficiente énfasis sin gritar */
+.title-intro strong, .intro strong, p strong, .body-text strong,
+[class*="-intro"] strong, [class*="-description"] strong {
+  font-weight: 500 !important;
+  font-family: 'General Sans', system-ui, sans-serif !important;
+}
+
 /* --- Estructura: bordes invisibles por defecto, cajas eliminadas --- */
 :root {
   --border: rgba(255, 255, 255, 0.04);
